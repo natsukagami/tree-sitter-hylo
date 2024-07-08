@@ -24,6 +24,7 @@
         # Equivalent to  inputs'.nixpkgs.legacyPackages.hello;
         devShells.default = pkgs.mkShell {
           buildInputs = with pkgs; [
+            tree-sitter
             nodejs
           ];
         };

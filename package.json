@@ -1,0 +1,25 @@
+{
+  "name": "tree-sitter-hylo",
+  "version": "0.1.0",
+  "description": "A tree-sitter module for the Hylo programming language",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/natsukagami/tree-sitter-hylo.git"
+  },
+  "author": "Natsu Kagami",
+  "license": "LGPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/natsukagami/tree-sitter-hylo/issues"
+  },
+  "homepage": "https://github.com/natsukagami/tree-sitter-hylo#readme",
+  "dependencies": {
+    "nan": "^2.20.0"
+  },
+  "devDependencies": {
+    "tree-sitter-cli": "^0.22.6"
+  }
+}
