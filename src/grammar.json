@@ -935,6 +935,10 @@
               {
                 "type": "STRING",
                 "value": "inout"
+              },
+              {
+                "type": "STRING",
+                "value": "set"
               }
             ]
           },

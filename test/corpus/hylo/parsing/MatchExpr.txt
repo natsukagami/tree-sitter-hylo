@@ -1,5 +1,6 @@
 ==================
 MatchExpr
+:error
 ==================
 
 //- parse expecting: failure
@@ -25,76 +26,3 @@ public fun main() {
 
 ---
 
-(source_file
-  (single_line_comment)
-  (function_decl
-    (function_head
-      (access_modifier)
-      (function_name
-        (identifier)))
-    (function_signature)
-    (function_body
-      (brace_stmt
-        (stmt
-          (expr
-            (match_expr
-              (expr
-                (primary_decl_ref
-                  (identifier_expr
-                    (identifier))))
-              (single_line_comment)
-              (match_case
-                (binding_decl
-                  (binding_pattern
-                    (binding_introducer)
-                    (identifier)))
-                (brace_stmt))
-              (single_line_comment)
-              (match_case
-                (binding_decl
-                  (binding_pattern
-                    (binding_introducer)
-                    (identifier)))
-                (brace_stmt
-                  (stmt
-                    (expr
-                      (function_call_expr
-                        (primary_decl_ref
-                          (identifier_expr
-                            (identifier))))))))
-              (single_line_comment)
-              (match_case
-                (binding_decl
-                  (binding_pattern
-                    (binding_introducer)
-                    (identifier)))
-                (expr
-                  (primary_decl_ref
-                    (identifier_expr
-                      (identifier)))
-                  (infix_operator_tail
-                    (infix_operator)
-                    (primary_decl_ref
-                      (identifier_expr
-                        (identifier)))))
-                (brace_stmt))
-              (single_line_comment)
-              (match_case
-                (binding_decl
-                  (binding_pattern
-                    (binding_introducer)
-                    (identifier)))
-                (brace_stmt
-                  (stmt
-                    (expr
-                      (primary_decl_ref
-                        (identifier_expr
-                          (identifier)))))
-                  (single_line_comment)
-                  (single_line_comment)
-                  (stmt
-                    (expr
-                      (primary_decl_ref
-                        (identifier_expr
-                          (identifier)))))
-                  (ERROR))))))))))

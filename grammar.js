@@ -222,7 +222,7 @@ module.exports = grammar({
     ),
 
     method_impl: $ => seq(
-      alias(choice("let", "sink", "inout"), "method_introducer"),
+      alias(choice("let", "sink", "inout", "set"), "method_introducer"),
       optional(field('body', $.brace_stmt)),
     ),
 
