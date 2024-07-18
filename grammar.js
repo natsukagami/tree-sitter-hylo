@@ -1,9 +1,24 @@
+/// <reference path="node_modules/tree-sitter-cli/dsl.d.ts" />
+
 // Token: String
 const unicode_escape = /\\u[0-9a-fA-F_]+/;
 const simple_escape = choice(`\0`, `\t`, `\n`, `\r`, `\'`, `\"`);
 const escape_char = choice(simple_escape, unicode_escape);
 const single_quoted_text_item = choice(escape_char, /[^"\x0a\x0d]/);
 const single_line_string = seq('"', repeat(token.immediate(single_quoted_text_item)), token.immediate('"'));
+
+// Token: Whitespace
+const newline = "\n";
+const horizontal_space_token = /[ \t]/;
+const whitespace = token(choice(horizontal_space_token, newline));
+
+// Token: Operators
+const common_operator = /[-*\/^%&!?]/u;
+const raw_operator = token(choice(common_operator, "<", ">"));
+const imm_raw_operator = token.immediate(raw_operator);
+const prefix_operator_head = token(choice(common_operator, ">"));
+const postfix_operator_head = token.immediate(choice(common_operator, "<"));
+const operator = token(seq(raw_operator, repeat(imm_raw_operator)));
 
 module.exports = grammar({
   name: 'hylo',
@@ -88,7 +103,7 @@ module.exports = grammar({
 
     _stmt_list: $ => seq(
       $.stmt,
-      repeat(seq($._stmt_sep, $.stmt))
+      // repeat(seq($._stmt_sep, $.stmt))
       // multiple statements
     ),
 
@@ -111,21 +126,33 @@ module.exports = grammar({
 
     // EXPRESSIONS
 
-    expr: $ => seq($._infix_expr_head, optional($._infix_expr_tail)),
+    expr: $ => seq($._infix_expr_head, repeat(seq($._infix_expr_tail))),
 
-    _infix_expr_head: $ => choice(
+    _infix_expr_head: $ => prec(2, choice(
       // async-expr
       // await-expr
       // unsafe-expr
       $._prefix_expr
-    ), // TODO
+    )), // TODO
 
-    _infix_expr_tail: $ => choice(), // TODO
+    _infix_expr_tail: $ => choice(
+      // type-casting-tail
+      $.infix_operator_tail,
+    ),
+
+    infix_operator_tail: $ => seq(
+      field('operator', $.infix_operator),
+      field('rhs', $._prefix_expr),
+    ),
 
     _prefix_expr: $ => seq(optional($.prefix_operator), $._postfix_expr),
 
-    _postfix_expr: $ => seq(
-      $._compound_expr, repeat($.postfix_operator)
+    _postfix_expr: $ => choice(
+      $._compound_expr,
+      seq(
+        $._postfix_expr,
+        $.postfix_operator,
+      ),
     ),
 
     _compound_expr: $ => choice(
@@ -230,17 +257,16 @@ module.exports = grammar({
 
     wildcard_pattern: $ => choice(), // TODO: wildcard-pattern
 
-    // OPERATORS,
+    // OPERATORS
 
-    prefix_operator: $ => seq($._prefix_operator_head, repeat($._raw_operator)),
 
-    _prefix_operator_head: $ => /(?:[-*\/^%&!?])/u, // TODO \p{Sm} without <
-
-    postfix_operator: $ => seq($._postfix_operator_head, repeat($._raw_operator)),
-
-    _postfix_operator_head: $ => /(?:[-*\/^%&!?])/u, // TODO \p{Sm} without >
-
-    _raw_operator: $ => token.immediate(/[-*\/^%&!?\p{Sm}]/u),
+    prefix_operator: $ => seq(prefix_operator_head, repeat(imm_raw_operator)),
+    postfix_operator: $ => seq(postfix_operator_head, repeat(imm_raw_operator)),
+    operator: $ => operator,
+    infix_operator: $ => token(choice(
+      operator,
+      "=", "==", "..<", "...",
+    )),
 
     // TYPES
     type_expr: $ => $._type_expr,
@@ -309,23 +335,20 @@ module.exports = grammar({
     hexadecimal_literal: $ => /0x[0-9a-fA-F_]+/,
 
     // WHITESPACES
-    _whitespace: $ => choice($._horizontal_space, $._newline),
     _horizontal_space: $ => choice(
-      $._horizontal_space_token,
+      horizontal_space_token,
       $.single_line_comment,
       $.block_comment,
     ),
-    _horizontal_space_token: $ => token.immediate(/[ \t]/),
-    _newline: $ => token.immediate("\n"),
-    single_line_comment: $ => token.immediate(/\/\/[^\r\n\v]*/),
+    single_line_comment: $ => /\/\/[^\r\n\v]*/,
     block_comment: $ => choice(
       seq($._block_comment_open, "*/"),
       seq($._block_comment_open, $.block_comment, "*/")
     ),
-    _block_comment_open: $ => token.immediate(/\/[*](?:[^*\/]+|(?:[\/]+|[*]+)[^*\/])*/),
+    _block_comment_open: $ => /\/[*](?:[^*\/]+|(?:[\/]+|[*]+)[^*\/])*/,
   },
 
-  extras: $ => [$._horizontal_space_token, $.single_line_comment, $.block_comment, $._newline],
+  extras: $ => [whitespace, $.single_line_comment, $.block_comment],
 
   word: $ => $.identifier,
 });

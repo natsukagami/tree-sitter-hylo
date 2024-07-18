@@ -16,14 +16,15 @@ public fun main() {
         (identifier)))
     (function_signature)
     (function_body
-      (stmt
-        (expr
-          (function_call_expr
-            (primary_expr
-              (primary_decl_ref
-                (identifier_expr
-                  (identifier))))
-            (call_argument
-              (expr
-                (primary_expr
-                  (string_literal))))))))))
+      (brace_stmt
+        (stmt
+          (expr
+            (function_call_expr
+              (primary_expr
+                (primary_decl_ref
+                  (identifier_expr
+                    (identifier))))
+              (call_argument
+                (expr
+                  (primary_expr
+                    (string_literal)))))))))))

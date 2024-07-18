@@ -68,17 +68,9 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": false,
       "types": [
-        {
-          "type": "block_comment",
-          "named": true
-        },
-        {
-          "type": "single_line_comment",
-          "named": true
-        },
         {
           "type": "stmt",
           "named": true
@@ -185,6 +177,10 @@
       "types": [
         {
           "type": "function_call_expr",
+          "named": true
+        },
+        {
+          "type": "infix_operator_tail",
           "named": true
         },
         {
@@ -357,6 +353,44 @@
         "types": [
           {
             "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "infix_operator_tail",
+    "named": true,
+    "fields": {
+      "operator": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "infix_operator",
+            "named": true
+          }
+        ]
+      },
+      "rhs": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": "function_call_expr",
+            "named": true
+          },
+          {
+            "type": "postfix_operator",
+            "named": true
+          },
+          {
+            "type": "prefix_operator",
+            "named": true
+          },
+          {
+            "type": "primary_expr",
             "named": true
           }
         ]
@@ -680,6 +714,10 @@
   {
     "type": "if",
     "named": false
+  },
+  {
+    "type": "infix_operator",
+    "named": true
   },
   {
     "type": "init",
