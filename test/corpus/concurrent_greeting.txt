@@ -1,0 +1,207 @@
+===================
+Concurrent Greeting
+===================
+
+fun do_greet() -> Int {
+  print("Hello, concurrent world!")
+  return 17
+}
+
+fun prime_number() -> Int {
+  13
+}
+
+fun concurrent_greeting() -> Int {
+  var future = spawn_(fun() { do_greet() })
+  let x = prime_number()
+  print("Main threads says: hello!")
+  print("# before await")
+  let y = future.await() // switching threads
+  print("# after await")
+  return x + y
+}
+
+public fun main() {
+  print("Starting...")
+  print(concurrent_greeting())
+  print("Finishing...")
+}
+
+// Compile this with:
+// > hc concurrent_greeting.hylo -l concore2full -l context_core_api -l boost_context -l c++ -L <path-to-concore2full> -L <path-to-boost>
+
+---
+
+(source_file
+  (function_decl
+    (function_head
+      (function_name
+        (identifier)))
+    (function_signature
+      (type_expr
+        (name_type_expr
+          (identifier))))
+    (function_body
+      (brace_stmt
+        (stmt
+          (expr
+            (function_call_expr
+              (primary_decl_ref
+                (identifier_expr
+                  (identifier)))
+              (call_argument
+                (expr
+                  (string_literal))))))
+        (stmt
+          (jump_stmt
+            (expr
+              (integer_literal
+                (decimal_literal))))))))
+  (function_decl
+    (function_head
+      (function_name
+        (identifier)))
+    (function_signature
+      (type_expr
+        (name_type_expr
+          (identifier))))
+    (function_body
+      (brace_stmt
+        (stmt
+          (expr
+            (integer_literal
+              (decimal_literal)))))))
+  (function_decl
+    (function_head
+      (function_name
+        (identifier)))
+    (function_signature
+      (type_expr
+        (name_type_expr
+          (identifier))))
+    (function_body
+      (brace_stmt
+        (stmt
+          (binding_decl
+            (binding_pattern
+              (binding_introducer)
+              (identifier))
+            (expr
+              (function_call_expr
+                (primary_decl_ref
+                  (identifier_expr
+                    (identifier)))
+                (call_argument
+                  (expr
+                    (lambda_expr
+                      (function_signature)
+                      (brace_stmt
+                        (stmt
+                          (expr
+                            (function_call_expr
+                              (primary_decl_ref
+                                (identifier_expr
+                                  (identifier))))))))))))))
+        (stmt
+          (binding_decl
+            (binding_pattern
+              (binding_introducer)
+              (identifier))
+            (expr
+              (function_call_expr
+                (primary_decl_ref
+                  (identifier_expr
+                    (identifier)))))))
+        (stmt
+          (expr
+            (function_call_expr
+              (primary_decl_ref
+                (identifier_expr
+                  (identifier)))
+              (call_argument
+                (expr
+                  (string_literal))))))
+        (stmt
+          (expr
+            (function_call_expr
+              (primary_decl_ref
+                (identifier_expr
+                  (identifier)))
+              (call_argument
+                (expr
+                  (string_literal))))))
+        (stmt
+          (binding_decl
+            (binding_pattern
+              (binding_introducer)
+              (identifier))
+            (expr
+              (function_call_expr
+                (value_member_expr
+                  (primary_decl_ref
+                    (identifier_expr
+                      (identifier)))
+                  (primary_decl_ref
+                    (identifier_expr
+                      (identifier))))))))
+        (single_line_comment)
+        (stmt
+          (expr
+            (function_call_expr
+              (primary_decl_ref
+                (identifier_expr
+                  (identifier)))
+              (call_argument
+                (expr
+                  (string_literal))))))
+        (stmt
+          (jump_stmt
+            (expr
+              (primary_decl_ref
+                (identifier_expr
+                  (identifier)))
+              (infix_operator_tail
+                (infix_operator)
+                (primary_decl_ref
+                  (identifier_expr
+                    (identifier))))))))))
+  (function_decl
+    (function_head
+      (access_modifier)
+      (function_name
+        (identifier)))
+    (function_signature)
+    (function_body
+      (brace_stmt
+        (stmt
+          (expr
+            (function_call_expr
+              (primary_decl_ref
+                (identifier_expr
+                  (identifier)))
+              (call_argument
+                (expr
+                  (string_literal))))))
+        (stmt
+          (expr
+            (function_call_expr
+              (primary_decl_ref
+                (identifier_expr
+                  (identifier)))
+              (call_argument
+                (expr
+                  (function_call_expr
+                    (primary_decl_ref
+                      (identifier_expr
+                        (identifier)))))))))
+        (stmt
+          (expr
+            (function_call_expr
+              (primary_decl_ref
+                (identifier_expr
+                  (identifier)))
+              (call_argument
+                (expr
+                  (string_literal)))))))))
+  (single_line_comment)
+  (single_line_comment))

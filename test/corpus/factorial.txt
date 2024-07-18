@@ -36,50 +36,42 @@ public fun main() {
       (brace_stmt
         (stmt
           (expr
-            (primary_expr
-              (conditional_expr
-                (conditional_clause_item
+            (conditional_expr
+              (conditional_clause_item
+                (expr
+                  (primary_decl_ref
+                    (identifier_expr
+                      (identifier)))
+                  (infix_operator_tail
+                    (infix_operator)
+                    (integer_literal
+                      (decimal_literal)))))
+              (brace_stmt
+                (stmt
                   (expr
-                    (primary_expr
-                      (primary_decl_ref
-                        (identifier_expr
-                          (identifier))))
+                    (integer_literal
+                      (decimal_literal)))))
+              (brace_stmt
+                (stmt
+                  (expr
+                    (primary_decl_ref
+                      (identifier_expr
+                        (identifier)))
                     (infix_operator_tail
                       (infix_operator)
-                      (primary_expr
-                        (integer_literal
-                          (decimal_literal))))))
-                (brace_stmt
-                  (stmt
-                    (expr
-                      (primary_expr
-                        (integer_literal
-                          (decimal_literal))))))
-                (brace_stmt
-                  (stmt
-                    (expr
-                      (primary_expr
+                      (function_call_expr
                         (primary_decl_ref
                           (identifier_expr
-                            (identifier))))
-                      (infix_operator_tail
-                        (infix_operator)
-                        (function_call_expr
-                          (primary_expr
+                            (identifier)))
+                        (call_argument
+                          (expr
                             (primary_decl_ref
                               (identifier_expr
-                                (identifier))))
-                          (call_argument
-                            (expr
-                              (primary_expr
-                                (primary_decl_ref
-                                  (identifier_expr
-                                    (identifier))))
-                              (infix_operator_tail
-                                (infix_operator)
-                                (primary_expr
-                                  (integer_literal
-                                    (decimal_literal))))))))))))))))))
+                                (identifier)))
+                            (infix_operator_tail
+                              (infix_operator)
+                              (integer_literal
+                                (decimal_literal))))))))))))))))
   (function_decl
     (function_head
       (access_modifier)
@@ -95,12 +87,10 @@ public fun main() {
               (identifier))
             (expr
               (function_call_expr
-                (primary_expr
-                  (primary_decl_ref
-                    (identifier_expr
-                      (identifier))))
+                (primary_decl_ref
+                  (identifier_expr
+                    (identifier)))
                 (call_argument
                   (expr
-                    (primary_expr
-                      (integer_literal
-                        (decimal_literal)))))))))))))
+                    (integer_literal
+                      (decimal_literal))))))))))))
