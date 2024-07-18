@@ -115,7 +115,8 @@ module.exports = grammar({
 
     parameter_decl: $ => seq(
       field('label', choice($.identifier, "_")),
-      field('name', $.identifier),
+      optional(field('name', $.identifier)),
+      optional($.implicit_parameter_modifier),
       optional(seq(
         ":",
         field('type', $._parameter_type_expr),
@@ -415,6 +416,8 @@ module.exports = grammar({
       field("receiver_modifier", choice("sink", "inout", "yielded")),
       field("static_modifier", "static"),
     ),
+
+    implicit_parameter_modifier: $ => token.immediate("?"),
 
     // IDENTIFIERS
 

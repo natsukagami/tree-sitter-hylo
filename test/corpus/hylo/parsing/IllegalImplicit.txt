@@ -1,0 +1,41 @@
+===============
+IlligalImplicit
+===============
+
+//- parse expecting: failure
+
+//! @+1 diagnostic 'inout'-parameter cannot be implicit
+fun bar(x?: inout Int) -> Int { x.copy() }
+
+---
+
+(source_file
+  (single_line_comment)
+  (single_line_comment)
+  (function_decl
+    (function_head
+      (function_name
+        (identifier)))
+    (function_signature
+      (parameter_decl
+        (identifier)
+        (implicit_parameter_modifier)
+        (parameter_passing_convention)
+        (type_expr
+          (name_type_expr
+            (identifier))))
+      (type_expr
+        (name_type_expr
+          (identifier))))
+    (function_body
+      (brace_stmt
+        (stmt
+          (expr
+            (function_call_expr
+              (value_member_expr
+                (primary_decl_ref
+                  (identifier_expr
+                    (identifier)))
+                (primary_decl_ref
+                  (identifier_expr
+                    (identifier)))))))))))
