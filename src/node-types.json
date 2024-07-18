@@ -113,6 +113,11 @@
     }
   },
   {
+    "type": "boolean_literal",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "brace_stmt",
     "named": true,
     "fields": {},
@@ -327,7 +332,15 @@
       "required": false,
       "types": [
         {
+          "type": "boolean_literal",
+          "named": true
+        },
+        {
           "type": "conditional_expr",
+          "named": true
+        },
+        {
+          "type": "floating_point_literal",
           "named": true
         },
         {
@@ -368,6 +381,10 @@
         },
         {
           "type": "tuple_expr",
+          "named": true
+        },
+        {
+          "type": "unicode_scalar_literal",
           "named": true
         },
         {
@@ -386,7 +403,15 @@
       "required": false,
       "types": [
         {
+          "type": "boolean_literal",
+          "named": true
+        },
+        {
           "type": "conditional_expr",
+          "named": true
+        },
+        {
+          "type": "floating_point_literal",
           "named": true
         },
         {
@@ -427,6 +452,10 @@
         },
         {
           "type": "tuple_expr",
+          "named": true
+        },
+        {
+          "type": "unicode_scalar_literal",
           "named": true
         },
         {
@@ -527,7 +556,15 @@
         "required": true,
         "types": [
           {
+            "type": "boolean_literal",
+            "named": true
+          },
+          {
             "type": "conditional_expr",
+            "named": true
+          },
+          {
+            "type": "floating_point_literal",
             "named": true
           },
           {
@@ -560,6 +597,10 @@
           },
           {
             "type": "tuple_expr",
+            "named": true
+          },
+          {
+            "type": "unicode_scalar_literal",
             "named": true
           },
           {
@@ -743,6 +784,11 @@
     }
   },
   {
+    "type": "infix_operator",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "infix_operator_tail",
     "named": true,
     "fields": {
@@ -761,7 +807,15 @@
         "required": true,
         "types": [
           {
+            "type": "boolean_literal",
+            "named": true
+          },
+          {
             "type": "conditional_expr",
+            "named": true
+          },
+          {
+            "type": "floating_point_literal",
             "named": true
           },
           {
@@ -802,6 +856,10 @@
           },
           {
             "type": "tuple_expr",
+            "named": true
+          },
+          {
+            "type": "unicode_scalar_literal",
             "named": true
           },
           {
@@ -1101,6 +1159,11 @@
         }
       ]
     }
+  },
+  {
+    "type": "parameter_passing_convention",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "postfix_operator",
@@ -1522,7 +1585,15 @@
         "required": true,
         "types": [
           {
+            "type": "boolean_literal",
+            "named": true
+          },
+          {
             "type": "conditional_expr",
+            "named": true
+          },
+          {
+            "type": "floating_point_literal",
             "named": true
           },
           {
@@ -1555,6 +1626,10 @@
           },
           {
             "type": "tuple_expr",
+            "named": true
+          },
+          {
+            "type": "unicode_scalar_literal",
             "named": true
           },
           {
@@ -1599,6 +1674,14 @@
     "named": false
   },
   {
+    "type": "...",
+    "named": false
+  },
+  {
+    "type": "..<",
+    "named": false
+  },
+  {
     "type": ":",
     "named": false
   },
@@ -1608,6 +1691,10 @@
   },
   {
     "type": "=",
+    "named": false
+  },
+  {
+    "type": "==",
     "named": false
   },
   {
@@ -1651,6 +1738,14 @@
     "named": false
   },
   {
+    "type": "false",
+    "named": false
+  },
+  {
+    "type": "floating_point_literal",
+    "named": true
+  },
+  {
     "type": "fun",
     "named": false
   },
@@ -1673,10 +1768,6 @@
   {
     "type": "import",
     "named": false
-  },
-  {
-    "type": "infix_operator",
-    "named": true
   },
   {
     "type": "init",
@@ -1711,10 +1802,6 @@
     "named": true
   },
   {
-    "type": "parameter_passing_convention",
-    "named": true
-  },
-  {
     "type": "public",
     "named": false
   },
@@ -1735,12 +1822,20 @@
     "named": false
   },
   {
+    "type": "true",
+    "named": false
+  },
+  {
     "type": "type",
     "named": false
   },
   {
     "type": "typealias",
     "named": false
+  },
+  {
+    "type": "unicode_scalar_literal",
+    "named": true
   },
   {
     "type": "var",

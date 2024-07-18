@@ -20,6 +20,24 @@ const prefix_operator_head = token(choice(common_operator, ">"));
 const postfix_operator_head = token.immediate(choice(common_operator, "<"));
 const operator = token(seq(raw_operator, repeat(imm_raw_operator)));
 
+// Token: floats
+const decimal_literal = /[0-9][0-9_]*/;
+const float_suffix = seq(/[0-9]/, optional(decimal_literal));
+const exponent_sign = choice("+", "-");
+const exponent = seq(choice('e', 'E'), optional(exponent_sign), float_suffix);
+const float_fractional_const = seq(decimal_literal, ".", float_suffix);
+const floating_point_literal = token(choice(
+  seq(float_fractional_const, optional(exponent)),
+  seq(decimal_literal, exponent),
+));
+
+// Token: Unicode
+const c_char = /[^']/;
+const unicode_scalar_literal = token(choice(
+  seq("'", escape_char, "'"),
+  seq("'", c_char, "'"),
+));
+
 module.exports = grammar({
   name: 'hylo',
   rules: {
@@ -208,7 +226,7 @@ module.exports = grammar({
       $.type_expr,
     ),
 
-    parameter_passing_convention: $ => token(choice("let", "inout", "sink", "yield")),
+    parameter_passing_convention: $ => choice("let", "inout", "sink", "yield"),
 
     _function_body: $ => choice(
       $.method_bundle_body,
@@ -497,10 +515,10 @@ module.exports = grammar({
     prefix_operator: $ => seq(prefix_operator_head, repeat(imm_raw_operator)),
     postfix_operator: $ => seq(postfix_operator_head, repeat(imm_raw_operator)),
     operator: $ => operator,
-    infix_operator: $ => token(choice(
+    infix_operator: $ => choice(
       operator,
       "=", "==", "..<", "...",
-    )),
+    ),
 
     // TYPES
     type_expr: $ => $._type_expr,
@@ -561,24 +579,30 @@ module.exports = grammar({
     // LITERALS
 
     _scalar_literal: $ => choice(
-      // boolean-literal
+      $.boolean_literal,
       $.integer_literal,
-      // floating-point-literal
+      $.floating_point_literal,
       $.string_literal,
-      // unicode-scalar-literal
+      $.unicode_scalar_literal,
     ),
+
+    boolean_literal: $ => choice("true", "false"),
 
     string_literal: $ => choice(
       $._single_line_string,
       // multi line string
     ),
 
+    unicode_scalar_literal: $ => unicode_scalar_literal,
+
+    floating_point_literal: $ => floating_point_literal,
+
     _single_line_string: $ => token(single_line_string),
 
     integer_literal: $ => choice($.binary_literal, $.octal_literal, $.decimal_literal, $.hexadecimal_literal),
     binary_literal: $ => /0b[01_]+/,
     octal_literal: $ => /0o[0-7_]+/,
-    decimal_literal: $ => /[0-9][0-9_]*/,
+    decimal_literal: $ => decimal_literal,
     hexadecimal_literal: $ => /0x[0-9a-fA-F_]+/,
 
     // WHITESPACES
