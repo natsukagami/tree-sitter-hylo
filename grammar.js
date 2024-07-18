@@ -345,7 +345,7 @@ module.exports = grammar({
 
     _selection_expr: $ => choice(
       $.conditional_expr,
-      // match-expr
+      $.match_expr,
     ),
 
     conditional_expr: $ => seq(
@@ -368,7 +368,28 @@ module.exports = grammar({
       $.expr,
     ),
 
+    match_expr: $ => seq(
+      "match",
+      field('subject', $.expr),
+      "{",
+      repeat($.match_case),
+      "}",
+    ),
+
+    match_case: $ => seq(
+      field('pattern', $.binding_decl),
+      optional(seq("where", field('condition', $.expr))),
+      field('body', $.brace_stmt),
+    ),
+
     // PATTERNS
+
+    _pattern: $ => choice(
+      $.binding_pattern,
+      alias($.expr, "expr_pattern"),
+      $.tuple_pattern,
+      $.wildcard_pattern,
+    ),
 
     binding_pattern: $ => seq(
       field('introducer', $.binding_introducer),
@@ -382,9 +403,18 @@ module.exports = grammar({
 
     binding_introducer: $ => token(choice("let", "var", "sink", "inout")),
 
-    tuple_pattern: $ => choice(), // TODO: tuple-pattern
+    tuple_pattern: $ => seq(
+      "(",
+      $.tuple_expr_element,
+      repeat(seq(",", $.tuple_expr_element)),
+      ")",
+    ),
+    tuple_pattern_element: $ => seq(
+      optional(seq(field('label', $.identifier), ":")),
+      $._pattern
+    ),
 
-    wildcard_pattern: $ => choice(), // TODO: wildcard-pattern
+    wildcard_pattern: $ => "_",
 
     // OPERATORS
 

@@ -84,7 +84,7 @@ public fun main() {
           (binding_decl
             (binding_pattern
               (binding_introducer)
-              (identifier))
+              (wildcard_pattern))
             (expr
               (function_call_expr
                 (primary_decl_ref

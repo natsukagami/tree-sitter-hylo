@@ -1,0 +1,100 @@
+==================
+MatchExpr
+==================
+
+//- parse expecting: failure
+
+public fun main() {
+  match true {
+    // A case with an block body.
+    let x {}
+
+    // A case with an expression body.
+    let x { f() }
+
+    // A case with a condition.
+    let x where x == true {}
+
+    // A case with a parse error.
+    let x { false   //! diagnostic expected '}'
+
+    // A dummy case to make sure the next '}' is consumed by the match expression.
+    _ {}
+  }
+}
+
+---
+
+    (source_file
+      (single_line_comment)
+      (function_decl
+        (function_head
+          (access_modifier)
+          (function_name
+            (identifier)))
+        (function_signature)
+        (function_body
+          (brace_stmt
+            (stmt
+              (expr
+                (match_expr
+                  (expr
+                    (primary_decl_ref
+                      (identifier_expr
+                        (identifier))))
+                  (single_line_comment)
+                  (match_case
+                    (binding_decl
+                      (binding_pattern
+                        (binding_introducer)
+                        (identifier)))
+                    (brace_stmt))
+                  (single_line_comment)
+                  (match_case
+                    (binding_decl
+                      (binding_pattern
+                        (binding_introducer)
+                        (identifier)))
+                    (brace_stmt
+                      (stmt
+                        (expr
+                          (function_call_expr
+                            (primary_decl_ref
+                              (identifier_expr
+                                (identifier))))))))
+                  (single_line_comment)
+                  (match_case
+                    (binding_decl
+                      (binding_pattern
+                        (binding_introducer)
+                        (identifier)))
+                    (expr
+                      (primary_decl_ref
+                        (identifier_expr
+                          (identifier)))
+                      (infix_operator_tail
+                        (infix_operator)
+                        (primary_decl_ref
+                          (identifier_expr
+                            (identifier)))))
+                    (brace_stmt))
+                  (single_line_comment)
+                  (match_case
+                    (binding_decl
+                      (binding_pattern
+                        (binding_introducer)
+                        (identifier)))
+                    (brace_stmt
+                      (stmt
+                        (expr
+                          (primary_decl_ref
+                            (identifier_expr
+                              (identifier)))))
+                      (single_line_comment)
+                      (single_line_comment)
+                      (stmt
+                        (expr
+                          (primary_decl_ref
+                            (identifier_expr
+                              (identifier)))))
+                      (ERROR))))))))))

@@ -236,6 +236,69 @@
           "named": true
         },
         {
+          "type": "match_expr",
+          "named": true
+        },
+        {
+          "type": "postfix_operator",
+          "named": true
+        },
+        {
+          "type": "prefix_operator",
+          "named": true
+        },
+        {
+          "type": "primary_decl_ref",
+          "named": true
+        },
+        {
+          "type": "string_literal",
+          "named": true
+        },
+        {
+          "type": "tuple_expr",
+          "named": true
+        },
+        {
+          "type": "value_member_expr",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "expr_pattern",
+    "named": false,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "conditional_expr",
+          "named": true
+        },
+        {
+          "type": "function_call_expr",
+          "named": true
+        },
+        {
+          "type": "infix_operator_tail",
+          "named": true
+        },
+        {
+          "type": "integer_literal",
+          "named": true
+        },
+        {
+          "type": "lambda_expr",
+          "named": true
+        },
+        {
+          "type": "match_expr",
+          "named": true
+        },
+        {
           "type": "postfix_operator",
           "named": true
         },
@@ -313,6 +376,10 @@
           },
           {
             "type": "lambda_expr",
+            "named": true
+          },
+          {
+            "type": "match_expr",
             "named": true
           },
           {
@@ -509,6 +576,10 @@
             "named": true
           },
           {
+            "type": "match_expr",
+            "named": true
+          },
+          {
             "type": "nil",
             "named": false
           },
@@ -617,6 +688,68 @@
           }
         ]
       }
+    }
+  },
+  {
+    "type": "match_case",
+    "named": true,
+    "fields": {
+      "body": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "brace_stmt",
+            "named": true
+          }
+        ]
+      },
+      "condition": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "expr",
+            "named": true
+          }
+        ]
+      },
+      "pattern": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "binding_decl",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "match_expr",
+    "named": true,
+    "fields": {
+      "subject": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "expr",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "match_case",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -964,7 +1097,17 @@
   {
     "type": "tuple_pattern",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "tuple_expr_element",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "type_alias_decl",
@@ -1065,6 +1208,10 @@
           },
           {
             "type": "lambda_expr",
+            "named": true
+          },
+          {
+            "type": "match_expr",
             "named": true
           },
           {
@@ -1205,6 +1352,10 @@
     "named": false
   },
   {
+    "type": "match",
+    "named": false
+  },
+  {
     "type": "nil",
     "named": false
   },
@@ -1238,6 +1389,10 @@
   },
   {
     "type": "typealias",
+    "named": false
+  },
+  {
+    "type": "where",
     "named": false
   },
   {
