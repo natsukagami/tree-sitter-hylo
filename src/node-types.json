@@ -23,7 +23,7 @@
     "type": "call_argument",
     "named": true,
     "fields": {
-      "tag": {
+      "label": {
         "multiple": false,
         "required": false,
         "types": [
@@ -199,6 +199,20 @@
     "type": "function_signature",
     "named": true,
     "fields": {
+      "params": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": ",",
+            "named": false
+          },
+          {
+            "type": "parameter_decl",
+            "named": true
+          }
+        ]
+      },
       "returns": {
         "multiple": false,
         "required": false,
@@ -282,6 +296,70 @@
           },
           {
             "type": "name_type_expr",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "parameter_decl",
+    "named": true,
+    "fields": {
+      "convention": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "parameter_passing_convention",
+            "named": true
+          }
+        ]
+      },
+      "default_value": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "expr",
+            "named": true
+          }
+        ]
+      },
+      "label": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "_",
+            "named": false
+          },
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "type": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "parameter_passing_convention",
+            "named": true
+          },
+          {
+            "type": "type_expr",
             "named": true
           }
         ]
@@ -432,6 +510,14 @@
     "named": false
   },
   {
+    "type": "=",
+    "named": false
+  },
+  {
+    "type": "_",
+    "named": false
+  },
+  {
     "type": "binary_literal",
     "named": true
   },
@@ -465,6 +551,10 @@
   },
   {
     "type": "octal_literal",
+    "named": true
+  },
+  {
+    "type": "parameter_passing_convention",
     "named": true
   },
   {

@@ -37,14 +37,37 @@ module.exports = grammar({
 
     function_signature: $ => seq(
       '(',
-      // field('params', optional($.parameter_list)),
+      field('params', optional($._parameter_list)),
       ')',
       // receiver-effect? 
       optional(seq("->", field('returns', $.type_expr))),
       // type-aliases-clause?
     ),
 
-    // parameter_list: $ => seq( /* TODO */),
+    _parameter_list: $ => seq(
+      $.parameter_decl,
+      repeat(seq(",", $.parameter_decl)),
+    ),
+
+    parameter_decl: $ => seq(
+      field('label', choice($.identifier, "_")),
+      field('name', $.identifier),
+      optional(seq(
+        ":",
+        field('type', $._parameter_type_expr),
+      )),
+      optional(seq(
+        "=",
+        field('default_value', $.expr),
+      )),
+    ),
+
+    _parameter_type_expr: $ => seq(
+      optional(field('convention', $.parameter_passing_convention)),
+      $.type_expr,
+    ),
+
+    parameter_passing_convention: $ => token(choice("let", "inout", "sink", "yield")),
 
     function_body: $ => choice(
       // TODO method-bundle
@@ -127,7 +150,7 @@ module.exports = grammar({
 
     call_argument: $ => seq(
       optional(seq(
-        field("tag", $.identifier),
+        field('label', $.identifier),
         ":",
       )),
       $.expr,
