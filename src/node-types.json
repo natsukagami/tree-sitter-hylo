@@ -198,7 +198,18 @@
   {
     "type": "function_signature",
     "named": true,
-    "fields": {}
+    "fields": {
+      "returns": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "type_expr",
+            "named": true
+          }
+        ]
+      }
+    }
   },
   {
     "type": "identifier_expr",
@@ -210,6 +221,67 @@
         "types": [
           {
             "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "integer_literal",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "binary_literal",
+          "named": true
+        },
+        {
+          "type": "decimal_literal",
+          "named": true
+        },
+        {
+          "type": "hexadecimal_literal",
+          "named": true
+        },
+        {
+          "type": "octal_literal",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "name_type_expr",
+    "named": true,
+    "fields": {
+      "identifier": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "prefix": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
+          {
+            "type": "name_type_expr",
             "named": true
           }
         ]
@@ -250,6 +322,10 @@
       "multiple": false,
       "required": false,
       "types": [
+        {
+          "type": "integer_literal",
+          "named": true
+        },
         {
           "type": "primary_decl_ref",
           "named": true
@@ -313,6 +389,21 @@
     "fields": {}
   },
   {
+    "type": "type_expr",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "name_type_expr",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "(",
     "named": false
   },
@@ -329,8 +420,24 @@
     "named": false
   },
   {
+    "type": "->",
+    "named": false
+  },
+  {
+    "type": ".",
+    "named": false
+  },
+  {
     "type": ":",
     "named": false
+  },
+  {
+    "type": "binary_literal",
+    "named": true
+  },
+  {
+    "type": "decimal_literal",
+    "named": true
   },
   {
     "type": "fun",
@@ -338,6 +445,10 @@
   },
   {
     "type": "function_memberwise_init",
+    "named": true
+  },
+  {
+    "type": "hexadecimal_literal",
     "named": true
   },
   {
@@ -351,6 +462,10 @@
   {
     "type": "nil",
     "named": false
+  },
+  {
+    "type": "octal_literal",
+    "named": true
   },
   {
     "type": "public",

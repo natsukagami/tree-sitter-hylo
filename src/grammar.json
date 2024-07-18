@@ -1,5 +1,6 @@
 {
   "name": "hylo",
+  "word": "identifier",
   "rules": {
     "source_file": {
       "type": "REPEAT",
@@ -86,6 +87,31 @@
         {
           "type": "STRING",
           "value": ")"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": "->"
+                },
+                {
+                  "type": "FIELD",
+                  "name": "returns",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "type_expr"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         }
       ]
     },
@@ -462,9 +488,169 @@
         }
       ]
     },
+    "prefix_operator": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "_prefix_operator_head"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_raw_operator"
+          }
+        }
+      ]
+    },
+    "_prefix_operator_head": {
+      "type": "PATTERN",
+      "value": "(?:[-*\\/^%&!?])",
+      "flags": "u"
+    },
+    "postfix_operator": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "_postfix_operator_head"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_raw_operator"
+          }
+        }
+      ]
+    },
+    "_postfix_operator_head": {
+      "type": "PATTERN",
+      "value": "(?:[-*\\/^%&!?])",
+      "flags": "u"
+    },
+    "_raw_operator": {
+      "type": "IMMEDIATE_TOKEN",
+      "content": {
+        "type": "PATTERN",
+        "value": "[-*\\/^%&!?\\p{Sm}]",
+        "flags": "u"
+      }
+    },
+    "type_expr": {
+      "type": "SYMBOL",
+      "name": "_type_expr"
+    },
+    "_type_expr": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "name_type_expr"
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "("
+            },
+            {
+              "type": "SYMBOL",
+              "name": "_type_expr"
+            },
+            {
+              "type": "STRING",
+              "value": ")"
+            }
+          ]
+        }
+      ]
+    },
+    "name_type_expr": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "FIELD",
+                  "name": "prefix",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "_type_expr"
+                  }
+                },
+                {
+                  "type": "STRING",
+                  "value": "."
+                }
+              ]
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "FIELD",
+          "name": "identifier",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_type_identifier"
+          }
+        }
+      ]
+    },
+    "_type_identifier": {
+      "type": "SYMBOL",
+      "name": "identifier"
+    },
+    "access_modifier": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "public"
+        }
+      ]
+    },
+    "identifier": {
+      "type": "TOKEN",
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "PATTERN",
+                "value": "[_\\p{Lu}\\p{Ll}\\p{Lt}\\p{Lm}\\p{Lo}\\p{Nl}]"
+              },
+              {
+                "type": "PATTERN",
+                "value": "[\\p{Lu}\\p{Ll}\\p{Lt}\\p{Lm}\\p{Lo}\\p{Mn}\\p{Mc}\\p{Nl}\\p{Nd}\\p{Pc}]*"
+              }
+            ]
+          },
+          {
+            "type": "PATTERN",
+            "value": "`[^`\\x0a\\x0d]+`"
+          }
+        ]
+      }
+    },
     "_scalar_literal": {
       "type": "CHOICE",
       "members": [
+        {
+          "type": "SYMBOL",
+          "name": "integer_literal"
+        },
         {
           "type": "SYMBOL",
           "name": "string_literal"
@@ -552,89 +738,42 @@
         ]
       }
     },
-    "prefix_operator": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "_prefix_operator_head"
-        },
-        {
-          "type": "REPEAT",
-          "content": {
-            "type": "SYMBOL",
-            "name": "_raw_operator"
-          }
-        }
-      ]
-    },
-    "_prefix_operator_head": {
-      "type": "PATTERN",
-      "value": "(?:[-*\\/^%&!?])",
-      "flags": "u"
-    },
-    "postfix_operator": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "_postfix_operator_head"
-        },
-        {
-          "type": "REPEAT",
-          "content": {
-            "type": "SYMBOL",
-            "name": "_raw_operator"
-          }
-        }
-      ]
-    },
-    "_postfix_operator_head": {
-      "type": "PATTERN",
-      "value": "(?:[-*\\/^%&!?])",
-      "flags": "u"
-    },
-    "_raw_operator": {
-      "type": "IMMEDIATE_TOKEN",
-      "content": {
-        "type": "PATTERN",
-        "value": "[-*\\/^%&!?\\p{Sm}]",
-        "flags": "u"
-      }
-    },
-    "access_modifier": {
+    "integer_literal": {
       "type": "CHOICE",
       "members": [
         {
-          "type": "STRING",
-          "value": "public"
+          "type": "SYMBOL",
+          "name": "binary_literal"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "octal_literal"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "decimal_literal"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "hexadecimal_literal"
         }
       ]
     },
-    "identifier": {
-      "type": "TOKEN",
-      "content": {
-        "type": "CHOICE",
-        "members": [
-          {
-            "type": "SEQ",
-            "members": [
-              {
-                "type": "PATTERN",
-                "value": "[_\\p{Lu}\\p{Ll}\\p{Lt}\\p{Lm}\\p{Lo}\\p{Nl}]"
-              },
-              {
-                "type": "PATTERN",
-                "value": "[\\p{Lu}\\p{Ll}\\p{Lt}\\p{Lm}\\p{Lo}\\p{Mn}\\p{Mc}\\p{Nl}\\p{Nd}\\p{Pc}]*"
-              }
-            ]
-          },
-          {
-            "type": "PATTERN",
-            "value": "`[^`\\x0a\\x0d]+`"
-          }
-        ]
-      }
+    "binary_literal": {
+      "type": "PATTERN",
+      "value": "0b[01_]+"
+    },
+    "octal_literal": {
+      "type": "PATTERN",
+      "value": "0o[0-7_]+"
+    },
+    "decimal_literal": {
+      "type": "PATTERN",
+      "value": "[0-9][0-9_]*"
+    },
+    "hexadecimal_literal": {
+      "type": "PATTERN",
+      "value": "0x[0-9a-fA-F_]+"
     },
     "_whitespace": {
       "type": "CHOICE",

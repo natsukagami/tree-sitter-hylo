@@ -1,3 +1,4 @@
+// Token: String
 const unicode_escape = /\\u[0-9a-fA-F_]+/;
 const simple_escape = choice(`\0`, `\t`, `\n`, `\r`, `\'`, `\"`);
 const escape_char = choice(simple_escape, unicode_escape);
@@ -38,7 +39,9 @@ module.exports = grammar({
       '(',
       // field('params', optional($.parameter_list)),
       ')',
-      // TODO: receiver-effect? ('->' type-expr)? type-aliases-clause?
+      // receiver-effect? 
+      optional(seq("->", field('returns', $.type_expr))),
+      // type-aliases-clause?
     ),
 
     // parameter_list: $ => seq( /* TODO */),
@@ -73,8 +76,6 @@ module.exports = grammar({
         $._horizontal_space
       ))
     ),
-
-    // STATEMENTS
 
     stmt: $ => choice(
       $._brace_stmt,
@@ -160,23 +161,6 @@ module.exports = grammar({
       //   operator-entity-identifier
     ),
 
-    // LITERALS
-
-    _scalar_literal: $ => choice(
-      // boolean-literal
-      // integer-literal
-      // floating-point-literal
-      $.string_literal,
-      // unicode-scalar-literal
-    ),
-
-    string_literal: $ => choice(
-      $._single_line_string,
-      // multi line string
-    ),
-
-    _single_line_string: $ => token(single_line_string),
-
     // OPERATORS,
 
     prefix_operator: $ => seq($._prefix_operator_head, repeat($._raw_operator)),
@@ -188,6 +172,33 @@ module.exports = grammar({
     _postfix_operator_head: $ => /(?:[-*\/^%&!?])/u, // TODO \p{Sm} without >
 
     _raw_operator: $ => token.immediate(/[-*\/^%&!?\p{Sm}]/u),
+
+    // TYPES
+    type_expr: $ => $._type_expr,
+
+    _type_expr: $ => choice(
+      // async-type-expr
+      // conformance-lens-type-expr
+      // existential-type-expr
+      // opaque-type-expr
+      // indirect-type-expr
+      // lambda-type-expr
+      $.name_type_expr,
+      // stored-projection-type-expr
+      // tuple-type-expr
+      // union-type-expr
+      // wildcard-type-expr
+      seq('(', $._type_expr, ')'),
+    ),
+
+    name_type_expr: $ => seq(
+      optional(seq(field('prefix', $._type_expr), ".")),
+      // inlined: primary-type-def-ref
+      field('identifier', $._type_identifier),
+      // optional(field('arguments', $._type_argument_list)),
+    ),
+
+    _type_identifier: $ => $.identifier,
 
     // MODIFIERS
 
@@ -204,6 +215,29 @@ module.exports = grammar({
       // escaped
       /`[^`\x0a\x0d]+`/
     )),
+
+    // LITERALS
+
+    _scalar_literal: $ => choice(
+      // boolean-literal
+      $.integer_literal,
+      // floating-point-literal
+      $.string_literal,
+      // unicode-scalar-literal
+    ),
+
+    string_literal: $ => choice(
+      $._single_line_string,
+      // multi line string
+    ),
+
+    _single_line_string: $ => token(single_line_string),
+
+    integer_literal: $ => choice($.binary_literal, $.octal_literal, $.decimal_literal, $.hexadecimal_literal),
+    binary_literal: $ => /0b[01_]+/,
+    octal_literal: $ => /0o[0-7_]+/,
+    decimal_literal: $ => /[0-9][0-9_]*/,
+    hexadecimal_literal: $ => /0x[0-9a-fA-F_]+/,
 
     // WHITESPACES
     _whitespace: $ => choice($._horizontal_space, $._newline),
@@ -223,4 +257,6 @@ module.exports = grammar({
   },
 
   extras: $ => [$._horizontal_space_token, $.single_line_comment, $.block_comment, $._newline],
+
+  word: $ => $.identifier,
 });
