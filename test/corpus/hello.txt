@@ -1,0 +1,29 @@
+=============
+Hello World!
+=============
+
+public fun main() {
+  print("Hello, World!")
+}
+
+---
+
+(source_file
+  (function_decl
+    (function_head
+      (access_modifier)
+      (function_name
+        (identifier)))
+    (function_signature)
+    (function_body
+      (stmt
+        (expr
+          (function_call_expr
+            (primary_expr
+              (primary_decl_ref
+                (identifier_expr
+                  (identifier))))
+            (call_argument
+              (expr
+                (primary_expr
+                  (string_literal))))))))))

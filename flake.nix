@@ -26,6 +26,7 @@
           buildInputs = with pkgs; [
             tree-sitter
             nodejs
+            graphviz # for dot
           ];
         };
       };

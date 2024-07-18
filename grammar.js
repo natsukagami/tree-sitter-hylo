@@ -1,6 +1,226 @@
+const unicode_escape = /\\u[0-9a-fA-F_]+/;
+const simple_escape = choice(`\0`, `\t`, `\n`, `\r`, `\'`, `\"`);
+const escape_char = choice(simple_escape, unicode_escape);
+const single_quoted_text_item = choice(escape_char, /[^"\x0a\x0d]/);
+const single_line_string = seq('"', repeat(token.immediate(single_quoted_text_item)), token.immediate('"'));
+
 module.exports = grammar({
   name: 'hylo',
   rules: {
-    source_file: $ => "hello"
-  }
-})
+    source_file: $ => repeat(choice(
+      $._function_decl
+      // TODO: more
+    )),
+
+    // FUNCTIONS
+
+    // group function_decl and function_memberwise_init
+    _function_decl: $ => choice(
+      $.function_memberwise_init,
+      $.function_decl
+    ),
+
+    function_decl: $ => seq(
+      field('head', $.function_head),
+      field('signature', $.function_signature),
+      field('body', $.function_body),
+    ),
+
+    function_head: $ => seq(
+      optional($.access_modifier),
+      // TODO: member-modifier
+      $.function_name,
+      // TODO: generic-clause
+      // TODO: capture-list
+    ),
+
+    function_signature: $ => seq(
+      '(',
+      // field('params', optional($.parameter_list)),
+      ')',
+      // TODO: receiver-effect? ('->' type-expr)? type-aliases-clause?
+    ),
+
+    // parameter_list: $ => seq( /* TODO */),
+
+    function_body: $ => choice(
+      // TODO method-bundle
+      $._brace_stmt
+    ),
+
+    function_name: $ => choice(
+      'init',
+      seq('fun', $.identifier),
+      // TODO: operator case
+    ),
+
+    function_memberwise_init: $ => "memberwise init",
+
+    // STATEMENTS
+
+    _brace_stmt: $ => seq('{', optional($._stmt_list), '}'),
+
+    _stmt_list: $ => seq(
+      $.stmt,
+      repeat(seq($._stmt_sep, $.stmt))
+      // multiple statements
+    ),
+
+    _stmt_sep: $ => seq(
+      repeat($._horizontal_space),
+      repeat1(seq(
+        token.immediate(choice('\n', ';')),
+        $._horizontal_space
+      ))
+    ),
+
+    // STATEMENTS
+
+    stmt: $ => choice(
+      $._brace_stmt,
+      // discard-stmt
+      // loop-stmt
+      // jump-stmt
+      // decl-stmt
+      $.expr
+    ),
+
+    // EXPRESSIONS
+
+    expr: $ => seq($._infix_expr_head, optional($._infix_expr_tail)),
+
+    _infix_expr_head: $ => choice(
+      // async-expr
+      // await-expr
+      // unsafe-expr
+      $._prefix_expr
+    ), // TODO
+
+    _infix_expr_tail: $ => choice(), // TODO
+
+    _prefix_expr: $ => seq(optional($.prefix_operator), $._postfix_expr),
+
+    _postfix_expr: $ => seq(
+      $._compound_expr, repeat($.postfix_operator)
+    ),
+
+    _compound_expr: $ => choice(
+      // value-member-expr
+      // static-value-member-expr
+      $.function_call_expr,
+      // subscript-call-expr
+      $.primary_expr,
+    ),
+
+    function_call_expr: $ => seq(
+      field('head', $.primary_expr),
+      token.immediate("("),
+      field('arguments', optional($._call_argument_list)),
+      ")",
+    ),
+
+    _call_argument_list: $ => seq(
+      $.call_argument,
+      repeat(seq(',', $.call_argument)),
+    ),
+
+    call_argument: $ => seq(
+      optional(seq(
+        field("tag", $.identifier),
+        ":",
+      )),
+      $.expr,
+    ),
+
+    primary_expr: $ => choice(
+      $._scalar_literal,
+      // compound-literal
+      $.primary_decl_ref,
+      // implicit-member-ref
+      // lambda-expr
+      // selection-expr
+      // inout-expr
+      // tuple-expr
+      "nil",
+    ),
+
+    primary_decl_ref: $ => seq(
+      field('identifier', $.identifier_expr),
+      // repeat($._static_argument_list)
+    ),
+
+    identifier_expr: $ => seq(
+      field('entity', $._entity_identifier),
+      // field('impls', repeat($._impl_identifier)),
+    ),
+
+    _entity_identifier: $ => choice(
+      $.identifier,
+      //   function-entity-identifier
+      //   operator-entity-identifier
+    ),
+
+    // LITERALS
+
+    _scalar_literal: $ => choice(
+      // boolean-literal
+      // integer-literal
+      // floating-point-literal
+      $.string_literal,
+      // unicode-scalar-literal
+    ),
+
+    string_literal: $ => choice(
+      $._single_line_string,
+      // multi line string
+    ),
+
+    _single_line_string: $ => token(single_line_string),
+
+    // OPERATORS,
+
+    prefix_operator: $ => seq($._prefix_operator_head, repeat($._raw_operator)),
+
+    _prefix_operator_head: $ => /(?:[-*\/^%&!?])/u, // TODO \p{Sm} without <
+
+    postfix_operator: $ => seq($._postfix_operator_head, repeat($._raw_operator)),
+
+    _postfix_operator_head: $ => /(?:[-*\/^%&!?])/u, // TODO \p{Sm} without >
+
+    _raw_operator: $ => token.immediate(/[-*\/^%&!?\p{Sm}]/u),
+
+    // MODIFIERS
+
+    access_modifier: $ => choice('public'),
+
+    // IDENTIFIERS
+
+    identifier: $ => token(choice(
+      // normal
+      seq(
+        /[_\p{Lu}\p{Ll}\p{Lt}\p{Lm}\p{Lo}\p{Nl}]/, // identifier-head
+        /[\p{Lu}\p{Ll}\p{Lt}\p{Lm}\p{Lo}\p{Mn}\p{Mc}\p{Nl}\p{Nd}\p{Pc}]*/ // identifier-tail
+      ),
+      // escaped
+      /`[^`\x0a\x0d]+`/
+    )),
+
+    // WHITESPACES
+    _whitespace: $ => choice($._horizontal_space, $._newline),
+    _horizontal_space: $ => choice(
+      $._horizontal_space_token,
+      $.single_line_comment,
+      $.block_comment,
+    ),
+    _horizontal_space_token: $ => token.immediate(/[ \t]/),
+    _newline: $ => token.immediate("\n"),
+    single_line_comment: $ => token.immediate(/\/\/[^\r\n\v]*/),
+    block_comment: $ => choice(
+      seq($._block_comment_open, "*/"),
+      seq($._block_comment_open, $.block_comment, "*/")
+    ),
+    _block_comment_open: $ => token.immediate(/\/[*](?:[^*\/]+|(?:[\/]+|[*]+)[^*\/])*/),
+  },
+
+  extras: $ => [$._horizontal_space_token, $.single_line_comment, $.block_comment, $._newline],
+});
