@@ -23,78 +23,36 @@ public fun main() {
       (function_name
         (identifier)))
     (function_signature)
-    (function_body
-      (brace_stmt
-        (stmt
-          (expr
+    (brace_stmt
+      (stmt
+        (expr
+          (conditional_expr
+            (conditional_clause_item
+              (expr
+                (primary_decl_ref
+                  (identifier_expr
+                    (identifier)))))
+            (brace_stmt))))
+      (stmt
+        (expr
+          (conditional_expr
+            (conditional_clause_item
+              (expr
+                (primary_decl_ref
+                  (identifier_expr
+                    (identifier)))))
+            (brace_stmt)
+            (brace_stmt))))
+      (stmt
+        (expr
+          (conditional_expr
+            (conditional_clause_item
+              (expr
+                (primary_decl_ref
+                  (identifier_expr
+                    (identifier)))))
+            (brace_stmt)
             (conditional_expr
-              (conditional_clause_item
-                (expr
-                  (primary_decl_ref
-                    (identifier_expr
-                      (identifier)))))
-              (brace_stmt))))
-        (stmt
-          (expr
-            (conditional_expr
-              (conditional_clause_item
-                (expr
-                  (primary_decl_ref
-                    (identifier_expr
-                      (identifier)))))
-              (brace_stmt)
-              (brace_stmt))))
-        (stmt
-          (expr
-            (conditional_expr
-              (conditional_clause_item
-                (expr
-                  (primary_decl_ref
-                    (identifier_expr
-                      (identifier)))))
-              (brace_stmt)
-              (conditional_expr
-                (conditional_clause_item
-                  (expr
-                    (primary_decl_ref
-                      (identifier_expr
-                        (identifier)))
-                    (infix_operator_tail
-                      (infix_operator)
-                      (primary_decl_ref
-                        (identifier_expr
-                          (identifier))))))
-                (brace_stmt)))))
-        (stmt
-          (expr
-            (conditional_expr
-              (conditional_clause_item
-                (expr
-                  (primary_decl_ref
-                    (identifier_expr
-                      (identifier)))))
-              (brace_stmt)
-              (conditional_expr
-                (conditional_clause_item
-                  (expr
-                    (primary_decl_ref
-                      (identifier_expr
-                        (identifier)))
-                    (infix_operator_tail
-                      (infix_operator)
-                      (primary_decl_ref
-                        (identifier_expr
-                          (identifier))))))
-                (brace_stmt)
-                (brace_stmt)))))
-        (stmt
-          (expr
-            (conditional_expr
-              (conditional_clause_item
-                (expr
-                  (primary_decl_ref
-                    (identifier_expr
-                      (identifier)))))
               (conditional_clause_item
                 (expr
                   (primary_decl_ref
@@ -105,33 +63,74 @@ public fun main() {
                     (primary_decl_ref
                       (identifier_expr
                         (identifier))))))
-              (brace_stmt))))
-        (stmt
-          (expr
+              (brace_stmt)))))
+      (stmt
+        (expr
+          (conditional_expr
+            (conditional_clause_item
+              (expr
+                (primary_decl_ref
+                  (identifier_expr
+                    (identifier)))))
+            (brace_stmt)
             (conditional_expr
               (conditional_clause_item
-                (binding_pattern
-                  (binding_introducer)
-                  (identifier))
                 (expr
-                  (function_call_expr
-                    (primary_decl_ref
-                      (identifier_expr
-                        (identifier))))))
-              (conditional_clause_item
-                (expr
-                  (function_call_expr
-                    (primary_decl_ref
-                      (identifier_expr
-                        (identifier)))
-                    (call_argument
-                      (expr
-                        (primary_decl_ref
-                          (identifier_expr
-                            (identifier))))))
+                  (primary_decl_ref
+                    (identifier_expr
+                      (identifier)))
                   (infix_operator_tail
                     (infix_operator)
                     (primary_decl_ref
                       (identifier_expr
                         (identifier))))))
-              (brace_stmt))))))))
+              (brace_stmt)
+              (brace_stmt)))))
+      (stmt
+        (expr
+          (conditional_expr
+            (conditional_clause_item
+              (expr
+                (primary_decl_ref
+                  (identifier_expr
+                    (identifier)))))
+            (conditional_clause_item
+              (expr
+                (primary_decl_ref
+                  (identifier_expr
+                    (identifier)))
+                (infix_operator_tail
+                  (infix_operator)
+                  (primary_decl_ref
+                    (identifier_expr
+                      (identifier))))))
+            (brace_stmt))))
+      (stmt
+        (expr
+          (conditional_expr
+            (conditional_clause_item
+              (binding_pattern
+                (binding_introducer)
+                (identifier))
+              (expr
+                (function_call_expr
+                  (primary_decl_ref
+                    (identifier_expr
+                      (identifier))))))
+            (conditional_clause_item
+              (expr
+                (function_call_expr
+                  (primary_decl_ref
+                    (identifier_expr
+                      (identifier)))
+                  (call_argument
+                    (expr
+                      (primary_decl_ref
+                        (identifier_expr
+                          (identifier))))))
+                (infix_operator_tail
+                  (infix_operator)
+                  (primary_decl_ref
+                    (identifier_expr
+                      (identifier))))))
+            (brace_stmt)))))))

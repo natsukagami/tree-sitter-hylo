@@ -27,15 +27,14 @@ fun bar(x?: inout Int) -> Int { x.copy() }
       (type_expr
         (name_type_expr
           (identifier))))
-    (function_body
-      (brace_stmt
-        (stmt
-          (expr
-            (function_call_expr
-              (value_member_expr
-                (primary_decl_ref
-                  (identifier_expr
-                    (identifier)))
-                (primary_decl_ref
-                  (identifier_expr
-                    (identifier)))))))))))
+    (brace_stmt
+      (stmt
+        (expr
+          (function_call_expr
+            (value_member_expr
+              (primary_decl_ref
+                (identifier_expr
+                  (identifier)))
+              (primary_decl_ref
+                (identifier_expr
+                  (identifier))))))))))

@@ -164,12 +164,12 @@ module.exports = grammar({
     function_decl: $ => seq(
       field('head', $.function_head),
       field('signature', $.function_signature),
-      field('body', $.function_body),
+      field('body', $._function_body),
     ),
 
     function_head: $ => seq(
       optional($.access_modifier),
-      repeat($.member_modifier),
+      optional($._member_modifiers),
       $.function_name,
       // TODO: generic-clause
       // TODO: capture-list
@@ -210,9 +210,20 @@ module.exports = grammar({
 
     parameter_passing_convention: $ => token(choice("let", "inout", "sink", "yield")),
 
-    function_body: $ => choice(
-      // TODO method-bundle
+    _function_body: $ => choice(
+      $.method_bundle_body,
       $.brace_stmt
+    ),
+
+    method_bundle_body: $ => seq(
+      "{",
+      repeat1($.method_impl),
+      "}",
+    ),
+
+    method_impl: $ => seq(
+      alias(choice("let", "sink", "inout"), "method_introducer"),
+      optional(field('body', $.brace_stmt)),
     ),
 
     function_name: $ => choice(
@@ -257,11 +268,6 @@ module.exports = grammar({
       "break",
       "continue",
     ),
-    // jump-stmt ::= (no-implicit-whitespace)
-    //   'return' (horizontal-space* expr)?
-    //   'yield' horizontal-space* expr
-    //   'break'
-    //   'continue'
 
     // DECLARATION STATEMENTS
 
@@ -278,7 +284,7 @@ module.exports = grammar({
     binding_decl: $ => seq(
       // inlined: binding-head
       optional($.access_modifier),
-      repeat($.member_modifier),
+      optional($._member_modifiers),
       field('pattern', $.binding_pattern),
       optional(seq("=", field('initializer', $.expr))),
     ),
@@ -462,7 +468,7 @@ module.exports = grammar({
       optional(seq(":", field('annotation', $.type_expr))),
     ),
 
-    binding_introducer: $ => token(choice("let", "var", "sink", "inout")),
+    binding_introducer: $ => choice("let", "var", "sink", "inout"),
 
     tuple_pattern: $ => seq(
       "(",
@@ -518,10 +524,14 @@ module.exports = grammar({
 
     access_modifier: $ => choice('public'),
 
-    member_modifier: $ => choice(
-      field("receiver_modifier", choice("sink", "inout", "yielded")),
-      field("static_modifier", "static"),
-    ),
+    _member_modifiers: $ => prec.left(choice(
+      $.receiver_modifier,
+      $.static_modifier,
+      seq($.receiver_modifier, $.static_modifier),
+      seq($.static_modifier, $.receiver_modifier),
+    )),
+    receiver_modifier: $ => choice("sink", "inout", "yielded"),
+    static_modifier: $ => "static",
 
     implicit_parameter_modifier: $ => token.immediate("?"),
 
@@ -572,6 +582,11 @@ module.exports = grammar({
   extras: $ => [whitespace, $.single_line_comment, $.block_comment],
 
   word: $ => $.identifier,
+
+  conflicts: $ => [
+    // method bundle needs to see the whole set to know, but should be short (3 items)
+    [$.method_impl, $.receiver_modifier]
+  ],
 });
 
 /// Repeats `item` with stmt-separator.

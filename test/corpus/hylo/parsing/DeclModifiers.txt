@@ -18,38 +18,35 @@ type A0 {
 
 ---
 
-    (source_file
+(source_file
+  (single_line_comment)
+  (product_type_decl
+    (product_type_head
+      name: (identifier))
+    body: (binding_decl
+      (access_modifier)
+      (static_modifier)
+      pattern: (binding_pattern
+        introducer: (binding_introducer)
+        pattern: (identifier))
+      initializer: (expr
+        (integer_literal
+          (decimal_literal))))
+    (ERROR
+      (static_modifier)
+      (identifier)
+      (parameter_passing_convention)
+      (identifier))
+    (single_line_comment)
+    (ERROR
+      (access_modifier)
+      (ERROR
+        (identifier)
+        (parameter_passing_convention)
+        (identifier))
       (single_line_comment)
-      (product_type_decl
-        (product_type_head
-          (identifier))
-        (binding_decl
-          (access_modifier)
-          (member_modifier)
-          (binding_pattern
-            (binding_introducer)
-            (identifier))
-          (expr
-            (integer_literal
-              (decimal_literal))))
-        (ERROR
-          (identifier)
-          (parameter_passing_convention)
-          (identifier))
-        (single_line_comment)
-        (binding_decl
-          (access_modifier)
-          (ERROR
-            (identifier)
-            (parameter_passing_convention)
-            (identifier))
-          (single_line_comment)
-          (member_modifier)
-          (member_modifier)
-          (binding_pattern
-            (binding_introducer)
-            (identifier))
-          (expr
-            (integer_literal
-              (decimal_literal))))
-        (single_line_comment)))
+      (static_modifier)
+      (identifier)
+      (parameter_passing_convention)
+      (identifier))
+    (single_line_comment)))

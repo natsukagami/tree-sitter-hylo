@@ -617,7 +617,7 @@
           "name": "body",
           "content": {
             "type": "SYMBOL",
-            "name": "function_body"
+            "name": "_function_body"
           }
         }
       ]
@@ -638,11 +638,16 @@
           ]
         },
         {
-          "type": "REPEAT",
-          "content": {
-            "type": "SYMBOL",
-            "name": "member_modifier"
-          }
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "_member_modifiers"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         },
         {
           "type": "SYMBOL",
@@ -878,12 +883,79 @@
         ]
       }
     },
-    "function_body": {
+    "_function_body": {
       "type": "CHOICE",
       "members": [
         {
           "type": "SYMBOL",
+          "name": "method_bundle_body"
+        },
+        {
+          "type": "SYMBOL",
           "name": "brace_stmt"
+        }
+      ]
+    },
+    "method_bundle_body": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "{"
+        },
+        {
+          "type": "REPEAT1",
+          "content": {
+            "type": "SYMBOL",
+            "name": "method_impl"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "}"
+        }
+      ]
+    },
+    "method_impl": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "STRING",
+                "value": "let"
+              },
+              {
+                "type": "STRING",
+                "value": "sink"
+              },
+              {
+                "type": "STRING",
+                "value": "inout"
+              }
+            ]
+          },
+          "named": false,
+          "value": "method_introducer"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "FIELD",
+              "name": "body",
+              "content": {
+                "type": "SYMBOL",
+                "name": "brace_stmt"
+              }
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         }
       ]
     },
@@ -1102,11 +1174,16 @@
           ]
         },
         {
-          "type": "REPEAT",
-          "content": {
-            "type": "SYMBOL",
-            "name": "member_modifier"
-          }
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "_member_modifiers"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         },
         {
           "type": "FIELD",
@@ -1860,28 +1937,25 @@
       ]
     },
     "binding_introducer": {
-      "type": "TOKEN",
-      "content": {
-        "type": "CHOICE",
-        "members": [
-          {
-            "type": "STRING",
-            "value": "let"
-          },
-          {
-            "type": "STRING",
-            "value": "var"
-          },
-          {
-            "type": "STRING",
-            "value": "sink"
-          },
-          {
-            "type": "STRING",
-            "value": "inout"
-          }
-        ]
-      }
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "let"
+        },
+        {
+          "type": "STRING",
+          "value": "var"
+        },
+        {
+          "type": "STRING",
+          "value": "sink"
+        },
+        {
+          "type": "STRING",
+          "value": "inout"
+        }
+      ]
     },
     "tuple_pattern": {
       "type": "SEQ",
@@ -2269,39 +2343,69 @@
         }
       ]
     },
-    "member_modifier": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "FIELD",
-          "name": "receiver_modifier",
-          "content": {
-            "type": "CHOICE",
+    "_member_modifiers": {
+      "type": "PREC_LEFT",
+      "value": 0,
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "SYMBOL",
+            "name": "receiver_modifier"
+          },
+          {
+            "type": "SYMBOL",
+            "name": "static_modifier"
+          },
+          {
+            "type": "SEQ",
             "members": [
               {
-                "type": "STRING",
-                "value": "sink"
+                "type": "SYMBOL",
+                "name": "receiver_modifier"
               },
               {
-                "type": "STRING",
-                "value": "inout"
+                "type": "SYMBOL",
+                "name": "static_modifier"
+              }
+            ]
+          },
+          {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "static_modifier"
               },
               {
-                "type": "STRING",
-                "value": "yielded"
+                "type": "SYMBOL",
+                "name": "receiver_modifier"
               }
             ]
           }
+        ]
+      }
+    },
+    "receiver_modifier": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "sink"
         },
         {
-          "type": "FIELD",
-          "name": "static_modifier",
-          "content": {
-            "type": "STRING",
-            "value": "static"
-          }
+          "type": "STRING",
+          "value": "inout"
+        },
+        {
+          "type": "STRING",
+          "value": "yielded"
         }
       ]
+    },
+    "static_modifier": {
+      "type": "STRING",
+      "value": "static"
     },
     "implicit_parameter_modifier": {
       "type": "IMMEDIATE_TOKEN",
@@ -2550,7 +2654,12 @@
       "name": "block_comment"
     }
   ],
-  "conflicts": [],
+  "conflicts": [
+    [
+      "method_impl",
+      "receiver_modifier"
+    ]
+  ],
   "precedences": [],
   "externals": [],
   "inline": [],
