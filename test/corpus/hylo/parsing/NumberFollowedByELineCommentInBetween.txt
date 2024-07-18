@@ -1,0 +1,42 @@
+=====================================
+NumberFollowedByELineCommentInBetween
+=====================================
+
+//- parse expecting: success
+
+public fun main() {
+  var x = 0 //hello
+  eat(x)
+}
+
+---
+
+(source_file
+  (single_line_comment)
+  (function_decl
+    (function_head
+      (access_modifier)
+      (function_name
+        (identifier)))
+    (function_signature)
+    (brace_stmt
+      (stmt
+        (binding_decl
+          (binding_pattern
+            (binding_introducer)
+            (identifier))
+          (expr
+            (integer_literal
+              (decimal_literal)))))
+      (single_line_comment)
+      (stmt
+        (expr
+          (function_call_expr
+            (primary_decl_ref
+              (identifier_expr
+                (identifier)))
+            (call_argument
+              (expr
+                (primary_decl_ref
+                  (identifier_expr
+                    (identifier)))))))))))
