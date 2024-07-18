@@ -119,10 +119,30 @@ module.exports = grammar({
       $.brace_stmt,
       // discard-stmt
       // loop-stmt
-      // jump-stmt
+      $.jump_stmt,
       $._decl_stmt,
       $.expr
     ),
+
+    // JUMP STATEMENTS
+    jump_stmt: $ => choice( // TODO: handle no newline in return and yield
+      // conditional-binding-stmt
+      seq(
+        "return",
+        field('return', $.expr),
+      ),
+      seq(
+        "yield",
+        field('yield', $.expr),
+      ),
+      "break",
+      "continue",
+    ),
+    // jump-stmt ::= (no-implicit-whitespace)
+    //   'return' (horizontal-space* expr)?
+    //   'yield' horizontal-space* expr
+    //   'break'
+    //   'continue'
 
     // DECLARATION STATEMENTS
 

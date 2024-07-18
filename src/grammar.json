@@ -403,11 +403,62 @@
         },
         {
           "type": "SYMBOL",
+          "name": "jump_stmt"
+        },
+        {
+          "type": "SYMBOL",
           "name": "_decl_stmt"
         },
         {
           "type": "SYMBOL",
           "name": "expr"
+        }
+      ]
+    },
+    "jump_stmt": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "return"
+            },
+            {
+              "type": "FIELD",
+              "name": "return",
+              "content": {
+                "type": "SYMBOL",
+                "name": "expr"
+              }
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "yield"
+            },
+            {
+              "type": "FIELD",
+              "name": "yield",
+              "content": {
+                "type": "SYMBOL",
+                "name": "expr"
+              }
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": "break"
+        },
+        {
+          "type": "STRING",
+          "value": "continue"
         }
       ]
     },
