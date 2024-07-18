@@ -34,7 +34,7 @@ module.exports = grammar({
 
     _module_scope_decl: $ => choice(
       // namespace-decl
-      // trait-decl
+      $.trait_decl,
       $.type_alias_decl,
       $.product_type_decl,
       // extension-decl
@@ -48,6 +48,35 @@ module.exports = grammar({
     import_decl: $ => seq(
       "import",
       $.identifier,
+    ),
+
+    // TRAIT
+
+    trait_decl: $ => seq(
+      $.trait_head,
+      "{",
+      field('body', repeat(choice($._trait_requirement_decl, ";"))),
+      "}",
+    ),
+
+    trait_head: $ => seq(
+      optional($.access_modifier),
+      "trait",
+      field('name', $.identifier),
+      optional(seq(
+        ":",
+        field('refinements', seq(
+          $.name_type_expr,
+          repeat(seq(",", $.name_type_expr))
+        ))
+      )),
+    ),
+
+    _trait_requirement_decl: $ => choice(
+      // associated-decl
+      $._function_decl,
+      // subscript-decl
+      // property-decl
     ),
 
     // TYPE ALIAS
@@ -94,7 +123,6 @@ module.exports = grammar({
 
     // FUNCTIONS
 
-    // group function_decl and function_memberwise_init
     _function_decl: $ => choice(
       $.function_memberwise_init,
       $.function_decl
@@ -160,7 +188,7 @@ module.exports = grammar({
       // TODO: operator case
     ),
 
-    function_memberwise_init: $ => "memberwise init",
+    function_memberwise_init: $ => seq("memberwise", "init"),
 
     // STATEMENTS
 

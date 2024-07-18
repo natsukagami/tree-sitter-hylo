@@ -466,6 +466,11 @@
     }
   },
   {
+    "type": "function_memberwise_init",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "function_name",
     "named": true,
     "fields": {},
@@ -1015,6 +1020,10 @@
           "named": true
         },
         {
+          "type": "trait_decl",
+          "named": true
+        },
+        {
           "type": "type_alias_decl",
           "named": true
         }
@@ -1052,6 +1061,80 @@
     "type": "string_literal",
     "named": true,
     "fields": {}
+  },
+  {
+    "type": "trait_decl",
+    "named": true,
+    "fields": {
+      "body": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": ";",
+            "named": false
+          },
+          {
+            "type": "function_decl",
+            "named": true
+          },
+          {
+            "type": "function_memberwise_init",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "trait_head",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "trait_head",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "refinements": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": ",",
+            "named": false
+          },
+          {
+            "type": "name_type_expr",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "access_modifier",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "tuple_expr",
@@ -1316,10 +1399,6 @@
     "named": false
   },
   {
-    "type": "function_memberwise_init",
-    "named": true
-  },
-  {
     "type": "hexadecimal_literal",
     "named": true
   },
@@ -1356,6 +1435,10 @@
     "named": false
   },
   {
+    "type": "memberwise",
+    "named": false
+  },
+  {
     "type": "nil",
     "named": false
   },
@@ -1381,6 +1464,10 @@
   },
   {
     "type": "static",
+    "named": false
+  },
+  {
+    "type": "trait",
     "named": false
   },
   {
