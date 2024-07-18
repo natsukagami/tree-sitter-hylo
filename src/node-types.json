@@ -5,6 +5,42 @@
     "fields": {}
   },
   {
+    "type": "binding_decl",
+    "named": true,
+    "fields": {
+      "access": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "access_modifier",
+            "named": true
+          }
+        ]
+      },
+      "initializer": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "expr",
+            "named": true
+          }
+        ]
+      },
+      "pattern": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "binding_pattern",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "binding_pattern",
     "named": true,
     "fields": {
@@ -602,6 +638,10 @@
       "multiple": false,
       "required": true,
       "types": [
+        {
+          "type": "binding_decl",
+          "named": true
+        },
         {
           "type": "brace_stmt",
           "named": true

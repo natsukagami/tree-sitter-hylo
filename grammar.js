@@ -120,8 +120,28 @@ module.exports = grammar({
       // discard-stmt
       // loop-stmt
       // jump-stmt
-      // decl-stmt
+      $._decl_stmt,
       $.expr
+    ),
+
+    // DECLARATION STATEMENTS
+
+    _decl_stmt: $ => choice(
+      // type-alias-decl
+      // product-type-decl
+      // extension-decl
+      // conformance-decl
+      // function-decl
+      // subscript-decl
+      $.binding_decl,
+    ),
+
+    binding_decl: $ => seq(
+      // inlined: binding-head
+      optional(field('access', $.access_modifier)),
+      // member-modifier*
+      field('pattern', $.binding_pattern),
+      optional(seq("=", field('initializer', $.expr))),
     ),
 
     // EXPRESSIONS

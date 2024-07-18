@@ -1,0 +1,106 @@
+=============
+Factorial
+=============
+
+/// Computes the factorial of `n`.
+///
+/// - Requires: `n` must be greater or equal to 0.
+fun factorial(_ n: Int) -> Int {
+  if n < 2 { 1 } else { n * factorial(n - 1) }
+}
+
+public fun main() {
+  let _ = factorial(6)
+}
+
+---
+
+(source_file
+  (single_line_comment)
+  (single_line_comment)
+  (single_line_comment)
+  (function_decl
+    (function_head
+      (function_name
+        (identifier)))
+    (function_signature
+      (parameter_decl
+        (identifier)
+        (type_expr
+          (name_type_expr
+            (identifier))))
+      (type_expr
+        (name_type_expr
+          (identifier))))
+    (function_body
+      (brace_stmt
+        (stmt
+          (expr
+            (primary_expr
+              (conditional_expr
+                (conditional_clause_item
+                  (expr
+                    (primary_expr
+                      (primary_decl_ref
+                        (identifier_expr
+                          (identifier))))
+                    (infix_operator_tail
+                      (infix_operator)
+                      (primary_expr
+                        (integer_literal
+                          (decimal_literal))))))
+                (brace_stmt
+                  (stmt
+                    (expr
+                      (primary_expr
+                        (integer_literal
+                          (decimal_literal))))))
+                (brace_stmt
+                  (stmt
+                    (expr
+                      (primary_expr
+                        (primary_decl_ref
+                          (identifier_expr
+                            (identifier))))
+                      (infix_operator_tail
+                        (infix_operator)
+                        (function_call_expr
+                          (primary_expr
+                            (primary_decl_ref
+                              (identifier_expr
+                                (identifier))))
+                          (call_argument
+                            (expr
+                              (primary_expr
+                                (primary_decl_ref
+                                  (identifier_expr
+                                    (identifier))))
+                              (infix_operator_tail
+                                (infix_operator)
+                                (primary_expr
+                                  (integer_literal
+                                    (decimal_literal))))))))))))))))))
+  (function_decl
+    (function_head
+      (access_modifier)
+      (function_name
+        (identifier)))
+    (function_signature)
+    (function_body
+      (brace_stmt
+        (stmt
+          (binding_decl
+            (binding_pattern
+              (binding_introducer)
+              (identifier))
+            (expr
+              (function_call_expr
+                (primary_expr
+                  (primary_decl_ref
+                    (identifier_expr
+                      (identifier))))
+                (call_argument
+                  (expr
+                    (primary_expr
+                      (integer_literal
+                        (decimal_literal)))))))))))))

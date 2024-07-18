@@ -403,7 +403,74 @@
         },
         {
           "type": "SYMBOL",
+          "name": "_decl_stmt"
+        },
+        {
+          "type": "SYMBOL",
           "name": "expr"
+        }
+      ]
+    },
+    "_decl_stmt": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "binding_decl"
+        }
+      ]
+    },
+    "binding_decl": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "FIELD",
+              "name": "access",
+              "content": {
+                "type": "SYMBOL",
+                "name": "access_modifier"
+              }
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "FIELD",
+          "name": "pattern",
+          "content": {
+            "type": "SYMBOL",
+            "name": "binding_pattern"
+          }
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": "="
+                },
+                {
+                  "type": "FIELD",
+                  "name": "initializer",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "expr"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         }
       ]
     },
