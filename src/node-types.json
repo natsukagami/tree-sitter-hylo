@@ -368,6 +368,10 @@
           "named": true
         },
         {
+          "type": "pragma_expr",
+          "named": true
+        },
+        {
           "type": "prefix_operator",
           "named": true
         },
@@ -436,6 +440,10 @@
         },
         {
           "type": "postfix_operator",
+          "named": true
+        },
+        {
+          "type": "pragma_expr",
           "named": true
         },
         {
@@ -586,6 +594,10 @@
           {
             "type": "nil",
             "named": false
+          },
+          {
+            "type": "pragma_expr",
+            "named": true
           },
           {
             "type": "primary_decl_ref",
@@ -840,6 +852,10 @@
           },
           {
             "type": "postfix_operator",
+            "named": true
+          },
+          {
+            "type": "pragma_expr",
             "named": true
           },
           {
@@ -1167,6 +1183,11 @@
   },
   {
     "type": "postfix_operator",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "pragma_expr",
     "named": true,
     "fields": {}
   },
@@ -1617,6 +1638,10 @@
             "named": false
           },
           {
+            "type": "pragma_expr",
+            "named": true
+          },
+          {
             "type": "primary_decl_ref",
             "named": true
           },
@@ -1647,6 +1672,14 @@
   },
   {
     "type": "\n",
+    "named": false
+  },
+  {
+    "type": "#file",
+    "named": false
+  },
+  {
+    "type": "#line",
     "named": false
   },
   {

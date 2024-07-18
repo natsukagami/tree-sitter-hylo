@@ -1563,6 +1563,10 @@
           "name": "tuple_expr"
         },
         {
+          "type": "SYMBOL",
+          "name": "pragma_expr"
+        },
+        {
           "type": "STRING",
           "value": "nil"
         }
@@ -1918,6 +1922,19 @@
             "type": "SYMBOL",
             "name": "brace_stmt"
           }
+        }
+      ]
+    },
+    "pragma_expr": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "#file"
+        },
+        {
+          "type": "STRING",
+          "value": "#line"
         }
       ]
     },

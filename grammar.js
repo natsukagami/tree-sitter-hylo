@@ -397,6 +397,7 @@ module.exports = grammar({
       $._selection_expr,
       // inout-expr
       $.tuple_expr,
+      $.pragma_expr,
       "nil",
     ),
 
@@ -475,6 +476,8 @@ module.exports = grammar({
       optional(seq("where", field('condition', $.expr))),
       field('body', $.brace_stmt),
     ),
+
+    pragma_expr: $ => choice("#file", "#line"),
 
     // PATTERNS
 
