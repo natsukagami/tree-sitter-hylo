@@ -13,7 +13,7 @@ const horizontal_space_token = /[ \t]/;
 const whitespace = token(choice(horizontal_space_token, newline));
 
 // Token: Operators
-const common_operator = /[-+*\/^%&!?]/u; // todo: support \p{Sm}
+const common_operator = /[-+*\/^%&!?=~|]/u; // todo: support \p{Sm}
 const raw_operator = token(choice(common_operator, "<", ">"));
 const imm_raw_operator = token.immediate(raw_operator);
 const prefix_operator_head = token(choice(common_operator, ">"));
@@ -103,17 +103,14 @@ module.exports = grammar({
 
     _stmt_list: $ => seq(
       $.stmt,
-      // repeat(seq($._stmt_sep, $.stmt))
-      // multiple statements
+      repeat(seq(choice("\n", ";"), optional($.stmt))),
+      // TODO: handle separation correctly
     ),
 
-    _stmt_sep: $ => seq(
-      repeat($._horizontal_space),
-      repeat1(seq(
-        token.immediate(choice('\n', ';')),
-        $._horizontal_space
-      ))
-    ),
+    // _stmt_sep: $ => repeat1(seq(
+    //   token.immediate(choice('\n', ';')),
+    //   $._horizontal_space
+    // )),
 
     stmt: $ => choice(
       $.brace_stmt,
@@ -195,16 +192,27 @@ module.exports = grammar({
       ),
     ),
 
+    // COMPOUND EXPRESSIONS
+
     _compound_expr: $ => choice(
-      // value-member-expr
+      $.value_member_expr,
       // static-value-member-expr
       $.function_call_expr,
       // subscript-call-expr
-      $.primary_expr,
+      $._primary_expr,
+    ),
+
+    value_member_expr: $ => seq(
+      field('qualifier', $._compound_expr),
+      ".",
+      choice(
+        field('label', $.primary_decl_ref),
+        field('index', /[0-9]+/),
+      ),
     ),
 
     function_call_expr: $ => seq(
-      field('head', $.primary_expr),
+      field('head', $._compound_expr),
       token.immediate("("),
       field('arguments', optional($._call_argument_list)),
       ")",
@@ -223,12 +231,14 @@ module.exports = grammar({
       $.expr,
     ),
 
-    primary_expr: $ => choice(
+    // PRIMARY EXPRESSIONS
+
+    _primary_expr: $ => choice(
       $._scalar_literal,
       // compound-literal
       $.primary_decl_ref,
       // implicit-member-ref
-      // lambda-expr
+      $.lambda_expr,
       $._selection_expr,
       // inout-expr
       // tuple-expr
@@ -240,9 +250,6 @@ module.exports = grammar({
       // repeat($._static_argument_list)
     ),
 
-    conditional_expr: $ => choice(
-    ),
-
     identifier_expr: $ => seq(
       field('entity', $._entity_identifier),
       // field('impls', repeat($._impl_identifier)),
@@ -250,8 +257,15 @@ module.exports = grammar({
 
     _entity_identifier: $ => choice(
       $.identifier,
-      //   function-entity-identifier
+      // function-entity-identifier
       //   operator-entity-identifier
+    ),
+
+    lambda_expr: $ => seq(
+      "fun",
+      // capture-list?
+      field('signature', $.function_signature),
+      field('body', $.brace_stmt),
     ),
 
     _selection_expr: $ => choice(
@@ -298,7 +312,6 @@ module.exports = grammar({
     wildcard_pattern: $ => choice(), // TODO: wildcard-pattern
 
     // OPERATORS
-
 
     prefix_operator: $ => seq(prefix_operator_head, repeat(imm_raw_operator)),
     postfix_operator: $ => seq(postfix_operator_head, repeat(imm_raw_operator)),
@@ -375,17 +388,12 @@ module.exports = grammar({
     hexadecimal_literal: $ => /0x[0-9a-fA-F_]+/,
 
     // WHITESPACES
-    _horizontal_space: $ => choice(
-      horizontal_space_token,
-      $.single_line_comment,
-      $.block_comment,
-    ),
-    single_line_comment: $ => /\/\/[^\r\n\v]*/,
-    block_comment: $ => choice(
+    single_line_comment: $ => prec(99, token(/\/\/[^\r\n\v]*/)),
+    block_comment: $ => prec(100, choice(
       seq($._block_comment_open, "*/"),
       seq($._block_comment_open, $.block_comment, "*/")
-    ),
-    _block_comment_open: $ => /\/[*](?:[^*\/]+|(?:[\/]+|[*]+)[^*\/])*/,
+    )),
+    _block_comment_open: $ => token(/\/[*](?:[^*\/]+|(?:[\/]+|[*]+)[^*\/])*/),
   },
 
   extras: $ => [whitespace, $.single_line_comment, $.block_comment],
