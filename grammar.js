@@ -35,7 +35,7 @@ module.exports = grammar({
     _module_scope_decl: $ => choice(
       // namespace-decl
       // trait-decl
-      // type-alias-decl
+      $.type_alias_decl,
       $.product_type_decl,
       // extension-decl
       // conformance-decl
@@ -48,6 +48,21 @@ module.exports = grammar({
     import_decl: $ => seq(
       "import",
       $.identifier,
+    ),
+
+    // TYPE ALIAS
+
+    type_alias_decl: $ => seq(
+      $.type_alias_head,
+      "=",
+      field('rhs', $.type_expr),
+    ),
+
+    type_alias_head: $ => seq(
+      optional($.access_modifier),
+      "typealias",
+      field('name', $.identifier),
+      // generic-clause?
     ),
 
     // PRODUCT TYPE
@@ -74,7 +89,7 @@ module.exports = grammar({
       // property-decl
       $.binding_decl,
       $.product_type_decl,
-      // type-alias-decl
+      $.type_alias_decl,
     ),
 
     // FUNCTIONS

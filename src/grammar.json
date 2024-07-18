@@ -70,6 +70,10 @@
       "members": [
         {
           "type": "SYMBOL",
+          "name": "type_alias_decl"
+        },
+        {
+          "type": "SYMBOL",
           "name": "product_type_decl"
         },
         {
@@ -92,6 +96,56 @@
         {
           "type": "SYMBOL",
           "name": "identifier"
+        }
+      ]
+    },
+    "type_alias_decl": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "type_alias_head"
+        },
+        {
+          "type": "STRING",
+          "value": "="
+        },
+        {
+          "type": "FIELD",
+          "name": "rhs",
+          "content": {
+            "type": "SYMBOL",
+            "name": "type_expr"
+          }
+        }
+      ]
+    },
+    "type_alias_head": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "access_modifier"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": "typealias"
+        },
+        {
+          "type": "FIELD",
+          "name": "name",
+          "content": {
+            "type": "SYMBOL",
+            "name": "identifier"
+          }
         }
       ]
     },
@@ -171,6 +225,10 @@
         {
           "type": "SYMBOL",
           "name": "product_type_decl"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "type_alias_decl"
         }
       ]
     },
