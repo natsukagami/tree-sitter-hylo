@@ -23,10 +23,59 @@ const operator = token(seq(raw_operator, repeat(imm_raw_operator)));
 module.exports = grammar({
   name: 'hylo',
   rules: {
-    source_file: $ => repeat(choice(
-      $._function_decl
-      // TODO: more
-    )),
+    source_file: $ => optional(repeat1StmtSep($._module_scope_stmt)),
+
+    // MODULE
+
+    _module_scope_stmt: $ => choice(
+      $._module_scope_decl,
+      $.import_decl,
+    ),
+
+    _module_scope_decl: $ => choice(
+      // namespace-decl
+      // trait-decl
+      // type-alias-decl
+      $.product_type_decl,
+      // extension-decl
+      // conformance-decl
+      $.binding_decl,
+      $._function_decl,
+      // subscript-decl
+      // operator-decl
+    ),
+
+    import_decl: $ => seq(
+      "import",
+      $.identifier,
+    ),
+
+    // PRODUCT TYPE
+
+    product_type_decl: $ => seq(
+      $.product_type_head,
+      "{",
+      repeat(choice($._product_type_member_decl, ";")),
+      "}",
+    ),
+
+    product_type_head: $ => seq(
+      optional($.access_modifier),
+      "type",
+      field('name', $.identifier),
+      // generic-clause?
+      // conformance-list?
+    ),
+
+    _product_type_member_decl: $ => choice(
+      $._function_decl,
+      // deinit-decl
+      // subscript-decl
+      // property-decl
+      $.binding_decl,
+      $.product_type_decl,
+      // type-alias-decl
+    ),
 
     // FUNCTIONS
 
@@ -44,7 +93,7 @@ module.exports = grammar({
 
     function_head: $ => seq(
       optional($.access_modifier),
-      // TODO: member-modifier
+      repeat($.member_modifier),
       $.function_name,
       // TODO: generic-clause
       // TODO: capture-list
@@ -101,11 +150,7 @@ module.exports = grammar({
 
     brace_stmt: $ => seq('{', optional($._stmt_list), '}'),
 
-    _stmt_list: $ => seq(
-      $.stmt,
-      repeat(seq(choice("\n", ";"), optional($.stmt))),
-      // TODO: handle separation correctly
-    ),
+    _stmt_list: $ => repeat1StmtSep($.stmt),
 
     // _stmt_sep: $ => repeat1(seq(
     //   token.immediate(choice('\n', ';')),
@@ -155,8 +200,8 @@ module.exports = grammar({
 
     binding_decl: $ => seq(
       // inlined: binding-head
-      optional(field('access', $.access_modifier)),
-      // member-modifier*
+      optional($.access_modifier),
+      repeat($.member_modifier),
       field('pattern', $.binding_pattern),
       optional(seq("=", field('initializer', $.expr))),
     ),
@@ -366,6 +411,11 @@ module.exports = grammar({
 
     access_modifier: $ => choice('public'),
 
+    member_modifier: $ => choice(
+      field("receiver_modifier", choice("sink", "inout", "yielded")),
+      field("static_modifier", "static"),
+    ),
+
     // IDENTIFIERS
 
     identifier: $ => token(choice(
@@ -414,3 +464,11 @@ module.exports = grammar({
 
   word: $ => $.identifier,
 });
+
+/// Repeats `item` with stmt-separator.
+function repeat1StmtSep(item) {
+  return seq(
+    item,
+    repeat(seq(choice("\n", ";"), optional(item)))
+  )
+}

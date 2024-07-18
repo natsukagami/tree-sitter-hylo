@@ -1,0 +1,55 @@
+================
+DeclModifiers
+================
+
+//- parse expecting: failure
+
+type A0 {
+
+  public static let x0 = 42
+
+  static public let x1 = 42   //! diagnostic member modifier 'static' must appear after access modifier 'public'
+
+  public public let x2 = 42   //! diagnostic duplicate access modifier 'public'
+
+  static static let x3 = 42   //! diagnostic duplicate member modifier 'static'
+
+}
+
+---
+
+    (source_file
+      (single_line_comment)
+      (product_type_decl
+        (product_type_head
+          (identifier))
+        (binding_decl
+          (access_modifier)
+          (member_modifier)
+          (binding_pattern
+            (binding_introducer)
+            (identifier))
+          (expr
+            (integer_literal
+              (decimal_literal))))
+        (ERROR
+          (identifier)
+          (parameter_passing_convention)
+          (identifier))
+        (single_line_comment)
+        (binding_decl
+          (access_modifier)
+          (ERROR
+            (identifier)
+            (parameter_passing_convention)
+            (identifier))
+          (single_line_comment)
+          (member_modifier)
+          (member_modifier)
+          (binding_pattern
+            (binding_introducer)
+            (identifier))
+          (expr
+            (integer_literal
+              (decimal_literal))))
+        (single_line_comment)))
