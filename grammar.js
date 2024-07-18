@@ -37,8 +37,8 @@ module.exports = grammar({
       $.trait_decl,
       $.type_alias_decl,
       $.product_type_decl,
-      // extension-decl
-      // conformance-decl
+      $.extension_decl,
+      $.conformance_decl,
       $.binding_decl,
       $._function_decl,
       // subscript-decl
@@ -52,12 +52,7 @@ module.exports = grammar({
 
     // TRAIT
 
-    trait_decl: $ => seq(
-      $.trait_head,
-      "{",
-      field('body', repeat(choice($._trait_requirement_decl, ";"))),
-      "}",
-    ),
+    trait_decl: $ => declWith($.trait_head, $._trait_requirement_decl),
 
     trait_head: $ => seq(
       optional($.access_modifier),
@@ -96,19 +91,14 @@ module.exports = grammar({
 
     // PRODUCT TYPE
 
-    product_type_decl: $ => seq(
-      $.product_type_head,
-      "{",
-      repeat(choice($._product_type_member_decl, ";")),
-      "}",
-    ),
+    product_type_decl: $ => declWith($.product_type_head, $._product_type_member_decl),
 
     product_type_head: $ => seq(
       optional($.access_modifier),
       "type",
       field('name', $.identifier),
       // generic-clause?
-      // conformance-list?
+      optional($.conformance_list),
     ),
 
     _product_type_member_decl: $ => choice(
@@ -117,6 +107,49 @@ module.exports = grammar({
       // subscript-decl
       // property-decl
       $.binding_decl,
+      $.product_type_decl,
+      $.type_alias_decl,
+    ),
+
+    // EXTENSION
+
+    extension_decl: $ => declWith($.extension_head, $._extension_member_decl),
+
+    extension_head: $ => seq(
+      optional($.access_modifier),
+      "extension",
+      field('subject', $.type_expr),
+      // field('where', $._where_clause), // where-clause?
+    ),
+
+    _extension_member_decl: $ => choice(
+      $._function_decl,
+      // subscript-decl
+      $.product_type_decl,
+      $.type_alias_decl,
+    ),
+
+    // CONFORMANCE
+
+    conformance_decl: $ => declWith($.conformance_head, $._conformance_member_decl),
+
+    conformance_head: $ => seq(
+      optional($.access_modifier),
+      "conformance",
+      field('subject', $.type_expr),
+      $.conformance_list,
+      // where-clause?
+    ),
+
+    conformance_list: $ => seq(
+      ":",
+      $.name_type_expr,
+      repeat(seq(",", $.name_type_expr))
+    ),
+
+    _conformance_member_decl: $ => choice(
+      $._function_decl,
+      // subscript-decl
       $.product_type_decl,
       $.type_alias_decl,
     ),
@@ -188,7 +221,7 @@ module.exports = grammar({
       // TODO: operator case
     ),
 
-    function_memberwise_init: $ => seq("memberwise", "init"),
+    function_memberwise_init: $ => seq(optional($.access_modifier), "memberwise", "init"),
 
     // STATEMENTS
 
@@ -235,8 +268,8 @@ module.exports = grammar({
     _decl_stmt: $ => choice(
       // type-alias-decl
       // product-type-decl
-      // extension-decl
-      // conformance-decl
+      $.extension_decl,
+      $.conformance_decl,
       // function-decl
       // subscript-decl
       $.binding_decl,
@@ -546,5 +579,14 @@ function repeat1StmtSep(item) {
   return seq(
     item,
     repeat(seq(choice("\n", ";"), optional(item)))
+  )
+}
+
+function declWith(head, member) {
+  return seq(
+    head,
+    "{",
+    field('body', repeat(choice(member, ";"))),
+    "}",
   )
 }
