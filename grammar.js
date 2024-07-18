@@ -2,7 +2,7 @@
 
 // Token: String
 const unicode_escape = /\\u[0-9a-fA-F_]+/;
-const simple_escape = choice(`\0`, `\t`, `\n`, `\r`, `\'`, `\"`);
+const simple_escape = choice(`\\0`, `\\t`, `\\n`, `\\r`, `\\'`, `\\"`);
 const escape_char = choice(simple_escape, unicode_escape);
 const single_quoted_text_item = choice(escape_char, /[^"\x0a\x0d]/);
 const single_line_string = seq('"', repeat(token.immediate(single_quoted_text_item)), token.immediate('"'));
@@ -13,7 +13,7 @@ const horizontal_space_token = /[ \t]/;
 const whitespace = token(choice(horizontal_space_token, newline));
 
 // Token: Operators
-const common_operator = /[-*\/^%&!?]/u;
+const common_operator = /[-+*\/^%&!?]/u; // todo: support \p{Sm}
 const raw_operator = token(choice(common_operator, "<", ">"));
 const imm_raw_operator = token.immediate(raw_operator);
 const prefix_operator_head = token(choice(common_operator, ">"));

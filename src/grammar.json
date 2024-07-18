@@ -969,7 +969,7 @@
             "members": [
               {
                 "type": "PATTERN",
-                "value": "[-*\\/^%&!?]",
+                "value": "[-+*\\/^%&!?]",
                 "flags": "u"
               },
               {
@@ -990,7 +990,7 @@
                 "members": [
                   {
                     "type": "PATTERN",
-                    "value": "[-*\\/^%&!?]",
+                    "value": "[-+*\\/^%&!?]",
                     "flags": "u"
                   },
                   {
@@ -1018,7 +1018,7 @@
             "members": [
               {
                 "type": "PATTERN",
-                "value": "[-*\\/^%&!?]",
+                "value": "[-+*\\/^%&!?]",
                 "flags": "u"
               },
               {
@@ -1039,7 +1039,7 @@
                 "members": [
                   {
                     "type": "PATTERN",
-                    "value": "[-*\\/^%&!?]",
+                    "value": "[-+*\\/^%&!?]",
                     "flags": "u"
                   },
                   {
@@ -1069,7 +1069,7 @@
               "members": [
                 {
                   "type": "PATTERN",
-                  "value": "[-*\\/^%&!?]",
+                  "value": "[-+*\\/^%&!?]",
                   "flags": "u"
                 },
                 {
@@ -1094,7 +1094,7 @@
                   "members": [
                     {
                       "type": "PATTERN",
-                      "value": "[-*\\/^%&!?]",
+                      "value": "[-+*\\/^%&!?]",
                       "flags": "u"
                     },
                     {
@@ -1130,7 +1130,7 @@
                     "members": [
                       {
                         "type": "PATTERN",
-                        "value": "[-*\\/^%&!?]",
+                        "value": "[-+*\\/^%&!?]",
                         "flags": "u"
                       },
                       {
@@ -1155,7 +1155,7 @@
                         "members": [
                           {
                             "type": "PATTERN",
-                            "value": "[-*\\/^%&!?]",
+                            "value": "[-+*\\/^%&!?]",
                             "flags": "u"
                           },
                           {
@@ -1345,27 +1345,27 @@
                         "members": [
                           {
                             "type": "STRING",
-                            "value": "\u0000"
+                            "value": "\\0"
                           },
                           {
                             "type": "STRING",
-                            "value": "\t"
+                            "value": "\\t"
                           },
                           {
                             "type": "STRING",
-                            "value": "\n"
+                            "value": "\\n"
                           },
                           {
                             "type": "STRING",
-                            "value": "\r"
+                            "value": "\\r"
                           },
                           {
                             "type": "STRING",
-                            "value": "'"
+                            "value": "\\'"
                           },
                           {
                             "type": "STRING",
-                            "value": "\""
+                            "value": "\\\""
                           }
                         ]
                       },
