@@ -248,6 +248,10 @@
           "named": true
         },
         {
+          "type": "tuple_expr",
+          "named": true
+        },
+        {
           "type": "value_member_expr",
           "named": true
         }
@@ -317,6 +321,10 @@
           },
           {
             "type": "string_literal",
+            "named": true
+          },
+          {
+            "type": "tuple_expr",
             "named": true
           },
           {
@@ -495,6 +503,10 @@
           },
           {
             "type": "string_literal",
+            "named": true
+          },
+          {
+            "type": "tuple_expr",
             "named": true
           },
           {
@@ -765,6 +777,47 @@
     "fields": {}
   },
   {
+    "type": "tuple_expr",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "tuple_expr_element",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "tuple_expr_element",
+    "named": true,
+    "fields": {
+      "label": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "expr",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "tuple_pattern",
     "named": true,
     "fields": {}
@@ -828,6 +881,10 @@
           },
           {
             "type": "string_literal",
+            "named": true
+          },
+          {
+            "type": "tuple_expr",
             "named": true
           },
           {

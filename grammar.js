@@ -241,8 +241,22 @@ module.exports = grammar({
       $.lambda_expr,
       $._selection_expr,
       // inout-expr
-      // tuple-expr
+      $.tuple_expr,
       "nil",
+    ),
+
+    tuple_expr: $ => seq(
+      "(",
+      optional(seq(
+        $.tuple_expr_element,
+        repeat(seq(",", $.tuple_expr_element)),
+      )),
+      ")",
+    ),
+
+    tuple_expr_element: $ => seq(
+      optional(seq(field('label', $.identifier), ":")),
+      $.expr,
     ),
 
     primary_decl_ref: $ => seq(

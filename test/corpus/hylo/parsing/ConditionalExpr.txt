@@ -1,0 +1,129 @@
+================
+ConditionalExpr
+================
+
+//- parse expecting: success
+
+public fun main() {
+  _ = if a { () } else { () }
+  _ = if a {
+    ()
+  } else if b == c {
+    ()
+  } else { () }
+
+  _ = if let x = f(), a(x) == c {
+    ()
+  } else { () }
+}
+
+---
+
+(source_file
+  (single_line_comment)
+  (function_decl
+    (function_head
+      (access_modifier)
+      (function_name
+        (identifier)))
+    (function_signature)
+    (function_body
+      (brace_stmt
+        (stmt
+          (expr
+            (primary_decl_ref
+              (identifier_expr
+                (identifier)))
+            (infix_operator_tail
+              (infix_operator)
+              (conditional_expr
+                (conditional_clause_item
+                  (expr
+                    (primary_decl_ref
+                      (identifier_expr
+                        (identifier)))))
+                (brace_stmt
+                  (stmt
+                    (expr
+                      (tuple_expr))))
+                (brace_stmt
+                  (stmt
+                    (expr
+                      (tuple_expr))))))))
+        (stmt
+          (expr
+            (primary_decl_ref
+              (identifier_expr
+                (identifier)))
+            (infix_operator_tail
+              (infix_operator)
+              (conditional_expr
+                (conditional_clause_item
+                  (expr
+                    (primary_decl_ref
+                      (identifier_expr
+                        (identifier)))))
+                (brace_stmt
+                  (stmt
+                    (expr
+                      (tuple_expr))))
+                (conditional_expr
+                  (conditional_clause_item
+                    (expr
+                      (primary_decl_ref
+                        (identifier_expr
+                          (identifier)))
+                      (infix_operator_tail
+                        (infix_operator)
+                        (primary_decl_ref
+                          (identifier_expr
+                            (identifier))))))
+                  (brace_stmt
+                    (stmt
+                      (expr
+                        (tuple_expr))))
+                  (brace_stmt
+                    (stmt
+                      (expr
+                        (tuple_expr)))))))))
+        (stmt
+          (expr
+            (primary_decl_ref
+              (identifier_expr
+                (identifier)))
+            (infix_operator_tail
+              (infix_operator)
+              (conditional_expr
+                (conditional_clause_item
+                  (binding_pattern
+                    (binding_introducer)
+                    (identifier))
+                  (expr
+                    (function_call_expr
+                      (primary_decl_ref
+                        (identifier_expr
+                          (identifier))))))
+                (conditional_clause_item
+                  (expr
+                    (function_call_expr
+                      (primary_decl_ref
+                        (identifier_expr
+                          (identifier)))
+                      (call_argument
+                        (expr
+                          (primary_decl_ref
+                            (identifier_expr
+                              (identifier))))))
+                    (infix_operator_tail
+                      (infix_operator)
+                      (primary_decl_ref
+                        (identifier_expr
+                          (identifier))))))
+                (brace_stmt
+                  (stmt
+                    (expr
+                      (tuple_expr))))
+                (brace_stmt
+                  (stmt
+                    (expr
+                      (tuple_expr))))))))))))
