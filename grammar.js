@@ -71,7 +71,7 @@ module.exports = grammar({
 
     function_body: $ => choice(
       // TODO method-bundle
-      $._brace_stmt
+      $.brace_stmt
     ),
 
     function_name: $ => choice(
@@ -84,7 +84,7 @@ module.exports = grammar({
 
     // STATEMENTS
 
-    _brace_stmt: $ => seq('{', optional($._stmt_list), '}'),
+    brace_stmt: $ => seq('{', optional($._stmt_list), '}'),
 
     _stmt_list: $ => seq(
       $.stmt,
@@ -101,7 +101,7 @@ module.exports = grammar({
     ),
 
     stmt: $ => choice(
-      $._brace_stmt,
+      $.brace_stmt,
       // discard-stmt
       // loop-stmt
       // jump-stmt
@@ -162,7 +162,7 @@ module.exports = grammar({
       $.primary_decl_ref,
       // implicit-member-ref
       // lambda-expr
-      // selection-expr
+      $._selection_expr,
       // inout-expr
       // tuple-expr
       "nil",
@@ -171,6 +171,9 @@ module.exports = grammar({
     primary_decl_ref: $ => seq(
       field('identifier', $.identifier_expr),
       // repeat($._static_argument_list)
+    ),
+
+    conditional_expr: $ => choice(
     ),
 
     identifier_expr: $ => seq(
@@ -183,6 +186,49 @@ module.exports = grammar({
       //   function-entity-identifier
       //   operator-entity-identifier
     ),
+
+    _selection_expr: $ => choice(
+      $.conditional_expr,
+      // match-expr
+    ),
+
+    conditional_expr: $ => seq(
+      "if",
+      field('condition', $._conditional_clause),
+      field('then', $.brace_stmt),
+      optional(seq(
+        "else",
+        field('else', choice($.conditional_expr, $.brace_stmt)),
+      )),
+    ),
+
+    _conditional_clause: $ => seq(
+      $.conditional_clause_item,
+      repeat(seq(",", $.conditional_clause_item)),
+    ),
+
+    conditional_clause_item: $ => choice(
+      seq($.binding_pattern, "=", $.expr),
+      $.expr,
+    ),
+
+    // PATTERNS
+
+    binding_pattern: $ => seq(
+      field('introducer', $.binding_introducer),
+      field('pattern', choice(
+        $.tuple_pattern,
+        $.wildcard_pattern,
+        $.identifier,
+      )),
+      optional(seq(":", field('annotation', $.type_expr))),
+    ),
+
+    binding_introducer: $ => token(choice("let", "var", "sink", "inout")),
+
+    tuple_pattern: $ => choice(), // TODO: tuple-pattern
+
+    wildcard_pattern: $ => choice(), // TODO: wildcard-pattern
 
     // OPERATORS,
 
