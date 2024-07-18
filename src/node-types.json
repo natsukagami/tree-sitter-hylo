@@ -154,6 +154,21 @@
     }
   },
   {
+    "type": "capture_list",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "binding_decl",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "conditional_clause_item",
     "named": true,
     "fields": {},
@@ -608,6 +623,10 @@
           "named": true
         },
         {
+          "type": "capture_list",
+          "named": true
+        },
+        {
           "type": "function_name",
           "named": true
         },
@@ -680,6 +699,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "receiver_effect",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -860,6 +889,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "capture_list",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -1164,6 +1203,11 @@
         }
       ]
     }
+  },
+  {
+    "type": "receiver_effect",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "receiver_modifier",
@@ -1564,6 +1608,14 @@
   },
   {
     "type": "=",
+    "named": false
+  },
+  {
+    "type": "[",
+    "named": false
+  },
+  {
+    "type": "]",
     "named": false
   },
   {

@@ -172,14 +172,14 @@ module.exports = grammar({
       optional($._member_modifiers),
       $.function_name,
       // TODO: generic-clause
-      // TODO: capture-list
+      optional($.capture_list),
     ),
 
     function_signature: $ => seq(
       '(',
       field('params', optional($._parameter_list)),
       ')',
-      // receiver-effect? 
+      optional($.receiver_effect),
       optional(seq("->", field('returns', $.type_expr))),
       // type-aliases-clause?
     ),
@@ -233,6 +233,15 @@ module.exports = grammar({
     ),
 
     function_memberwise_init: $ => seq(optional($.access_modifier), "memberwise", "init"),
+
+    // CAPTURES
+
+    capture_list: $ => seq(
+      "[",
+      $.binding_decl,
+      repeat(seq(",", $.binding_decl)),
+      "]",
+    ),
 
     // STATEMENTS
 
@@ -405,7 +414,7 @@ module.exports = grammar({
 
     lambda_expr: $ => seq(
       "fun",
-      // capture-list?
+      optional($.capture_list),
       field('signature', $.function_signature),
       field('body', $.brace_stmt),
     ),
@@ -532,6 +541,8 @@ module.exports = grammar({
     )),
     receiver_modifier: $ => choice("sink", "inout", "yielded"),
     static_modifier: $ => "static",
+
+    receiver_effect: $ => choice("inout", "sink"),
 
     implicit_parameter_modifier: $ => token.immediate("?"),
 
