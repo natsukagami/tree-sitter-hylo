@@ -588,10 +588,10 @@ module.exports = grammar({
       ")",
     ),
 
-    tuple_expr_element: $ => seq(
+    tuple_expr_element: $ => prec("expr", seq(
       optional(seq(field('label', $.identifier), ":")),
       $.expr,
-    ),
+    )),
 
     primary_decl_ref: $ => seq(
       field('identifier', $.identifier_expr),
@@ -686,7 +686,7 @@ module.exports = grammar({
       $.wildcard_pattern,
     ),
 
-    expr_pattern: $ => $.expr,
+    expr_pattern: $ => prec("pattern", $.expr),
 
     binding_pattern: $ => prec.right(seq(
       field('introducer', $.binding_introducer),
@@ -702,14 +702,14 @@ module.exports = grammar({
 
     tuple_pattern: $ => seq(
       "(",
-      $.tuple_expr_element,
-      repeat(seq(",", $.tuple_expr_element)),
+      $.tuple_pattern_element,
+      repeat(seq(",", $.tuple_pattern_element)),
       optional(","),
       ")",
     ),
     tuple_pattern_element: $ => seq(
       optional(seq(field('label', $.identifier), ":")),
-      $._pattern
+      field('pattern', $._pattern),
     ),
 
     wildcard_pattern: $ => "_",
@@ -962,7 +962,7 @@ module.exports = grammar({
     // Type Expressions: float > conformance > where > lambda
     ["type_simple", "type_select", "type_float", "type_where", "type_lambda", "type_infix"],
     // Type vs Expression clash, prefer types
-    ["type", "expr"],
+    ["type", "pattern", "expr"],
     // Generic brackets have higher precedence than operators
     ["generics", "operators"]
   ],

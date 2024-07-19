@@ -66,7 +66,13 @@
 (binding_decl pattern: (binding_pattern introducer: (binding_introducer) @keyword.storage.modifier))
 (binding_introducer) @keyword.storage.modifier.mut (#eq? @keyword.storage.modifier.mut "var")
 (binding_introducer) @keyword.storage.modifier.ref (#eq? @keyword.storage.modifier.ref "inout")
-(binding_decl pattern: (binding_pattern pattern: (identifier) @variable))
+;; binding patterns
+(binding_pattern pattern: (identifier) @variable)
+(tuple_pattern "(" @punctuation.bracket.tuple ",")
+(tuple_pattern "," ")" @punctuation.bracket.tuple)
+(tuple_pattern_element label: (identifier) @label)
+(tuple_pattern_element ":" @operator.assignment)
+(tuple_pattern_element pattern: (expr_pattern (expr (primary_decl_ref identifier: (identifier_expr (identifier) @variable)))))
 (binding_decl "=" @operator.assignment)
 
 ; Expr
@@ -93,6 +99,8 @@
 ;; Tuples
 (tuple_expr "(" @punctuation.bracket.tuple ",")
 (tuple_expr "," ")" @punctuation.bracket.tuple)
+(tuple_expr_element label: (identifier) @label)
+(tuple_expr_element ":" @operator.assignment)
 ;; Literals
 (identifier_expr ((identifier) @variable.builtin (#eq? @variable.builtin "self")))
 (identifier_expr ((identifier) @variable.builtin (#eq? @variable.builtin "yielded")))
@@ -109,6 +117,8 @@
 ;; Tuple Types
 (tuple_type_expr "{" @punctuation.bracket)
 (tuple_type_expr "}" @punctuation.bracket)
+(tuple_type_element label: (identifier) @label)
+(tuple_type_element ":" @operator.assignment)
 
 ;; Generic
 (generic_type_parameter "@type" @attribute.annotation)

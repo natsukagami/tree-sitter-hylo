@@ -50,16 +50,18 @@ public fun main() {
           (binding_pattern
             (binding_introducer)
             (tuple_pattern
-              (tuple_expr_element
-                (expr
-                  (primary_decl_ref
-                    (identifier_expr
-                      (identifier)))))
-              (tuple_expr_element
-                (expr
-                  (primary_decl_ref
-                    (identifier_expr
-                      (identifier)))))))
+              (tuple_pattern_element
+                (expr_pattern
+                  (expr
+                    (primary_decl_ref
+                      (identifier_expr
+                        (identifier))))))
+              (tuple_pattern_element
+                (expr_pattern
+                  (expr
+                    (primary_decl_ref
+                      (identifier_expr
+                        (identifier))))))))
           (expr
             (tuple_expr
               (tuple_expr_element
@@ -106,16 +108,18 @@ public fun main() {
           (binding_pattern
             (binding_introducer)
             (tuple_pattern
-              (tuple_expr_element
-                (expr
-                  (primary_decl_ref
-                    (identifier_expr
-                      (identifier)))))
-              (tuple_expr_element
-                (expr
-                  (primary_decl_ref
-                    (identifier_expr
-                      (identifier))))))
+              (tuple_pattern_element
+                (expr_pattern
+                  (expr
+                    (primary_decl_ref
+                      (identifier_expr
+                        (identifier))))))
+              (tuple_pattern_element
+                (expr_pattern
+                  (expr
+                    (primary_decl_ref
+                      (identifier_expr
+                        (identifier)))))))
             (name_type_expr
               (identifier)))))
       (single_line_comment)
@@ -124,16 +128,18 @@ public fun main() {
           (binding_pattern
             (binding_introducer)
             (tuple_pattern
-              (tuple_expr_element
-                (expr
-                  (primary_decl_ref
-                    (identifier_expr
-                      (identifier)))))
-              (tuple_expr_element
-                (expr
-                  (primary_decl_ref
-                    (identifier_expr
-                      (identifier))))))
+              (tuple_pattern_element
+                (expr_pattern
+                  (expr
+                    (primary_decl_ref
+                      (identifier_expr
+                        (identifier))))))
+              (tuple_pattern_element
+                (expr_pattern
+                  (expr
+                    (primary_decl_ref
+                      (identifier_expr
+                        (identifier)))))))
             (tuple_type_expr
               (tuple_type_element
                 (name_type_expr
@@ -144,16 +150,18 @@ public fun main() {
           (binding_pattern
             (binding_introducer)
             (tuple_pattern
-              (tuple_expr_element
-                (expr
-                  (primary_decl_ref
-                    (identifier_expr
-                      (identifier)))))
-              (tuple_expr_element
-                (expr
-                  (primary_decl_ref
-                    (identifier_expr
-                      (identifier)))))))
+              (tuple_pattern_element
+                (expr_pattern
+                  (expr
+                    (primary_decl_ref
+                      (identifier_expr
+                        (identifier))))))
+              (tuple_pattern_element
+                (expr_pattern
+                  (expr
+                    (primary_decl_ref
+                      (identifier_expr
+                        (identifier))))))))
           (expr
             (tuple_expr
               (tuple_expr_element

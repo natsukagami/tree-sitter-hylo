@@ -2723,38 +2723,42 @@
       ]
     },
     "tuple_expr_element": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SEQ",
-              "members": [
-                {
-                  "type": "FIELD",
-                  "name": "label",
-                  "content": {
-                    "type": "SYMBOL",
-                    "name": "identifier"
+      "type": "PREC",
+      "value": "expr",
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SEQ",
+                "members": [
+                  {
+                    "type": "FIELD",
+                    "name": "label",
+                    "content": {
+                      "type": "SYMBOL",
+                      "name": "identifier"
+                    }
+                  },
+                  {
+                    "type": "STRING",
+                    "value": ":"
                   }
-                },
-                {
-                  "type": "STRING",
-                  "value": ":"
-                }
-              ]
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
-        },
-        {
-          "type": "SYMBOL",
-          "name": "expr"
-        }
-      ]
+                ]
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
+          },
+          {
+            "type": "SYMBOL",
+            "name": "expr"
+          }
+        ]
+      }
     },
     "primary_decl_ref": {
       "type": "SEQ",
@@ -3195,8 +3199,12 @@
       ]
     },
     "expr_pattern": {
-      "type": "SYMBOL",
-      "name": "expr"
+      "type": "PREC",
+      "value": "pattern",
+      "content": {
+        "type": "SYMBOL",
+        "name": "expr"
+      }
     },
     "binding_pattern": {
       "type": "PREC_RIGHT",
@@ -3291,7 +3299,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "tuple_expr_element"
+          "name": "tuple_pattern_element"
         },
         {
           "type": "REPEAT",
@@ -3304,7 +3312,7 @@
               },
               {
                 "type": "SYMBOL",
-                "name": "tuple_expr_element"
+                "name": "tuple_pattern_element"
               }
             ]
           }
@@ -3356,8 +3364,12 @@
           ]
         },
         {
-          "type": "SYMBOL",
-          "name": "_pattern"
+          "type": "FIELD",
+          "name": "pattern",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_pattern"
+          }
         }
       ]
     },
@@ -5125,6 +5137,10 @@
       {
         "type": "STRING",
         "value": "type"
+      },
+      {
+        "type": "STRING",
+        "value": "pattern"
       },
       {
         "type": "STRING",

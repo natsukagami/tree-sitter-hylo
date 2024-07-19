@@ -3102,10 +3102,48 @@
       "required": true,
       "types": [
         {
-          "type": "tuple_expr_element",
+          "type": "tuple_pattern_element",
           "named": true
         }
       ]
+    }
+  },
+  {
+    "type": "tuple_pattern_element",
+    "named": true,
+    "fields": {
+      "label": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "pattern": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "binding_pattern",
+            "named": true
+          },
+          {
+            "type": "expr_pattern",
+            "named": true
+          },
+          {
+            "type": "tuple_pattern",
+            "named": true
+          },
+          {
+            "type": "wildcard_pattern",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
