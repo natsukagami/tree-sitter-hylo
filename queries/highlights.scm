@@ -87,8 +87,8 @@
 ;; Primary Expr
 (implicit_member_ref "." @punctuation.special)
 ;; Tuples
-(tuple_expr "(" @punctuation.bracket.tuple)
-(tuple_expr ")" @punctuation.bracket.tuple)
+(tuple_expr "(" @punctuation.bracket.tuple ",")
+(tuple_expr "," ")" @punctuation.bracket.tuple)
 ;; Literals
 (identifier_expr ((identifier) @variable.builtin (#eq? @variable.builtin "self")))
 (identifier_expr ((identifier) @variable.builtin (#eq? @variable.builtin "yielded")))

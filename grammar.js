@@ -535,10 +535,13 @@ module.exports = grammar({
 
     tuple_expr: $ => seq(
       "(",
-      optional(seq(
-        $.tuple_expr_element,
-        repeat(seq(",", $.tuple_expr_element)),
-      )),
+      optional(
+        seq(
+          $.tuple_expr_element,
+          repeat(seq(",", $.tuple_expr_element)),
+          optional(",")
+        ),
+      ),
       ")",
     ),
 
@@ -658,6 +661,7 @@ module.exports = grammar({
       "(",
       $.tuple_expr_element,
       repeat(seq(",", $.tuple_expr_element)),
+      optional(","),
       ")",
     ),
     tuple_pattern_element: $ => seq(
@@ -744,10 +748,13 @@ module.exports = grammar({
 
     tuple_type_expr: $ => seq(
       "{",
-      optional(seq(
-        $.tuple_type_element,
-        repeat(seq(",", $.tuple_type_element))
-      )),
+      optional(
+        seq(
+          $.tuple_type_element,
+          repeat(seq(",", $.tuple_type_element)),
+          optional(",")
+        ),
+      ),
       "}",
     ),
 
