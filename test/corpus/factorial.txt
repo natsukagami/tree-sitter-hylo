@@ -26,12 +26,10 @@ public fun main() {
     (function_signature
       (parameter_decl
         (identifier)
-        (type_expr
-          (name_type_expr
-            (identifier))))
-      (type_expr
         (name_type_expr
-          (identifier))))
+          (identifier)))
+      (name_type_expr
+        (identifier)))
     (brace_stmt
       (stmt
         (expr

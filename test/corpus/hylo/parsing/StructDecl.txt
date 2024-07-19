@@ -112,9 +112,8 @@ type A7 {
           (identifier))
         (generic_value_parameter
           (identifier)
-          (type_expr
-            (name_type_expr
-              (identifier)))))
+          (name_type_expr
+            (identifier))))
       (conformance_list
         (name_type_expr
           (identifier))
@@ -135,9 +134,8 @@ type A7 {
       (binding_pattern
         (binding_introducer)
         (identifier)
-        (type_expr
-          (name_type_expr
-            (identifier)))))
+        (name_type_expr
+          (identifier))))
     (binding_decl
       (binding_pattern
         (binding_introducer)
@@ -149,9 +147,8 @@ type A7 {
       (binding_pattern
         (binding_introducer)
         (identifier)
-        (type_expr
-          (name_type_expr
-            (identifier))))
+        (name_type_expr
+          (identifier)))
       (expr
         (integer_literal
           (decimal_literal)))))

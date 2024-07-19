@@ -43,17 +43,20 @@ type A0 {
         (function_name
           (identifier)))
       (function_signature
-        (type_expr
-          (name_type_expr
-            (identifier))))
+        (name_type_expr
+          (identifier)))
       (method_bundle_body
         (method_impl
+          (method_introducer)
           (brace_stmt))
         (method_impl
+          (method_introducer)
           (brace_stmt))
         (method_impl
+          (method_introducer)
           (brace_stmt))
         (method_impl
+          (method_introducer)
           (brace_stmt
             (stmt
               (expr
@@ -72,11 +75,11 @@ type A0 {
         (function_name
           (identifier)))
       (function_signature
-        (type_expr
-          (name_type_expr
-            (identifier))))
+        (name_type_expr
+          (identifier)))
       (method_bundle_body
         (method_impl
+          (method_introducer)
           (brace_stmt))))
     (single_line_comment)
     (function_decl
@@ -85,11 +88,11 @@ type A0 {
         (function_name
           (identifier)))
       (function_signature
-        (type_expr
-          (name_type_expr
-            (identifier))))
+        (name_type_expr
+          (identifier)))
       (method_bundle_body
         (method_impl
+          (method_introducer)
           (brace_stmt))))
     (single_line_comment)
     (function_decl
@@ -98,11 +101,11 @@ type A0 {
           (identifier)))
       (function_signature
         (receiver_effect)
-        (type_expr
-          (name_type_expr
-            (identifier))))
+        (name_type_expr
+          (identifier)))
       (method_bundle_body
         (method_impl
+          (method_introducer)
           (brace_stmt))))
     (single_line_comment)
     (function_decl
@@ -119,11 +122,11 @@ type A0 {
               (integer_literal
                 (decimal_literal))))))
       (function_signature
-        (type_expr
-          (name_type_expr
-            (identifier))))
+        (name_type_expr
+          (identifier)))
       (method_bundle_body
         (method_impl
+          (method_introducer)
           (brace_stmt))))
     (function_decl
       (function_head
@@ -132,7 +135,9 @@ type A0 {
       (function_signature)
       (method_bundle_body
         (method_impl
+          (method_introducer)
           (brace_stmt))
         (method_impl
+          (method_introducer)
           (brace_stmt))
         (single_line_comment)))))

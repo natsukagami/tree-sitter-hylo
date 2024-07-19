@@ -5,6 +5,128 @@
     "fields": {}
   },
   {
+    "type": "associated_type_decl",
+    "named": true,
+    "fields": {
+      "conformance": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "conformance_list",
+            "named": true
+          }
+        ]
+      },
+      "default": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
+          {
+            "type": "conformance_lens_type_expr",
+            "named": true
+          },
+          {
+            "type": "lambda_type_expr",
+            "named": true
+          },
+          {
+            "type": "name_type_expr",
+            "named": true
+          },
+          {
+            "type": "opaque_type_expr",
+            "named": true
+          }
+        ]
+      },
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "where": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "where_clause",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "associated_value_decl",
+    "named": true,
+    "fields": {
+      "default": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
+          {
+            "type": "conformance_lens_type_expr",
+            "named": true
+          },
+          {
+            "type": "lambda_type_expr",
+            "named": true
+          },
+          {
+            "type": "name_type_expr",
+            "named": true
+          },
+          {
+            "type": "opaque_type_expr",
+            "named": true
+          }
+        ]
+      },
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "where": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "where_clause",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "binding_decl",
     "named": true,
     "fields": {
@@ -58,11 +180,31 @@
     "named": true,
     "fields": {
       "annotation": {
-        "multiple": false,
+        "multiple": true,
         "required": false,
         "types": [
           {
-            "type": "type_expr",
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
+          {
+            "type": "conformance_lens_type_expr",
+            "named": true
+          },
+          {
+            "type": "lambda_type_expr",
+            "named": true
+          },
+          {
+            "type": "name_type_expr",
+            "named": true
+          },
+          {
+            "type": "opaque_type_expr",
             "named": true
           }
         ]
@@ -303,11 +445,31 @@
     "named": true,
     "fields": {
       "subject": {
-        "multiple": false,
+        "multiple": true,
         "required": true,
         "types": [
           {
-            "type": "type_expr",
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
+          {
+            "type": "conformance_lens_type_expr",
+            "named": true
+          },
+          {
+            "type": "lambda_type_expr",
+            "named": true
+          },
+          {
+            "type": "name_type_expr",
+            "named": true
+          },
+          {
+            "type": "opaque_type_expr",
             "named": true
           }
         ]
@@ -330,6 +492,52 @@
           "named": true
         }
       ]
+    }
+  },
+  {
+    "type": "conformance_lens_type_expr",
+    "named": true,
+    "fields": {
+      "subject": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
+          {
+            "type": "conformance_lens_type_expr",
+            "named": true
+          },
+          {
+            "type": "lambda_type_expr",
+            "named": true
+          },
+          {
+            "type": "name_type_expr",
+            "named": true
+          },
+          {
+            "type": "opaque_type_expr",
+            "named": true
+          }
+        ]
+      },
+      "trait": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
@@ -362,11 +570,31 @@
         ]
       },
       "rhs": {
-        "multiple": false,
+        "multiple": true,
         "required": true,
         "types": [
           {
-            "type": "type_expr",
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
+          {
+            "type": "conformance_lens_type_expr",
+            "named": true
+          },
+          {
+            "type": "lambda_type_expr",
+            "named": true
+          },
+          {
+            "type": "name_type_expr",
+            "named": true
+          },
+          {
+            "type": "opaque_type_expr",
             "named": true
           }
         ]
@@ -454,78 +682,14 @@
   },
   {
     "type": "expr_pattern",
-    "named": false,
+    "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
-      "required": false,
+      "multiple": false,
+      "required": true,
       "types": [
         {
-          "type": "boolean_literal",
-          "named": true
-        },
-        {
-          "type": "conditional_expr",
-          "named": true
-        },
-        {
-          "type": "floating_point_literal",
-          "named": true
-        },
-        {
-          "type": "function_call_expr",
-          "named": true
-        },
-        {
-          "type": "infix_operator_tail",
-          "named": true
-        },
-        {
-          "type": "inout_expr",
-          "named": true
-        },
-        {
-          "type": "integer_literal",
-          "named": true
-        },
-        {
-          "type": "lambda_expr",
-          "named": true
-        },
-        {
-          "type": "match_expr",
-          "named": true
-        },
-        {
-          "type": "postfix_operator",
-          "named": true
-        },
-        {
-          "type": "pragma_expr",
-          "named": true
-        },
-        {
-          "type": "prefix_operator",
-          "named": true
-        },
-        {
-          "type": "primary_decl_ref",
-          "named": true
-        },
-        {
-          "type": "string_literal",
-          "named": true
-        },
-        {
-          "type": "tuple_expr",
-          "named": true
-        },
-        {
-          "type": "unicode_scalar_literal",
-          "named": true
-        },
-        {
-          "type": "value_member_expr",
+          "type": "expr",
           "named": true
         }
       ]
@@ -582,11 +746,31 @@
     "named": true,
     "fields": {
       "subject": {
-        "multiple": false,
+        "multiple": true,
         "required": true,
         "types": [
           {
-            "type": "type_expr",
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
+          {
+            "type": "conformance_lens_type_expr",
+            "named": true
+          },
+          {
+            "type": "lambda_type_expr",
+            "named": true
+          },
+          {
+            "type": "name_type_expr",
+            "named": true
+          },
+          {
+            "type": "opaque_type_expr",
             "named": true
           }
         ]
@@ -817,11 +1001,31 @@
         ]
       },
       "returns": {
-        "multiple": false,
+        "multiple": true,
         "required": false,
         "types": [
           {
-            "type": "type_expr",
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
+          {
+            "type": "conformance_lens_type_expr",
+            "named": true
+          },
+          {
+            "type": "lambda_type_expr",
+            "named": true
+          },
+          {
+            "type": "name_type_expr",
+            "named": true
+          },
+          {
+            "type": "opaque_type_expr",
             "named": true
           }
         ]
@@ -866,11 +1070,31 @@
     "named": true,
     "fields": {
       "default": {
-        "multiple": false,
+        "multiple": true,
         "required": false,
         "types": [
           {
-            "type": "type_expr",
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
+          {
+            "type": "conformance_lens_type_expr",
+            "named": true
+          },
+          {
+            "type": "lambda_type_expr",
+            "named": true
+          },
+          {
+            "type": "name_type_expr",
+            "named": true
+          },
+          {
+            "type": "opaque_type_expr",
             "named": true
           }
         ]
@@ -922,11 +1146,31 @@
         ]
       },
       "type": {
-        "multiple": false,
+        "multiple": true,
         "required": true,
         "types": [
           {
-            "type": "type_expr",
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
+          {
+            "type": "conformance_lens_type_expr",
+            "named": true
+          },
+          {
+            "type": "lambda_type_expr",
+            "named": true
+          },
+          {
+            "type": "name_type_expr",
+            "named": true
+          },
+          {
+            "type": "opaque_type_expr",
             "named": true
           }
         ]
@@ -1136,7 +1380,19 @@
       "required": false,
       "types": [
         {
-          "type": "type_expr",
+          "type": "conformance_lens_type_expr",
+          "named": true
+        },
+        {
+          "type": "lambda_type_expr",
+          "named": true
+        },
+        {
+          "type": "name_type_expr",
+          "named": true
+        },
+        {
+          "type": "opaque_type_expr",
           "named": true
         }
       ]
@@ -1193,11 +1449,31 @@
         ]
       },
       "type": {
-        "multiple": false,
+        "multiple": true,
         "required": true,
         "types": [
           {
-            "type": "type_expr",
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
+          {
+            "type": "conformance_lens_type_expr",
+            "named": true
+          },
+          {
+            "type": "lambda_type_expr",
+            "named": true
+          },
+          {
+            "type": "name_type_expr",
+            "named": true
+          },
+          {
+            "type": "opaque_type_expr",
             "named": true
           }
         ]
@@ -1223,11 +1499,31 @@
         ]
       },
       "returns": {
-        "multiple": false,
+        "multiple": true,
         "required": true,
         "types": [
           {
-            "type": "type_expr",
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
+          {
+            "type": "conformance_lens_type_expr",
+            "named": true
+          },
+          {
+            "type": "lambda_type_expr",
+            "named": true
+          },
+          {
+            "type": "name_type_expr",
+            "named": true
+          },
+          {
+            "type": "opaque_type_expr",
             "named": true
           }
         ]
@@ -1339,7 +1635,22 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "method_introducer",
+          "named": true
+        }
+      ]
     }
+  },
+  {
+    "type": "method_introducer",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "name_type_expr",
@@ -1376,6 +1687,10 @@
           {
             "type": ")",
             "named": false
+          },
+          {
+            "type": "conformance_lens_type_expr",
+            "named": true
           },
           {
             "type": "lambda_type_expr",
@@ -1564,11 +1879,31 @@
         "required": false,
         "types": [
           {
-            "type": "parameter_passing_convention",
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
+          {
+            "type": "conformance_lens_type_expr",
             "named": true
           },
           {
-            "type": "type_expr",
+            "type": "lambda_type_expr",
+            "named": true
+          },
+          {
+            "type": "name_type_expr",
+            "named": true
+          },
+          {
+            "type": "opaque_type_expr",
+            "named": true
+          },
+          {
+            "type": "parameter_passing_convention",
             "named": true
           }
         ]
@@ -1724,11 +2059,31 @@
         ]
       },
       "type": {
-        "multiple": false,
+        "multiple": true,
         "required": true,
         "types": [
           {
-            "type": "type_expr",
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
+          {
+            "type": "conformance_lens_type_expr",
+            "named": true
+          },
+          {
+            "type": "lambda_type_expr",
+            "named": true
+          },
+          {
+            "type": "name_type_expr",
+            "named": true
+          },
+          {
+            "type": "opaque_type_expr",
             "named": true
           }
         ]
@@ -2002,7 +2357,22 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "subscript_introducer",
+          "named": true
+        }
+      ]
     }
+  },
+  {
+    "type": "subscript_introducer",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "subscript_signature",
@@ -2023,12 +2393,42 @@
         ]
       },
       "returns": {
-        "multiple": false,
+        "multiple": true,
         "required": true,
         "types": [
           {
-            "type": "type_expr",
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
+          {
+            "type": "conformance_lens_type_expr",
             "named": true
+          },
+          {
+            "type": "lambda_type_expr",
+            "named": true
+          },
+          {
+            "type": "name_type_expr",
+            "named": true
+          },
+          {
+            "type": "opaque_type_expr",
+            "named": true
+          }
+        ]
+      },
+      "var": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "var",
+            "named": false
           }
         ]
       }
@@ -2070,6 +2470,14 @@
           {
             "type": ";",
             "named": false
+          },
+          {
+            "type": "associated_type_decl",
+            "named": true
+          },
+          {
+            "type": "associated_value_decl",
+            "named": true
           },
           {
             "type": "function_decl",
@@ -2202,11 +2610,31 @@
     "named": true,
     "fields": {
       "rhs": {
-        "multiple": false,
+        "multiple": true,
         "required": true,
         "types": [
           {
-            "type": "type_expr",
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
+          {
+            "type": "conformance_lens_type_expr",
+            "named": true
+          },
+          {
+            "type": "lambda_type_expr",
+            "named": true
+          },
+          {
+            "type": "name_type_expr",
+            "named": true
+          },
+          {
+            "type": "opaque_type_expr",
             "named": true
           }
         ]
@@ -2248,29 +2676,6 @@
         },
         {
           "type": "generic_clause",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "type_expr",
-    "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": true,
-      "types": [
-        {
-          "type": "lambda_type_expr",
-          "named": true
-        },
-        {
-          "type": "name_type_expr",
-          "named": true
-        },
-        {
-          "type": "opaque_type_expr",
           "named": true
         }
       ]
@@ -2454,6 +2859,10 @@
     "named": false
   },
   {
+    "type": "::",
+    "named": false
+  },
+  {
     "type": ";",
     "named": false
   },
@@ -2574,10 +2983,6 @@
     "named": false
   },
   {
-    "type": "method_introducer",
-    "named": false
-  },
-  {
     "type": "namespace",
     "named": false
   },
@@ -2602,6 +3007,10 @@
     "named": false
   },
   {
+    "type": "set",
+    "named": false
+  },
+  {
     "type": "sink",
     "named": false
   },
@@ -2615,14 +3024,6 @@
   },
   {
     "type": "subscript",
-    "named": false
-  },
-  {
-    "type": "subscript_introducer",
-    "named": false
-  },
-  {
-    "type": "subscript_var_modifier",
     "named": false
   },
   {
@@ -2648,6 +3049,10 @@
   {
     "type": "unicode_scalar_literal",
     "named": true
+  },
+  {
+    "type": "value",
+    "named": false
   },
   {
     "type": "var",

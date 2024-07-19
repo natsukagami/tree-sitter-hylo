@@ -113,10 +113,42 @@ module.exports = grammar({
     ),
 
     _trait_requirement_decl: $ => choice(
-      // associated-decl
+      $._associated_decl,
       $._function_decl,
       $.subscript_decl,
       $.property_decl,
+    ),
+
+    // ASSOCIATED TYPES & VALS
+    _associated_decl: $ => choice(
+      $.associated_type_decl,
+      $.associated_value_decl,
+    ),
+
+    associated_type_decl: $ => seq(
+      "type",
+      field('name', $.identifier),
+      optional(choice(
+        field('conformance', $.conformance_list),
+        seq(
+          optional(field('conformance', $.conformance_list)),
+          field('where', $.where_clause),
+        ),
+      )),
+      optional(seq(
+        "=",
+        field('default', $._type_expr),
+      )),
+    ),
+
+    associated_value_decl: $ => seq(
+      "value",
+      field('name', $.identifier),
+      optional(field('where', $.where_clause)),
+      optional(seq(
+        "=",
+        field('default', $._type_expr),
+      )),
     ),
 
     // TYPE ALIAS
@@ -124,7 +156,7 @@ module.exports = grammar({
     type_alias_decl: $ => seq(
       $.type_alias_head,
       "=",
-      field('rhs', $.type_expr),
+      field('rhs', $._type_expr),
     ),
 
     type_alias_head: $ => seq(
@@ -163,7 +195,7 @@ module.exports = grammar({
     extension_head: $ => seq(
       optional($.access_modifier),
       "extension",
-      field('subject', $.type_expr),
+      field('subject', $._type_expr),
       optional($.where_clause),
     ),
 
@@ -181,7 +213,7 @@ module.exports = grammar({
     conformance_head: $ => seq(
       optional($.access_modifier),
       "conformance",
-      field('subject', $.type_expr),
+      field('subject', $._type_expr),
       $.conformance_list,
       optional($.where_clause),
     ),
@@ -225,7 +257,7 @@ module.exports = grammar({
       field('params', optional($._parameter_list)),
       ')',
       optional($.receiver_effect),
-      optional(seq("->", field('returns', $.type_expr))),
+      optional(seq("->", field('returns', $._type_expr))),
       // type-aliases-clause?
     ),
 
@@ -250,7 +282,7 @@ module.exports = grammar({
 
     _parameter_type_expr: $ => seq(
       optional(field('convention', $.parameter_passing_convention)),
-      $.type_expr,
+      $._type_expr,
     ),
 
     parameter_passing_convention: $ => choice("let", "inout", "sink", "yield"),
@@ -267,9 +299,11 @@ module.exports = grammar({
     ),
 
     method_impl: $ => seq(
-      alias(choice("let", "sink", "inout", "set"), "method_introducer"),
+      $.method_introducer,
       optional(field('body', $.brace_stmt)),
     ),
+
+    method_introducer: $ => choice("let", "sink", "inout", "set"),
 
     function_name: $ => choice(
       'init',
@@ -302,23 +336,25 @@ module.exports = grammar({
       ")",
       optional($.receiver_effect),
       ":",
-      optional(alias("var", "subscript_var_modifier")),
-      field('returns', $.type_expr),
+      optional(field('var', "var")),
+      field('returns', $._type_expr),
     ),
 
     subscript_body: $ => seq("{", repeat1($.subscript_impl), "}"),
 
     subscript_impl: $ => seq(
-      alias(choice("let", "sink", "inout", "set"), "subscript_introducer"),
+      $.subscript_introducer,
       optional(field('body', $.brace_stmt)),
     ),
+
+    subscript_introducer: $ => choice("let", "sink", "inout", "set"),
 
     // PROPERTIES
 
     property_decl: $ => seq(
       $.property_head,
       ":",
-      field('type', $.type_expr),
+      field('type', $._type_expr),
       field('body', $.subscript_body),
     ),
 
@@ -562,10 +598,12 @@ module.exports = grammar({
 
     _pattern: $ => choice(
       $.binding_pattern,
-      alias($.expr, "expr_pattern"),
+      $.expr_pattern,
       $.tuple_pattern,
       $.wildcard_pattern,
     ),
+
+    expr_pattern: $ => $.expr,
 
     binding_pattern: $ => seq(
       field('introducer', $.binding_introducer),
@@ -574,7 +612,7 @@ module.exports = grammar({
         $.wildcard_pattern,
         $.identifier,
       )),
-      optional(seq(":", field('annotation', $.type_expr))),
+      optional(seq(":", field('annotation', $._type_expr))),
     ),
 
     binding_introducer: $ => choice("let", "var", "sink", "inout"),
@@ -603,11 +641,9 @@ module.exports = grammar({
     ),
 
     // TYPES
-    type_expr: $ => prec.right($._type_expr),
-
-    _type_expr: $ => choice(
+    _type_expr: $ => prec("type_simple", choice(
       // async-type-expr
-      // conformance-lens-type-expr
+      $.conformance_lens_type_expr,
       // existential-type-expr
       $.opaque_type_expr,
       // indirect-type-expr
@@ -616,15 +652,17 @@ module.exports = grammar({
       // tuple-type-expr
       // union-type-expr
       // wildcard-type-expr
-      $._simple_type_expr,
-    ),
-
-    _simple_type_expr: $ => choice(
       $.name_type_expr,
       seq('(', $._type_expr, ')'),
-    ),
+    )),
 
-    opaque_type_expr: $ => prec.left(seq(
+    conformance_lens_type_expr: $ => prec("type_select", seq(
+      field('subject', $._type_expr),
+      "::",
+      field('trait', $._type_identifier),
+    )),
+
+    opaque_type_expr: $ => prec.left("type_float", seq(
       "some",
       choice(
         "_",
@@ -635,7 +673,7 @@ module.exports = grammar({
       ),
     )),
 
-    lambda_type_expr: $ => seq(
+    lambda_type_expr: $ => prec("type_lambda", seq(
       optional($.lambda_environment),
       "(",
       optional(field('params', seq(
@@ -645,28 +683,28 @@ module.exports = grammar({
       ")",
       optional($.receiver_effect),
       "->",
-      field('returns', $.type_expr),
-    ),
+      field('returns', $._type_expr),
+    )),
 
     lambda_environment: $ => choice(
       "thin",
-      seq("[", $.type_expr, "]"),
+      seq("[", $._type_expr, "]"),
     ),
 
-    lambda_parameter: $ => seq(
+    lambda_parameter: $ => prec("type_lambda", seq(
       optional(seq(
         field('label', $.identifier),
         ":",
       )),
-      field('type', $.type_expr),
-    ),
+      field('type', $._type_expr),
+    )),
 
-    name_type_expr: $ => seq(
-      optional(seq(field('prefix', $._simple_type_expr), ".")),
+    name_type_expr: $ => prec("type_select", seq(
+      optional(seq(field('prefix', $._type_expr), ".")),
       // inlined: primary-type-def-ref
       field('identifier', $._type_identifier),
       optional(field('arguments', $.generic_clause)),
-    ),
+    )),
 
     _type_identifier: $ => $.identifier,
 
@@ -690,18 +728,18 @@ module.exports = grammar({
       field('name', $.identifier),
       optional(alias("...", 'variadic')),
       optional(seq(":", field('requires', $.trait_composition))),
-      optional(seq("=", field('default', $.type_expr))),
+      optional(seq("=", field('default', $._type_expr))),
     ),
 
     generic_value_parameter: $ => seq(
       "@value",
       field('name', $.identifier),
       ":",
-      field('type', $.type_expr),
+      field('type', $._type_expr),
       optional(seq("=", field('default', $.expr))),
     ),
 
-    where_clause: $ => prec.right(seq("where",
+    where_clause: $ => prec.left("type_where", seq("where",
       $._where_clause_constraint,
       repeat(seq(",", $._where_clause_constraint)),
     )),
@@ -712,27 +750,27 @@ module.exports = grammar({
       $.value_constraint_expr,
     ),
 
-    equality_constraint: $ => seq(
+    equality_constraint: $ => prec.left("type_infix", seq(
       field('lhs', $.name_type_expr),
       "==",
-      field('rhs', $.type_expr),
-    ),
+      field('rhs', $._type_expr),
+    )),
 
-    conformance_constraint: $ => seq(
+    conformance_constraint: $ => prec("type_infix", seq(
       field('subject', $.name_type_expr),
       ":",
       field('requires', $.trait_composition),
-    ),
+    )),
 
     value_constraint_expr: $ => seq(
       "@value",
       $.expr,
     ),
 
-    trait_composition: $ => seq(
+    trait_composition: $ => prec("type_where", seq(
       $.name_type_expr,
-      repeat(seq("&", $.name_type_expr)),
-    ),
+      repeat(prec("type_where", seq("&", $.name_type_expr))),
+    )),
 
     // MODIFIERS
 
@@ -804,12 +842,14 @@ module.exports = grammar({
 
   conflicts: $ => [
     // method bundle needs to see the whole set to know, but should be short (3 items)
-    [$.method_impl, $.receiver_modifier]
+    [$.method_introducer, $.receiver_modifier]
   ],
 
   precedences: $ => [
     // Expressions: select > suffix > prefix > infix > float > inout
-    ["expr_select", "expr_postfix", "expr_prefix", "expr_infix", "expr_float", "expr_inout"]
+    ["expr_select", "expr_inout", "expr_postfix", "expr_prefix", "expr_float", "expr_infix"],
+    // Type Expressions: float > conformance > where > lambda
+    ["type_simple", "type_select", "type_float", "type_where", "type_lambda", "type_infix"],
   ],
 });
 

@@ -1,5 +1,6 @@
 =================
 IllegalTypealias
+:error
 =================
 
 //- parse expecting: failure
@@ -9,14 +10,14 @@ typealias X: Y = Z
 
 ---
 
-    (source_file
-      (single_line_comment)
-      (single_line_comment)
-      (type_alias_decl
-        (type_alias_head
-          (ERROR
-            (identifier))
-          (identifier))
-        (type_expr
-          (name_type_expr
-            (identifier)))))
+(source_file
+  (single_line_comment)
+  (single_line_comment)
+  (type_alias_decl
+    (type_alias_head
+      (ERROR
+        (identifier))
+      (identifier))
+    (type_expr
+      (name_type_expr
+        (identifier)))))

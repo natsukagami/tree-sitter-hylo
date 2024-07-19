@@ -32,9 +32,8 @@ public fun main() {
         (function_name
           (identifier)))
       (function_signature
-        (type_expr
-          (name_type_expr
-            (identifier))))
+        (name_type_expr
+          (identifier)))
       (brace_stmt
         (stmt
           (expr

@@ -24,12 +24,13 @@ type A0 {
     (property_decl
       (property_head
         (identifier))
-      (type_expr
-        (name_type_expr
-          (identifier)))
+      (name_type_expr
+        (identifier))
       (subscript_body
         (subscript_impl
+          (subscript_introducer)
           (brace_stmt))
         (subscript_impl
+          (subscript_introducer)
           (brace_stmt))
         (single_line_comment)))))

@@ -53,17 +53,15 @@ type A {
       (binding_pattern
         (binding_introducer)
         (identifier)
-        (type_expr
-          (name_type_expr
-            (identifier)))))
+        (name_type_expr
+          (identifier))))
     (function_decl
       (function_head
         (function_name
           (identifier)))
       (function_signature
-        (type_expr
-          (name_type_expr
-            (identifier))))
+        (name_type_expr
+          (identifier)))
       (brace_stmt
         (stmt
           (expr

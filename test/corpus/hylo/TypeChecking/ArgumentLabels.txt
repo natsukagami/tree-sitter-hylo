@@ -33,9 +33,8 @@ public fun main() {
       (function_signature
         (parameter_decl
           (identifier)
-          (type_expr
-            (name_type_expr
-              (identifier)))))
+          (name_type_expr
+            (identifier))))
       (brace_stmt))
     (function_decl
       (function_head
@@ -44,9 +43,8 @@ public fun main() {
       (function_signature
         (parameter_decl
           (identifier)
-          (type_expr
-            (name_type_expr
-              (identifier)))))
+          (name_type_expr
+            (identifier))))
       (brace_stmt)))
   (function_decl
     (function_head

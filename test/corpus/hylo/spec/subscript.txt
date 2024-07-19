@@ -23,39 +23,32 @@ subscript min<T, E>(_ a: T, _ b: T, by comparator: [E](T, T) -> Bool): Int {
     (subscript_signature
       (parameter_decl
         (identifier)
-        (type_expr
-          (name_type_expr
-            (identifier))))
-      (parameter_decl
-        (identifier)
-        (type_expr
-          (name_type_expr
-            (identifier))))
-      (parameter_decl
-        (identifier)
-        (identifier)
-        (type_expr
-          (lambda_type_expr
-            (lambda_environment
-              (type_expr
-                (name_type_expr
-                  (identifier))))
-            (lambda_parameter
-              (type_expr
-                (name_type_expr
-                  (identifier))))
-            (lambda_parameter
-              (type_expr
-                (name_type_expr
-                  (identifier))))
-            (type_expr
-              (name_type_expr
-                (identifier))))))
-      (type_expr
         (name_type_expr
-          (identifier))))
+          (identifier)))
+      (parameter_decl
+        (identifier)
+        (name_type_expr
+          (identifier)))
+      (parameter_decl
+        (identifier)
+        (identifier)
+        (lambda_type_expr
+          (lambda_environment
+            (name_type_expr
+              (identifier)))
+          (lambda_parameter
+            (name_type_expr
+              (identifier)))
+          (lambda_parameter
+            (name_type_expr
+              (identifier)))
+          (name_type_expr
+            (identifier))))
+      (name_type_expr
+        (identifier)))
     (subscript_body
       (subscript_impl
+        (subscript_introducer)
         (brace_stmt
           (stmt
             (jump_stmt
@@ -90,6 +83,7 @@ subscript min<T, E>(_ a: T, _ b: T, by comparator: [E](T, T) -> Bool): Int {
                           (identifier_expr
                             (identifier))))))))))))
       (subscript_impl
+        (subscript_introducer)
         (brace_stmt
           (stmt
             (jump_stmt
@@ -129,6 +123,7 @@ subscript min<T, E>(_ a: T, _ b: T, by comparator: [E](T, T) -> Bool): Int {
                                     (identifier_expr
                                       (identifier)))))))))))))))))
       (subscript_impl
+        (subscript_introducer)
         (brace_stmt
           (stmt
             (jump_stmt
@@ -163,6 +158,7 @@ subscript min<T, E>(_ a: T, _ b: T, by comparator: [E](T, T) -> Bool): Int {
                           (identifier_expr
                             (identifier))))))))))))
       (subscript_impl
+        (subscript_introducer)
         (brace_stmt
           (stmt
             (expr

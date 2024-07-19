@@ -1,0 +1,150 @@
+===================
+AssociatedTypeLookup
+===================
+
+//- typeCheck expecting: failure
+
+trait T { type X }
+
+trait U: T {
+
+  property x0: X { let }
+
+  property x1: Self.X { let }
+
+  //! @+1 diagnostic associated type 'X' can only be referred to with a concrete type or generic parameter base
+  property x2: T.X { let }
+
+  property x3: Self::T.X { let }
+
+}
+
+type A<B: T> {
+
+  typealias C = B
+
+  typealias D = C.X
+
+}
+
+type A0<X>: T {}
+
+type A1<B: T> {
+
+  typealias C = A0<B>.X
+
+  typealias D = C.X
+
+ }
+
+---
+
+(source_file
+  (single_line_comment)
+  (trait_decl
+    (trait_head
+      (identifier))
+    (associated_type_decl
+      (identifier)))
+  (trait_decl
+    (trait_head
+      (identifier)
+      (name_type_expr
+        (identifier)))
+    (property_decl
+      (property_head
+        (identifier))
+      (name_type_expr
+        (identifier))
+      (subscript_body
+        (subscript_impl
+          (subscript_introducer))))
+    (property_decl
+      (property_head
+        (identifier))
+      (name_type_expr
+        (name_type_expr
+          (identifier))
+        (identifier))
+      (subscript_body
+        (subscript_impl
+          (subscript_introducer))))
+    (single_line_comment)
+    (property_decl
+      (property_head
+        (identifier))
+      (name_type_expr
+        (name_type_expr
+          (identifier))
+        (identifier))
+      (subscript_body
+        (subscript_impl
+          (subscript_introducer))))
+    (property_decl
+      (property_head
+        (identifier))
+      (name_type_expr
+        (conformance_lens_type_expr
+          (name_type_expr
+            (identifier))
+          (identifier))
+        (identifier))
+      (subscript_body
+        (subscript_impl
+          (subscript_introducer)))))
+  (product_type_decl
+    (product_type_head
+      (identifier)
+      (generic_clause
+        (generic_type_parameter
+          (identifier)
+          (trait_composition
+            (name_type_expr
+              (identifier))))))
+    (type_alias_decl
+      (type_alias_head
+        (identifier))
+      (name_type_expr
+        (identifier)))
+    (type_alias_decl
+      (type_alias_head
+        (identifier))
+      (name_type_expr
+        (name_type_expr
+          (identifier))
+        (identifier))))
+  (product_type_decl
+    (product_type_head
+      (identifier)
+      (generic_clause
+        (generic_type_parameter
+          (identifier)))
+      (conformance_list
+        (name_type_expr
+          (identifier)))))
+  (product_type_decl
+    (product_type_head
+      (identifier)
+      (generic_clause
+        (generic_type_parameter
+          (identifier)
+          (trait_composition
+            (name_type_expr
+              (identifier))))))
+    (type_alias_decl
+      (type_alias_head
+        (identifier))
+      (name_type_expr
+        (name_type_expr
+          (identifier)
+          (generic_clause
+            (generic_type_parameter
+              (identifier))))
+        (identifier)))
+    (type_alias_decl
+      (type_alias_head
+        (identifier))
+      (name_type_expr
+        (name_type_expr
+          (identifier))
+        (identifier)))))
