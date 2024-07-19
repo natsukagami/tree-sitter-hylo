@@ -113,7 +113,7 @@
 ;; Floats
 "any" @keyword.operator.type
 "some" @keyword.operator.type
-(name_type_expr) @type
+(name_type_expr (identifier) @type)
 ;; Tuple Types
 (tuple_type_expr "{" @punctuation.bracket)
 (tuple_type_expr "}" @punctuation.bracket)
@@ -136,7 +136,7 @@
 (value_constraint_expr "@value" @attribute.annotation)
 (equality_constraint "==" @operator.infix)
 (trait_composition "&"* @operator.infix)
-(trait_composition (name_type_expr)* @type.trait)
+(trait_composition (name_type_expr (identifier) @type.trait)*)
 
 ; Modifier
 (access_modifier) @attribute.access
