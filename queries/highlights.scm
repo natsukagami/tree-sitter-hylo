@@ -4,6 +4,7 @@
 (function_memberwise_init) @constructor
 (function_name (identifier) @function)
 (function_decl head: (function_head (function_name (identifier) @function.abstract)) !body)
+(function_decl head: (function_head (function_name (identifier) @function.method)))
 (function_name "init" @constructor)
 ;; Parameters
 (parameter_decl label: (identifier) @label)
@@ -21,6 +22,9 @@
 ; Trait Decl
 "trait" @keyword
 (trait_head name: (identifier) @type.interface @type.trait @type.abstract)
+
+; Extension Decl
+"extension" @keyword
 
 ; Associated Type
 (associated_type_decl name: (identifier) @type.abstract)

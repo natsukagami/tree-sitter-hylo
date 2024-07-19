@@ -1,0 +1,125 @@
+=====================
+ConditionalExtension2
+=====================
+
+//- typeCheck expecting: success
+
+trait P { type X }
+trait Q { type Y }
+
+type A<E>: Deinitializable {
+  public memberwise init
+}
+
+extension A where E: P, E.X: Q {
+  public fun foo() {}
+}
+
+type B<X: Q>: P {}
+type C: Q {
+  public typealias Y = Bool
+}
+
+public fun main() {
+  A<B<C>>.foo()
+}
+
+---
+
+(source_file
+  (single_line_comment)
+  (trait_decl
+    (trait_head
+      (identifier))
+    (associated_type_decl
+      (identifier)))
+  (trait_decl
+    (trait_head
+      (identifier))
+    (associated_type_decl
+      (identifier)))
+  (product_type_decl
+    (product_type_head
+      (identifier)
+      (generic_clause
+        (generic_type_parameter
+          (identifier)))
+      (conformance_list
+        (name_type_expr
+          (identifier))))
+    (function_memberwise_init
+      (access_modifier)))
+  (extension_decl
+    (extension_head
+      (name_type_expr
+        (identifier))
+      (where_clause
+        (conformance_constraint
+          (name_type_expr
+            (identifier))
+          (trait_composition
+            (name_type_expr
+              (identifier))))
+        (conformance_constraint
+          (name_type_expr
+            (name_type_expr
+              (identifier))
+            (identifier))
+          (trait_composition
+            (name_type_expr
+              (identifier))))))
+    (function_decl
+      (function_head
+        (access_modifier)
+        (function_name
+          (identifier)))
+      (function_signature)
+      (brace_stmt)))
+  (product_type_decl
+    (product_type_head
+      (identifier)
+      (generic_clause
+        (generic_type_parameter
+          (identifier)
+          (trait_composition
+            (name_type_expr
+              (identifier)))))
+      (conformance_list
+        (name_type_expr
+          (identifier)))))
+  (product_type_decl
+    (product_type_head
+      (identifier)
+      (conformance_list
+        (name_type_expr
+          (identifier))))
+    (type_alias_decl
+      (type_alias_head
+        (access_modifier)
+        (identifier))
+      (name_type_expr
+        (identifier))))
+  (function_decl
+    (function_head
+      (access_modifier)
+      (function_name
+        (identifier)))
+    (function_signature)
+    (brace_stmt
+      (stmt
+        (expr
+          (function_call_expr
+            (value_member_expr
+              (primary_decl_ref
+                (identifier_expr
+                  (identifier))
+                (static_argument_list
+                  (static_argument
+                    (name_type_expr
+                      (identifier)
+                      (generic_clause
+                        (generic_type_parameter
+                          (identifier)))))))
+              (primary_decl_ref
+                (identifier_expr
+                  (identifier))))))))))
