@@ -440,9 +440,14 @@ module.exports = grammar({
     ), // TODO
 
     _infix_expr_tail: $ => choice(
-      // type-casting-tail
+      $.type_casting_tail,
       $.infix_operator_tail,
     ),
+
+    type_casting_tail: $ => prec("type_float", seq(
+      field('operator', choice("as", "as!")),
+      field('type', $._type_expr),
+    )),
 
     infix_operator_tail: $ => seq(
       field('operator', $.infix_operator),

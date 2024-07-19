@@ -1,0 +1,349 @@
+===================
+CallGenericFunction
+===================
+
+//- typeCheck expecting: failure
+
+trait P { fun foo() }
+
+fun f<X, Y>(_ x: sink X, _ y: sink Y) -> X { x }
+
+fun g<X>(_ a: X, _ b: X) -> X {}
+
+fun h<X>(_ x0: sink X, _ x1: sink { b: X }) {}
+
+fun i<X: P>(_ x: X) { x.foo() }
+
+fun check<T>(_ x: T) {}
+
+public fun main() {
+  let x0 = f(true, 42)
+  check<Bool>(x0)
+
+  let x1 = f(42, true)
+  check<Int>(x1)
+
+  let x2 = g(0, 42 as Float64)
+  check<Float64>(x2)
+
+  h((), (b: ()))
+
+  //! @+1 diagnostic cannot pass value of type '{a: {}}' to parameter 'sink {}'
+  h((a: ()), (b: ()))
+
+  //! @+1 diagnostic cannot pass value of type '{b: Float64}' to parameter 'sink {b: Int}'
+  h<Int>(0, (b: x2))
+
+  //! @+1 diagnostic type 'Bool' does not conform to trait 'P'
+  i(true)
+
+  5 as String.Char
+}
+
+---
+
+(source_file
+  (single_line_comment)
+  (trait_decl
+    (trait_head
+      (identifier))
+    (function_decl
+      (function_head
+        (function_name
+          (identifier)))
+      (function_signature)))
+  (function_decl
+    (function_head
+      (function_name
+        (identifier))
+      (generic_clause
+        (generic_type_parameter
+          (identifier))
+        (generic_type_parameter
+          (identifier))))
+    (function_signature
+      (parameter_decl
+        (identifier)
+        (parameter_passing_convention)
+        (name_type_expr
+          (identifier)))
+      (parameter_decl
+        (identifier)
+        (parameter_passing_convention)
+        (name_type_expr
+          (identifier)))
+      (name_type_expr
+        (identifier)))
+    (brace_stmt
+      (stmt
+        (expr
+          (primary_decl_ref
+            (identifier_expr
+              (identifier)))))))
+  (function_decl
+    (function_head
+      (function_name
+        (identifier))
+      (generic_clause
+        (generic_type_parameter
+          (identifier))))
+    (function_signature
+      (parameter_decl
+        (identifier)
+        (name_type_expr
+          (identifier)))
+      (parameter_decl
+        (identifier)
+        (name_type_expr
+          (identifier)))
+      (name_type_expr
+        (identifier)))
+    (brace_stmt))
+  (function_decl
+    (function_head
+      (function_name
+        (identifier))
+      (generic_clause
+        (generic_type_parameter
+          (identifier))))
+    (function_signature
+      (parameter_decl
+        (identifier)
+        (parameter_passing_convention)
+        (name_type_expr
+          (identifier)))
+      (parameter_decl
+        (identifier)
+        (parameter_passing_convention)
+        (tuple_type_expr
+          (tuple_type_element
+            (identifier)
+            (name_type_expr
+              (identifier))))))
+    (brace_stmt))
+  (function_decl
+    (function_head
+      (function_name
+        (identifier))
+      (generic_clause
+        (generic_type_parameter
+          (identifier)
+          (trait_composition
+            (name_type_expr
+              (identifier))))))
+    (function_signature
+      (parameter_decl
+        (identifier)
+        (name_type_expr
+          (identifier))))
+    (brace_stmt
+      (stmt
+        (expr
+          (function_call_expr
+            (value_member_expr
+              (primary_decl_ref
+                (identifier_expr
+                  (identifier)))
+              (primary_decl_ref
+                (identifier_expr
+                  (identifier)))))))))
+  (function_decl
+    (function_head
+      (function_name
+        (identifier))
+      (generic_clause
+        (generic_type_parameter
+          (identifier))))
+    (function_signature
+      (parameter_decl
+        (identifier)
+        (name_type_expr
+          (identifier))))
+    (brace_stmt))
+  (function_decl
+    (function_head
+      (access_modifier)
+      (function_name
+        (identifier)))
+    (function_signature)
+    (brace_stmt
+      (stmt
+        (binding_decl
+          (binding_pattern
+            (binding_introducer)
+            (identifier))
+          (expr
+            (function_call_expr
+              (primary_decl_ref
+                (identifier_expr
+                  (identifier)))
+              (call_argument
+                (expr
+                  (boolean_literal)))
+              (call_argument
+                (expr
+                  (integer_literal
+                    (decimal_literal))))))))
+      (stmt
+        (expr
+          (function_call_expr
+            (primary_decl_ref
+              (identifier_expr
+                (identifier))
+              (static_argument_list
+                (static_argument
+                  (name_type_expr
+                    (identifier)))))
+            (call_argument
+              (expr
+                (primary_decl_ref
+                  (identifier_expr
+                    (identifier))))))))
+      (stmt
+        (binding_decl
+          (binding_pattern
+            (binding_introducer)
+            (identifier))
+          (expr
+            (function_call_expr
+              (primary_decl_ref
+                (identifier_expr
+                  (identifier)))
+              (call_argument
+                (expr
+                  (integer_literal
+                    (decimal_literal))))
+              (call_argument
+                (expr
+                  (boolean_literal)))))))
+      (stmt
+        (expr
+          (function_call_expr
+            (primary_decl_ref
+              (identifier_expr
+                (identifier))
+              (static_argument_list
+                (static_argument
+                  (name_type_expr
+                    (identifier)))))
+            (call_argument
+              (expr
+                (primary_decl_ref
+                  (identifier_expr
+                    (identifier))))))))
+      (stmt
+        (binding_decl
+          (binding_pattern
+            (binding_introducer)
+            (identifier))
+          (expr
+            (function_call_expr
+              (primary_decl_ref
+                (identifier_expr
+                  (identifier)))
+              (call_argument
+                (expr
+                  (integer_literal
+                    (decimal_literal))))
+              (call_argument
+                (expr
+                  (integer_literal
+                    (decimal_literal))
+                  (type_casting_tail
+                    (name_type_expr
+                      (identifier)))))))))
+      (stmt
+        (expr
+          (function_call_expr
+            (primary_decl_ref
+              (identifier_expr
+                (identifier))
+              (static_argument_list
+                (static_argument
+                  (name_type_expr
+                    (identifier)))))
+            (call_argument
+              (expr
+                (primary_decl_ref
+                  (identifier_expr
+                    (identifier))))))))
+      (stmt
+        (expr
+          (function_call_expr
+            (primary_decl_ref
+              (identifier_expr
+                (identifier)))
+            (call_argument
+              (expr
+                (tuple_expr)))
+            (call_argument
+              (expr
+                (tuple_expr
+                  (tuple_expr_element
+                    (identifier)
+                    (expr
+                      (tuple_expr)))))))))
+      (single_line_comment)
+      (stmt
+        (expr
+          (function_call_expr
+            (primary_decl_ref
+              (identifier_expr
+                (identifier)))
+            (call_argument
+              (expr
+                (tuple_expr
+                  (tuple_expr_element
+                    (identifier)
+                    (expr
+                      (tuple_expr))))))
+            (call_argument
+              (expr
+                (tuple_expr
+                  (tuple_expr_element
+                    (identifier)
+                    (expr
+                      (tuple_expr)))))))))
+      (single_line_comment)
+      (stmt
+        (expr
+          (function_call_expr
+            (primary_decl_ref
+              (identifier_expr
+                (identifier))
+              (static_argument_list
+                (static_argument
+                  (name_type_expr
+                    (identifier)))))
+            (call_argument
+              (expr
+                (integer_literal
+                  (decimal_literal))))
+            (call_argument
+              (expr
+                (tuple_expr
+                  (tuple_expr_element
+                    (identifier)
+                    (expr
+                      (primary_decl_ref
+                        (identifier_expr
+                          (identifier)))))))))))
+      (single_line_comment)
+      (stmt
+        (expr
+          (function_call_expr
+            (primary_decl_ref
+              (identifier_expr
+                (identifier)))
+            (call_argument
+              (expr
+                (boolean_literal))))))
+      (stmt
+        (expr
+          (integer_literal
+            (decimal_literal))
+          (type_casting_tail
+            (name_type_expr
+              (name_type_expr
+                (identifier))
+              (identifier))))))))

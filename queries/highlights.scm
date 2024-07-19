@@ -9,6 +9,7 @@
 (parameter_decl label: (identifier) @label)
 (parameter_decl label: (identifier) @variable.parameter !name)
 (parameter_decl name:  (identifier) @variable.parameter)
+(parameter_passing_convention) @keyword.storage.modifier
 ;; Body
 (method_impl (method_introducer) @keyword.storage.modifier)
 
@@ -54,6 +55,8 @@
 ; Expr
 ;; Operators
 (infix_operator) @operator.infix
+(type_casting_tail operator: "as") @keyword
+(type_casting_tail operator: "as!") @keyword.unsafe
 ;; Inout
 (inout_expr "&" @operator.prefix @keyword.storage)
 ;; Compound Expr

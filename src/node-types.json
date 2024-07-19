@@ -694,6 +694,10 @@
           "named": true
         },
         {
+          "type": "type_casting_tail",
+          "named": true
+        },
+        {
           "type": "unicode_scalar_literal",
           "named": true
         },
@@ -2891,6 +2895,60 @@
     }
   },
   {
+    "type": "type_casting_tail",
+    "named": true,
+    "fields": {
+      "operator": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "as",
+            "named": false
+          },
+          {
+            "type": "as!",
+            "named": false
+          }
+        ]
+      },
+      "type": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
+          {
+            "type": "conformance_lens_type_expr",
+            "named": true
+          },
+          {
+            "type": "lambda_type_expr",
+            "named": true
+          },
+          {
+            "type": "name_type_expr",
+            "named": true
+          },
+          {
+            "type": "opaque_type_expr",
+            "named": true
+          },
+          {
+            "type": "tuple_type_expr",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "value_constraint_expr",
     "named": true,
     "fields": {},
@@ -3101,6 +3159,14 @@
   },
   {
     "type": "_",
+    "named": false
+  },
+  {
+    "type": "as",
+    "named": false
+  },
+  {
+    "type": "as!",
     "named": false
   },
   {
