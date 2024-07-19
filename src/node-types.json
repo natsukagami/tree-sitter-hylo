@@ -1707,6 +1707,16 @@
     "type": "lambda_parameter",
     "named": true,
     "fields": {
+      "convention": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "parameter_passing_convention",
+            "named": true
+          }
+        ]
+      },
       "label": {
         "multiple": false,
         "required": false,

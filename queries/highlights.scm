@@ -114,7 +114,6 @@
 (string_literal)  @string
 
 ; Types
-(name_type_expr (identifier) @type.builtin (#eq? @type.builtin "Self"))
 ;; Floats
 "any" @keyword.operator.type
 "some" @keyword.operator.type
@@ -124,6 +123,9 @@
 (tuple_type_expr "}" @punctuation.bracket)
 (tuple_type_element label: (identifier) @label)
 (tuple_type_element ":" @operator.assignment)
+;; Builtin Types
+(name_type_expr (identifier) @type.builtin (#eq? @type.builtin "Self"))
+(name_type_expr (identifier) @type.builtin (#any-of? @type.builtin "Void" "Int" "String" "Float32" "Float64" "Bool"))
 
 ; Operator Decls
 "operator" @keyword

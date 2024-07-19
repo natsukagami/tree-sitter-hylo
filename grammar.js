@@ -794,7 +794,7 @@ module.exports = grammar({
 
     lambda_environment: $ => choice(
       "thin",
-      seq("[", $._type_expr, "]"),
+      seq("[", optional($._type_expr), "]"),
     ),
 
     lambda_parameter: $ => prec("type_lambda", seq(
@@ -802,6 +802,7 @@ module.exports = grammar({
         field('label', $.identifier),
         ":",
       )),
+      optional(field('convention', $.parameter_passing_convention)),
       field('type', $._type_expr),
     )),
 

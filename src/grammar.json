@@ -4030,8 +4030,16 @@
               "value": "["
             },
             {
-              "type": "SYMBOL",
-              "name": "_type_expr"
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "SYMBOL",
+                  "name": "_type_expr"
+                },
+                {
+                  "type": "BLANK"
+                }
+              ]
             },
             {
               "type": "STRING",
@@ -4066,6 +4074,22 @@
                     "value": ":"
                   }
                 ]
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
+          },
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "FIELD",
+                "name": "convention",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "parameter_passing_convention"
+                }
               },
               {
                 "type": "BLANK"

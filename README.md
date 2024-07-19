@@ -2,6 +2,7 @@
 
 - [ ] `?` implicit modifier
 - [ ] `#pragma` in primary expr
+- [ ] Lambda environment can be empty
 
 - [ ] What are `remote` types?
 
