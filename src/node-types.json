@@ -364,6 +364,40 @@
     }
   },
   {
+    "type": "conditional_binding_stmt",
+    "named": true,
+    "fields": {
+      "binding": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "binding_pattern",
+            "named": true
+          }
+        ]
+      },
+      "else": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "brace_stmt",
+            "named": true
+          },
+          {
+            "type": "expr",
+            "named": true
+          },
+          {
+            "type": "jump_stmt",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "conditional_clause_item",
     "named": true,
     "fields": {},
@@ -1796,6 +1830,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "conditional_binding_stmt",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -4120,6 +4164,10 @@
   {
     "type": "precedence_group",
     "named": true
+  },
+  {
+    "type": "private",
+    "named": false
   },
   {
     "type": "property",

@@ -8,6 +8,8 @@
 
 - `type_argument_list` is not defined (used in `type_expr`). We give it something similar to `generics_clause`.
 - `deinit` not really used anywhere, perhaps replaced by `Deinitializable` trait. We highlight both.
+- `set` is a parameter passing convention not in the Spec.
+- `let` is a receiver effect not in the Spec.
 
 - `async`/`await` seems deprecated, it is commented out in the grammar.
 

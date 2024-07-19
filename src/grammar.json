@@ -1358,6 +1358,10 @@
         },
         {
           "type": "STRING",
+          "value": "set"
+        },
+        {
+          "type": "STRING",
           "value": "inout"
         },
         {
@@ -2342,6 +2346,10 @@
       "type": "CHOICE",
       "members": [
         {
+          "type": "SYMBOL",
+          "name": "conditional_binding_stmt"
+        },
+        {
           "type": "SEQ",
           "members": [
             {
@@ -2398,6 +2406,44 @@
         {
           "type": "STRING",
           "value": "continue"
+        }
+      ]
+    },
+    "conditional_binding_stmt": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "FIELD",
+          "name": "binding",
+          "content": {
+            "type": "SYMBOL",
+            "name": "binding_pattern"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "else"
+        },
+        {
+          "type": "FIELD",
+          "name": "else",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "jump_stmt"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "brace_stmt"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "expr"
+              }
+            ]
+          }
         }
       ]
     },
@@ -3255,63 +3301,67 @@
       ]
     },
     "conditional_expr": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "if"
-        },
-        {
-          "type": "FIELD",
-          "name": "condition",
-          "content": {
-            "type": "SYMBOL",
-            "name": "_conditional_clause"
-          }
-        },
-        {
-          "type": "FIELD",
-          "name": "then",
-          "content": {
-            "type": "SYMBOL",
-            "name": "brace_stmt"
-          }
-        },
-        {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SEQ",
-              "members": [
-                {
-                  "type": "STRING",
-                  "value": "else"
-                },
-                {
-                  "type": "FIELD",
-                  "name": "else",
-                  "content": {
-                    "type": "CHOICE",
-                    "members": [
-                      {
-                        "type": "SYMBOL",
-                        "name": "conditional_expr"
-                      },
-                      {
-                        "type": "SYMBOL",
-                        "name": "brace_stmt"
-                      }
-                    ]
-                  }
-                }
-              ]
-            },
-            {
-              "type": "BLANK"
+      "type": "PREC_RIGHT",
+      "value": 0,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "if"
+          },
+          {
+            "type": "FIELD",
+            "name": "condition",
+            "content": {
+              "type": "SYMBOL",
+              "name": "_conditional_clause"
             }
-          ]
-        }
-      ]
+          },
+          {
+            "type": "FIELD",
+            "name": "then",
+            "content": {
+              "type": "SYMBOL",
+              "name": "brace_stmt"
+            }
+          },
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SEQ",
+                "members": [
+                  {
+                    "type": "STRING",
+                    "value": "else"
+                  },
+                  {
+                    "type": "FIELD",
+                    "name": "else",
+                    "content": {
+                      "type": "CHOICE",
+                      "members": [
+                        {
+                          "type": "SYMBOL",
+                          "name": "conditional_expr"
+                        },
+                        {
+                          "type": "SYMBOL",
+                          "name": "brace_stmt"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
+          }
+        ]
+      }
     },
     "_conditional_clause": {
       "type": "SEQ",
@@ -4905,6 +4955,10 @@
         {
           "type": "STRING",
           "value": "public"
+        },
+        {
+          "type": "STRING",
+          "value": "private"
         }
       ]
     },
@@ -4982,6 +5036,10 @@
         {
           "type": "STRING",
           "value": "sink"
+        },
+        {
+          "type": "STRING",
+          "value": "let"
         }
       ]
     },

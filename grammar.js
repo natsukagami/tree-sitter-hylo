@@ -294,7 +294,7 @@ module.exports = grammar({
       optional(field('convention', $.parameter_passing_convention)),
       $._type_expr,
     ),
-    parameter_passing_convention: $ => choice("let", "inout", "sink", "yield"),
+    parameter_passing_convention: $ => choice("let", "set", "inout", "sink", "yield"),
 
     type_aliases_clause: $ => seq(
       "where",
@@ -474,7 +474,7 @@ module.exports = grammar({
 
     // JUMP STATEMENTS
     jump_stmt: $ => choice( // TODO: handle no newline in return and yield
-      // conditional-binding-stmt
+      $.conditional_binding_stmt,
       seq(
         "return",
         optional(field('return', $.expr)),
@@ -485,6 +485,16 @@ module.exports = grammar({
       ),
       "break",
       "continue",
+    ),
+
+    conditional_binding_stmt: $ => seq(
+      field('binding', $.binding_pattern),
+      "else",
+      field('else', choice(
+        $.jump_stmt,
+        $.brace_stmt,
+        $.expr,
+      )),
     ),
 
     // DECLARATION STATEMENTS
@@ -685,7 +695,7 @@ module.exports = grammar({
       $.match_expr,
     ),
 
-    conditional_expr: $ => seq(
+    conditional_expr: $ => prec.right(seq(
       "if",
       field('condition', $._conditional_clause),
       field('then', $.brace_stmt),
@@ -693,7 +703,7 @@ module.exports = grammar({
         "else",
         field('else', choice($.conditional_expr, $.brace_stmt)),
       )),
-    ),
+    )),
 
     _conditional_clause: $ => seq(
       $.conditional_clause_item,
@@ -948,7 +958,7 @@ module.exports = grammar({
 
     // MODIFIERS
 
-    access_modifier: $ => choice('public'),
+    access_modifier: $ => choice('public', 'private'),
 
     _member_modifiers: $ => prec.left(choice(
       $.receiver_modifier,
@@ -959,7 +969,7 @@ module.exports = grammar({
     receiver_modifier: $ => choice("sink", "inout", "yielded"),
     static_modifier: $ => "static",
 
-    receiver_effect: $ => choice("inout", "sink"),
+    receiver_effect: $ => choice("inout", "sink", "let"),
 
     implicit_parameter_modifier: $ => token.immediate("?"),
 
