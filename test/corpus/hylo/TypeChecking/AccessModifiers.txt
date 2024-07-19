@@ -1,0 +1,67 @@
+==========
+AccessModifiers
+==========
+
+//- typeCheck expecting: failure
+
+type A: Deinitializable {
+  public memberwise init
+  fun one() -> Int { 1 }
+}
+
+public fun main() {
+  //! @+2 diagnostic type 'A' has no member 'one'
+  //! @+1 diagnostic 'one' is inaccessible due to its protection level
+  _ = A().one()
+}
+
+---
+
+(source_file
+  (single_line_comment)
+  (product_type_decl
+    (product_type_head
+      (identifier)
+      (conformance_list
+        (name_type_expr
+          (identifier))))
+    (function_memberwise_init
+      (access_modifier))
+    (function_decl
+      (function_head
+        (function_name
+          (identifier)))
+      (function_signature
+        (type_expr
+          (name_type_expr
+            (identifier))))
+      (brace_stmt
+        (stmt
+          (expr
+            (integer_literal
+              (decimal_literal)))))))
+  (function_decl
+    (function_head
+      (access_modifier)
+      (function_name
+        (identifier)))
+    (function_signature)
+    (brace_stmt
+      (single_line_comment)
+      (single_line_comment)
+      (stmt
+        (expr
+          (primary_decl_ref
+            (identifier_expr
+              (identifier)))
+          (infix_operator_tail
+            (infix_operator)
+            (function_call_expr
+              (value_member_expr
+                (function_call_expr
+                  (primary_decl_ref
+                    (identifier_expr
+                      (identifier))))
+                (primary_decl_ref
+                  (identifier_expr
+                    (identifier)))))))))))
