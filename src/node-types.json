@@ -1500,6 +1500,10 @@
             "named": true
           },
           {
+            "type": "property_decl",
+            "named": true
+          },
+          {
             "type": "subscript_decl",
             "named": true
           },
@@ -1550,6 +1554,72 @@
         },
         {
           "type": "generic_clause",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "property_decl",
+    "named": true,
+    "fields": {
+      "body": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "subscript_body",
+            "named": true
+          }
+        ]
+      },
+      "type": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "type_expr",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "property_head",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "property_head",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "receiver_modifier",
+          "named": true
+        },
+        {
+          "type": "static_modifier",
           "named": true
         }
       ]
@@ -1699,15 +1769,22 @@
   {
     "type": "subscript_decl",
     "named": true,
-    "fields": {},
+    "fields": {
+      "body": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "subscript_body",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
       "multiple": true,
       "required": true,
       "types": [
-        {
-          "type": "subscript_body",
-          "named": true
-        },
         {
           "type": "subscript_head",
           "named": true
@@ -1850,6 +1927,10 @@
           },
           {
             "type": "function_memberwise_init",
+            "named": true
+          },
+          {
+            "type": "property_decl",
             "named": true
           },
           {
@@ -2345,6 +2426,10 @@
   {
     "type": "octal_literal",
     "named": true
+  },
+  {
+    "type": "property",
+    "named": false
   },
   {
     "type": "public",

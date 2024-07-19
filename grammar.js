@@ -116,7 +116,7 @@ module.exports = grammar({
       // associated-decl
       $._function_decl,
       $.subscript_decl,
-      // property-decl
+      $.property_decl,
     ),
 
     // TYPE ALIAS
@@ -150,7 +150,7 @@ module.exports = grammar({
       $._function_decl,
       // deinit-decl
       $.subscript_decl,
-      // property-decl
+      $.property_decl,
       $.binding_decl,
       $.product_type_decl,
       $.type_alias_decl,
@@ -281,7 +281,11 @@ module.exports = grammar({
 
     // SUBSCRIPTS
 
-    subscript_decl: $ => seq($.subscript_head, $.subscript_signature, $.subscript_body),
+    subscript_decl: $ => seq(
+      $.subscript_head,
+      $.subscript_signature,
+      field('body', $.subscript_body)
+    ),
 
     subscript_head: $ => seq(
       optional($.access_modifier),
@@ -307,6 +311,21 @@ module.exports = grammar({
     subscript_impl: $ => seq(
       alias(choice("let", "sink", "inout", "set"), "subscript_introducer"),
       optional(field('body', $.brace_stmt)),
+    ),
+
+    // PROPERTIES
+
+    property_decl: $ => seq(
+      $.property_head,
+      ":",
+      field('type', $.type_expr),
+      field('body', $.subscript_body),
+    ),
+
+    property_head: $ => seq(
+      optional($._member_modifiers),
+      "property",
+      field('name', $.identifier),
     ),
 
     // CAPTURES

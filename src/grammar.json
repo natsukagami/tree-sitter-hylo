@@ -384,6 +384,10 @@
         {
           "type": "SYMBOL",
           "name": "subscript_decl"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "property_decl"
         }
       ]
     },
@@ -549,6 +553,10 @@
         {
           "type": "SYMBOL",
           "name": "subscript_decl"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "property_decl"
         },
         {
           "type": "SYMBOL",
@@ -1270,8 +1278,12 @@
           "name": "subscript_signature"
         },
         {
-          "type": "SYMBOL",
-          "name": "subscript_body"
+          "type": "FIELD",
+          "name": "body",
+          "content": {
+            "type": "SYMBOL",
+            "name": "subscript_body"
+          }
         }
       ]
     },
@@ -1474,6 +1486,64 @@
               "type": "BLANK"
             }
           ]
+        }
+      ]
+    },
+    "property_decl": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "property_head"
+        },
+        {
+          "type": "STRING",
+          "value": ":"
+        },
+        {
+          "type": "FIELD",
+          "name": "type",
+          "content": {
+            "type": "SYMBOL",
+            "name": "type_expr"
+          }
+        },
+        {
+          "type": "FIELD",
+          "name": "body",
+          "content": {
+            "type": "SYMBOL",
+            "name": "subscript_body"
+          }
+        }
+      ]
+    },
+    "property_head": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "_member_modifiers"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": "property"
+        },
+        {
+          "type": "FIELD",
+          "name": "name",
+          "content": {
+            "type": "SYMBOL",
+            "name": "identifier"
+          }
         }
       ]
     },

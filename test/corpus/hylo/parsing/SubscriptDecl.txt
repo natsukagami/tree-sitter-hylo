@@ -1,0 +1,35 @@
+=============
+SubscriptDecl
+Not gonna fail on our parser.
+=============
+
+//- parse expecting: failure
+
+type A0 {
+
+  property m5: Void {
+    let {}
+    let {} //! diagnostic duplicate implementation introducer 'let'
+  }
+
+}
+
+---
+
+(source_file
+  (single_line_comment)
+  (product_type_decl
+    (product_type_head
+      (identifier))
+    (property_decl
+      (property_head
+        (identifier))
+      (type_expr
+        (name_type_expr
+          (identifier)))
+      (subscript_body
+        (subscript_impl
+          (brace_stmt))
+        (subscript_impl
+          (brace_stmt))
+        (single_line_comment)))))
