@@ -132,7 +132,7 @@
 (tuple_type_element ":" @operator.assignment)
 ;; Builtin Types
 (name_type_expr (identifier) @type.builtin (#eq? @type.builtin "Self"))
-(name_type_expr (identifier) @type.builtin (#any-of? @type.builtin "Void" "Int" "String" "Float32" "Float64" "Bool" "Any" "Never"))
+(name_type_expr (identifier) @type.builtin (#any-of? @type.builtin "Void" "Int" "String" "Float32" "Float64" "Bool" "Any" "Never" "Union"))
 
 ; Operator Decls
 "operator" @keyword
