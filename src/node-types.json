@@ -1103,6 +1103,98 @@
     }
   },
   {
+    "type": "namespace_decl",
+    "named": true,
+    "fields": {
+      "body": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": "\n",
+            "named": false
+          },
+          {
+            "type": ";",
+            "named": false
+          },
+          {
+            "type": "binding_decl",
+            "named": true
+          },
+          {
+            "type": "conformance_decl",
+            "named": true
+          },
+          {
+            "type": "extension_decl",
+            "named": true
+          },
+          {
+            "type": "function_decl",
+            "named": true
+          },
+          {
+            "type": "function_memberwise_init",
+            "named": true
+          },
+          {
+            "type": "namespace_decl",
+            "named": true
+          },
+          {
+            "type": "product_type_decl",
+            "named": true
+          },
+          {
+            "type": "trait_decl",
+            "named": true
+          },
+          {
+            "type": "type_alias_decl",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "namespace_head",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "namespace_head",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "access_modifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "parameter_decl",
     "named": true,
     "fields": {
@@ -1333,6 +1425,10 @@
         },
         {
           "type": "import_decl",
+          "named": true
+        },
+        {
+          "type": "namespace_decl",
           "named": true
         },
         {
@@ -1824,6 +1920,10 @@
   },
   {
     "type": "method_introducer",
+    "named": false
+  },
+  {
+    "type": "namespace",
     "named": false
   },
   {

@@ -51,7 +51,7 @@ module.exports = grammar({
     ),
 
     _module_scope_decl: $ => choice(
-      // namespace-decl
+      $.namespace_decl,
       $.trait_decl,
       $.type_alias_decl,
       $.product_type_decl,
@@ -66,6 +66,33 @@ module.exports = grammar({
     import_decl: $ => seq(
       "import",
       $.identifier,
+    ),
+
+    // NAMESPACE
+
+    namespace_decl: $ => seq(
+      $.namespace_head,
+      "{",
+      field('body', repeat1StmtSep($._namespace_member)),
+      "}",
+    ),
+
+    namespace_head: $ => seq(
+      optional($.access_modifier),
+      "namespace",
+      field('name', $.identifier)
+    ),
+
+    _namespace_member: $ => choice(
+      $.namespace_decl,
+      $.trait_decl,
+      $.type_alias_decl,
+      $.product_type_decl,
+      $.extension_decl,
+      $.conformance_decl,
+      $.binding_decl,
+      $._function_decl,
+      // $.subscript_decl,
     ),
 
     // TRAIT
@@ -630,6 +657,7 @@ module.exports = grammar({
 /// Repeats `item` with stmt-separator.
 function repeat1StmtSep(item) {
   return seq(
+    repeat(";"),
     item,
     repeat(seq(choice("\n", ";"), optional(item)))
   )

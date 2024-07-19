@@ -1,0 +1,98 @@
+===========
+Semicolons
+===========
+
+//- parse expecting: success
+
+;;
+import Foo;
+
+namespace N {
+  ;
+  ; fun f() {};
+  ; fun g() {};
+};;
+
+type A {
+  ;
+  var n: Int;
+  fun f() -> Int {
+    ;; print(n);
+    ;
+    let x = n.copy(); return x;;
+  };
+};
+
+;;
+
+---
+
+(source_file
+  (single_line_comment)
+  (import_decl
+    (identifier))
+  (namespace_decl
+    (namespace_head
+      (identifier))
+    (function_decl
+      (function_head
+        (function_name
+          (identifier)))
+      (function_signature)
+      (brace_stmt))
+    (function_decl
+      (function_head
+        (function_name
+          (identifier)))
+      (function_signature)
+      (brace_stmt)))
+  (product_type_decl
+    (product_type_head
+      (identifier))
+    (binding_decl
+      (binding_pattern
+        (binding_introducer)
+        (identifier)
+        (type_expr
+          (name_type_expr
+            (identifier)))))
+    (function_decl
+      (function_head
+        (function_name
+          (identifier)))
+      (function_signature
+        (type_expr
+          (name_type_expr
+            (identifier))))
+      (brace_stmt
+        (stmt
+          (expr
+            (function_call_expr
+              (primary_decl_ref
+                (identifier_expr
+                  (identifier)))
+              (call_argument
+                (expr
+                  (primary_decl_ref
+                    (identifier_expr
+                      (identifier))))))))
+        (stmt
+          (binding_decl
+            (binding_pattern
+              (binding_introducer)
+              (identifier))
+            (expr
+              (function_call_expr
+                (value_member_expr
+                  (primary_decl_ref
+                    (identifier_expr
+                      (identifier)))
+                  (primary_decl_ref
+                    (identifier_expr
+                      (identifier))))))))
+        (stmt
+          (jump_stmt
+            (expr
+              (primary_decl_ref
+                (identifier_expr
+                  (identifier))))))))))
