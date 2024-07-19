@@ -3,11 +3,14 @@
 ;; Function names
 (function_memberwise_init) @constructor
 (function_name (identifier) @function)
+(function_decl head: (function_head (function_name (identifier) @function.abstract)) !body)
 (function_name "init" @constructor)
 ;; Parameters
 (parameter_decl label: (identifier) @label)
 (parameter_decl label: (identifier) @variable.parameter !name)
 (parameter_decl name:  (identifier) @variable.parameter)
+;; Body
+(method_impl (method_introducer) @keyword.storage.modifier)
 
 ; Struct Decl
 "type" @keyword

@@ -1,0 +1,68 @@
+============
+BodylessDecl
+============
+
+//- typeCheck expecting: failure
+
+//! @+1 diagnostic declaration requires a body
+fun f()
+
+type A {
+
+  //! @+1 diagnostic declaration requires a body
+  public init(x: Void)
+
+  public fun g() {
+    let //! diagnostic declaration requires a body
+  }
+
+  public subscript h(): Void {
+    let //! diagnostic declaration requires a body
+  }
+
+}
+
+---
+
+(source_file
+  (single_line_comment)
+  (single_line_comment)
+  (function_decl
+    (function_head
+      (function_name
+        (identifier)))
+    (function_signature))
+  (product_type_decl
+    (product_type_head
+      (identifier))
+    (single_line_comment)
+    (function_decl
+      (function_head
+        (access_modifier)
+        (function_name))
+      (function_signature
+        (parameter_decl
+          (identifier)
+          (name_type_expr
+            (identifier)))))
+    (function_decl
+      (function_head
+        (access_modifier)
+        (function_name
+          (identifier)))
+      (function_signature)
+      (method_bundle_body
+        (method_impl
+          (method_introducer))
+        (single_line_comment)))
+    (subscript_decl
+      (subscript_head
+        (access_modifier)
+        (identifier))
+      (subscript_signature
+        (name_type_expr
+          (identifier)))
+      (subscript_body
+        (subscript_impl
+          (subscript_introducer))
+        (single_line_comment)))))

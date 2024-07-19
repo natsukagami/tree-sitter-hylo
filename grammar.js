@@ -241,7 +241,7 @@ module.exports = grammar({
     function_decl: $ => seq(
       field('head', $.function_head),
       field('signature', $.function_signature),
-      field('body', $._function_body),
+      optional(field('body', $._function_body)),
     ),
 
     function_head: $ => seq(
@@ -252,14 +252,14 @@ module.exports = grammar({
       optional($.capture_list),
     ),
 
-    function_signature: $ => seq(
+    function_signature: $ => prec.right(seq(
       '(',
       field('params', optional($._parameter_list)),
       ')',
       optional($.receiver_effect),
       optional(seq("->", field('returns', $._type_expr))),
       // type-aliases-clause?
-    ),
+    )),
 
     _parameter_list: $ => seq(
       $.parameter_decl,
