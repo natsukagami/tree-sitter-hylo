@@ -38,6 +38,11 @@ const unicode_scalar_literal = token(choice(
   seq("'", c_char, "'"),
 ));
 
+// Token: generics
+const genericsOpen = prec("generics", token.immediate("<"));
+const genericsClose = prec("generics", token.immediate(">"));
+const genericScope = (...items) => seq(genericsOpen, ...items, genericsClose);
+
 module.exports = grammar({
   name: 'hylo',
   rules: {
@@ -616,11 +621,9 @@ module.exports = grammar({
 
     implicit_member_ref: $ => seq(".", $.primary_decl_ref),
 
-    static_argument_list: $ => seq(
-      prec("generics", token.immediate("<")),
+    static_argument_list: $ => genericScope(
       $.static_argument,
       repeat(seq(",", $.static_argument)),
-      prec("generics", token.immediate(">")),
     ),
 
     static_argument: $ => seq(
@@ -830,19 +833,38 @@ module.exports = grammar({
       optional(seq(field('prefix', $._type_expr), ".")),
       // inlined: primary-type-def-ref
       field('identifier', $._type_identifier),
-      optional(field('arguments', $.generic_clause)),
+      optional(field('arguments', $.generic_argument_list)),
     )),
+
+    generic_argument_list: $ => genericScope(
+      $._generic_argument,
+      repeat(seq(",", $._generic_argument)),
+    ),
+
+    _generic_argument: $ => choice(
+      $.generic_type_argument,
+      $.generic_value_argument,
+    ),
+
+    generic_type_argument: $ => seq(
+      optional("@type"),
+      field('value', $._type_expr),
+      optional(alias("...", 'variadic')),
+    ),
+
+    generic_value_argument: $ => seq(
+      "@value",
+      field('value', $.expr),
+    ),
 
     _type_identifier: $ => prec("type", $.identifier),
 
     // GENERICS AND WHERE CLAUSES
 
-    generic_clause: $ => seq(
-      prec("generics", token.immediate("<")),
+    generic_clause: $ => genericScope(
       $._generic_parameter,
       repeat(seq(",", $._generic_parameter)),
       optional($.where_clause),
-      prec("generics", token.immediate(">")),
     ),
 
     _generic_parameter: $ => choice(

@@ -87,9 +87,10 @@ public fun main() {
         (receiver_effect)
         (name_type_expr
           (identifier)
-          (generic_clause
-            (generic_type_parameter
-              (identifier)))))
+          (generic_argument_list
+            (generic_type_argument
+              (name_type_expr
+                (identifier))))))
       (brace_stmt
         (stmt
           (expr
@@ -153,9 +154,10 @@ public fun main() {
                   (static_argument
                     (name_type_expr
                       (identifier)
-                      (generic_clause
-                        (generic_type_parameter
-                          (identifier)))))))
+                      (generic_argument_list
+                        (generic_type_argument
+                          (name_type_expr
+                            (identifier))))))))
               (call_argument
                 (expr
                   (integer_literal
@@ -182,9 +184,10 @@ public fun main() {
                       (static_argument
                         (name_type_expr
                           (identifier)
-                          (generic_clause
-                            (generic_type_parameter
-                              (identifier)))))))
+                          (generic_argument_list
+                            (generic_type_argument
+                              (name_type_expr
+                                (identifier))))))))
                   (call_argument
                     (expr
                       (primary_decl_ref

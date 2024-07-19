@@ -6,6 +6,8 @@
 
 - [ ] What are `remote` types?
 
+- `type_argument_list` is not defined (used in `type_expr`). We give it something similar to `generics_clause`.
+
 ## Precedences that ~seems ok
 
 - Selection on types doesn't work on "floating" types (e.g. `some blalala`).

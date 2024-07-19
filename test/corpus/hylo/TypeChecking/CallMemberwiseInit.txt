@@ -203,11 +203,13 @@ public fun main() {
                 (static_argument
                   (name_type_expr
                     (identifier)
-                    (generic_clause
-                      (generic_type_parameter
-                        (identifier))
-                      (generic_type_parameter
-                        (identifier)))))))
+                    (generic_argument_list
+                      (generic_type_argument
+                        (name_type_expr
+                          (identifier)))
+                      (generic_type_argument
+                        (name_type_expr
+                          (identifier))))))))
             (call_argument
               (expr
                 (primary_decl_ref
@@ -242,11 +244,13 @@ public fun main() {
                 (static_argument
                   (name_type_expr
                     (identifier)
-                    (generic_clause
-                      (generic_type_parameter
-                        (identifier))
-                      (generic_type_parameter
-                        (identifier)))))))
+                    (generic_argument_list
+                      (generic_type_argument
+                        (name_type_expr
+                          (identifier)))
+                      (generic_type_argument
+                        (name_type_expr
+                          (identifier))))))))
             (call_argument
               (expr
                 (primary_decl_ref
@@ -259,11 +263,13 @@ public fun main() {
             (identifier)
             (name_type_expr
               (identifier)
-              (generic_clause
-                (generic_type_parameter
-                  (identifier))
-                (generic_type_parameter
-                  (identifier)))))
+              (generic_argument_list
+                (generic_type_argument
+                  (name_type_expr
+                    (identifier)))
+                (generic_type_argument
+                  (name_type_expr
+                    (identifier))))))
           (expr
             (function_call_expr
               (primary_decl_ref
@@ -288,11 +294,13 @@ public fun main() {
                 (static_argument
                   (name_type_expr
                     (identifier)
-                    (generic_clause
-                      (generic_type_parameter
-                        (identifier))
-                      (generic_type_parameter
-                        (identifier)))))))
+                    (generic_argument_list
+                      (generic_type_argument
+                        (name_type_expr
+                          (identifier)))
+                      (generic_type_argument
+                        (name_type_expr
+                          (identifier))))))))
             (call_argument
               (expr
                 (primary_decl_ref
@@ -305,11 +313,13 @@ public fun main() {
             (identifier)
             (name_type_expr
               (identifier)
-              (generic_clause
-                (generic_type_parameter
-                  (identifier))
-                (generic_type_parameter
-                  (identifier)))))
+              (generic_argument_list
+                (generic_type_argument
+                  (name_type_expr
+                    (identifier)))
+                (generic_type_argument
+                  (name_type_expr
+                    (identifier))))))
           (expr
             (function_call_expr
               (primary_decl_ref
@@ -334,11 +344,13 @@ public fun main() {
                 (static_argument
                   (name_type_expr
                     (identifier)
-                    (generic_clause
-                      (generic_type_parameter
-                        (identifier))
-                      (generic_type_parameter
-                        (identifier)))))))
+                    (generic_argument_list
+                      (generic_type_argument
+                        (name_type_expr
+                          (identifier)))
+                      (generic_type_argument
+                        (name_type_expr
+                          (identifier))))))))
             (call_argument
               (expr
                 (primary_decl_ref
@@ -352,11 +364,13 @@ public fun main() {
             (wildcard_pattern)
             (name_type_expr
               (identifier)
-              (generic_clause
-                (generic_type_parameter
-                  (identifier))
-                (generic_type_parameter
-                  (identifier)))))
+              (generic_argument_list
+                (generic_type_argument
+                  (name_type_expr
+                    (identifier)))
+                (generic_type_argument
+                  (name_type_expr
+                    (identifier))))))
           (expr
             (function_call_expr
               (primary_decl_ref

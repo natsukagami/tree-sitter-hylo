@@ -1265,6 +1265,25 @@
     }
   },
   {
+    "type": "generic_argument_list",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "generic_type_argument",
+          "named": true
+        },
+        {
+          "type": "generic_value_argument",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "generic_clause",
     "named": true,
     "fields": {},
@@ -1285,6 +1304,50 @@
           "named": true
         }
       ]
+    }
+  },
+  {
+    "type": "generic_type_argument",
+    "named": true,
+    "fields": {
+      "value": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
+          {
+            "type": "conformance_lens_type_expr",
+            "named": true
+          },
+          {
+            "type": "existential_type_expr",
+            "named": true
+          },
+          {
+            "type": "lambda_type_expr",
+            "named": true
+          },
+          {
+            "type": "name_type_expr",
+            "named": true
+          },
+          {
+            "type": "opaque_type_expr",
+            "named": true
+          },
+          {
+            "type": "tuple_type_expr",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
@@ -1345,6 +1408,22 @@
         "types": [
           {
             "type": "trait_composition",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "generic_value_argument",
+    "named": true,
+    "fields": {
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "expr",
             "named": true
           }
         ]
@@ -1956,7 +2035,7 @@
         "required": false,
         "types": [
           {
-            "type": "generic_clause",
+            "type": "generic_argument_list",
             "named": true
           }
         ]

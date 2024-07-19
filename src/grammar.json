@@ -4246,7 +4246,7 @@
                 "name": "arguments",
                 "content": {
                   "type": "SYMBOL",
-                  "name": "generic_clause"
+                  "name": "generic_argument_list"
                 }
               },
               {
@@ -4256,6 +4256,125 @@
           }
         ]
       }
+    },
+    "generic_argument_list": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "PREC",
+          "value": "generics",
+          "content": {
+            "type": "IMMEDIATE_TOKEN",
+            "content": {
+              "type": "STRING",
+              "value": "<"
+            }
+          }
+        },
+        {
+          "type": "SYMBOL",
+          "name": "_generic_argument"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "STRING",
+                "value": ","
+              },
+              {
+                "type": "SYMBOL",
+                "name": "_generic_argument"
+              }
+            ]
+          }
+        },
+        {
+          "type": "PREC",
+          "value": "generics",
+          "content": {
+            "type": "IMMEDIATE_TOKEN",
+            "content": {
+              "type": "STRING",
+              "value": ">"
+            }
+          }
+        }
+      ]
+    },
+    "_generic_argument": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "generic_type_argument"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "generic_value_argument"
+        }
+      ]
+    },
+    "generic_type_argument": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "@type"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "FIELD",
+          "name": "value",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_type_expr"
+          }
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "ALIAS",
+              "content": {
+                "type": "STRING",
+                "value": "..."
+              },
+              "named": false,
+              "value": "variadic"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        }
+      ]
+    },
+    "generic_value_argument": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "@value"
+        },
+        {
+          "type": "FIELD",
+          "name": "value",
+          "content": {
+            "type": "SYMBOL",
+            "name": "expr"
+          }
+        }
+      ]
     },
     "_type_identifier": {
       "type": "PREC",

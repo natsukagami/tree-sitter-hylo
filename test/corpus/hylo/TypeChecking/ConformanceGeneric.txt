@@ -77,9 +77,10 @@ fun f1<B>(_ a: A<B>) {
         (identifier)
         (name_type_expr
           (identifier)
-          (generic_clause
-            (generic_type_parameter
-              (identifier))))))
+          (generic_argument_list
+            (generic_type_argument
+              (name_type_expr
+                (identifier)))))))
     (brace_stmt
       (stmt
         (binding_decl
@@ -123,9 +124,10 @@ fun f1<B>(_ a: A<B>) {
         (identifier)
         (name_type_expr
           (identifier)
-          (generic_clause
-            (generic_type_parameter
-              (identifier))))))
+          (generic_argument_list
+            (generic_type_argument
+              (name_type_expr
+                (identifier)))))))
     (brace_stmt
       (stmt
         (binding_decl

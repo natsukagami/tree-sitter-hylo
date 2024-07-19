@@ -137,9 +137,10 @@ type A1<B: T> {
       (name_type_expr
         (name_type_expr
           (identifier)
-          (generic_clause
-            (generic_type_parameter
-              (identifier))))
+          (generic_argument_list
+            (generic_type_argument
+              (name_type_expr
+                (identifier)))))
         (identifier)))
     (type_alias_decl
       (type_alias_head
