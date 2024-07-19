@@ -1,0 +1,173 @@
+========
+StructDecl
+Supposed to succeed, since we commented out the failures.
+Note that `size: Int` in the examples are still parsed as generic type parameters without the `@value`.
+========
+
+//- parse expecting: failure
+
+// Empty struct.
+type A0 {}
+
+// Struct with a single conformance.
+type A1: Copyable {}
+
+// Struct with multiple conformances.
+type A2: Copyable, Comparable {}
+
+// Struct with a generic signature.
+type A3<T, size: Int> {}
+
+// Struct with a generic signature and conformances.
+type A4<T, @value size: Int>: Copyable, Comparable {}
+
+// Struct with access modifier.
+public type A5 {}
+
+// Struct with member modifier.
+// static type A7 {}     //! diagnostic unexpected member modifier 'static'
+
+// Struct with members.
+type A7 {
+
+  let x0: Int
+
+  let x1 = 42
+
+  let x2: Int = 42
+}
+
+//   var x3              //! diagnostic missing type annotation
+
+//   inout x4: Int       //! diagnostic member binding must be introduced by 'let' or 'var'
+
+//   sink let x5: Int    //! diagnostic member binding must be introduced by 'let' or 'var'
+
+//   static var x6: Int  //! diagnostic global binding must be introduced by 'let'
+
+//   42                  //! diagnostic expected declaration
+
+//   // Parser should recover before this declaration.
+//   fun f0() {}
+
+//   import M            //! diagnostic import declaration is not allowed here
+
+//   trait T {}          //! diagnostic trait declaration is not allowed here
+
+//   operator infix+     //! diagnostic operator declaration is not allowed here
+
+//   value v             //! diagnostic associated value declaration is not allowed here
+
+//   type B              //! diagnostic expected '{'
+
+// }
+
+// // Unterminated struct.
+// type A8 {
+
+//   let x0: Int         //! diagnostic expected '}'
+
+---
+
+(source_file
+  (single_line_comment)
+  (single_line_comment)
+  (product_type_decl
+    (product_type_head
+      (identifier)))
+  (single_line_comment)
+  (product_type_decl
+    (product_type_head
+      (identifier)
+      (conformance_list
+        (name_type_expr
+          (identifier)))))
+  (single_line_comment)
+  (product_type_decl
+    (product_type_head
+      (identifier)
+      (conformance_list
+        (name_type_expr
+          (identifier))
+        (name_type_expr
+          (identifier)))))
+  (single_line_comment)
+  (product_type_decl
+    (product_type_head
+      (identifier)
+      (generic_clause
+        (generic_type_parameter
+          (identifier))
+        (generic_type_parameter
+          (identifier)
+          (trait_composition
+            (name_type_expr
+              (identifier)))))))
+  (single_line_comment)
+  (product_type_decl
+    (product_type_head
+      (identifier)
+      (generic_clause
+        (generic_type_parameter
+          (identifier))
+        (generic_value_parameter
+          (identifier)
+          (type_expr
+            (name_type_expr
+              (identifier)))))
+      (conformance_list
+        (name_type_expr
+          (identifier))
+        (name_type_expr
+          (identifier)))))
+  (single_line_comment)
+  (product_type_decl
+    (product_type_head
+      (access_modifier)
+      (identifier)))
+  (single_line_comment)
+  (single_line_comment)
+  (single_line_comment)
+  (product_type_decl
+    (product_type_head
+      (identifier))
+    (binding_decl
+      (binding_pattern
+        (binding_introducer)
+        (identifier)
+        (type_expr
+          (name_type_expr
+            (identifier)))))
+    (binding_decl
+      (binding_pattern
+        (binding_introducer)
+        (identifier))
+      (expr
+        (integer_literal
+          (decimal_literal))))
+    (binding_decl
+      (binding_pattern
+        (binding_introducer)
+        (identifier)
+        (type_expr
+          (name_type_expr
+            (identifier))))
+      (expr
+        (integer_literal
+          (decimal_literal)))))
+  (single_line_comment)
+  (single_line_comment)
+  (single_line_comment)
+  (single_line_comment)
+  (single_line_comment)
+  (single_line_comment)
+  (single_line_comment)
+  (single_line_comment)
+  (single_line_comment)
+  (single_line_comment)
+  (single_line_comment)
+  (single_line_comment)
+  (single_line_comment)
+  (single_line_comment)
+  (single_line_comment)
+  (single_line_comment))

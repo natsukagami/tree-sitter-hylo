@@ -131,7 +131,7 @@ module.exports = grammar({
       optional($.access_modifier),
       "typealias",
       field('name', $.identifier),
-      // generic-clause?
+      optional($.generic_clause),
     ),
 
     // PRODUCT TYPE
@@ -142,7 +142,7 @@ module.exports = grammar({
       optional($.access_modifier),
       "type",
       field('name', $.identifier),
-      // generic-clause?
+      optional($.generic_clause),
       optional($.conformance_list),
     ),
 
@@ -164,7 +164,7 @@ module.exports = grammar({
       optional($.access_modifier),
       "extension",
       field('subject', $.type_expr),
-      // field('where', $._where_clause), // where-clause?
+      optional($.where_clause),
     ),
 
     _extension_member_decl: $ => choice(
@@ -183,7 +183,7 @@ module.exports = grammar({
       "conformance",
       field('subject', $.type_expr),
       $.conformance_list,
-      // where-clause?
+      optional($.where_clause),
     ),
 
     conformance_list: $ => seq(
@@ -216,7 +216,7 @@ module.exports = grammar({
       optional($.access_modifier),
       optional($._member_modifiers),
       $.function_name,
-      // TODO: generic-clause
+      optional($.generic_clause),
       optional($.capture_list),
     ),
 
@@ -576,6 +576,70 @@ module.exports = grammar({
     ),
 
     _type_identifier: $ => $.identifier,
+
+    // GENERICS AND WHERE CLAUSES
+
+    generic_clause: $ => seq(
+      "<",
+      $._generic_parameter,
+      repeat(seq(",", $._generic_parameter)),
+      optional($.where_clause),
+      ">",
+    ),
+
+    _generic_parameter: $ => choice(
+      $.generic_type_parameter,
+      $.generic_value_parameter,
+    ),
+
+    generic_type_parameter: $ => seq(
+      optional("@type"),
+      field('name', $.identifier),
+      optional(alias("...", 'spread')),
+      optional(seq(":", field('requires', $.trait_composition))),
+      optional(seq("=", field('default', $.type_expr))),
+    ),
+
+    generic_value_parameter: $ => seq(
+      "@value",
+      field('name', $.identifier),
+      ":",
+      field('type', $.type_expr),
+      optional(seq("=", field('default', $.expr))),
+    ),
+
+    where_clause: $ => seq("where",
+      $._where_clause_constraint,
+      repeat(seq(",", $._where_clause_constraint)),
+    ),
+
+    _where_clause_constraint: $ => choice(
+      $.equality_constraint,
+      $.conformance_constraint,
+      $.value_constraint_expr,
+    ),
+
+    equality_constraint: $ => seq(
+      field('lhs', $.name_type_expr),
+      "==",
+      field('rhs', $.type_expr),
+    ),
+
+    conformance_constraint: $ => seq(
+      field('subject', $.name_type_expr),
+      ":",
+      field('requires', $.trait_composition),
+    ),
+
+    value_constraint_expr: $ => seq(
+      "@value",
+      $.expr,
+    ),
+
+    trait_composition: $ => seq(
+      $.name_type_expr,
+      repeat(seq("&", $.name_type_expr)),
+    ),
 
     // MODIFIERS
 
