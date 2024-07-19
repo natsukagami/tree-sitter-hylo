@@ -172,12 +172,8 @@ public fun main() {
                     (identifier))))))))
       (single_line_comment)
       (stmt
-        (expr
-          (primary_decl_ref
-            (identifier_expr
-              (identifier)))
-          (infix_operator_tail
-            (infix_operator)
+        (discard_stmt
+          (expr
             (function_call_expr
               (implicit_member_ref
                 (primary_decl_ref

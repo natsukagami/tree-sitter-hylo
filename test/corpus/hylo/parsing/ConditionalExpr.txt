@@ -29,12 +29,8 @@ public fun main() {
     (function_signature)
     (brace_stmt
       (stmt
-        (expr
-          (primary_decl_ref
-            (identifier_expr
-              (identifier)))
-          (infix_operator_tail
-            (infix_operator)
+        (discard_stmt
+          (expr
             (conditional_expr
               (conditional_clause_item
                 (expr
@@ -50,12 +46,8 @@ public fun main() {
                   (expr
                     (tuple_expr))))))))
       (stmt
-        (expr
-          (primary_decl_ref
-            (identifier_expr
-              (identifier)))
-          (infix_operator_tail
-            (infix_operator)
+        (discard_stmt
+          (expr
             (conditional_expr
               (conditional_clause_item
                 (expr
@@ -86,12 +78,8 @@ public fun main() {
                     (expr
                       (tuple_expr)))))))))
       (stmt
-        (expr
-          (primary_decl_ref
-            (identifier_expr
-              (identifier)))
-          (infix_operator_tail
-            (infix_operator)
+        (discard_stmt
+          (expr
             (conditional_expr
               (conditional_clause_item
                 (binding_pattern

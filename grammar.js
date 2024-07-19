@@ -391,11 +391,54 @@ module.exports = grammar({
 
     stmt: $ => choice(
       $.brace_stmt,
-      // discard-stmt
-      // loop-stmt
+      $.discard_stmt,
+      $._loop_stmt,
       $.jump_stmt,
       $._decl_stmt,
       $.expr
+    ),
+
+    discard_stmt: $ => seq("_", "=", $.expr),
+
+    // LOOP STATEMENTS
+
+    _loop_stmt: $ => choice(
+      $.do_while_stmt,
+      $.while_stmt,
+      $.for_stmt,
+    ),
+
+    do_while_stmt: $ => seq(
+      "do",
+      field('body', $.brace_stmt),
+      "while",
+      field('condition', $.expr),
+    ),
+
+    while_stmt: $ => seq(
+      "while",
+      $.while_condition_list,
+      field('body', $.brace_stmt),
+    ),
+    while_condition_list: $ => seq($.while_condition, repeat(seq(",", $.while_condition))),
+    while_condition: $ => seq(
+      optional(seq(
+        field('binding', $.binding_pattern),
+        ":",
+      )),
+      field('condition', $.expr),
+    ),
+
+    for_stmt: $ => seq(
+      "for",
+      field('binding', $.binding_decl),
+      "in",
+      field('range', $.expr),
+      optional(seq(
+        "where",
+        field('where', $.expr),
+      )),
+      field('body', $.brace_stmt),
     ),
 
     // JUMP STATEMENTS
@@ -645,7 +688,7 @@ module.exports = grammar({
 
     expr_pattern: $ => $.expr,
 
-    binding_pattern: $ => seq(
+    binding_pattern: $ => prec.right(seq(
       field('introducer', $.binding_introducer),
       field('pattern', choice(
         $.tuple_pattern,
@@ -653,7 +696,7 @@ module.exports = grammar({
         $.identifier,
       )),
       optional(seq(":", field('annotation', $._type_expr))),
-    ),
+    )),
 
     binding_introducer: $ => choice("let", "var", "sink", "inout"),
 

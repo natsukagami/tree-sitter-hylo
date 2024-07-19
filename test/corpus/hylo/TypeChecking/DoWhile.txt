@@ -1,0 +1,69 @@
+=======
+DoWhile
+=======
+
+//- typeCheck expecting: failure
+
+public fun main() {
+  do {
+    let x = false
+  } while x
+
+  var x = 0
+  do {
+    &x = 1
+  } while x   //! diagnostic incompatible types 'Bool' and 'Int'
+}
+
+---
+
+(source_file
+  (single_line_comment)
+  (function_decl
+    (function_head
+      (access_modifier)
+      (function_name
+        (identifier)))
+    (function_signature)
+    (brace_stmt
+      (stmt
+        (do_while_stmt
+          (brace_stmt
+            (stmt
+              (binding_decl
+                (binding_pattern
+                  (binding_introducer)
+                  (identifier))
+                (expr
+                  (boolean_literal)))))
+          (expr
+            (primary_decl_ref
+              (identifier_expr
+                (identifier))))))
+      (stmt
+        (binding_decl
+          (binding_pattern
+            (binding_introducer)
+            (identifier))
+          (expr
+            (integer_literal
+              (decimal_literal)))))
+      (stmt
+        (do_while_stmt
+          (brace_stmt
+            (stmt
+              (expr
+                (inout_expr
+                  (expr
+                    (primary_decl_ref
+                      (identifier_expr
+                        (identifier)))))
+                (infix_operator_tail
+                  (infix_operator)
+                  (integer_literal
+                    (decimal_literal))))))
+          (expr
+            (primary_decl_ref
+              (identifier_expr
+                (identifier))))))
+      (single_line_comment))))

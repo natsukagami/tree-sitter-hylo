@@ -50,6 +50,10 @@
 (type_alias_decl "=" @operator.assignment)
 
 ; Statements
+;; Discard
+(discard_stmt "=" @operator.assignment)
+;; Loops
+["do" "while" "for"] @keyword.control.repeat
 ;; Jumps
 "return"   @keyword.control.return
 "yield"    @keyword.control.repeat

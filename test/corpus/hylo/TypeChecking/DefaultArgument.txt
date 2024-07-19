@@ -238,12 +238,8 @@ public fun main() {
                 (identifier_expr
                   (identifier)))))))
       (stmt
-        (expr
-          (primary_decl_ref
-            (identifier_expr
-              (identifier)))
-          (infix_operator_tail
-            (infix_operator)
+        (discard_stmt
+          (expr
             (function_call_expr
               (value_member_expr
                 (primary_decl_ref
