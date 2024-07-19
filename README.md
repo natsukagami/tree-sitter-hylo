@@ -9,6 +9,8 @@
 - `type_argument_list` is not defined (used in `type_expr`). We give it something similar to `generics_clause`.
 - `deinit` not really used anywhere, perhaps replaced by `Deinitializable` trait. We highlight both.
 
+- `async`/`await` seems deprecated, it is commented out in the grammar.
+
 ## Precedences that ~seems ok
 
 - Selection on types doesn't work on "floating" types (e.g. `some blalala`).

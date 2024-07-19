@@ -420,11 +420,6 @@ module.exports = grammar({
 
     _stmt_list: $ => repeat1StmtSep($.stmt),
 
-    // _stmt_sep: $ => repeat1(seq(
-    //   token.immediate(choice('\n', ';')),
-    //   $._horizontal_space
-    // )),
-
     stmt: $ => choice(
       $.brace_stmt,
       $.discard_stmt,
@@ -482,11 +477,11 @@ module.exports = grammar({
       // conditional-binding-stmt
       seq(
         "return",
-        field('return', $.expr),
+        optional(field('return', $.expr)),
       ),
       seq(
         "yield",
-        field('yield', $.expr),
+        optional(field('yield', $.expr)),
       ),
       "break",
       "continue",
@@ -517,11 +512,24 @@ module.exports = grammar({
     expr: $ => prec.left(seq($._infix_expr_head, repeat(seq($._infix_expr_tail)))),
 
     _infix_expr_head: $ => choice(
-      // async-expr
-      // await-expr
-      // unsafe-expr
+      // $.async_expr,
+      // $.await_expr,
+      $.unsafe_expr,
       $._prefix_expr
-    ), // TODO
+    ),
+
+    // async_expr: $ => seq(
+    //   "async",
+    //   field('captures', $.capture_list),
+    //   optional(seq(
+    //     "->",
+    //     field('returns', $._type_expr),
+    //   )),
+    //   field('body', $.brace_stmt),
+    // ),
+    // await_expr: $ => seq("await", $.expr),
+
+    unsafe_expr: $ => prec.right("expr_float", seq("unsafe", $.expr)),
 
     _infix_expr_tail: $ => choice(
       $.type_casting_tail,
