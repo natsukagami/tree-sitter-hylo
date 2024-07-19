@@ -1,0 +1,88 @@
+=========================
+ConformanceWithRefinement
+=========================
+
+//- typeCheck expecting: success
+
+let s: Self = s
+
+trait P: Regular {
+  property n: Int { let }
+}
+
+conformance Int: P {
+  public property n: Int {
+    let { yield self }
+  }
+}
+
+public let x = Int.zero().n
+
+---
+
+(source_file
+  (single_line_comment)
+  (binding_decl
+    (binding_pattern
+      (binding_introducer)
+      (identifier)
+      (name_type_expr
+        (identifier)))
+    (expr
+      (primary_decl_ref
+        (identifier_expr
+          (identifier)))))
+  (trait_decl
+    (trait_head
+      (identifier)
+      (name_type_expr
+        (identifier)))
+    (property_decl
+      (property_head
+        (identifier))
+      (name_type_expr
+        (identifier))
+      (subscript_body
+        (subscript_impl
+          (subscript_introducer)))))
+  (conformance_decl
+    (conformance_head
+      (name_type_expr
+        (identifier))
+      (conformance_list
+        (name_type_expr
+          (identifier))))
+    (property_decl
+      (property_head
+        (access_modifier)
+        (identifier))
+      (name_type_expr
+        (identifier))
+      (subscript_body
+        (subscript_impl
+          (subscript_introducer)
+          (brace_stmt
+            (stmt
+              (jump_stmt
+                (expr
+                  (primary_decl_ref
+                    (identifier_expr
+                      (identifier)))))))))))
+  (binding_decl
+    (access_modifier)
+    (binding_pattern
+      (binding_introducer)
+      (identifier))
+    (expr
+      (value_member_expr
+        (function_call_expr
+          (value_member_expr
+            (primary_decl_ref
+              (identifier_expr
+                (identifier)))
+            (primary_decl_ref
+              (identifier_expr
+                (identifier)))))
+        (primary_decl_ref
+          (identifier_expr
+            (identifier)))))))

@@ -23,6 +23,9 @@
 "trait" @keyword
 (trait_head name: (identifier) @type.interface @type.trait @type.abstract)
 
+; Conformance
+"conformance" @keyword
+
 ; Extension Decl
 "extension" @keyword
 
@@ -81,11 +84,14 @@
 (tuple_expr "(" @punctuation.bracket.tuple)
 (tuple_expr ")" @punctuation.bracket.tuple)
 ;; Literals
+(identifier_expr ((identifier) @variable.builtin (#eq? @variable.builtin "self")))
+(identifier_expr ((identifier) @variable.builtin (#eq? @variable.builtin "yielded")))
 (integer_literal) @number  @constant.numeric.integer
 (boolean_literal) @boolean @constant.builtin.boolean
 (string_literal)  @string
 
 ; Types
+(name_type_expr (identifier) @type.builtin (#eq? @type.builtin "Self"))
 ;; Floats
 "any" @keyword.operator.type
 "some" @keyword.operator.type

@@ -443,6 +443,10 @@
             "named": true
           },
           {
+            "type": "property_decl",
+            "named": true
+          },
+          {
             "type": "subscript_decl",
             "named": true
           },
@@ -2326,6 +2330,10 @@
       "multiple": true,
       "required": false,
       "types": [
+        {
+          "type": "access_modifier",
+          "named": true
+        },
         {
           "type": "receiver_modifier",
           "named": true

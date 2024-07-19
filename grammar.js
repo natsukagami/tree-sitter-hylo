@@ -227,6 +227,7 @@ module.exports = grammar({
     _conformance_member_decl: $ => choice(
       $._function_decl,
       $.subscript_decl,
+      $.property_decl,
       $.product_type_decl,
       $.type_alias_decl,
     ),
@@ -362,6 +363,7 @@ module.exports = grammar({
     ),
 
     property_head: $ => seq(
+      optional($.access_modifier),
       optional($._member_modifiers),
       "property",
       field('name', $.identifier),

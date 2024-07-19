@@ -962,6 +962,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "property_decl"
+        },
+        {
+          "type": "SYMBOL",
           "name": "product_type_decl"
         },
         {
@@ -1714,6 +1718,18 @@
     "property_head": {
       "type": "SEQ",
       "members": [
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "access_modifier"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
         {
           "type": "CHOICE",
           "members": [
