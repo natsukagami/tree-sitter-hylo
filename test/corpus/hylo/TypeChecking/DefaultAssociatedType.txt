@@ -1,0 +1,81 @@
+=====================
+DefaultAssociatedType
+=====================
+
+//- typeCheck expecting: success
+
+trait T {
+  type U = Int
+  fun f() -> U
+}
+
+type A: T {
+  public fun f() -> Int { 0 }
+}
+
+type B: T {
+  public typealias U = Bool
+  public fun f() -> Bool { false }
+}
+
+---
+
+(source_file
+  (single_line_comment)
+  (trait_decl
+    (trait_head
+      (identifier))
+    (associated_type_decl
+      (identifier)
+      (name_type_expr
+        (identifier)))
+    (function_decl
+      (function_head
+        (function_name
+          (identifier)))
+      (function_signature
+        (name_type_expr
+          (identifier)))))
+  (product_type_decl
+    (product_type_head
+      (identifier)
+      (conformance_list
+        (name_type_expr
+          (identifier))))
+    (function_decl
+      (function_head
+        (access_modifier)
+        (function_name
+          (identifier)))
+      (function_signature
+        (name_type_expr
+          (identifier)))
+      (brace_stmt
+        (stmt
+          (expr
+            (integer_literal
+              (decimal_literal)))))))
+  (product_type_decl
+    (product_type_head
+      (identifier)
+      (conformance_list
+        (name_type_expr
+          (identifier))))
+    (type_alias_decl
+      (type_alias_head
+        (access_modifier)
+        (identifier))
+      (name_type_expr
+        (identifier)))
+    (function_decl
+      (function_head
+        (access_modifier)
+        (function_name
+          (identifier)))
+      (function_signature
+        (name_type_expr
+          (identifier)))
+      (brace_stmt
+        (stmt
+          (expr
+            (boolean_literal)))))))

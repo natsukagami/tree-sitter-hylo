@@ -23,6 +23,8 @@
 ; Trait Decl
 "trait" @keyword
 (trait_head name: (identifier) @type.interface @type.trait @type.abstract)
+(associated_type_decl name: (identifier) @type.abstract)
+(associated_type_decl "=" @operator.assignment)
 
 ; Conformance
 "conformance" @keyword
