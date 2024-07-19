@@ -10,6 +10,7 @@
 (parameter_decl label: (identifier) @label)
 (parameter_decl label: (identifier) @variable.parameter !name)
 (parameter_decl name:  (identifier) @variable.parameter)
+(parameter_decl "=" @operator.assignment)
 (parameter_passing_convention) @keyword.storage.modifier
 ;; Body
 (method_impl (method_introducer) @keyword.storage.modifier)
@@ -57,6 +58,8 @@
 "else" @keyword.conditional
 ;; Binding
 (binding_decl pattern: (binding_pattern introducer: (binding_introducer) @keyword.storage.modifier))
+(binding_introducer) @keyword.storage.modifier.mut (#eq? @keyword.storage.modifier.mut "var")
+(binding_introducer) @keyword.storage.modifier.ref (#eq? @keyword.storage.modifier.ref "inout")
 (binding_decl pattern: (binding_pattern pattern: (identifier) @variable))
 (binding_decl "=" @operator.assignment)
 
@@ -76,6 +79,7 @@
 (function_call_expr head: (value_member_expr label: (primary_decl_ref identifier: (identifier_expr (identifier) @function.method))))
 (function_call_expr head: (implicit_member_ref (primary_decl_ref identifier: (identifier_expr (identifier) @function.method))))
 (call_argument label: (identifier) @label)
+(call_argument ":" @operator.assignment)
 (subscript_call_expr "[" @punctuation.bracket.subscript)
 (subscript_call_expr "]" @punctuation.bracket.subscript)
 ;; Primary Expr
@@ -114,6 +118,7 @@
 
 ; Modifier
 (access_modifier) @attribute.access
+(static_modifier) @attribute.static
 
 ; Misc
 (single_line_comment) @comment.line

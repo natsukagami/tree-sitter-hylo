@@ -1,0 +1,254 @@
+===============
+DefaultArgument
+===============
+
+//- typeCheck expecting: failure
+
+type A { public memberwise init }
+
+type B { public memberwise init }
+
+type C: Deinitializable {
+  public init(a: A = A()) {}
+  public fun foo(a: A = A()) {
+    let {}
+  }
+}
+
+fun f0(a: A, b: B = B()) {}
+
+fun f1(a: A = A(), b: B) {}
+
+//! @+1 diagnostic cannot pass value of type 'Bool' to parameter 'let B'
+fun g0(a: A, b: B = true) {}
+
+public fun main() {
+  f0(a: A())
+  //! @+1 diagnostic incompatible labels: found '(b:)', expected '(a:b:)'
+  f0(b: B())
+  //! @+1 diagnostic incompatible labels: found '(a:_:)', expected '(a:b:)'
+  f0(a: A(), B())
+
+  f1(b: B())
+  //! @+1 diagnostic incompatible labels: found '(a:)', expected '(a:b:)'
+  f1(a: A())
+
+  let x = C()
+  _ = x.foo()
+}
+
+---
+
+(source_file
+  (single_line_comment)
+  (product_type_decl
+    (product_type_head
+      (identifier))
+    (function_memberwise_init
+      (access_modifier)))
+  (product_type_decl
+    (product_type_head
+      (identifier))
+    (function_memberwise_init
+      (access_modifier)))
+  (product_type_decl
+    (product_type_head
+      (identifier)
+      (conformance_list
+        (name_type_expr
+          (identifier))))
+    (function_decl
+      (function_head
+        (access_modifier)
+        (function_name))
+      (function_signature
+        (parameter_decl
+          (identifier)
+          (name_type_expr
+            (identifier))
+          (expr
+            (function_call_expr
+              (primary_decl_ref
+                (identifier_expr
+                  (identifier)))))))
+      (brace_stmt))
+    (function_decl
+      (function_head
+        (access_modifier)
+        (function_name
+          (identifier)))
+      (function_signature
+        (parameter_decl
+          (identifier)
+          (name_type_expr
+            (identifier))
+          (expr
+            (function_call_expr
+              (primary_decl_ref
+                (identifier_expr
+                  (identifier)))))))
+      (method_bundle_body
+        (method_impl
+          (method_introducer)
+          (brace_stmt)))))
+  (function_decl
+    (function_head
+      (function_name
+        (identifier)))
+    (function_signature
+      (parameter_decl
+        (identifier)
+        (name_type_expr
+          (identifier)))
+      (parameter_decl
+        (identifier)
+        (name_type_expr
+          (identifier))
+        (expr
+          (function_call_expr
+            (primary_decl_ref
+              (identifier_expr
+                (identifier)))))))
+    (brace_stmt))
+  (function_decl
+    (function_head
+      (function_name
+        (identifier)))
+    (function_signature
+      (parameter_decl
+        (identifier)
+        (name_type_expr
+          (identifier))
+        (expr
+          (function_call_expr
+            (primary_decl_ref
+              (identifier_expr
+                (identifier))))))
+      (parameter_decl
+        (identifier)
+        (name_type_expr
+          (identifier))))
+    (brace_stmt))
+  (single_line_comment)
+  (function_decl
+    (function_head
+      (function_name
+        (identifier)))
+    (function_signature
+      (parameter_decl
+        (identifier)
+        (name_type_expr
+          (identifier)))
+      (parameter_decl
+        (identifier)
+        (name_type_expr
+          (identifier))
+        (expr
+          (boolean_literal))))
+    (brace_stmt))
+  (function_decl
+    (function_head
+      (access_modifier)
+      (function_name
+        (identifier)))
+    (function_signature)
+    (brace_stmt
+      (stmt
+        (expr
+          (function_call_expr
+            (primary_decl_ref
+              (identifier_expr
+                (identifier)))
+            (call_argument
+              (identifier)
+              (expr
+                (function_call_expr
+                  (primary_decl_ref
+                    (identifier_expr
+                      (identifier)))))))))
+      (single_line_comment)
+      (stmt
+        (expr
+          (function_call_expr
+            (primary_decl_ref
+              (identifier_expr
+                (identifier)))
+            (call_argument
+              (identifier)
+              (expr
+                (function_call_expr
+                  (primary_decl_ref
+                    (identifier_expr
+                      (identifier)))))))))
+      (single_line_comment)
+      (stmt
+        (expr
+          (function_call_expr
+            (primary_decl_ref
+              (identifier_expr
+                (identifier)))
+            (call_argument
+              (identifier)
+              (expr
+                (function_call_expr
+                  (primary_decl_ref
+                    (identifier_expr
+                      (identifier))))))
+            (call_argument
+              (expr
+                (function_call_expr
+                  (primary_decl_ref
+                    (identifier_expr
+                      (identifier)))))))))
+      (stmt
+        (expr
+          (function_call_expr
+            (primary_decl_ref
+              (identifier_expr
+                (identifier)))
+            (call_argument
+              (identifier)
+              (expr
+                (function_call_expr
+                  (primary_decl_ref
+                    (identifier_expr
+                      (identifier)))))))))
+      (single_line_comment)
+      (stmt
+        (expr
+          (function_call_expr
+            (primary_decl_ref
+              (identifier_expr
+                (identifier)))
+            (call_argument
+              (identifier)
+              (expr
+                (function_call_expr
+                  (primary_decl_ref
+                    (identifier_expr
+                      (identifier)))))))))
+      (stmt
+        (binding_decl
+          (binding_pattern
+            (binding_introducer)
+            (identifier))
+          (expr
+            (function_call_expr
+              (primary_decl_ref
+                (identifier_expr
+                  (identifier)))))))
+      (stmt
+        (expr
+          (primary_decl_ref
+            (identifier_expr
+              (identifier)))
+          (infix_operator_tail
+            (infix_operator)
+            (function_call_expr
+              (value_member_expr
+                (primary_decl_ref
+                  (identifier_expr
+                    (identifier)))
+                (primary_decl_ref
+                  (identifier_expr
+                    (identifier)))))))))))
