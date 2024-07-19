@@ -53,7 +53,7 @@
 ;; Discard
 (discard_stmt "=" @operator.assignment)
 ;; Loops
-["do" "while" "for"] @keyword.control.repeat
+["do" "while" "for" "in"] @keyword.control.repeat
 ;; Jumps
 "return"   @keyword.control.return
 "yield"    @keyword.control.repeat
@@ -105,6 +105,7 @@
 (identifier_expr ((identifier) @variable.builtin (#eq? @variable.builtin "self")))
 (identifier_expr ((identifier) @variable.builtin (#eq? @variable.builtin "yielded")))
 (integer_literal) @number  @constant.numeric.integer
+(floating_point_literal) @number  @constant.numeric.float
 (boolean_literal) @boolean @constant.builtin.boolean
 (string_literal)  @string
 

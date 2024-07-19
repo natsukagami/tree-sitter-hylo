@@ -3,6 +3,8 @@
 - [ ] `?` implicit modifier
 - [ ] `#pragma` in primary expr
 
+- [ ] What are `remote` types?
+
 ## Precedences that ~seems ok
 
 - Selection on types doesn't work on "floating" types (e.g. `some blalala`).
