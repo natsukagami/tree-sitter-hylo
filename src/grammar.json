@@ -2386,6 +2386,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "implicit_member_ref"
+        },
+        {
+          "type": "SYMBOL",
           "name": "lambda_expr"
         },
         {
@@ -2533,6 +2537,19 @@
               "type": "BLANK"
             }
           ]
+        }
+      ]
+    },
+    "implicit_member_ref": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "."
+        },
+        {
+          "type": "SYMBOL",
+          "name": "primary_decl_ref"
         }
       ]
     },

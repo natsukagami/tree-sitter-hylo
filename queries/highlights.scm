@@ -63,12 +63,16 @@
 ;; Inout
 (inout_expr "&" @operator.prefix @keyword.storage)
 ;; Compound Expr
+(expr (value_member_expr label: (primary_decl_ref identifier: (identifier_expr (identifier) @property))))
 ;;; Function / Method calls
 (function_call_expr head: (primary_decl_ref identifier: (identifier_expr (identifier) @function)))
 (function_call_expr head: (value_member_expr label: (primary_decl_ref identifier: (identifier_expr (identifier) @function.method))))
+(function_call_expr head: (implicit_member_ref (primary_decl_ref identifier: (identifier_expr (identifier) @function.method))))
 (call_argument label: (identifier) @label)
 (subscript_call_expr "[" @punctuation.bracket.subscript)
 (subscript_call_expr "]" @punctuation.bracket.subscript)
+;; Primary Expr
+(implicit_member_ref "." @punctuation.special)
 ;; Tuples
 (tuple_expr "(" @punctuation.bracket.tuple)
 (tuple_expr ")" @punctuation.bracket.tuple)

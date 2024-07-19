@@ -1,0 +1,185 @@
+==================
+CallStaticFunction
+==================
+
+//- typeCheck expecting: failure
+
+type A {
+
+  memberwise init
+
+  public static fun make() -> A { A() }
+
+  public static fun make_overloaded() -> A { A() }
+
+  public static fun make_overloaded(_ x: Bool) -> A { A() }
+
+}
+
+fun check<T>(_ x: T) {}
+
+public fun main() {
+  let x = A.make()
+  check<A>(x)
+
+  let y = A.make_overloaded(true)
+  check<A>(y)
+
+  //! @+1 diagnostic reference to member 'make' cannot be resolved without context
+  _ = .make()
+}
+
+---
+
+(source_file
+  (single_line_comment)
+  (product_type_decl
+    (product_type_head
+      (identifier))
+    (function_memberwise_init)
+    (function_decl
+      (function_head
+        (access_modifier)
+        (static_modifier)
+        (function_name
+          (identifier)))
+      (function_signature
+        (name_type_expr
+          (identifier)))
+      (brace_stmt
+        (stmt
+          (expr
+            (function_call_expr
+              (primary_decl_ref
+                (identifier_expr
+                  (identifier))))))))
+    (function_decl
+      (function_head
+        (access_modifier)
+        (static_modifier)
+        (function_name
+          (identifier)))
+      (function_signature
+        (name_type_expr
+          (identifier)))
+      (brace_stmt
+        (stmt
+          (expr
+            (function_call_expr
+              (primary_decl_ref
+                (identifier_expr
+                  (identifier))))))))
+    (function_decl
+      (function_head
+        (access_modifier)
+        (static_modifier)
+        (function_name
+          (identifier)))
+      (function_signature
+        (parameter_decl
+          (identifier)
+          (name_type_expr
+            (identifier)))
+        (name_type_expr
+          (identifier)))
+      (brace_stmt
+        (stmt
+          (expr
+            (function_call_expr
+              (primary_decl_ref
+                (identifier_expr
+                  (identifier)))))))))
+  (function_decl
+    (function_head
+      (function_name
+        (identifier))
+      (generic_clause
+        (generic_type_parameter
+          (identifier))))
+    (function_signature
+      (parameter_decl
+        (identifier)
+        (name_type_expr
+          (identifier))))
+    (brace_stmt))
+  (function_decl
+    (function_head
+      (access_modifier)
+      (function_name
+        (identifier)))
+    (function_signature)
+    (brace_stmt
+      (stmt
+        (binding_decl
+          (binding_pattern
+            (binding_introducer)
+            (identifier))
+          (expr
+            (function_call_expr
+              (value_member_expr
+                (primary_decl_ref
+                  (identifier_expr
+                    (identifier)))
+                (primary_decl_ref
+                  (identifier_expr
+                    (identifier))))))))
+      (stmt
+        (expr
+          (function_call_expr
+            (primary_decl_ref
+              (identifier_expr
+                (identifier))
+              (static_argument_list
+                (static_argument
+                  (name_type_expr
+                    (identifier)))))
+            (call_argument
+              (expr
+                (primary_decl_ref
+                  (identifier_expr
+                    (identifier))))))))
+      (stmt
+        (binding_decl
+          (binding_pattern
+            (binding_introducer)
+            (identifier))
+          (expr
+            (function_call_expr
+              (value_member_expr
+                (primary_decl_ref
+                  (identifier_expr
+                    (identifier)))
+                (primary_decl_ref
+                  (identifier_expr
+                    (identifier))))
+              (call_argument
+                (expr
+                  (boolean_literal)))))))
+      (stmt
+        (expr
+          (function_call_expr
+            (primary_decl_ref
+              (identifier_expr
+                (identifier))
+              (static_argument_list
+                (static_argument
+                  (name_type_expr
+                    (identifier)))))
+            (call_argument
+              (expr
+                (primary_decl_ref
+                  (identifier_expr
+                    (identifier))))))))
+      (single_line_comment)
+      (stmt
+        (expr
+          (primary_decl_ref
+            (identifier_expr
+              (identifier)))
+          (infix_operator_tail
+            (infix_operator)
+            (function_call_expr
+              (implicit_member_ref
+                (primary_decl_ref
+                  (identifier_expr
+                    (identifier)))))))))))

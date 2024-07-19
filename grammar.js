@@ -519,7 +519,7 @@ module.exports = grammar({
       $._scalar_literal,
       // compound-literal
       $.primary_decl_ref,
-      // implicit-member-ref
+      $.implicit_member_ref,
       $.lambda_expr,
       $._selection_expr,
       $.inout_expr,
@@ -549,6 +549,8 @@ module.exports = grammar({
       field('identifier', $.identifier_expr),
       optional(field('static_args', $.static_argument_list)),
     ),
+
+    implicit_member_ref: $ => seq(".", $.primary_decl_ref),
 
     static_argument_list: $ => seq(
       prec("generics", token.immediate("<")),
