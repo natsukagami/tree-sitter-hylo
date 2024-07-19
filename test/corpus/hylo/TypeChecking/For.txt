@@ -116,7 +116,8 @@ public fun main() {
                     (infix_operator_tail
                       (infix_operator)
                       (integer_literal
-                        (decimal_literal)))))))
+                        (decimal_literal))))))
+              (value_member_index))
             (type_casting_tail
               (name_type_expr
                 (identifier))))))))

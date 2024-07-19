@@ -143,6 +143,40 @@
     }
   },
   {
+    "type": "attribute_argument",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "decimal_literal",
+          "named": true
+        },
+        {
+          "type": "simple_string",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "attribute_argument_list",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "attribute_argument",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "binding_decl",
     "named": true,
     "fields": {
@@ -594,6 +628,25 @@
       "types": [
         {
           "type": "name_type_expr",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "decl_attr",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "attribute_argument_list",
+          "named": true
+        },
+        {
+          "type": "attribute_name",
           "named": true
         }
       ]
@@ -1108,6 +1161,16 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "decl_attr",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -2800,7 +2863,17 @@
   {
     "type": "string_literal",
     "named": true,
-    "fields": {}
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "simple_string",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "subscript_body",
@@ -3809,6 +3882,10 @@
     "named": false
   },
   {
+    "type": "attribute_name",
+    "named": true
+  },
+  {
     "type": "binary_literal",
     "named": true
   },
@@ -3939,6 +4016,10 @@
   {
     "type": "set",
     "named": false
+  },
+  {
+    "type": "simple_string",
+    "named": true
   },
   {
     "type": "sink",

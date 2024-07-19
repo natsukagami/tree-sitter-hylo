@@ -245,6 +245,7 @@ module.exports = grammar({
     ),
 
     function_decl: $ => seq(
+      repeat($.decl_attr),
       field('head', $.function_head),
       field('signature', $.function_signature),
       optional(field('body', $._function_body)),
@@ -965,7 +966,7 @@ module.exports = grammar({
     boolean_literal: $ => choice("true", "false"),
 
     string_literal: $ => choice(
-      $._single_line_string,
+      $.simple_string,
       // multi line string
     ),
 
@@ -973,13 +974,27 @@ module.exports = grammar({
 
     floating_point_literal: $ => floating_point_literal,
 
-    _single_line_string: $ => token(single_line_string),
+    simple_string: $ => token(single_line_string),
 
     integer_literal: $ => choice($.binary_literal, $.octal_literal, $.decimal_literal, $.hexadecimal_literal),
     binary_literal: $ => /0b[01_]+/,
     octal_literal: $ => /0o[0-7_]+/,
     decimal_literal: $ => decimal_literal,
     hexadecimal_literal: $ => /0x[0-9a-fA-F_]+/,
+
+    // DECLARATION ATTRIBUTES
+    decl_attr: $ => seq(
+      $.attribute_name,
+      optional($.attribute_argument_list),
+    ),
+    attribute_name: $ => token(seq("@", field('name', /[a-zA-Z_]+/))),
+    attribute_argument_list: $ => seq(
+      "(",
+      $.attribute_argument,
+      repeat(seq(",", $.attribute_argument)),
+      ")",
+    ),
+    attribute_argument: $ => choice($.simple_string, $.decimal_literal),
 
     // WHITESPACES
     single_line_comment: $ => prec(99, token(/\/\/[^\r\n\v]*/)),

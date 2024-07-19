@@ -49,7 +49,8 @@ public fun main() {
                 (identifier)))
             (call_argument
               (expr
-                (string_literal))))))
+                (string_literal
+                  (simple_string)))))))
       (stmt
         (jump_stmt
           (expr
@@ -114,7 +115,8 @@ public fun main() {
                 (identifier)))
             (call_argument
               (expr
-                (string_literal))))))
+                (string_literal
+                  (simple_string)))))))
       (stmt
         (expr
           (function_call_expr
@@ -123,7 +125,8 @@ public fun main() {
                 (identifier)))
             (call_argument
               (expr
-                (string_literal))))))
+                (string_literal
+                  (simple_string)))))))
       (stmt
         (binding_decl
           (binding_pattern
@@ -147,7 +150,8 @@ public fun main() {
                 (identifier)))
             (call_argument
               (expr
-                (string_literal))))))
+                (string_literal
+                  (simple_string)))))))
       (stmt
         (jump_stmt
           (expr
@@ -174,7 +178,8 @@ public fun main() {
                 (identifier)))
             (call_argument
               (expr
-                (string_literal))))))
+                (string_literal
+                  (simple_string)))))))
       (stmt
         (expr
           (function_call_expr
@@ -195,6 +200,7 @@ public fun main() {
                 (identifier)))
             (call_argument
               (expr
-                (string_literal))))))))
+                (string_literal
+                  (simple_string)))))))))
   (single_line_comment)
   (single_line_comment))

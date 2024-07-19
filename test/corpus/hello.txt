@@ -24,4 +24,5 @@ public fun main() {
                 (identifier)))
             (call_argument
               (expr
-                (string_literal)))))))))
+                (string_literal
+                  (simple_string))))))))))

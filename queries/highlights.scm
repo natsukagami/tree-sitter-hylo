@@ -118,7 +118,7 @@
 (integer_literal) @number  @constant.numeric.integer
 (floating_point_literal) @number  @constant.numeric.float
 (boolean_literal) @boolean @constant.builtin.boolean
-(string_literal)  @string
+(simple_string)  @string
 
 ; Types
 ;; Floats
@@ -132,7 +132,8 @@
 (tuple_type_element ":" @operator.assignment)
 ;; Builtin Types
 (name_type_expr (identifier) @type.builtin (#eq? @type.builtin "Self"))
-(name_type_expr (identifier) @type.builtin (#any-of? @type.builtin "Void" "Int" "String" "Float32" "Float64" "Bool" "Any" "Never" "Union"))
+(name_type_expr (identifier) @type.builtin (#any-of? @type.builtin "Void" "String" "Float32" "Float64" "Bool" "Any" "Never" "Union"))
+(name_type_expr (identifier) @type.builtin (#any-of? @type.builtin "Int" "Int8" "Int16" "Int32" "Int64"))
 
 ; Operator Decls
 "operator" @keyword
@@ -157,6 +158,7 @@
 (receiver_modifier) @keyword.storage.modifier
 (receiver_effect) @keyword.storage.modifier
 (static_modifier) @attribute.static
+(decl_attr (attribute_name) @attribute)
 
 ; Misc
 (single_line_comment) @comment.line

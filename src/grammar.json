@@ -995,6 +995,13 @@
       "type": "SEQ",
       "members": [
         {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "decl_attr"
+          }
+        },
+        {
           "type": "FIELD",
           "name": "head",
           "content": {
@@ -4921,7 +4928,7 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "_single_line_string"
+          "name": "simple_string"
         }
       ]
     },
@@ -5185,7 +5192,7 @@
         ]
       }
     },
-    "_single_line_string": {
+    "simple_string": {
       "type": "TOKEN",
       "content": {
         "type": "SEQ",
@@ -5293,6 +5300,93 @@
     "hexadecimal_literal": {
       "type": "PATTERN",
       "value": "0x[0-9a-fA-F_]+"
+    },
+    "decl_attr": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "attribute_name"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "attribute_argument_list"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        }
+      ]
+    },
+    "attribute_name": {
+      "type": "TOKEN",
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "@"
+          },
+          {
+            "type": "FIELD",
+            "name": "name",
+            "content": {
+              "type": "PATTERN",
+              "value": "[a-zA-Z_]+"
+            }
+          }
+        ]
+      }
+    },
+    "attribute_argument_list": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "("
+        },
+        {
+          "type": "SYMBOL",
+          "name": "attribute_argument"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "STRING",
+                "value": ","
+              },
+              {
+                "type": "SYMBOL",
+                "name": "attribute_argument"
+              }
+            ]
+          }
+        },
+        {
+          "type": "STRING",
+          "value": ")"
+        }
+      ]
+    },
+    "attribute_argument": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "simple_string"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "decimal_literal"
+        }
+      ]
     },
     "single_line_comment": {
       "type": "PREC",

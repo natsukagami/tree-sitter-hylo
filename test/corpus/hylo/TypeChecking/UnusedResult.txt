@@ -1,0 +1,72 @@
+============
+UnusedResult
+============
+
+//- typeCheck expecting: success
+
+fun f() -> Int {
+  1 + 1         //! diagnostic unused result of type 'Int'
+  g()           // OK
+  fatal_error() // OK
+}
+
+fun g() -> Void {}
+
+@ffi("abort")
+fun fatal_error() -> Never
+
+---
+
+(source_file
+  (single_line_comment)
+  (function_decl
+    (function_head
+      (function_name
+        (identifier)))
+    (function_signature
+      (name_type_expr
+        (identifier)))
+    (brace_stmt
+      (stmt
+        (expr
+          (integer_literal
+            (decimal_literal))
+          (infix_operator_tail
+            (infix_operator)
+            (integer_literal
+              (decimal_literal)))))
+      (single_line_comment)
+      (stmt
+        (expr
+          (function_call_expr
+            (primary_decl_ref
+              (identifier_expr
+                (identifier))))))
+      (single_line_comment)
+      (stmt
+        (expr
+          (function_call_expr
+            (primary_decl_ref
+              (identifier_expr
+                (identifier))))))
+      (single_line_comment)))
+  (function_decl
+    (function_head
+      (function_name
+        (identifier)))
+    (function_signature
+      (name_type_expr
+        (identifier)))
+    (brace_stmt))
+  (function_decl
+    (decl_attr
+      (attribute_name)
+      (attribute_argument_list
+        (attribute_argument
+          (simple_string))))
+    (function_head
+      (function_name
+        (identifier)))
+    (function_signature
+      (name_type_expr
+        (identifier)))))
