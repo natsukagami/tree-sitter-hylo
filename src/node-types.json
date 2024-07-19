@@ -1333,11 +1333,15 @@
       }
     },
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": false,
       "types": [
         {
           "type": "receiver_effect",
+          "named": true
+        },
+        {
+          "type": "type_aliases_clause",
           "named": true
         }
       ]
@@ -3535,6 +3539,75 @@
           "named": true
         }
       ]
+    }
+  },
+  {
+    "type": "type_aliases_clause",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "type_aliases_clause_item",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "type_aliases_clause_item",
+    "named": true,
+    "fields": {
+      "lhs": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "rhs": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
+          {
+            "type": "conformance_lens_type_expr",
+            "named": true
+          },
+          {
+            "type": "existential_type_expr",
+            "named": true
+          },
+          {
+            "type": "lambda_type_expr",
+            "named": true
+          },
+          {
+            "type": "name_type_expr",
+            "named": true
+          },
+          {
+            "type": "opaque_type_expr",
+            "named": true
+          },
+          {
+            "type": "tuple_type_expr",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {

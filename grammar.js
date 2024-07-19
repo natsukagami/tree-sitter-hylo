@@ -270,14 +270,13 @@ module.exports = grammar({
       ')',
       optional($.receiver_effect),
       optional(seq("->", field('returns', $._type_expr))),
-      // type-aliases-clause?
+      optional($.type_aliases_clause),
     )),
 
     _parameter_list: $ => seq(
       $.parameter_decl,
       repeat(seq(",", $.parameter_decl)),
     ),
-
     parameter_decl: $ => seq(
       field('label', choice($.identifier, "_")),
       optional(field('name', $.identifier)),
@@ -291,13 +290,23 @@ module.exports = grammar({
         field('default_value', $.expr),
       )),
     ),
-
     _parameter_type_expr: $ => seq(
       optional(field('convention', $.parameter_passing_convention)),
       $._type_expr,
     ),
-
     parameter_passing_convention: $ => choice("let", "inout", "sink", "yield"),
+
+    type_aliases_clause: $ => seq(
+      "where",
+      $.type_aliases_clause_item,
+      repeat(seq(",", $.type_aliases_clause_item)),
+    ),
+    type_aliases_clause_item: $ => seq(
+      "typealias",
+      field('lhs', $.identifier),
+      "=",
+      field('rhs', $._type_expr),
+    ),
 
     _function_body: $ => choice(
       $.method_bundle_body,

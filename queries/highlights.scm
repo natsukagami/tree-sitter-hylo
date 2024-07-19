@@ -22,6 +22,9 @@
 (parameter_decl name:  (identifier) @variable.parameter)
 (parameter_decl "=" @operator.assignment)
 (parameter_passing_convention) @keyword.storage.modifier
+;; Typealiases
+(type_aliases_clause_item lhs: (identifier) @type)
+(type_aliases_clause_item "=" @operator.assignment)
 ;; Body
 (method_impl (method_introducer) @keyword.storage.modifier)
 
