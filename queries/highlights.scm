@@ -64,8 +64,9 @@
 "break"    @keyword.control
 "continue" @keyword.control
 ;; Conditional
-"if"   @keyword.conditional
-"else" @keyword.conditional
+"if"    @keyword.conditional
+"else"  @keyword.conditional
+"match" @keyword.conditional
 ;; Binding
 (binding_decl pattern: (binding_pattern introducer: (binding_introducer) @keyword.storage.modifier))
 (binding_introducer) @keyword.storage.modifier.mut (#eq? @keyword.storage.modifier.mut "var")
@@ -125,7 +126,7 @@
 (tuple_type_element ":" @operator.assignment)
 ;; Builtin Types
 (name_type_expr (identifier) @type.builtin (#eq? @type.builtin "Self"))
-(name_type_expr (identifier) @type.builtin (#any-of? @type.builtin "Void" "Int" "String" "Float32" "Float64" "Bool"))
+(name_type_expr (identifier) @type.builtin (#any-of? @type.builtin "Void" "Int" "String" "Float32" "Float64" "Bool" "Any"))
 
 ; Operator Decls
 "operator" @keyword
