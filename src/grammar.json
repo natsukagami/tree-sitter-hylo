@@ -3366,6 +3366,10 @@
           },
           {
             "type": "SYMBOL",
+            "name": "existential_type_expr"
+          },
+          {
+            "type": "SYMBOL",
             "name": "opaque_type_expr"
           },
           {
@@ -3429,8 +3433,45 @@
         ]
       }
     },
+    "existential_type_expr": {
+      "type": "PREC_RIGHT",
+      "value": "type_float",
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "any"
+          },
+          {
+            "type": "FIELD",
+            "name": "requires",
+            "content": {
+              "type": "SYMBOL",
+              "name": "trait_composition"
+            }
+          },
+          {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "FIELD",
+                "name": "where",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "where_clause"
+                }
+              },
+              {
+                "type": "BLANK"
+              }
+            ]
+          }
+        ]
+      }
+    },
     "opaque_type_expr": {
-      "type": "PREC_LEFT",
+      "type": "PREC_RIGHT",
       "value": "type_float",
       "content": {
         "type": "SEQ",

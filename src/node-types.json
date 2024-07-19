@@ -35,6 +35,10 @@
             "named": true
           },
           {
+            "type": "existential_type_expr",
+            "named": true
+          },
+          {
             "type": "lambda_type_expr",
             "named": true
           },
@@ -92,6 +96,10 @@
           },
           {
             "type": "conformance_lens_type_expr",
+            "named": true
+          },
+          {
+            "type": "existential_type_expr",
             "named": true
           },
           {
@@ -201,6 +209,10 @@
           },
           {
             "type": "conformance_lens_type_expr",
+            "named": true
+          },
+          {
+            "type": "existential_type_expr",
             "named": true
           },
           {
@@ -473,6 +485,10 @@
             "named": true
           },
           {
+            "type": "existential_type_expr",
+            "named": true
+          },
+          {
             "type": "lambda_type_expr",
             "named": true
           },
@@ -528,6 +544,10 @@
           },
           {
             "type": "conformance_lens_type_expr",
+            "named": true
+          },
+          {
+            "type": "existential_type_expr",
             "named": true
           },
           {
@@ -606,6 +626,10 @@
             "named": true
           },
           {
+            "type": "existential_type_expr",
+            "named": true
+          },
+          {
             "type": "lambda_type_expr",
             "named": true
           },
@@ -619,6 +643,32 @@
           },
           {
             "type": "tuple_type_expr",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "existential_type_expr",
+    "named": true,
+    "fields": {
+      "requires": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "trait_composition",
+            "named": true
+          }
+        ]
+      },
+      "where": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "where_clause",
             "named": true
           }
         ]
@@ -795,6 +845,10 @@
           },
           {
             "type": "conformance_lens_type_expr",
+            "named": true
+          },
+          {
+            "type": "existential_type_expr",
             "named": true
           },
           {
@@ -1065,6 +1119,10 @@
             "named": true
           },
           {
+            "type": "existential_type_expr",
+            "named": true
+          },
+          {
             "type": "lambda_type_expr",
             "named": true
           },
@@ -1135,6 +1193,10 @@
           },
           {
             "type": "conformance_lens_type_expr",
+            "named": true
+          },
+          {
+            "type": "existential_type_expr",
             "named": true
           },
           {
@@ -1215,6 +1277,10 @@
           },
           {
             "type": "conformance_lens_type_expr",
+            "named": true
+          },
+          {
+            "type": "existential_type_expr",
             "named": true
           },
           {
@@ -1467,6 +1533,10 @@
           "named": true
         },
         {
+          "type": "existential_type_expr",
+          "named": true
+        },
+        {
           "type": "lambda_type_expr",
           "named": true
         },
@@ -1552,6 +1622,10 @@
             "named": true
           },
           {
+            "type": "existential_type_expr",
+            "named": true
+          },
+          {
             "type": "lambda_type_expr",
             "named": true
           },
@@ -1603,6 +1677,10 @@
           },
           {
             "type": "conformance_lens_type_expr",
+            "named": true
+          },
+          {
+            "type": "existential_type_expr",
             "named": true
           },
           {
@@ -1785,6 +1863,10 @@
           },
           {
             "type": "conformance_lens_type_expr",
+            "named": true
+          },
+          {
+            "type": "existential_type_expr",
             "named": true
           },
           {
@@ -1990,6 +2072,10 @@
             "named": true
           },
           {
+            "type": "existential_type_expr",
+            "named": true
+          },
+          {
             "type": "lambda_type_expr",
             "named": true
           },
@@ -2188,6 +2274,10 @@
             "named": true
           },
           {
+            "type": "existential_type_expr",
+            "named": true
+          },
+          {
             "type": "lambda_type_expr",
             "named": true
           },
@@ -2355,6 +2445,10 @@
           },
           {
             "type": "conformance_lens_type_expr",
+            "named": true
+          },
+          {
+            "type": "existential_type_expr",
             "named": true
           },
           {
@@ -2699,6 +2793,10 @@
             "named": true
           },
           {
+            "type": "existential_type_expr",
+            "named": true
+          },
+          {
             "type": "lambda_type_expr",
             "named": true
           },
@@ -2923,6 +3021,10 @@
           "named": true
         },
         {
+          "type": "existential_type_expr",
+          "named": true
+        },
+        {
           "type": "lambda_type_expr",
           "named": true
         },
@@ -2974,6 +3076,10 @@
           },
           {
             "type": "conformance_lens_type_expr",
+            "named": true
+          },
+          {
+            "type": "existential_type_expr",
             "named": true
           },
           {
@@ -3068,6 +3174,10 @@
           },
           {
             "type": "conformance_lens_type_expr",
+            "named": true
+          },
+          {
+            "type": "existential_type_expr",
             "named": true
           },
           {
@@ -3309,6 +3419,10 @@
   },
   {
     "type": "_",
+    "named": false
+  },
+  {
+    "type": "any",
     "named": false
   },
   {

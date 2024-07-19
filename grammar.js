@@ -679,7 +679,7 @@ module.exports = grammar({
     _type_expr: $ => prec("type_simple", choice(
       // async-type-expr
       $.conformance_lens_type_expr,
-      // existential-type-expr
+      $.existential_type_expr,
       $.opaque_type_expr,
       // indirect-type-expr
       $.lambda_type_expr,
@@ -697,7 +697,13 @@ module.exports = grammar({
       field('trait', $._type_identifier),
     )),
 
-    opaque_type_expr: $ => prec.left("type_float", seq(
+    existential_type_expr: $ => prec.right("type_float", seq(
+      "any",
+      field('requires', $.trait_composition),
+      optional(field('where', $.where_clause))
+    )),
+
+    opaque_type_expr: $ => prec.right("type_float", seq(
       "some",
       choice(
         "_",

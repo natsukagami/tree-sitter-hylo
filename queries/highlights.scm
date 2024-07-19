@@ -86,6 +86,9 @@
 (string_literal)  @string
 
 ; Types
+;; Floats
+"any" @keyword.operator.type
+"some" @keyword.operator.type
 (name_type_expr) @type
 ;; Tuple Types
 (tuple_type_expr "{" @punctuation.bracket)
@@ -98,6 +101,8 @@
 
 ;; Where Clauses
 "where" @keyword
+(value_constraint_expr "@value" @attribute.annotation)
+(equality_constraint "==" @operator.infix)
 (trait_composition "&"* @operator.infix)
 (trait_composition (name_type_expr)* @type.trait)
 

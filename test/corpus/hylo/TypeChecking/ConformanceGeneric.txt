@@ -1,0 +1,183 @@
+==================
+ConformanceGeneric
+==================
+
+//- typeCheck expecting: success
+
+trait T {
+  fun foo()
+}
+
+type A<X>: T {
+  public fun foo() {}
+  public memberwise init
+}
+
+fun check<T>(_ x: T) {}
+
+fun f0(_ a: A<Int>) {
+  let b: any T = a
+  check<any T>(b)
+}
+
+fun f1<B>(_ a: A<B>) {
+  let b: some T.A where T.B: Int, @value T.v == 2 = a
+  check<any T>(b)
+}
+
+---
+
+(source_file
+  (single_line_comment)
+  (trait_decl
+    (trait_head
+      (identifier))
+    (function_decl
+      (function_head
+        (function_name
+          (identifier)))
+      (function_signature)))
+  (product_type_decl
+    (product_type_head
+      (identifier)
+      (generic_clause
+        (generic_type_parameter
+          (identifier)))
+      (conformance_list
+        (name_type_expr
+          (identifier))))
+    (function_decl
+      (function_head
+        (access_modifier)
+        (function_name
+          (identifier)))
+      (function_signature)
+      (brace_stmt))
+    (function_memberwise_init
+      (access_modifier)))
+  (function_decl
+    (function_head
+      (function_name
+        (identifier))
+      (generic_clause
+        (generic_type_parameter
+          (identifier))))
+    (function_signature
+      (parameter_decl
+        (identifier)
+        (name_type_expr
+          (identifier))))
+    (brace_stmt))
+  (function_decl
+    (function_head
+      (function_name
+        (identifier)))
+    (function_signature
+      (parameter_decl
+        (identifier)
+        (name_type_expr
+          (identifier)
+          (generic_clause
+            (generic_type_parameter
+              (identifier))))))
+    (brace_stmt
+      (stmt
+        (binding_decl
+          (binding_pattern
+            (binding_introducer)
+            (identifier)
+            (existential_type_expr
+              (trait_composition
+                (name_type_expr
+                  (identifier)))))
+          (expr
+            (primary_decl_ref
+              (identifier_expr
+                (identifier))))))
+      (stmt
+        (expr
+          (function_call_expr
+            (primary_decl_ref
+              (identifier_expr
+                (identifier))
+              (static_argument_list
+                (static_argument
+                  (existential_type_expr
+                    (trait_composition
+                      (name_type_expr
+                        (identifier)))))))
+            (call_argument
+              (expr
+                (primary_decl_ref
+                  (identifier_expr
+                    (identifier))))))))))
+  (function_decl
+    (function_head
+      (function_name
+        (identifier))
+      (generic_clause
+        (generic_type_parameter
+          (identifier))))
+    (function_signature
+      (parameter_decl
+        (identifier)
+        (name_type_expr
+          (identifier)
+          (generic_clause
+            (generic_type_parameter
+              (identifier))))))
+    (brace_stmt
+      (stmt
+        (binding_decl
+          (binding_pattern
+            (binding_introducer)
+            (identifier)
+            (opaque_type_expr
+              (trait_composition
+                (name_type_expr
+                  (name_type_expr
+                    (identifier))
+                  (identifier)))
+              (where_clause
+                (conformance_constraint
+                  (name_type_expr
+                    (name_type_expr
+                      (identifier))
+                    (identifier))
+                  (trait_composition
+                    (name_type_expr
+                      (identifier))))
+                (value_constraint_expr
+                  (expr
+                    (value_member_expr
+                      (primary_decl_ref
+                        (identifier_expr
+                          (identifier)))
+                      (primary_decl_ref
+                        (identifier_expr
+                          (identifier))))
+                    (infix_operator_tail
+                      (infix_operator)
+                      (integer_literal
+                        (decimal_literal))))))))
+          (expr
+            (primary_decl_ref
+              (identifier_expr
+                (identifier))))))
+      (stmt
+        (expr
+          (function_call_expr
+            (primary_decl_ref
+              (identifier_expr
+                (identifier))
+              (static_argument_list
+                (static_argument
+                  (existential_type_expr
+                    (trait_composition
+                      (name_type_expr
+                        (identifier)))))))
+            (call_argument
+              (expr
+                (primary_decl_ref
+                  (identifier_expr
+                    (identifier)))))))))))
