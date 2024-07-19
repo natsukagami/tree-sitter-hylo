@@ -1,0 +1,50 @@
+==========
+Assignment
+==========
+
+//- typeCheck expecting: success
+
+public fun main() {
+  var x = 0
+  &x = x + 1 + 2
+}
+
+---
+
+(source_file
+  (single_line_comment)
+  (function_decl
+    (function_head
+      (access_modifier)
+      (function_name
+        (identifier)))
+    (function_signature)
+    (brace_stmt
+      (stmt
+        (binding_decl
+          (binding_pattern
+            (binding_introducer)
+            (identifier))
+          (expr
+            (integer_literal
+              (decimal_literal)))))
+      (stmt
+        (expr
+          (inout_expr
+            (expr
+              (primary_decl_ref
+                (identifier_expr
+                  (identifier)))))
+          (infix_operator_tail
+            (infix_operator)
+            (primary_decl_ref
+              (identifier_expr
+                (identifier))))
+          (infix_operator_tail
+            (infix_operator)
+            (integer_literal
+              (decimal_literal)))
+          (infix_operator_tail
+            (infix_operator)
+            (integer_literal
+              (decimal_literal))))))))

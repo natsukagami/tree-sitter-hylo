@@ -23,6 +23,8 @@
 ; Expr
 ;; Operators
 (infix_operator) @operator.infix
+;; Inout
+(inout_expr "&" @operator.prefix @keyword.storage)
 ;; Compound Expr
 ;;; Function / Method calls
 (function_call_expr head: (primary_decl_ref identifier: (identifier_expr (identifier) @function)))
