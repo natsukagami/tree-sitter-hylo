@@ -394,7 +394,7 @@ module.exports = grammar({
 
     // EXPRESSIONS
 
-    expr: $ => seq($._infix_expr_head, repeat(seq($._infix_expr_tail))),
+    expr: $ => prec.left(seq($._infix_expr_head, repeat(seq($._infix_expr_tail)))),
 
     _infix_expr_head: $ => prec(2, choice(
       // async-expr
@@ -600,28 +600,69 @@ module.exports = grammar({
     ),
 
     // TYPES
-    type_expr: $ => $._type_expr,
+    type_expr: $ => prec.right($._type_expr),
 
     _type_expr: $ => choice(
       // async-type-expr
       // conformance-lens-type-expr
       // existential-type-expr
-      // opaque-type-expr
+      $.opaque_type_expr,
       // indirect-type-expr
-      // lambda-type-expr
-      $.name_type_expr,
+      $.lambda_type_expr,
       // stored-projection-type-expr
       // tuple-type-expr
       // union-type-expr
       // wildcard-type-expr
+      $._simple_type_expr,
+    ),
+
+    _simple_type_expr: $ => choice(
+      $.name_type_expr,
       seq('(', $._type_expr, ')'),
     ),
 
+    opaque_type_expr: $ => prec.left(seq(
+      "some",
+      choice(
+        "_",
+        seq(
+          field('requires', $.trait_composition),
+          optional($.where_clause),
+        ),
+      ),
+    )),
+
+    lambda_type_expr: $ => seq(
+      optional($.lambda_environment),
+      "(",
+      optional(field('params', seq(
+        $.lambda_parameter,
+        repeat(seq(",", $.lambda_parameter)),
+      ))),
+      ")",
+      optional($.receiver_effect),
+      "->",
+      field('returns', $.type_expr),
+    ),
+
+    lambda_environment: $ => choice(
+      "thin",
+      seq("[", $.type_expr, "]"),
+    ),
+
+    lambda_parameter: $ => seq(
+      optional(seq(
+        field('label', $.identifier),
+        ":",
+      )),
+      field('type', $.type_expr),
+    ),
+
     name_type_expr: $ => seq(
-      optional(seq(field('prefix', $._type_expr), ".")),
+      optional(seq(field('prefix', $._simple_type_expr), ".")),
       // inlined: primary-type-def-ref
       field('identifier', $._type_identifier),
-      // optional(field('arguments', $._type_argument_list)),
+      optional(field('arguments', $.generic_clause)),
     ),
 
     _type_identifier: $ => $.identifier,
@@ -644,7 +685,7 @@ module.exports = grammar({
     generic_type_parameter: $ => seq(
       optional("@type"),
       field('name', $.identifier),
-      optional(alias("...", 'spread')),
+      optional(alias("...", 'variadic')),
       optional(seq(":", field('requires', $.trait_composition))),
       optional(seq("=", field('default', $.type_expr))),
     ),
@@ -657,10 +698,10 @@ module.exports = grammar({
       optional(seq("=", field('default', $.expr))),
     ),
 
-    where_clause: $ => seq("where",
+    where_clause: $ => prec.right(seq("where",
       $._where_clause_constraint,
       repeat(seq(",", $._where_clause_constraint)),
-    ),
+    )),
 
     _where_clause_constraint: $ => choice(
       $.equality_constraint,
