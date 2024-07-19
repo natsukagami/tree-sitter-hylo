@@ -1,0 +1,58 @@
+=====================
+DuplicateOperatorDecl
+=====================
+
+operator prefix-*
+operator infix-* : addition
+operator infix+* : addition       //! diagnostic duplicate operator declaration '+*'
+operator infix+* : multiplication //! diagnostic duplicate operator declaration '+*'
+
+fun prefix-*(a: Int, b: Int) -> Int { a + b }
+
+---
+
+(source_file
+  (operator_decl
+    (operator_notation)
+    (operator))
+  (operator_decl
+    (operator_notation)
+    (operator)
+    (precedence_group))
+  (operator_decl
+    (operator_notation)
+    (operator)
+    (precedence_group))
+  (single_line_comment)
+  (operator_decl
+    (operator_notation)
+    (operator)
+    (precedence_group))
+  (single_line_comment)
+  (function_decl
+    (function_head
+      (function_name
+        (operator_notation)
+        (operator)))
+    (function_signature
+      (parameter_decl
+        (identifier)
+        (name_type_expr
+          (identifier)))
+      (parameter_decl
+        (identifier)
+        (name_type_expr
+          (identifier)))
+      (name_type_expr
+        (identifier)))
+    (brace_stmt
+      (stmt
+        (expr
+          (primary_decl_ref
+            (identifier_expr
+              (identifier)))
+          (infix_operator_tail
+            (infix_operator)
+            (primary_decl_ref
+              (identifier_expr
+                (identifier)))))))))

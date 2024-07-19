@@ -80,8 +80,8 @@
 (infix_operator) @operator.infix
 (prefix_operator) @operator.prefix
 (postfix_operator) @operator.postfix
-(type_casting_tail operator: "as") @keyword
-(type_casting_tail operator: "as!") @keyword.unsafe
+(type_casting_tail operator: "as" @keyword)
+(type_casting_tail operator: "as!" @keyword.unsafe)
 ;; Inout
 (inout_expr "&" @operator.prefix @keyword.storage)
 ;; Compound Expr
@@ -119,6 +119,12 @@
 (tuple_type_expr "}" @punctuation.bracket)
 (tuple_type_element label: (identifier) @label)
 (tuple_type_element ":" @operator.assignment)
+
+; Operator Decls
+"operator" @keyword
+(operator_notation) @attribute.operator
+(operator) @operator
+(precedence_group)? @attribute.operator.precedence
 
 ;; Generic
 (generic_type_parameter "@type" @attribute.annotation)

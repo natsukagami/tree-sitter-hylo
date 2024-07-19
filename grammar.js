@@ -60,7 +60,7 @@ module.exports = grammar({
       $.binding_decl,
       $._function_decl,
       $.subscript_decl,
-      // operator-decl
+      $.operator_decl,
     ),
 
     import_decl: $ => seq(
@@ -308,8 +308,8 @@ module.exports = grammar({
 
     function_name: $ => choice(
       'init',
-      seq('fun', $.identifier),
-      // TODO: operator case
+      seq('fun', field('name', $.identifier)),
+      seq('fun', $.operator_notation, field('operator', $.operator))
     ),
 
     function_memberwise_init: $ => seq(optional($.access_modifier), "memberwise", "init"),
@@ -352,6 +352,22 @@ module.exports = grammar({
     ),
 
     subscript_introducer: $ => choice("let", "sink", "inout", "set"),
+
+    // OPERATOR DECLARATIONS
+
+    operator_decl: $ => seq(
+      "operator",
+      $.operator_notation,
+      field('name', $.operator),
+      optional(seq(
+        ":",
+        $.precedence_group
+      )),
+    ),
+
+    operator_notation: $ => token(choice("prefix", "infix", "postfix")),
+
+    precedence_group: $ => token(choice("assignment", "disjunction", "conjunction", "comparison", "fallback", "range", "addition", "multiplication", "shift")),
 
     // PROPERTIES
 

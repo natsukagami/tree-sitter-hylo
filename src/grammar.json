@@ -110,6 +110,10 @@
         {
           "type": "SYMBOL",
           "name": "subscript_decl"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "operator_decl"
         }
       ]
     },
@@ -1416,8 +1420,33 @@
               "value": "fun"
             },
             {
+              "type": "FIELD",
+              "name": "name",
+              "content": {
+                "type": "SYMBOL",
+                "name": "identifier"
+              }
+            }
+          ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "fun"
+            },
+            {
               "type": "SYMBOL",
-              "name": "identifier"
+              "name": "operator_notation"
+            },
+            {
+              "type": "FIELD",
+              "name": "operator",
+              "content": {
+                "type": "SYMBOL",
+                "name": "operator"
+              }
             }
           ]
         }
@@ -1685,6 +1714,112 @@
           "value": "set"
         }
       ]
+    },
+    "operator_decl": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "operator"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "operator_notation"
+        },
+        {
+          "type": "FIELD",
+          "name": "name",
+          "content": {
+            "type": "SYMBOL",
+            "name": "operator"
+          }
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": ":"
+                },
+                {
+                  "type": "SYMBOL",
+                  "name": "precedence_group"
+                }
+              ]
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        }
+      ]
+    },
+    "operator_notation": {
+      "type": "TOKEN",
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "prefix"
+          },
+          {
+            "type": "STRING",
+            "value": "infix"
+          },
+          {
+            "type": "STRING",
+            "value": "postfix"
+          }
+        ]
+      }
+    },
+    "precedence_group": {
+      "type": "TOKEN",
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "assignment"
+          },
+          {
+            "type": "STRING",
+            "value": "disjunction"
+          },
+          {
+            "type": "STRING",
+            "value": "conjunction"
+          },
+          {
+            "type": "STRING",
+            "value": "comparison"
+          },
+          {
+            "type": "STRING",
+            "value": "fallback"
+          },
+          {
+            "type": "STRING",
+            "value": "range"
+          },
+          {
+            "type": "STRING",
+            "value": "addition"
+          },
+          {
+            "type": "STRING",
+            "value": "multiplication"
+          },
+          {
+            "type": "STRING",
+            "value": "shift"
+          }
+        ]
+      }
     },
     "property_decl": {
       "type": "SEQ",

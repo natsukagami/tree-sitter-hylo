@@ -1163,13 +1163,34 @@
   {
     "type": "function_name",
     "named": true,
-    "fields": {},
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "operator": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "operator",
+            "named": true
+          }
+        ]
+      }
+    },
     "children": {
       "multiple": false,
       "required": false,
       "types": [
         {
-          "type": "identifier",
+          "type": "operator_notation",
           "named": true
         }
       ]
@@ -2099,6 +2120,41 @@
     }
   },
   {
+    "type": "operator",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "operator_decl",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "operator",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "operator_notation",
+          "named": true
+        },
+        {
+          "type": "precedence_group",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "parameter_decl",
     "named": true,
     "fields": {
@@ -2481,6 +2537,10 @@
         },
         {
           "type": "namespace_decl",
+          "named": true
+        },
+        {
+          "type": "operator_decl",
           "named": true
         },
         {
@@ -3751,6 +3811,18 @@
   },
   {
     "type": "octal_literal",
+    "named": true
+  },
+  {
+    "type": "operator",
+    "named": false
+  },
+  {
+    "type": "operator_notation",
+    "named": true
+  },
+  {
+    "type": "precedence_group",
     "named": true
   },
   {
