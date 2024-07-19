@@ -394,7 +394,7 @@ module.exports = grammar({
 
     // EXPRESSIONS
 
-    expr: $ => prec.left(seq($._infix_expr_head, repeat(seq($._infix_expr_tail)))),
+    expr: $ => prec.left("expr_infix", seq($._infix_expr_head, repeat(seq($._infix_expr_tail)))),
 
     _infix_expr_head: $ => prec(2, choice(
       // async-expr
@@ -413,15 +413,15 @@ module.exports = grammar({
       field('rhs', $._prefix_expr),
     ),
 
-    _prefix_expr: $ => seq(optional($.prefix_operator), $._postfix_expr),
+    _prefix_expr: $ => prec.left("expr_prefix", seq(optional($.prefix_operator), $._postfix_expr)),
 
-    _postfix_expr: $ => choice(
+    _postfix_expr: $ => prec("expr_postfix", choice(
       $._compound_expr,
       seq(
         $._postfix_expr,
         $.postfix_operator,
       ),
-    ),
+    )),
 
     // COMPOUND EXPRESSIONS
 
@@ -433,21 +433,21 @@ module.exports = grammar({
       $._primary_expr,
     ),
 
-    value_member_expr: $ => seq(
+    value_member_expr: $ => prec("expr_select", seq(
       field('qualifier', $._compound_expr),
       ".",
       choice(
         field('label', $.primary_decl_ref),
         field('index', /[0-9]+/),
       ),
-    ),
+    )),
 
-    function_call_expr: $ => seq(
+    function_call_expr: $ => prec("expr_select", seq(
       field('head', $._compound_expr),
       token.immediate("("),
       field('arguments', optional($._call_argument_list)),
       ")",
-    ),
+    )),
 
     _call_argument_list: $ => seq(
       $.call_argument,
@@ -471,11 +471,14 @@ module.exports = grammar({
       // implicit-member-ref
       $.lambda_expr,
       $._selection_expr,
-      // inout-expr
+      $.inout_expr,
       $.tuple_expr,
       $.pragma_expr,
       "nil",
     ),
+
+    //! TODO: fix possible whitespace in between
+    inout_expr: $ => prec("expr_inout", seq("&", $.expr)),
 
     tuple_expr: $ => seq(
       "(",
@@ -805,6 +808,11 @@ module.exports = grammar({
   conflicts: $ => [
     // method bundle needs to see the whole set to know, but should be short (3 items)
     [$.method_impl, $.receiver_modifier]
+  ],
+
+  precedences: $ => [
+    // Expressions: select > suffix > prefix > infix > float > inout
+    ["expr_select", "expr_postfix", "expr_prefix", "expr_infix", "expr_float", "expr_inout"]
   ],
 });
 
