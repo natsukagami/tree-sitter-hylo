@@ -140,6 +140,7 @@
 
 ; Modifier
 (access_modifier) @attribute.access
+(receiver_modifier) @keyword.storage.modifier
 (static_modifier) @attribute.static
 
 ; Misc
