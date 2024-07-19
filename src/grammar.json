@@ -4120,43 +4120,22 @@
       }
     },
     "block_comment": {
-      "type": "PREC",
-      "value": 100,
-      "content": {
-        "type": "CHOICE",
-        "members": [
-          {
-            "type": "SEQ",
-            "members": [
-              {
-                "type": "SYMBOL",
-                "name": "_block_comment_open"
-              },
-              {
-                "type": "STRING",
-                "value": "*/"
-              }
-            ]
-          },
-          {
-            "type": "SEQ",
-            "members": [
-              {
-                "type": "SYMBOL",
-                "name": "_block_comment_open"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "block_comment"
-              },
-              {
-                "type": "STRING",
-                "value": "*/"
-              }
-            ]
-          }
-        ]
-      }
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "_block_comment_open"
+            },
+            {
+              "type": "STRING",
+              "value": "*/"
+            }
+          ]
+        }
+      ]
     },
     "_block_comment_open": {
       "type": "TOKEN",

@@ -1,0 +1,18 @@
+=============
+NestedComments
+=============
+
+/* hehe
+  /* even if it contains a nested block */
+*/
+
+type A {}
+
+---
+
+(source_file
+  (block_comment
+    (block_comment))
+  (product_type_decl
+    (product_type_head
+      (identifier))))

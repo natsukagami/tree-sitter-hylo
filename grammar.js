@@ -794,10 +794,7 @@ module.exports = grammar({
 
     // WHITESPACES
     single_line_comment: $ => prec(99, token(/\/\/[^\r\n\v]*/)),
-    block_comment: $ => prec(100, choice(
-      seq($._block_comment_open, "*/"),
-      seq($._block_comment_open, $.block_comment, "*/")
-    )),
+    block_comment: $ => seq($._block_comment_open, "*/"),
     _block_comment_open: $ => token(/\/[*](?:[^*\/]+|(?:[\/]+|[*]+)[^*\/])*/),
   },
 

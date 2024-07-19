@@ -100,17 +100,7 @@
   {
     "type": "block_comment",
     "named": true,
-    "fields": {},
-    "children": {
-      "multiple": false,
-      "required": false,
-      "types": [
-        {
-          "type": "block_comment",
-          "named": true
-        }
-      ]
-    }
+    "fields": {}
   },
   {
     "type": "boolean_literal",
