@@ -1,0 +1,83 @@
+============
+CallFunction
+============
+
+//- typeCheck expecting: failure
+
+fun f(_ x: sink {}) -> {} { x }
+
+public fun main() {
+  f(())
+  
+  f()       //! diagnostic incompatible labels: found '()', expected '(_:)'
+  f((), ()) //! diagnostic incompatible labels: found '(_:_:)', expected '(_:)'
+  f(y: ())  //! diagnostic incompatible labels: found '(y:)', expected '(_:)'
+}
+
+---
+
+(source_file
+  (single_line_comment)
+  (function_decl
+    (function_head
+      (function_name
+        (identifier)))
+    (function_signature
+      (parameter_decl
+        (identifier)
+        (parameter_passing_convention)
+        (tuple_type_expr))
+      (tuple_type_expr))
+    (brace_stmt
+      (stmt
+        (expr
+          (primary_decl_ref
+            (identifier_expr
+              (identifier)))))))
+  (function_decl
+    (function_head
+      (access_modifier)
+      (function_name
+        (identifier)))
+    (function_signature)
+    (brace_stmt
+      (stmt
+        (expr
+          (function_call_expr
+            (primary_decl_ref
+              (identifier_expr
+                (identifier)))
+            (call_argument
+              (expr
+                (tuple_expr))))))
+      (stmt
+        (expr
+          (function_call_expr
+            (primary_decl_ref
+              (identifier_expr
+                (identifier))))))
+      (single_line_comment)
+      (stmt
+        (expr
+          (function_call_expr
+            (primary_decl_ref
+              (identifier_expr
+                (identifier)))
+            (call_argument
+              (expr
+                (tuple_expr)))
+            (call_argument
+              (expr
+                (tuple_expr))))))
+      (single_line_comment)
+      (stmt
+        (expr
+          (function_call_expr
+            (primary_decl_ref
+              (identifier_expr
+                (identifier)))
+            (call_argument
+              (identifier)
+              (expr
+                (tuple_expr))))))
+      (single_line_comment))))

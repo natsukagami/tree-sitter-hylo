@@ -719,8 +719,10 @@ module.exports = grammar({
 
     tuple_type_expr: $ => seq(
       "{",
-      $.tuple_type_element,
-      repeat(seq(",", $.tuple_type_element)),
+      optional(seq(
+        $.tuple_type_element,
+        repeat(seq(",", $.tuple_type_element))
+      )),
       "}",
     ),
 
