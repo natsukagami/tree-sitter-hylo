@@ -1,3 +1,7 @@
+; Import
+"import" @keyword.directive
+(import_decl (identifier) @namespace)
+
 ; Function Decl
 "fun"  @keyword
 ;; Function names
