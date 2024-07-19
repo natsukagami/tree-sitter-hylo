@@ -1,0 +1,124 @@
+=============================
+BindingTypeInferenceWithHints
+=============================
+
+//- typeCheck expecting: success
+
+fun check<T>(_ x: T) {}
+
+public fun main() {
+  let x0: {Int, Float64} = (2, 3)
+  check<{Int, Float64}>(x0)
+
+  let x1: {_, Float64} = (2, 3)
+  check<{Int, Float64}>(x1)
+}
+
+---
+
+(source_file
+  (single_line_comment)
+  (function_decl
+    (function_head
+      (function_name
+        (identifier))
+      (generic_clause
+        (generic_type_parameter
+          (identifier))))
+    (function_signature
+      (parameter_decl
+        (identifier)
+        (name_type_expr
+          (identifier))))
+    (brace_stmt))
+  (function_decl
+    (function_head
+      (access_modifier)
+      (function_name
+        (identifier)))
+    (function_signature)
+    (brace_stmt
+      (stmt
+        (binding_decl
+          (binding_pattern
+            (binding_introducer)
+            (identifier)
+            (tuple_type_expr
+              (tuple_type_element
+                (name_type_expr
+                  (identifier)))
+              (tuple_type_element
+                (name_type_expr
+                  (identifier)))))
+          (expr
+            (tuple_expr
+              (tuple_expr_element
+                (expr
+                  (integer_literal
+                    (decimal_literal))))
+              (tuple_expr_element
+                (expr
+                  (integer_literal
+                    (decimal_literal))))))))
+      (stmt
+        (expr
+          (function_call_expr
+            (primary_decl_ref
+              (identifier_expr
+                (identifier))
+              (static_argument_list
+                (static_argument
+                  (tuple_type_expr
+                    (tuple_type_element
+                      (name_type_expr
+                        (identifier)))
+                    (tuple_type_element
+                      (name_type_expr
+                        (identifier)))))))
+            (call_argument
+              (expr
+                (primary_decl_ref
+                  (identifier_expr
+                    (identifier))))))))
+      (stmt
+        (binding_decl
+          (binding_pattern
+            (binding_introducer)
+            (identifier)
+            (tuple_type_expr
+              (tuple_type_element
+                (name_type_expr
+                  (identifier)))
+              (tuple_type_element
+                (name_type_expr
+                  (identifier)))))
+          (expr
+            (tuple_expr
+              (tuple_expr_element
+                (expr
+                  (integer_literal
+                    (decimal_literal))))
+              (tuple_expr_element
+                (expr
+                  (integer_literal
+                    (decimal_literal))))))))
+      (stmt
+        (expr
+          (function_call_expr
+            (primary_decl_ref
+              (identifier_expr
+                (identifier))
+              (static_argument_list
+                (static_argument
+                  (tuple_type_expr
+                    (tuple_type_element
+                      (name_type_expr
+                        (identifier)))
+                    (tuple_type_element
+                      (name_type_expr
+                        (identifier)))))))
+            (call_argument
+              (expr
+                (primary_decl_ref
+                  (identifier_expr
+                    (identifier)))))))))))

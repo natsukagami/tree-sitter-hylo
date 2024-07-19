@@ -1,9 +1,9 @@
 ; Function Decl
 "fun"  @keyword
 ;; Function names
-(function_memberwise_init) @function.builtin
+(function_memberwise_init) @constructor
 (function_name (identifier) @function)
-(function_name "init" @function.builtin)
+(function_name "init" @constructor)
 ;; Parameters
 (parameter_decl label: (identifier) @label)
 (parameter_decl label: (identifier) @variable.parameter !name)
@@ -27,7 +27,7 @@
 
 ; Property
 "property" @keyword
-(property_head name: (identifier) @variable.member @variable.other.member)
+(property_head name: (identifier) @variable.member @property)
 
 ; Type Alias
 "typealias" @keyword
@@ -35,6 +35,14 @@
 (type_alias_decl "=" @operator.assignment)
 
 ; Statements
+;; Jumps
+"return"   @keyword.control.return
+"yield"    @keyword.control.repeat
+"break"    @keyword.control
+"continue" @keyword.control
+;; Conditional
+"if"   @keyword.conditional
+"else" @keyword.conditional
 ;; Binding
 (binding_decl pattern: (binding_pattern introducer: (binding_introducer) @keyword.storage.modifier))
 (binding_decl pattern: (binding_pattern pattern: (identifier) @variable))
@@ -50,12 +58,19 @@
 (function_call_expr head: (primary_decl_ref identifier: (identifier_expr (identifier) @function)))
 (function_call_expr head: (value_member_expr label: (primary_decl_ref identifier: (identifier_expr (identifier) @function.method))))
 (call_argument label: (identifier) @label)
+;; Tuples
+(tuple_expr "(" @punctuation.bracket)
+(tuple_expr ")" @punctuation.bracket)
 ;; Literals
 (integer_literal) @number  @constant.numeric.integer
 (boolean_literal) @boolean @constant.builtin.boolean
+(string_literal)  @string
 
 ; Types
 (name_type_expr) @type
+;; Tuple Types
+(tuple_type_expr "{" @punctuation.bracket)
+(tuple_type_expr "}" @punctuation.bracket)
 
 ;; Generic
 (generic_type_parameter "@type" @attribute.annotation)

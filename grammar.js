@@ -430,14 +430,14 @@ module.exports = grammar({
 
     // EXPRESSIONS
 
-    expr: $ => prec.left("expr_infix", seq($._infix_expr_head, repeat(seq($._infix_expr_tail)))),
+    expr: $ => prec.left(seq($._infix_expr_head, repeat(seq($._infix_expr_tail)))),
 
-    _infix_expr_head: $ => prec(2, choice(
+    _infix_expr_head: $ => choice(
       // async-expr
       // await-expr
       // unsafe-expr
       $._prefix_expr
-    )), // TODO
+    ), // TODO
 
     _infix_expr_tail: $ => choice(
       // type-casting-tail
@@ -532,7 +532,25 @@ module.exports = grammar({
 
     primary_decl_ref: $ => seq(
       field('identifier', $.identifier_expr),
-      // repeat($._static_argument_list)
+      optional(field('static_args', $.static_argument_list)),
+    ),
+
+    static_argument_list: $ => seq(
+      token.immediate("<"),
+      $.static_argument,
+      repeat(seq(",", $.static_argument)),
+      token.immediate(">"),
+    ),
+
+    static_argument: $ => seq(
+      optional(seq(
+        field('label', $.identifier),
+        ":",
+      )),
+      choice(
+        field('expr', $.expr),
+        field('type', $._type_expr),
+      ),
     ),
 
     identifier_expr: $ => seq(
@@ -540,11 +558,11 @@ module.exports = grammar({
       // field('impls', repeat($._impl_identifier)),
     ),
 
-    _entity_identifier: $ => choice(
+    _entity_identifier: $ => prec("expr", choice(
       $.identifier,
       // function-entity-identifier
       //   operator-entity-identifier
-    ),
+    )),
 
     lambda_expr: $ => seq(
       "fun",
@@ -635,10 +653,10 @@ module.exports = grammar({
     prefix_operator: $ => seq(prefix_operator_head, repeat(imm_raw_operator)),
     postfix_operator: $ => seq(postfix_operator_head, repeat(imm_raw_operator)),
     operator: $ => operator,
-    infix_operator: $ => choice(
+    infix_operator: $ => token(choice(
       operator,
       "=", "==", "..<", "...",
-    ),
+    )),
 
     // TYPES
     _type_expr: $ => prec("type_simple", choice(
@@ -649,7 +667,7 @@ module.exports = grammar({
       // indirect-type-expr
       $.lambda_type_expr,
       // stored-projection-type-expr
-      // tuple-type-expr
+      $.tuple_type_expr,
       // union-type-expr
       // wildcard-type-expr
       $.name_type_expr,
@@ -699,6 +717,21 @@ module.exports = grammar({
       field('type', $._type_expr),
     )),
 
+    tuple_type_expr: $ => seq(
+      "{",
+      $.tuple_type_element,
+      repeat(seq(",", $.tuple_type_element)),
+      "}",
+    ),
+
+    tuple_type_element: $ => seq(
+      optional(seq(
+        field('label', $.identifier),
+        ":",
+      )),
+      $._type_expr,
+    ),
+
     name_type_expr: $ => prec("type_select", seq(
       optional(seq(field('prefix', $._type_expr), ".")),
       // inlined: primary-type-def-ref
@@ -706,7 +739,7 @@ module.exports = grammar({
       optional(field('arguments', $.generic_clause)),
     )),
 
-    _type_identifier: $ => $.identifier,
+    _type_identifier: $ => prec("type", $.identifier),
 
     // GENERICS AND WHERE CLAUSES
 
@@ -850,6 +883,8 @@ module.exports = grammar({
     ["expr_select", "expr_inout", "expr_postfix", "expr_prefix", "expr_float", "expr_infix"],
     // Type Expressions: float > conformance > where > lambda
     ["type_simple", "type_select", "type_float", "type_where", "type_lambda", "type_infix"],
+    // Type vs Expression clash, prefer types
+    ["type", "expr"],
   ],
 });
 
