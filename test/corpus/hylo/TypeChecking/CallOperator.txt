@@ -1,0 +1,80 @@
+============
+CallOperator
+============
+
+//- typeCheck expecting: failure
+
+public fun main() {
+  let a = 42
+
+  let _ = a + a
+  let _ = +a
+  let _ = *a    //! diagnostic type 'Int' has no member 'prefix*'
+  let _ = a+    //! diagnostic type 'Int' has no member 'postfix+'
+}
+
+---
+
+(source_file
+  (single_line_comment)
+  (function_decl
+    (function_head
+      (access_modifier)
+      (function_name
+        (identifier)))
+    (function_signature)
+    (brace_stmt
+      (stmt
+        (binding_decl
+          (binding_pattern
+            (binding_introducer)
+            (identifier))
+          (expr
+            (integer_literal
+              (decimal_literal)))))
+      (stmt
+        (binding_decl
+          (binding_pattern
+            (binding_introducer)
+            (wildcard_pattern))
+          (expr
+            (primary_decl_ref
+              (identifier_expr
+                (identifier)))
+            (infix_operator_tail
+              (infix_operator)
+              (primary_decl_ref
+                (identifier_expr
+                  (identifier)))))))
+      (stmt
+        (binding_decl
+          (binding_pattern
+            (binding_introducer)
+            (wildcard_pattern))
+          (expr
+            (prefix_operator)
+            (primary_decl_ref
+              (identifier_expr
+                (identifier))))))
+      (stmt
+        (binding_decl
+          (binding_pattern
+            (binding_introducer)
+            (wildcard_pattern))
+          (expr
+            (prefix_operator)
+            (primary_decl_ref
+              (identifier_expr
+                (identifier))))))
+      (single_line_comment)
+      (stmt
+        (binding_decl
+          (binding_pattern
+            (binding_introducer)
+            (wildcard_pattern))
+          (expr
+            (primary_decl_ref
+              (identifier_expr
+                (identifier)))
+            (postfix_operator))))
+      (single_line_comment))))

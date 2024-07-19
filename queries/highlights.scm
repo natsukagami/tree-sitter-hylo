@@ -56,6 +56,8 @@
 ; Expr
 ;; Operators
 (infix_operator) @operator.infix
+(prefix_operator) @operator.prefix
+(postfix_operator) @operator.postfix
 (type_casting_tail operator: "as") @keyword
 (type_casting_tail operator: "as!") @keyword.unsafe
 ;; Inout
