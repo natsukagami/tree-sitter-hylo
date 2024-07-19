@@ -653,6 +653,22 @@
     }
   },
   {
+    "type": "deinit_decl",
+    "named": true,
+    "fields": {
+      "body": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "brace_stmt",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "discard_stmt",
     "named": true,
     "fields": {},
@@ -2198,6 +2214,10 @@
             "named": true
           },
           {
+            "type": "subscript_decl",
+            "named": true
+          },
+          {
             "type": "trait_decl",
             "named": true
           },
@@ -2468,6 +2488,10 @@
           },
           {
             "type": "binding_decl",
+            "named": true
+          },
+          {
+            "type": "deinit_decl",
             "named": true
           },
           {
@@ -3904,6 +3928,10 @@
   {
     "type": "decimal_literal",
     "named": true
+  },
+  {
+    "type": "deinit",
+    "named": false
   },
   {
     "type": "do",

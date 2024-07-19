@@ -14,6 +14,8 @@
 (function_decl head: (function_head (function_name (identifier) @function.abstract)) !body)
 (function_decl head: (function_head (function_name (identifier) @function.method)))
 (function_name "init" @constructor)
+(function_name (identifier) @constructor.destructor (#eq? @constructor.destructor "deinit"))
+(deinit_decl "deinit" @constructor.destructor)
 ;; Parameters
 (parameter_decl label: (identifier) @label)
 (parameter_decl label: (identifier) @variable.parameter !name)
@@ -134,6 +136,7 @@
 (name_type_expr (identifier) @type.builtin (#eq? @type.builtin "Self"))
 (name_type_expr (identifier) @type.builtin (#any-of? @type.builtin "Void" "String" "Float32" "Float64" "Bool" "Any" "Never" "Union"))
 (name_type_expr (identifier) @type.builtin (#any-of? @type.builtin "Int" "Int8" "Int16" "Int32" "Int64"))
+(name_type_expr (identifier) @type.builtin (#any-of? @type.builtin "Deinitializable"))
 
 ; Operator Decls
 "operator" @keyword

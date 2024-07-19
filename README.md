@@ -7,6 +7,7 @@
 - [ ] What are `remote` types?
 
 - `type_argument_list` is not defined (used in `type_expr`). We give it something similar to `generics_clause`.
+- `deinit` not really used anywhere, perhaps replaced by `Deinitializable` trait. We highlight both.
 
 ## Precedences that ~seems ok
 

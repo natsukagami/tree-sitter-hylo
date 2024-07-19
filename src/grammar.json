@@ -263,6 +263,10 @@
         {
           "type": "SYMBOL",
           "name": "_function_decl"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "subscript_decl"
         }
       ]
     },
@@ -723,6 +727,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "deinit_decl"
+        },
+        {
+          "type": "SYMBOL",
           "name": "subscript_decl"
         },
         {
@@ -740,6 +748,23 @@
         {
           "type": "SYMBOL",
           "name": "type_alias_decl"
+        }
+      ]
+    },
+    "deinit_decl": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "deinit"
+        },
+        {
+          "type": "FIELD",
+          "name": "body",
+          "content": {
+            "type": "SYMBOL",
+            "name": "brace_stmt"
+          }
         }
       ]
     },

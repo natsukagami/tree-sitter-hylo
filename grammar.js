@@ -97,7 +97,7 @@ module.exports = grammar({
       $.conformance_decl,
       $.binding_decl,
       $._function_decl,
-      // $.subscript_decl,
+      $.subscript_decl,
     ),
 
     // TRAIT
@@ -185,12 +185,17 @@ module.exports = grammar({
 
     _product_type_member_decl: $ => choice(
       $._function_decl,
-      // deinit-decl
+      $.deinit_decl,
       $.subscript_decl,
       $.property_decl,
       $.binding_decl,
       $.product_type_decl,
       $.type_alias_decl,
+    ),
+
+    deinit_decl: $ => seq(
+      "deinit",
+      field('body', $.brace_stmt),
     ),
 
     // EXTENSION
