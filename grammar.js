@@ -59,7 +59,7 @@ module.exports = grammar({
       $.conformance_decl,
       $.binding_decl,
       $._function_decl,
-      // subscript-decl
+      $.subscript_decl,
       // operator-decl
     ),
 
@@ -115,7 +115,7 @@ module.exports = grammar({
     _trait_requirement_decl: $ => choice(
       // associated-decl
       $._function_decl,
-      // subscript-decl
+      $.subscript_decl,
       // property-decl
     ),
 
@@ -149,7 +149,7 @@ module.exports = grammar({
     _product_type_member_decl: $ => choice(
       $._function_decl,
       // deinit-decl
-      // subscript-decl
+      $.subscript_decl,
       // property-decl
       $.binding_decl,
       $.product_type_decl,
@@ -169,7 +169,7 @@ module.exports = grammar({
 
     _extension_member_decl: $ => choice(
       $._function_decl,
-      // subscript-decl
+      $.subscript_decl,
       $.product_type_decl,
       $.type_alias_decl,
     ),
@@ -194,7 +194,7 @@ module.exports = grammar({
 
     _conformance_member_decl: $ => choice(
       $._function_decl,
-      // subscript-decl
+      $.subscript_decl,
       $.product_type_decl,
       $.type_alias_decl,
     ),
@@ -279,6 +279,36 @@ module.exports = grammar({
 
     function_memberwise_init: $ => seq(optional($.access_modifier), "memberwise", "init"),
 
+    // SUBSCRIPTS
+
+    subscript_decl: $ => seq($.subscript_head, $.subscript_signature, $.subscript_body),
+
+    subscript_head: $ => seq(
+      optional($.access_modifier),
+      optional($._member_modifiers),
+      "subscript",
+      field('name', $.identifier),
+      optional($.generic_clause),
+      optional($.capture_list),
+    ),
+
+    subscript_signature: $ => seq(
+      "(",
+      optional(field('params', $._parameter_list)),
+      ")",
+      optional($.receiver_effect),
+      ":",
+      optional(alias("var", "subscript_var_modifier")),
+      field('returns', $.type_expr),
+    ),
+
+    subscript_body: $ => seq("{", repeat1($.subscript_impl), "}"),
+
+    subscript_impl: $ => seq(
+      alias(choice("let", "sink", "inout", "set"), "subscript_introducer"),
+      optional(field('body', $.brace_stmt)),
+    ),
+
     // CAPTURES
 
     capture_list: $ => seq(
@@ -326,12 +356,12 @@ module.exports = grammar({
     // DECLARATION STATEMENTS
 
     _decl_stmt: $ => choice(
-      // type-alias-decl
-      // product-type-decl
+      $.type_alias_decl,
+      $.product_type_decl,
       $.extension_decl,
       $.conformance_decl,
-      // function-decl
-      // subscript-decl
+      $.function_decl,
+      $.subscript_decl,
       $.binding_decl,
     ),
 

@@ -106,6 +106,10 @@
         {
           "type": "SYMBOL",
           "name": "_function_decl"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "subscript_decl"
         }
       ]
     },
@@ -376,6 +380,10 @@
         {
           "type": "SYMBOL",
           "name": "_function_decl"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "subscript_decl"
         }
       ]
     },
@@ -540,6 +548,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "subscript_decl"
+        },
+        {
+          "type": "SYMBOL",
           "name": "binding_decl"
         },
         {
@@ -636,6 +648,10 @@
         {
           "type": "SYMBOL",
           "name": "_function_decl"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "subscript_decl"
         },
         {
           "type": "SYMBOL",
@@ -764,6 +780,10 @@
         {
           "type": "SYMBOL",
           "name": "_function_decl"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "subscript_decl"
         },
         {
           "type": "SYMBOL",
@@ -1238,6 +1258,225 @@
         }
       ]
     },
+    "subscript_decl": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "subscript_head"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "subscript_signature"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "subscript_body"
+        }
+      ]
+    },
+    "subscript_head": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "access_modifier"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "_member_modifiers"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": "subscript"
+        },
+        {
+          "type": "FIELD",
+          "name": "name",
+          "content": {
+            "type": "SYMBOL",
+            "name": "identifier"
+          }
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "generic_clause"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "capture_list"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        }
+      ]
+    },
+    "subscript_signature": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "("
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "FIELD",
+              "name": "params",
+              "content": {
+                "type": "SYMBOL",
+                "name": "_parameter_list"
+              }
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": ")"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "receiver_effect"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": ":"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "ALIAS",
+              "content": {
+                "type": "STRING",
+                "value": "var"
+              },
+              "named": false,
+              "value": "subscript_var_modifier"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "FIELD",
+          "name": "returns",
+          "content": {
+            "type": "SYMBOL",
+            "name": "type_expr"
+          }
+        }
+      ]
+    },
+    "subscript_body": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "{"
+        },
+        {
+          "type": "REPEAT1",
+          "content": {
+            "type": "SYMBOL",
+            "name": "subscript_impl"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "}"
+        }
+      ]
+    },
+    "subscript_impl": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "ALIAS",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "STRING",
+                "value": "let"
+              },
+              {
+                "type": "STRING",
+                "value": "sink"
+              },
+              {
+                "type": "STRING",
+                "value": "inout"
+              },
+              {
+                "type": "STRING",
+                "value": "set"
+              }
+            ]
+          },
+          "named": false,
+          "value": "subscript_introducer"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "FIELD",
+              "name": "body",
+              "content": {
+                "type": "SYMBOL",
+                "name": "brace_stmt"
+              }
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        }
+      ]
+    },
     "capture_list": {
       "type": "SEQ",
       "members": [
@@ -1418,11 +1657,27 @@
       "members": [
         {
           "type": "SYMBOL",
+          "name": "type_alias_decl"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "product_type_decl"
+        },
+        {
+          "type": "SYMBOL",
           "name": "extension_decl"
         },
         {
           "type": "SYMBOL",
           "name": "conformance_decl"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "function_decl"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "subscript_decl"
         },
         {
           "type": "SYMBOL",

@@ -287,6 +287,10 @@
             "named": true
           },
           {
+            "type": "subscript_decl",
+            "named": true
+          },
+          {
             "type": "type_alias_decl",
             "named": true
           }
@@ -551,6 +555,10 @@
           },
           {
             "type": "product_type_decl",
+            "named": true
+          },
+          {
+            "type": "subscript_decl",
             "named": true
           },
           {
@@ -1492,6 +1500,10 @@
             "named": true
           },
           {
+            "type": "subscript_decl",
+            "named": true
+          },
+          {
             "type": "type_alias_decl",
             "named": true
           }
@@ -1599,6 +1611,10 @@
           "named": true
         },
         {
+          "type": "subscript_decl",
+          "named": true
+        },
+        {
           "type": "trait_decl",
           "named": true
         },
@@ -1638,7 +1654,23 @@
           "named": true
         },
         {
+          "type": "function_decl",
+          "named": true
+        },
+        {
           "type": "jump_stmt",
+          "named": true
+        },
+        {
+          "type": "product_type_decl",
+          "named": true
+        },
+        {
+          "type": "subscript_decl",
+          "named": true
+        },
+        {
+          "type": "type_alias_decl",
           "named": true
         }
       ]
@@ -1648,6 +1680,142 @@
     "type": "string_literal",
     "named": true,
     "fields": {}
+  },
+  {
+    "type": "subscript_body",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "subscript_impl",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "subscript_decl",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "subscript_body",
+          "named": true
+        },
+        {
+          "type": "subscript_head",
+          "named": true
+        },
+        {
+          "type": "subscript_signature",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "subscript_head",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "access_modifier",
+          "named": true
+        },
+        {
+          "type": "capture_list",
+          "named": true
+        },
+        {
+          "type": "generic_clause",
+          "named": true
+        },
+        {
+          "type": "receiver_modifier",
+          "named": true
+        },
+        {
+          "type": "static_modifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "subscript_impl",
+    "named": true,
+    "fields": {
+      "body": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "brace_stmt",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "subscript_signature",
+    "named": true,
+    "fields": {
+      "params": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": ",",
+            "named": false
+          },
+          {
+            "type": "parameter_decl",
+            "named": true
+          }
+        ]
+      },
+      "returns": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "type_expr",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "receiver_effect",
+          "named": true
+        }
+      ]
+    }
   },
   {
     "type": "trait_composition",
@@ -1682,6 +1850,10 @@
           },
           {
             "type": "function_memberwise_init",
+            "named": true
+          },
+          {
+            "type": "subscript_decl",
             "named": true
           }
         ]
@@ -2193,6 +2365,18 @@
   {
     "type": "static_modifier",
     "named": true
+  },
+  {
+    "type": "subscript",
+    "named": false
+  },
+  {
+    "type": "subscript_introducer",
+    "named": false
+  },
+  {
+    "type": "subscript_var_modifier",
+    "named": false
   },
   {
     "type": "trait",
