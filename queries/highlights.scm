@@ -2,6 +2,10 @@
 "import" @keyword.directive
 (import_decl (identifier) @namespace)
 
+; Namespace
+"namespace" @keyword
+(namespace_head name: (identifier) @namespace)
+
 ; Function Decl
 "fun"  @keyword
 ;; Function names
@@ -57,7 +61,8 @@
 ;; Discard
 (discard_stmt "=" @operator.assignment)
 ;; Loops
-["do" "while" "for" "in"] @keyword.control.repeat
+["do" "while" "for"] @keyword.control.repeat
+(for_stmt "in" @keyword.control.repeat)
 ;; Jumps
 "return"   @keyword.control.return
 "yield"    @keyword.control.repeat
@@ -91,6 +96,7 @@
 (inout_expr "&" @operator.prefix @keyword.storage)
 ;; Compound Expr
 (expr (value_member_expr label: (primary_decl_ref identifier: (identifier_expr (identifier) @property))))
+(expr (value_member_expr index: (value_member_index) @property))
 ;;; Function / Method calls
 (function_call_expr head: (primary_decl_ref identifier: (identifier_expr (identifier) @function)))
 (function_call_expr head: (value_member_expr label: (primary_decl_ref identifier: (identifier_expr (identifier) @function.method))))
@@ -116,7 +122,7 @@
 
 ; Types
 ;; Floats
-"any" @keyword.operator.type
+(existential_type_expr "any" @keyword.operator.type)
 "some" @keyword.operator.type
 (name_type_expr (identifier) @type)
 ;; Tuple Types
@@ -126,7 +132,7 @@
 (tuple_type_element ":" @operator.assignment)
 ;; Builtin Types
 (name_type_expr (identifier) @type.builtin (#eq? @type.builtin "Self"))
-(name_type_expr (identifier) @type.builtin (#any-of? @type.builtin "Void" "Int" "String" "Float32" "Float64" "Bool" "Any"))
+(name_type_expr (identifier) @type.builtin (#any-of? @type.builtin "Void" "Int" "String" "Float32" "Float64" "Bool" "Any" "Never"))
 
 ; Operator Decls
 "operator" @keyword

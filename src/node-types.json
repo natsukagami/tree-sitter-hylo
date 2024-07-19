@@ -3517,6 +3517,16 @@
     "type": "value_member_expr",
     "named": true,
     "fields": {
+      "index": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "value_member_index",
+            "named": true
+          }
+        ]
+      },
       "label": {
         "multiple": false,
         "required": false,
@@ -3973,6 +3983,10 @@
   {
     "type": "value",
     "named": false
+  },
+  {
+    "type": "value_member_index",
+    "named": true
   },
   {
     "type": "var",

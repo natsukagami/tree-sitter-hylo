@@ -548,9 +548,11 @@ module.exports = grammar({
       ".",
       choice(
         field('label', $.primary_decl_ref),
-        field('index', /[0-9]+/),
+        field('index', $.value_member_index),
       ),
     )),
+
+    value_member_index: $ => /[0-9]+/,
 
     function_call_expr: $ => prec("expr_select", seq(
       field('head', $._compound_expr),

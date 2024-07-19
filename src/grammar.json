@@ -2585,14 +2585,18 @@
                 "type": "FIELD",
                 "name": "index",
                 "content": {
-                  "type": "PATTERN",
-                  "value": "[0-9]+"
+                  "type": "SYMBOL",
+                  "name": "value_member_index"
                 }
               }
             ]
           }
         ]
       }
+    },
+    "value_member_index": {
+      "type": "PATTERN",
+      "value": "[0-9]+"
     },
     "function_call_expr": {
       "type": "PREC",
