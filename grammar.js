@@ -551,10 +551,10 @@ module.exports = grammar({
     ),
 
     static_argument_list: $ => seq(
-      token.immediate("<"),
+      prec("generics", token.immediate("<")),
       $.static_argument,
       repeat(seq(",", $.static_argument)),
-      token.immediate(">"),
+      prec("generics", token.immediate(">")),
     ),
 
     static_argument: $ => seq(
@@ -665,13 +665,13 @@ module.exports = grammar({
 
     // OPERATORS
 
-    prefix_operator: $ => seq(prefix_operator_head, repeat(imm_raw_operator)),
-    postfix_operator: $ => seq(postfix_operator_head, repeat(imm_raw_operator)),
-    operator: $ => operator,
-    infix_operator: $ => token(choice(
+    prefix_operator: $ => prec("operators", seq(prefix_operator_head, repeat(imm_raw_operator))),
+    postfix_operator: $ => prec("operators", seq(postfix_operator_head, repeat(imm_raw_operator))),
+    operator: $ => prec("operators", operator),
+    infix_operator: $ => prec("operators", token(choice(
       operator,
       "=", "==", "..<", "...",
-    )),
+    ))),
 
     // TYPES
     _type_expr: $ => prec("type_simple", choice(
@@ -761,11 +761,11 @@ module.exports = grammar({
     // GENERICS AND WHERE CLAUSES
 
     generic_clause: $ => seq(
-      "<",
+      prec("generics", token.immediate("<")),
       $._generic_parameter,
       repeat(seq(",", $._generic_parameter)),
       optional($.where_clause),
-      ">",
+      prec("generics", token.immediate(">")),
     ),
 
     _generic_parameter: $ => choice(
@@ -903,6 +903,8 @@ module.exports = grammar({
     ["type_simple", "type_select", "type_float", "type_where", "type_lambda", "type_infix"],
     // Type vs Expression clash, prefer types
     ["type", "expr"],
+    // Generic brackets have higher precedence than operators
+    ["generics", "operators"]
   ],
 });
 

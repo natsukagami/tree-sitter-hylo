@@ -16,6 +16,7 @@
 ; Struct Decl
 "type" @keyword
 (product_type_head name: (identifier) @type)
+(product_type_decl body: (binding_decl pattern: (binding_pattern pattern: (identifier) @property)))
 
 ; Trait Decl
 "trait" @keyword

@@ -1261,6 +1261,11 @@
     }
   },
   {
+    "type": "infix_operator",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "infix_operator_tail",
     "named": true,
     "fields": {
@@ -3338,10 +3343,6 @@
   {
     "type": "import",
     "named": false
-  },
-  {
-    "type": "infix_operator",
-    "named": true
   },
   {
     "type": "init",
