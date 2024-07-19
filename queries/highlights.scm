@@ -62,6 +62,11 @@
 (generic_type_parameter name: (identifier) @type)
 (generic_type_parameter "variadic" @attribute.variadic)
 
+;; Where Clauses
+"where" @keyword
+(trait_composition "&"* @operator.infix)
+(trait_composition (name_type_expr)* @type.trait)
+
 ; Modifier
 (access_modifier) @attribute.access
 
