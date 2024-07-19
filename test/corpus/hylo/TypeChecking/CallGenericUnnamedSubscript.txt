@@ -1,0 +1,119 @@
+===========================
+CallGenericUnnamedSubscript
+===========================
+
+//- typeCheck expecting: failure
+
+type A {
+
+  public memberwise init
+
+  public subscript<T>(_ x: T) : T {
+    yield x
+  }
+
+}
+
+public fun main() {
+  let a = A()
+  let b: Int = a[0]
+  let c: Float64 = a[0]
+  let d: Bool = a[0] //! diagnostic incompatible types 'Bool' and 'Int'
+}
+
+---
+
+(source_file
+  (single_line_comment)
+  (product_type_decl
+    (product_type_head
+      (identifier))
+    (function_memberwise_init
+      (access_modifier))
+    (subscript_decl
+      (subscript_head
+        (access_modifier)
+        (generic_clause
+          (generic_type_parameter
+            (identifier))))
+      (subscript_signature
+        (parameter_decl
+          (identifier)
+          (name_type_expr
+            (identifier)))
+        (name_type_expr
+          (identifier)))
+      (subscript_body
+        (brace_stmt
+          (stmt
+            (jump_stmt
+              (expr
+                (primary_decl_ref
+                  (identifier_expr
+                    (identifier))))))))))
+  (function_decl
+    (function_head
+      (access_modifier)
+      (function_name
+        (identifier)))
+    (function_signature)
+    (brace_stmt
+      (stmt
+        (binding_decl
+          (binding_pattern
+            (binding_introducer)
+            (identifier))
+          (expr
+            (function_call_expr
+              (primary_decl_ref
+                (identifier_expr
+                  (identifier)))))))
+      (stmt
+        (binding_decl
+          (binding_pattern
+            (binding_introducer)
+            (identifier)
+            (name_type_expr
+              (identifier)))
+          (expr
+            (subscript_call_expr
+              (primary_decl_ref
+                (identifier_expr
+                  (identifier)))
+              (call_argument
+                (expr
+                  (integer_literal
+                    (decimal_literal))))))))
+      (stmt
+        (binding_decl
+          (binding_pattern
+            (binding_introducer)
+            (identifier)
+            (name_type_expr
+              (identifier)))
+          (expr
+            (subscript_call_expr
+              (primary_decl_ref
+                (identifier_expr
+                  (identifier)))
+              (call_argument
+                (expr
+                  (integer_literal
+                    (decimal_literal))))))))
+      (stmt
+        (binding_decl
+          (binding_pattern
+            (binding_introducer)
+            (identifier)
+            (name_type_expr
+              (identifier)))
+          (expr
+            (subscript_call_expr
+              (primary_decl_ref
+                (identifier_expr
+                  (identifier)))
+              (call_argument
+                (expr
+                  (integer_literal
+                    (decimal_literal))))))))
+      (single_line_comment))))

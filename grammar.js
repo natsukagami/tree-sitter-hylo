@@ -325,7 +325,7 @@ module.exports = grammar({
       optional($.access_modifier),
       optional($._member_modifiers),
       "subscript",
-      field('name', $.identifier),
+      optional(field('name', $.identifier)),
       optional($.generic_clause),
       optional($.capture_list),
     ),
@@ -340,7 +340,10 @@ module.exports = grammar({
       field('returns', $._type_expr),
     ),
 
-    subscript_body: $ => seq("{", repeat1($.subscript_impl), "}"),
+    subscript_body: $ => choice(
+      seq("{", repeat1($.subscript_impl), "}"),
+      $.brace_stmt,
+    ),
 
     subscript_impl: $ => seq(
       $.subscript_introducer,
@@ -470,7 +473,7 @@ module.exports = grammar({
       $.value_member_expr,
       // static-value-member-expr
       $.function_call_expr,
-      // subscript-call-expr
+      $.subscript_call_expr,
       $._primary_expr,
     ),
 
@@ -488,6 +491,13 @@ module.exports = grammar({
       token.immediate("("),
       field('arguments', optional($._call_argument_list)),
       ")",
+    )),
+
+    subscript_call_expr: $ => prec("expr_select", seq(
+      field('head', $._compound_expr),
+      token.immediate("["),
+      field('arguments', optional($._call_argument_list)),
+      "]",
     )),
 
     _call_argument_list: $ => seq(
@@ -882,7 +892,8 @@ module.exports = grammar({
 
   conflicts: $ => [
     // method bundle needs to see the whole set to know, but should be short (3 items)
-    [$.method_introducer, $.receiver_modifier]
+    [$.method_introducer, $.receiver_modifier],
+    [$.subscript_introducer, $.receiver_modifier],
   ],
 
   precedences: $ => [

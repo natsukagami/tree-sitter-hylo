@@ -690,6 +690,10 @@
           "named": true
         },
         {
+          "type": "subscript_call_expr",
+          "named": true
+        },
+        {
           "type": "tuple_expr",
           "named": true
         },
@@ -891,6 +895,10 @@
           },
           {
             "type": "string_literal",
+            "named": true
+          },
+          {
+            "type": "subscript_call_expr",
             "named": true
           },
           {
@@ -1324,6 +1332,10 @@
           },
           {
             "type": "string_literal",
+            "named": true
+          },
+          {
+            "type": "subscript_call_expr",
             "named": true
           },
           {
@@ -2413,10 +2425,104 @@
       "required": true,
       "types": [
         {
+          "type": "brace_stmt",
+          "named": true
+        },
+        {
           "type": "subscript_impl",
           "named": true
         }
       ]
+    }
+  },
+  {
+    "type": "subscript_call_expr",
+    "named": true,
+    "fields": {
+      "arguments": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": ",",
+            "named": false
+          },
+          {
+            "type": "call_argument",
+            "named": true
+          }
+        ]
+      },
+      "head": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "boolean_literal",
+            "named": true
+          },
+          {
+            "type": "conditional_expr",
+            "named": true
+          },
+          {
+            "type": "floating_point_literal",
+            "named": true
+          },
+          {
+            "type": "function_call_expr",
+            "named": true
+          },
+          {
+            "type": "inout_expr",
+            "named": true
+          },
+          {
+            "type": "integer_literal",
+            "named": true
+          },
+          {
+            "type": "lambda_expr",
+            "named": true
+          },
+          {
+            "type": "match_expr",
+            "named": true
+          },
+          {
+            "type": "nil",
+            "named": false
+          },
+          {
+            "type": "pragma_expr",
+            "named": true
+          },
+          {
+            "type": "primary_decl_ref",
+            "named": true
+          },
+          {
+            "type": "string_literal",
+            "named": true
+          },
+          {
+            "type": "subscript_call_expr",
+            "named": true
+          },
+          {
+            "type": "tuple_expr",
+            "named": true
+          },
+          {
+            "type": "unicode_scalar_literal",
+            "named": true
+          },
+          {
+            "type": "value_member_expr",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
@@ -2455,7 +2561,7 @@
     "fields": {
       "name": {
         "multiple": false,
-        "required": true,
+        "required": false,
         "types": [
           {
             "type": "identifier",
@@ -3027,6 +3133,10 @@
           },
           {
             "type": "string_literal",
+            "named": true
+          },
+          {
+            "type": "subscript_call_expr",
             "named": true
           },
           {
