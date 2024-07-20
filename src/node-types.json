@@ -2152,10 +2152,6 @@
         "required": true,
         "types": [
           {
-            "type": "\n",
-            "named": false
-          },
-          {
             "type": ";",
             "named": false
           },
@@ -3977,10 +3973,6 @@
     "type": "wildcard_pattern",
     "named": true,
     "fields": {}
-  },
-  {
-    "type": "\n",
-    "named": false
   },
   {
     "type": "#file",

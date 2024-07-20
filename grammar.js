@@ -2,6 +2,7 @@
 
 // Lexing Precedences
 const GENERICS_P = 99
+const SEPARATOR_P = 96
 const COMMENTS_P = 95
 const INOUT_P = 91
 const OPERATOR_P = 90
@@ -1056,7 +1057,7 @@ function repeat1StmtSep(item) {
   return seq(
     repeat(";"),
     item,
-    repeat(seq(choice("\n", ";"), optional(item)))
+    repeat(seq(token(prec(SEPARATOR_P, choice("\n", ";"))), optional(item)))
   )
 }
 

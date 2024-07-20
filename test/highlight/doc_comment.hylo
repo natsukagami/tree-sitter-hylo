@@ -1,0 +1,12 @@
+// Not doc comment
+// <- comment.line
+/// Doc comment
+// <- comment.documentation
+fun a() {
+}
+
+
+/// c2
+// <- comment.documentation
+fun b() {
+}

@@ -25,17 +25,24 @@
                 "type": "SEQ",
                 "members": [
                   {
-                    "type": "CHOICE",
-                    "members": [
-                      {
-                        "type": "STRING",
-                        "value": "\n"
-                      },
-                      {
-                        "type": "STRING",
-                        "value": ";"
+                    "type": "TOKEN",
+                    "content": {
+                      "type": "PREC",
+                      "value": 96,
+                      "content": {
+                        "type": "CHOICE",
+                        "members": [
+                          {
+                            "type": "STRING",
+                            "value": "\n"
+                          },
+                          {
+                            "type": "STRING",
+                            "value": ";"
+                          }
+                        ]
                       }
-                    ]
+                    }
                   },
                   {
                     "type": "CHOICE",
@@ -164,17 +171,24 @@
                   "type": "SEQ",
                   "members": [
                     {
-                      "type": "CHOICE",
-                      "members": [
-                        {
-                          "type": "STRING",
-                          "value": "\n"
-                        },
-                        {
-                          "type": "STRING",
-                          "value": ";"
+                      "type": "TOKEN",
+                      "content": {
+                        "type": "PREC",
+                        "value": 96,
+                        "content": {
+                          "type": "CHOICE",
+                          "members": [
+                            {
+                              "type": "STRING",
+                              "value": "\n"
+                            },
+                            {
+                              "type": "STRING",
+                              "value": ";"
+                            }
+                          ]
                         }
-                      ]
+                      }
                     },
                     {
                       "type": "CHOICE",
@@ -2075,17 +2089,24 @@
             "type": "SEQ",
             "members": [
               {
-                "type": "CHOICE",
-                "members": [
-                  {
-                    "type": "STRING",
-                    "value": "\n"
-                  },
-                  {
-                    "type": "STRING",
-                    "value": ";"
+                "type": "TOKEN",
+                "content": {
+                  "type": "PREC",
+                  "value": 96,
+                  "content": {
+                    "type": "CHOICE",
+                    "members": [
+                      {
+                        "type": "STRING",
+                        "value": "\n"
+                      },
+                      {
+                        "type": "STRING",
+                        "value": ";"
+                      }
+                    ]
                   }
-                ]
+                }
               },
               {
                 "type": "CHOICE",

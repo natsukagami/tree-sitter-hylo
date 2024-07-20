@@ -172,4 +172,5 @@
 
 ; Misc
 (single_line_comment) @comment.line
+((single_line_comment) @comment.documentation (#match? @comment.documentation "^///(\\s*$|\\s+.*)"))
 (block_comment)       @comment.block
