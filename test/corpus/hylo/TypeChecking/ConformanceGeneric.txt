@@ -102,28 +102,31 @@ fun f1<B>(_ a: A<B>) {
                     (identifier_expr
                       (identifier)))))))
           (expr
-            (selector
-              (identifier_expr
-                (identifier))))))
+            (value_member_expr
+              (selector
+                (identifier_expr
+                  (identifier)))))))
       (stmt
         (expr
           (function_call_expr
-            (selector
-              (identifier_expr
-                (identifier))
-              (static_argument_list
-                (static_argument
-                  (existential_type_expr
-                    (trait_composition
-                      (name_type_expr
-                        (selector
-                          (identifier_expr
-                            (identifier)))))))))
+            (value_member_expr
+              (selector
+                (identifier_expr
+                  (identifier))
+                (static_argument_list
+                  (static_argument
+                    (existential_type_expr
+                      (trait_composition
+                        (name_type_expr
+                          (selector
+                            (identifier_expr
+                              (identifier))))))))))
             (call_argument
               (expr
-                (selector
-                  (identifier_expr
-                    (identifier))))))))))
+                (value_member_expr
+                  (selector
+                    (identifier_expr
+                      (identifier)))))))))))
   (function_decl
     (function_head
       (function_name
@@ -176,9 +179,10 @@ fun f1<B>(_ a: A<B>) {
                 (value_constraint_expr
                   (expr
                     (value_member_expr
-                      (selector
-                        (identifier_expr
-                          (identifier)))
+                      (value_member_expr
+                        (selector
+                          (identifier_expr
+                            (identifier))))
                       (selector
                         (identifier_expr
                           (identifier))))
@@ -188,25 +192,28 @@ fun f1<B>(_ a: A<B>) {
                         (decimal_literal)))
                     (infix_operator_tail
                       (infix_operator)
-                      (selector
-                        (identifier_expr
-                          (identifier)))))))))))
+                      (value_member_expr
+                        (selector
+                          (identifier_expr
+                            (identifier))))))))))))
       (stmt
         (expr
           (function_call_expr
-            (selector
-              (identifier_expr
-                (identifier))
-              (static_argument_list
-                (static_argument
-                  (existential_type_expr
-                    (trait_composition
-                      (name_type_expr
-                        (selector
-                          (identifier_expr
-                            (identifier)))))))))
+            (value_member_expr
+              (selector
+                (identifier_expr
+                  (identifier))
+                (static_argument_list
+                  (static_argument
+                    (existential_type_expr
+                      (trait_composition
+                        (name_type_expr
+                          (selector
+                            (identifier_expr
+                              (identifier))))))))))
             (call_argument
               (expr
-                (selector
-                  (identifier_expr
-                    (identifier)))))))))))
+                (value_member_expr
+                  (selector
+                    (identifier_expr
+                      (identifier))))))))))))

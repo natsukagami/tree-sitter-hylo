@@ -52,9 +52,10 @@ public fun main() {
         (stmt
           (expr
             (function_call_expr
-              (selector
-                (identifier_expr
-                  (identifier))))))))
+              (value_member_expr
+                (selector
+                  (identifier_expr
+                    (identifier)))))))))
     (function_decl
       (function_head
         (access_modifier)
@@ -70,9 +71,10 @@ public fun main() {
         (stmt
           (expr
             (function_call_expr
-              (selector
-                (identifier_expr
-                  (identifier))))))))
+              (value_member_expr
+                (selector
+                  (identifier_expr
+                    (identifier)))))))))
     (function_decl
       (function_head
         (access_modifier)
@@ -94,9 +96,10 @@ public fun main() {
         (stmt
           (expr
             (function_call_expr
-              (selector
-                (identifier_expr
-                  (identifier)))))))))
+              (value_member_expr
+                (selector
+                  (identifier_expr
+                    (identifier))))))))))
   (function_decl
     (function_head
       (function_name
@@ -127,29 +130,32 @@ public fun main() {
           (expr
             (function_call_expr
               (value_member_expr
-                (selector
-                  (identifier_expr
-                    (identifier)))
+                (value_member_expr
+                  (selector
+                    (identifier_expr
+                      (identifier))))
                 (selector
                   (identifier_expr
                     (identifier))))))))
       (stmt
         (expr
           (function_call_expr
-            (selector
-              (identifier_expr
-                (identifier))
-              (static_argument_list
-                (static_argument
-                  (name_type_expr
-                    (selector
-                      (identifier_expr
-                        (identifier)))))))
+            (value_member_expr
+              (selector
+                (identifier_expr
+                  (identifier))
+                (static_argument_list
+                  (static_argument
+                    (name_type_expr
+                      (selector
+                        (identifier_expr
+                          (identifier))))))))
             (call_argument
               (expr
-                (selector
-                  (identifier_expr
-                    (identifier))))))))
+                (value_member_expr
+                  (selector
+                    (identifier_expr
+                      (identifier)))))))))
       (stmt
         (binding_decl
           (binding_pattern
@@ -158,9 +164,10 @@ public fun main() {
           (expr
             (function_call_expr
               (value_member_expr
-                (selector
-                  (identifier_expr
-                    (identifier)))
+                (value_member_expr
+                  (selector
+                    (identifier_expr
+                      (identifier))))
                 (selector
                   (identifier_expr
                     (identifier))))
@@ -170,20 +177,22 @@ public fun main() {
       (stmt
         (expr
           (function_call_expr
-            (selector
-              (identifier_expr
-                (identifier))
-              (static_argument_list
-                (static_argument
-                  (name_type_expr
-                    (selector
-                      (identifier_expr
-                        (identifier)))))))
+            (value_member_expr
+              (selector
+                (identifier_expr
+                  (identifier))
+                (static_argument_list
+                  (static_argument
+                    (name_type_expr
+                      (selector
+                        (identifier_expr
+                          (identifier))))))))
             (call_argument
               (expr
-                (selector
-                  (identifier_expr
-                    (identifier))))))))
+                (value_member_expr
+                  (selector
+                    (identifier_expr
+                      (identifier)))))))))
       (single_line_comment)
       (stmt
         (discard_stmt

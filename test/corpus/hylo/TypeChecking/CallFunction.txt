@@ -31,9 +31,10 @@ public fun main() {
     (brace_stmt
       (stmt
         (expr
-          (selector
-            (identifier_expr
-              (identifier)))))))
+          (value_member_expr
+            (selector
+              (identifier_expr
+                (identifier))))))))
   (function_decl
     (function_head
       (access_modifier)
@@ -44,25 +45,28 @@ public fun main() {
       (stmt
         (expr
           (function_call_expr
-            (selector
-              (identifier_expr
-                (identifier)))
+            (value_member_expr
+              (selector
+                (identifier_expr
+                  (identifier))))
             (call_argument
               (expr
                 (tuple_expr))))))
       (stmt
         (expr
           (function_call_expr
-            (selector
-              (identifier_expr
-                (identifier))))))
+            (value_member_expr
+              (selector
+                (identifier_expr
+                  (identifier)))))))
       (single_line_comment)
       (stmt
         (expr
           (function_call_expr
-            (selector
-              (identifier_expr
-                (identifier)))
+            (value_member_expr
+              (selector
+                (identifier_expr
+                  (identifier))))
             (call_argument
               (expr
                 (tuple_expr)))
@@ -73,9 +77,10 @@ public fun main() {
       (stmt
         (expr
           (function_call_expr
-            (selector
-              (identifier_expr
-                (identifier)))
+            (value_member_expr
+              (selector
+                (identifier_expr
+                  (identifier))))
             (call_argument
               (identifier)
               (expr

@@ -70,14 +70,16 @@ type A {
         (stmt
           (expr
             (function_call_expr
-              (selector
-                (identifier_expr
-                  (identifier)))
+              (value_member_expr
+                (selector
+                  (identifier_expr
+                    (identifier))))
               (call_argument
                 (expr
-                  (selector
-                    (identifier_expr
-                      (identifier))))))))
+                  (value_member_expr
+                    (selector
+                      (identifier_expr
+                        (identifier)))))))))
         (stmt
           (binding_decl
             (binding_pattern
@@ -86,15 +88,17 @@ type A {
             (expr
               (function_call_expr
                 (value_member_expr
-                  (selector
-                    (identifier_expr
-                      (identifier)))
+                  (value_member_expr
+                    (selector
+                      (identifier_expr
+                        (identifier))))
                   (selector
                     (identifier_expr
                       (identifier))))))))
         (stmt
           (jump_stmt
             (expr
-              (selector
-                (identifier_expr
-                  (identifier))))))))))
+              (value_member_expr
+                (selector
+                  (identifier_expr
+                    (identifier)))))))))))

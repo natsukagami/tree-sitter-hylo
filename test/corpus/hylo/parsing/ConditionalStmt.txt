@@ -29,18 +29,20 @@ public fun main() {
           (conditional_expr
             (conditional_clause_item
               (expr
-                (selector
-                  (identifier_expr
-                    (identifier)))))
+                (value_member_expr
+                  (selector
+                    (identifier_expr
+                      (identifier))))))
             (brace_stmt))))
       (stmt
         (expr
           (conditional_expr
             (conditional_clause_item
               (expr
-                (selector
-                  (identifier_expr
-                    (identifier)))))
+                (value_member_expr
+                  (selector
+                    (identifier_expr
+                      (identifier))))))
             (brace_stmt)
             (brace_stmt))))
       (stmt
@@ -48,42 +50,48 @@ public fun main() {
           (conditional_expr
             (conditional_clause_item
               (expr
-                (selector
-                  (identifier_expr
-                    (identifier)))))
+                (value_member_expr
+                  (selector
+                    (identifier_expr
+                      (identifier))))))
             (brace_stmt)
             (conditional_expr
               (conditional_clause_item
                 (expr
-                  (selector
-                    (identifier_expr
-                      (identifier)))
-                  (infix_operator_tail
-                    (infix_operator)
+                  (value_member_expr
                     (selector
                       (identifier_expr
-                        (identifier))))))
+                        (identifier))))
+                  (infix_operator_tail
+                    (infix_operator)
+                    (value_member_expr
+                      (selector
+                        (identifier_expr
+                          (identifier)))))))
               (brace_stmt)))))
       (stmt
         (expr
           (conditional_expr
             (conditional_clause_item
               (expr
-                (selector
-                  (identifier_expr
-                    (identifier)))))
+                (value_member_expr
+                  (selector
+                    (identifier_expr
+                      (identifier))))))
             (brace_stmt)
             (conditional_expr
               (conditional_clause_item
                 (expr
-                  (selector
-                    (identifier_expr
-                      (identifier)))
-                  (infix_operator_tail
-                    (infix_operator)
+                  (value_member_expr
                     (selector
                       (identifier_expr
-                        (identifier))))))
+                        (identifier))))
+                  (infix_operator_tail
+                    (infix_operator)
+                    (value_member_expr
+                      (selector
+                        (identifier_expr
+                          (identifier)))))))
               (brace_stmt)
               (brace_stmt)))))
       (stmt
@@ -91,19 +99,22 @@ public fun main() {
           (conditional_expr
             (conditional_clause_item
               (expr
-                (selector
-                  (identifier_expr
-                    (identifier)))))
-            (conditional_clause_item
-              (expr
-                (selector
-                  (identifier_expr
-                    (identifier)))
-                (infix_operator_tail
-                  (infix_operator)
+                (value_member_expr
                   (selector
                     (identifier_expr
                       (identifier))))))
+            (conditional_clause_item
+              (expr
+                (value_member_expr
+                  (selector
+                    (identifier_expr
+                      (identifier))))
+                (infix_operator_tail
+                  (infix_operator)
+                  (value_member_expr
+                    (selector
+                      (identifier_expr
+                        (identifier)))))))
             (brace_stmt))))
       (stmt
         (expr
@@ -114,23 +125,27 @@ public fun main() {
                 (identifier))
               (expr
                 (function_call_expr
-                  (selector
-                    (identifier_expr
-                      (identifier))))))
+                  (value_member_expr
+                    (selector
+                      (identifier_expr
+                        (identifier)))))))
             (conditional_clause_item
               (expr
                 (function_call_expr
-                  (selector
-                    (identifier_expr
-                      (identifier)))
+                  (value_member_expr
+                    (selector
+                      (identifier_expr
+                        (identifier))))
                   (call_argument
                     (expr
-                      (selector
-                        (identifier_expr
-                          (identifier))))))
+                      (value_member_expr
+                        (selector
+                          (identifier_expr
+                            (identifier)))))))
                 (infix_operator_tail
                   (infix_operator)
-                  (selector
-                    (identifier_expr
-                      (identifier))))))
+                  (value_member_expr
+                    (selector
+                      (identifier_expr
+                        (identifier)))))))
             (brace_stmt)))))))

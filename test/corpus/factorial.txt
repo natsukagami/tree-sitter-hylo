@@ -40,9 +40,10 @@ public fun main() {
           (conditional_expr
             (conditional_clause_item
               (expr
-                (selector
-                  (identifier_expr
-                    (identifier)))
+                (value_member_expr
+                  (selector
+                    (identifier_expr
+                      (identifier))))
                 (infix_operator_tail
                   (infix_operator)
                   (integer_literal
@@ -55,20 +56,23 @@ public fun main() {
             (brace_stmt
               (stmt
                 (expr
-                  (selector
-                    (identifier_expr
-                      (identifier)))
+                  (value_member_expr
+                    (selector
+                      (identifier_expr
+                        (identifier))))
                   (infix_operator_tail
                     (infix_operator)
                     (function_call_expr
-                      (selector
-                        (identifier_expr
-                          (identifier)))
+                      (value_member_expr
+                        (selector
+                          (identifier_expr
+                            (identifier))))
                       (call_argument
                         (expr
-                          (selector
-                            (identifier_expr
-                              (identifier)))
+                          (value_member_expr
+                            (selector
+                              (identifier_expr
+                                (identifier))))
                           (infix_operator_tail
                             (infix_operator)
                             (integer_literal
@@ -87,9 +91,10 @@ public fun main() {
             (wildcard_pattern))
           (expr
             (function_call_expr
-              (selector
-                (identifier_expr
-                  (identifier)))
+              (value_member_expr
+                (selector
+                  (identifier_expr
+                    (identifier))))
               (call_argument
                 (expr
                   (integer_literal

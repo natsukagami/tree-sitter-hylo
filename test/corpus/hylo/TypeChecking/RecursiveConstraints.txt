@@ -113,29 +113,31 @@ trait I {
       (stmt
         (expr
           (function_call_expr
-            (selector
-              (identifier_expr
-                (identifier))
-              (static_argument_list
-                (static_argument
-                  (name_type_expr
-                    (selector
-                      (identifier_expr
-                        (identifier)))
-                    (selector
-                      (identifier_expr
-                        (identifier)))
-                    (selector
-                      (identifier_expr
-                        (identifier)))
-                    (selector
-                      (identifier_expr
-                        (identifier)))))))
+            (value_member_expr
+              (selector
+                (identifier_expr
+                  (identifier))
+                (static_argument_list
+                  (static_argument
+                    (name_type_expr
+                      (selector
+                        (identifier_expr
+                          (identifier)))
+                      (selector
+                        (identifier_expr
+                          (identifier)))
+                      (selector
+                        (identifier_expr
+                          (identifier)))
+                      (selector
+                        (identifier_expr
+                          (identifier))))))))
             (call_argument
               (expr
-                (selector
-                  (identifier_expr
-                    (identifier))))))))))
+                (value_member_expr
+                  (selector
+                    (identifier_expr
+                      (identifier)))))))))))
   (trait_decl
     (trait_head
       (identifier))
@@ -204,23 +206,25 @@ trait I {
       (stmt
         (expr
           (function_call_expr
-            (selector
-              (identifier_expr
-                (identifier))
-              (static_argument_list
-                (static_argument
-                  (name_type_expr
-                    (selector
-                      (identifier_expr
-                        (identifier)))
-                    (selector
-                      (identifier_expr
-                        (identifier)))))))
+            (value_member_expr
+              (selector
+                (identifier_expr
+                  (identifier))
+                (static_argument_list
+                  (static_argument
+                    (name_type_expr
+                      (selector
+                        (identifier_expr
+                          (identifier)))
+                      (selector
+                        (identifier_expr
+                          (identifier))))))))
             (call_argument
               (expr
-                (selector
-                  (identifier_expr
-                    (identifier))))))))))
+                (value_member_expr
+                  (selector
+                    (identifier_expr
+                      (identifier)))))))))))
   (single_line_comment)
   (trait_decl
     (trait_head

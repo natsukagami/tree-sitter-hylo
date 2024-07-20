@@ -78,9 +78,10 @@ let e: Map<Float64, String> = [:] // OK
             (identifier_expr
               (identifier))))
         (expr
-          (selector
-            (identifier_expr
-              (identifier))))))
+          (value_member_expr
+            (selector
+              (identifier_expr
+                (identifier)))))))
     (expr
       (buffer_literal
         (expr

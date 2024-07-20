@@ -41,16 +41,18 @@ fun fatal_error() -> Never
       (stmt
         (expr
           (function_call_expr
-            (selector
-              (identifier_expr
-                (identifier))))))
+            (value_member_expr
+              (selector
+                (identifier_expr
+                  (identifier)))))))
       (single_line_comment)
       (stmt
         (expr
           (function_call_expr
-            (selector
-              (identifier_expr
-                (identifier))))))
+            (value_member_expr
+              (selector
+                (identifier_expr
+                  (identifier)))))))
       (single_line_comment)))
   (function_decl
     (function_head

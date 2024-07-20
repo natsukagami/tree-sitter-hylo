@@ -54,11 +54,13 @@ fun prefix-*(a: Int, b: Int) -> Int { a + b }
     (brace_stmt
       (stmt
         (expr
-          (selector
-            (identifier_expr
-              (identifier)))
-          (infix_operator_tail
-            (infix_operator)
+          (value_member_expr
             (selector
               (identifier_expr
-                (identifier)))))))))
+                (identifier))))
+          (infix_operator_tail
+            (infix_operator)
+            (value_member_expr
+              (selector
+                (identifier_expr
+                  (identifier))))))))))

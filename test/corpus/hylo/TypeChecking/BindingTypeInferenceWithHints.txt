@@ -69,27 +69,29 @@ public fun main() {
       (stmt
         (expr
           (function_call_expr
-            (selector
-              (identifier_expr
-                (identifier))
-              (static_argument_list
-                (static_argument
-                  (tuple_type_expr
-                    (tuple_type_element
-                      (name_type_expr
-                        (selector
-                          (identifier_expr
-                            (identifier)))))
-                    (tuple_type_element
-                      (name_type_expr
-                        (selector
-                          (identifier_expr
-                            (identifier)))))))))
+            (value_member_expr
+              (selector
+                (identifier_expr
+                  (identifier))
+                (static_argument_list
+                  (static_argument
+                    (tuple_type_expr
+                      (tuple_type_element
+                        (name_type_expr
+                          (selector
+                            (identifier_expr
+                              (identifier)))))
+                      (tuple_type_element
+                        (name_type_expr
+                          (selector
+                            (identifier_expr
+                              (identifier))))))))))
             (call_argument
               (expr
-                (selector
-                  (identifier_expr
-                    (identifier))))))))
+                (value_member_expr
+                  (selector
+                    (identifier_expr
+                      (identifier)))))))))
       (stmt
         (binding_decl
           (binding_pattern
@@ -116,24 +118,26 @@ public fun main() {
       (stmt
         (expr
           (function_call_expr
-            (selector
-              (identifier_expr
-                (identifier))
-              (static_argument_list
-                (static_argument
-                  (tuple_type_expr
-                    (tuple_type_element
-                      (name_type_expr
-                        (selector
-                          (identifier_expr
-                            (identifier)))))
-                    (tuple_type_element
-                      (name_type_expr
-                        (selector
-                          (identifier_expr
-                            (identifier)))))))))
+            (value_member_expr
+              (selector
+                (identifier_expr
+                  (identifier))
+                (static_argument_list
+                  (static_argument
+                    (tuple_type_expr
+                      (tuple_type_element
+                        (name_type_expr
+                          (selector
+                            (identifier_expr
+                              (identifier)))))
+                      (tuple_type_element
+                        (name_type_expr
+                          (selector
+                            (identifier_expr
+                              (identifier))))))))))
             (call_argument
               (expr
-                (selector
-                  (identifier_expr
-                    (identifier)))))))))))
+                (value_member_expr
+                  (selector
+                    (identifier_expr
+                      (identifier))))))))))))

@@ -55,15 +55,17 @@ public fun main() {
               (tuple_pattern_element
                 (expr_pattern
                   (expr
-                    (selector
-                      (identifier_expr
-                        (identifier))))))
+                    (value_member_expr
+                      (selector
+                        (identifier_expr
+                          (identifier)))))))
               (tuple_pattern_element
                 (expr_pattern
                   (expr
-                    (selector
-                      (identifier_expr
-                        (identifier))))))))
+                    (value_member_expr
+                      (selector
+                        (identifier_expr
+                          (identifier)))))))))
           (expr
             (tuple_expr
               (tuple_expr_element
@@ -77,37 +79,41 @@ public fun main() {
       (stmt
         (expr
           (function_call_expr
-            (selector
-              (identifier_expr
-                (identifier))
-              (static_argument_list
-                (static_argument
-                  (name_type_expr
-                    (selector
-                      (identifier_expr
-                        (identifier)))))))
+            (value_member_expr
+              (selector
+                (identifier_expr
+                  (identifier))
+                (static_argument_list
+                  (static_argument
+                    (name_type_expr
+                      (selector
+                        (identifier_expr
+                          (identifier))))))))
             (call_argument
               (expr
-                (selector
-                  (identifier_expr
-                    (identifier))))))))
+                (value_member_expr
+                  (selector
+                    (identifier_expr
+                      (identifier)))))))))
       (stmt
         (expr
           (function_call_expr
-            (selector
-              (identifier_expr
-                (identifier))
-              (static_argument_list
-                (static_argument
-                  (name_type_expr
-                    (selector
-                      (identifier_expr
-                        (identifier)))))))
+            (value_member_expr
+              (selector
+                (identifier_expr
+                  (identifier))
+                (static_argument_list
+                  (static_argument
+                    (name_type_expr
+                      (selector
+                        (identifier_expr
+                          (identifier))))))))
             (call_argument
               (expr
-                (selector
-                  (identifier_expr
-                    (identifier))))))))
+                (value_member_expr
+                  (selector
+                    (identifier_expr
+                      (identifier)))))))))
       (single_line_comment)
       (stmt
         (binding_decl
@@ -117,15 +123,17 @@ public fun main() {
               (tuple_pattern_element
                 (expr_pattern
                   (expr
-                    (selector
-                      (identifier_expr
-                        (identifier))))))
+                    (value_member_expr
+                      (selector
+                        (identifier_expr
+                          (identifier)))))))
               (tuple_pattern_element
                 (expr_pattern
                   (expr
-                    (selector
-                      (identifier_expr
-                        (identifier)))))))
+                    (value_member_expr
+                      (selector
+                        (identifier_expr
+                          (identifier))))))))
             (name_type_expr
               (selector
                 (identifier_expr
@@ -139,15 +147,17 @@ public fun main() {
               (tuple_pattern_element
                 (expr_pattern
                   (expr
-                    (selector
-                      (identifier_expr
-                        (identifier))))))
+                    (value_member_expr
+                      (selector
+                        (identifier_expr
+                          (identifier)))))))
               (tuple_pattern_element
                 (expr_pattern
                   (expr
-                    (selector
-                      (identifier_expr
-                        (identifier)))))))
+                    (value_member_expr
+                      (selector
+                        (identifier_expr
+                          (identifier))))))))
             (tuple_type_expr
               (tuple_type_element
                 (name_type_expr
@@ -163,15 +173,17 @@ public fun main() {
               (tuple_pattern_element
                 (expr_pattern
                   (expr
-                    (selector
-                      (identifier_expr
-                        (identifier))))))
+                    (value_member_expr
+                      (selector
+                        (identifier_expr
+                          (identifier)))))))
               (tuple_pattern_element
                 (expr_pattern
                   (expr
-                    (selector
-                      (identifier_expr
-                        (identifier))))))))
+                    (value_member_expr
+                      (selector
+                        (identifier_expr
+                          (identifier)))))))))
           (expr
             (tuple_expr
               (tuple_expr_element

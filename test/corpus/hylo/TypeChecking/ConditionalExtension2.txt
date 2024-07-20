@@ -131,21 +131,22 @@ public fun main() {
         (expr
           (function_call_expr
             (value_member_expr
-              (selector
-                (identifier_expr
-                  (identifier))
-                (static_argument_list
-                  (static_argument
-                    (name_type_expr
-                      (selector
-                        (identifier_expr
-                          (identifier))
-                        (static_argument_list
-                          (static_argument
-                            (name_type_expr
-                              (selector
-                                (identifier_expr
-                                  (identifier)))))))))))
+              (value_member_expr
+                (selector
+                  (identifier_expr
+                    (identifier))
+                  (static_argument_list
+                    (static_argument
+                      (name_type_expr
+                        (selector
+                          (identifier_expr
+                            (identifier))
+                          (static_argument_list
+                            (static_argument
+                              (name_type_expr
+                                (selector
+                                  (identifier_expr
+                                    (identifier))))))))))))
               (selector
                 (identifier_expr
                   (identifier))))))))))

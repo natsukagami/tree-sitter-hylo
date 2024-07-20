@@ -77,22 +77,24 @@ public fun main() {
       (stmt
         (expr
           (function_call_expr
-            (selector
-              (identifier_expr
-                (identifier))
-              (static_argument_list
-                (static_argument
-                  (lambda_type_expr
-                    (lambda_environment)
-                    (name_type_expr
-                      (selector
-                        (identifier_expr
-                          (identifier))))))))
+            (value_member_expr
+              (selector
+                (identifier_expr
+                  (identifier))
+                (static_argument_list
+                  (static_argument
+                    (lambda_type_expr
+                      (lambda_environment)
+                      (name_type_expr
+                        (selector
+                          (identifier_expr
+                            (identifier)))))))))
             (call_argument
               (expr
-                (selector
-                  (identifier_expr
-                    (identifier))))))))
+                (value_member_expr
+                  (selector
+                    (identifier_expr
+                      (identifier)))))))))
       (stmt
         (binding_decl
           (binding_pattern
@@ -111,35 +113,38 @@ public fun main() {
               (brace_stmt
                 (stmt
                   (expr
-                    (selector
-                      (identifier_expr
-                        (identifier))))))))))
+                    (value_member_expr
+                      (selector
+                        (identifier_expr
+                          (identifier)))))))))))
       (stmt
         (expr
           (function_call_expr
-            (selector
-              (identifier_expr
-                (identifier))
-              (static_argument_list
-                (static_argument
-                  (lambda_type_expr
-                    (lambda_environment)
-                    (lambda_parameter
-                      (identifier)
-                      (parameter_passing_convention)
+            (value_member_expr
+              (selector
+                (identifier_expr
+                  (identifier))
+                (static_argument_list
+                  (static_argument
+                    (lambda_type_expr
+                      (lambda_environment)
+                      (lambda_parameter
+                        (identifier)
+                        (parameter_passing_convention)
+                        (name_type_expr
+                          (selector
+                            (identifier_expr
+                              (identifier)))))
                       (name_type_expr
                         (selector
                           (identifier_expr
-                            (identifier)))))
-                    (name_type_expr
-                      (selector
-                        (identifier_expr
-                          (identifier))))))))
+                            (identifier)))))))))
             (call_argument
               (expr
-                (selector
-                  (identifier_expr
-                    (identifier))))))))
+                (value_member_expr
+                  (selector
+                    (identifier_expr
+                      (identifier)))))))))
       (stmt
         (binding_decl
           (binding_pattern
@@ -166,35 +171,38 @@ public fun main() {
               (brace_stmt
                 (stmt
                   (expr
-                    (selector
-                      (identifier_expr
-                        (identifier))))))))))
+                    (value_member_expr
+                      (selector
+                        (identifier_expr
+                          (identifier)))))))))))
       (stmt
         (expr
           (function_call_expr
-            (selector
-              (identifier_expr
-                (identifier))
-              (static_argument_list
-                (static_argument
-                  (lambda_type_expr
-                    (lambda_environment)
-                    (lambda_parameter
-                      (identifier)
-                      (parameter_passing_convention)
+            (value_member_expr
+              (selector
+                (identifier_expr
+                  (identifier))
+                (static_argument_list
+                  (static_argument
+                    (lambda_type_expr
+                      (lambda_environment)
+                      (lambda_parameter
+                        (identifier)
+                        (parameter_passing_convention)
+                        (name_type_expr
+                          (selector
+                            (identifier_expr
+                              (identifier)))))
                       (name_type_expr
                         (selector
                           (identifier_expr
-                            (identifier)))))
-                    (name_type_expr
-                      (selector
-                        (identifier_expr
-                          (identifier))))))))
+                            (identifier)))))))))
             (call_argument
               (expr
-                (selector
-                  (identifier_expr
-                    (identifier))))))))
+                (value_member_expr
+                  (selector
+                    (identifier_expr
+                      (identifier)))))))))
       (stmt
         (binding_decl
           (binding_pattern
@@ -221,41 +229,45 @@ public fun main() {
                       (binding_introducer)
                       (identifier))
                     (expr
-                      (selector
-                        (identifier_expr
-                          (identifier))))))
+                      (value_member_expr
+                        (selector
+                          (identifier_expr
+                            (identifier)))))))
                 (stmt
                   (jump_stmt
                     (expr
-                      (selector
-                        (identifier_expr
-                          (identifier)))))))))))
+                      (value_member_expr
+                        (selector
+                          (identifier_expr
+                            (identifier))))))))))))
       (stmt
         (expr
           (function_call_expr
-            (selector
-              (identifier_expr
-                (identifier))
-              (static_argument_list
-                (static_argument
-                  (lambda_type_expr
-                    (lambda_environment)
-                    (lambda_parameter
-                      (identifier)
-                      (parameter_passing_convention)
+            (value_member_expr
+              (selector
+                (identifier_expr
+                  (identifier))
+                (static_argument_list
+                  (static_argument
+                    (lambda_type_expr
+                      (lambda_environment)
+                      (lambda_parameter
+                        (identifier)
+                        (parameter_passing_convention)
+                        (name_type_expr
+                          (selector
+                            (identifier_expr
+                              (identifier)))))
                       (name_type_expr
                         (selector
                           (identifier_expr
-                            (identifier)))))
-                    (name_type_expr
-                      (selector
-                        (identifier_expr
-                          (identifier))))))))
+                            (identifier)))))))))
             (call_argument
               (expr
-                (selector
-                  (identifier_expr
-                    (identifier))))))))
+                (value_member_expr
+                  (selector
+                    (identifier_expr
+                      (identifier)))))))))
       (stmt
         (binding_decl
           (binding_pattern
@@ -275,9 +287,10 @@ public fun main() {
                           (expr
                             (function_call_expr
                               (value_member_expr
-                                (selector
-                                  (identifier_expr
-                                    (identifier)))
+                                (value_member_expr
+                                  (selector
+                                    (identifier_expr
+                                      (identifier))))
                                 (selector
                                   (identifier_expr
                                     (identifier))))))))))))
@@ -288,20 +301,22 @@ public fun main() {
       (stmt
         (expr
           (function_call_expr
-            (selector
-              (identifier_expr
-                (identifier))
-              (static_argument_list
-                (static_argument
-                  (name_type_expr
-                    (selector
-                      (identifier_expr
-                        (identifier)))))))
+            (value_member_expr
+              (selector
+                (identifier_expr
+                  (identifier))
+                (static_argument_list
+                  (static_argument
+                    (name_type_expr
+                      (selector
+                        (identifier_expr
+                          (identifier))))))))
             (call_argument
               (expr
-                (selector
-                  (identifier_expr
-                    (identifier))))))))
+                (value_member_expr
+                  (selector
+                    (identifier_expr
+                      (identifier)))))))))
       (single_line_comment)
       (stmt
         (binding_decl

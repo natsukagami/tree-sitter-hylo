@@ -594,9 +594,15 @@ module.exports = grammar({
     )),
     value_member_index: $ => /[0-9]+/,
 
-    value_member_expr: $ => prec.right(seq(
-      choice(field('type_qualifier', $._type_expr), field('qualifier', $._compound_expr)),
-      repeat1(prec("expr_select", seq(".", field('selector', $.selector)))),
+    value_member_expr: $ => prec.right("expr_select", choice(
+      field('qualifier', $.selector),
+      seq(
+        choice(
+          field('type_qualifier', $._type_expr),
+          field('qualifier', $._compound_expr),
+        ),
+        repeat1(prec.right("expr_select", seq(".", field('selector', $.selector)))),
+      ),
     )),
 
     function_call_expr: $ => prec("expr_select", seq(
@@ -637,11 +643,8 @@ module.exports = grammar({
       $.inout_expr,
       $.tuple_expr,
       $.pragma_expr,
-      $._selector_expr,
       "nil",
     ),
-
-    _selector_expr: $ => prec("expr_select", $.selector),
 
     //! TODO: fix possible whitespace in between
     inout_expr: $ => prec("expr_inout", seq(token(prec(INOUT_P, "&")), $.expr)),

@@ -32,14 +32,16 @@ public fun main() {
         (expr
           (inout_expr
             (expr
+              (value_member_expr
+                (selector
+                  (identifier_expr
+                    (identifier))))))
+          (infix_operator_tail
+            (infix_operator)
+            (value_member_expr
               (selector
                 (identifier_expr
                   (identifier)))))
-          (infix_operator_tail
-            (infix_operator)
-            (selector
-              (identifier_expr
-                (identifier))))
           (infix_operator_tail
             (infix_operator)
             (integer_literal

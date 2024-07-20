@@ -31,9 +31,10 @@ public let x = Int.zero().n
           (identifier_expr
             (identifier)))))
     (expr
-      (selector
-        (identifier_expr
-          (identifier)))))
+      (value_member_expr
+        (selector
+          (identifier_expr
+            (identifier))))))
   (trait_decl
     (trait_head
       (identifier)
@@ -77,9 +78,10 @@ public let x = Int.zero().n
             (stmt
               (jump_stmt
                 (expr
-                  (selector
-                    (identifier_expr
-                      (identifier)))))))))))
+                  (value_member_expr
+                    (selector
+                      (identifier_expr
+                        (identifier))))))))))))
   (binding_decl
     (access_modifier)
     (binding_pattern
@@ -89,9 +91,10 @@ public let x = Int.zero().n
       (value_member_expr
         (function_call_expr
           (value_member_expr
-            (selector
-              (identifier_expr
-                (identifier)))
+            (value_member_expr
+              (selector
+                (identifier_expr
+                  (identifier))))
             (selector
               (identifier_expr
                 (identifier)))))

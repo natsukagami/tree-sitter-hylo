@@ -35,7 +35,7 @@
 
 ; Trait Decl
 "trait" @keyword
-(trait_head name: (identifier) @type.interface @type.trait @type.abstract)
+(trait_head name: (identifier) @type.abstract)
 (associated_type_decl name: (identifier) @type.abstract)
 (associated_type_decl "=" @operator.assignment)
 
@@ -55,7 +55,7 @@
 
 ; Property
 "property" @keyword
-(property_head name: (identifier) @variable.member @property)
+(property_head name: (identifier) @property)
 
 ; Type Alias
 "typealias" @keyword
@@ -98,12 +98,12 @@
 (type_casting_tail operator: "as" @keyword)
 (type_casting_tail operator: "as!" @keyword.unsafe)
 ;; Inout
-(inout_expr "&" @operator.prefix @keyword.storage)
+(inout_expr "&" @keyword.storage)
 ;; Compound Expr
 (value_member_expr selector: (selector identifier: (identifier_expr (identifier) @property)))
 (value_index_expr index: (value_member_index) @property)
 ;;; Function / Method calls
-(function_call_expr head: (selector identifier: (identifier_expr (identifier) @function)))
+(function_call_expr head: (value_member_expr qualifier: (selector identifier: (identifier_expr (identifier) @function)) !selector))
 (function_call_expr head: (_ (selector identifier: (identifier_expr (identifier) @function.method)) .))
 ; (function_call_expr head: (implicit_member_ref (primary_decl_ref identifier: (identifier_expr (identifier) @function.method))))
 (call_argument label: (identifier) @label)
@@ -122,11 +122,12 @@
 (map_literal "[" @punctuation.bracket ":" @punctuation.delimiter "]" @punctuation.bracket)
 (map_component ":" @operator.assignment)
 ;; Literals
-(identifier_expr ((identifier) @variable.builtin (#eq? @variable.builtin "self")))
-(identifier_expr ((identifier) @variable.builtin (#eq? @variable.builtin "yielded")))
-(integer_literal) @number  @constant.numeric.integer
-(floating_point_literal) @number  @constant.numeric.float
-(boolean_literal) @boolean @constant.builtin.boolean
+(value_member_expr qualifier: (selector (identifier_expr (identifier) @variable.builtin (#eq? @variable.builtin "self"))))
+(value_member_expr qualifier: (selector (identifier_expr (identifier) @variable.builtin (#eq? @variable.builtin "yielded"))))
+(integer_literal) @number
+(floating_point_literal) @number
+(boolean_literal) @constant.builtin.boolean
+(unicode_scalar_literal) @constant.character
 (simple_string)     @string
 (multiline_string)  @string
 ;; Special Entities
@@ -151,10 +152,10 @@
 (tuple_type_element label: (identifier) @label)
 (tuple_type_element ":" @operator.assignment)
 ;; Builtin Types
+(name_type_expr qualifier: (selector identifier: (identifier_expr (identifier) @namespace.builtin (#eq? @namespace.builtin "Builtin"))))
 (name_type_expr qualifier: (selector identifier: (identifier_expr (identifier) @type.builtin (#eq? @type.builtin "Self"))))
 (name_type_expr qualifier: (selector identifier: (identifier_expr (identifier) @type.builtin (#any-of? @type.builtin "Void" "String" "Float32" "Float64" "Bool" "Any" "Never" "Union"))))
 (name_type_expr qualifier: (selector identifier: (identifier_expr (identifier) @type.builtin (#any-of? @type.builtin "Int" "Int8" "Int16" "Int32" "Int64"))))
-(name_type_expr qualifier: (selector identifier: (identifier_expr (identifier) @type.builtin (#any-of? @type.builtin "Deinitializable"))))
 
 ; Operator Decls
 "operator" @keyword
@@ -185,3 +186,4 @@
 (single_line_comment) @comment.line
 ((single_line_comment) @comment.documentation (#match? @comment.documentation "^///(\\s*$|\\s+.*)"))
 (block_comment)       @comment.block
+(pragma_expr)         @keyword.directive

@@ -40,17 +40,19 @@ public fun main() {
           (while_condition_list
             (while_condition
               (expr
-                (selector
-                  (identifier_expr
-                    (identifier))))))
+                (value_member_expr
+                  (selector
+                    (identifier_expr
+                      (identifier)))))))
           (brace_stmt
             (stmt
               (expr
                 (inout_expr
                   (expr
-                    (selector
-                      (identifier_expr
-                        (identifier)))))
+                    (value_member_expr
+                      (selector
+                        (identifier_expr
+                          (identifier))))))
                 (infix_operator_tail
                   (infix_operator)
                   (boolean_literal)))))))
@@ -68,17 +70,19 @@ public fun main() {
           (while_condition_list
             (while_condition
               (expr
-                (selector
-                  (identifier_expr
-                    (identifier))))))
+                (value_member_expr
+                  (selector
+                    (identifier_expr
+                      (identifier)))))))
           (brace_stmt
             (stmt
               (expr
                 (inout_expr
                   (expr
-                    (selector
-                      (identifier_expr
-                        (identifier)))))
+                    (value_member_expr
+                      (selector
+                        (identifier_expr
+                          (identifier))))))
                 (infix_operator_tail
                   (infix_operator)
                   (integer_literal

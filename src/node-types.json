@@ -1046,10 +1046,6 @@
           "named": true
         },
         {
-          "type": "selector",
-          "named": true
-        },
-        {
           "type": "string_literal",
           "named": true
         },
@@ -1333,10 +1329,6 @@
           },
           {
             "type": "pragma_expr",
-            "named": true
-          },
-          {
-            "type": "selector",
             "named": true
           },
           {
@@ -1975,10 +1967,6 @@
           },
           {
             "type": "prefix_operator",
-            "named": true
-          },
-          {
-            "type": "selector",
             "named": true
           },
           {
@@ -3416,10 +3404,6 @@
             "named": true
           },
           {
-            "type": "selector",
-            "named": true
-          },
-          {
             "type": "string_literal",
             "named": true
           },
@@ -4260,10 +4244,6 @@
             "named": true
           },
           {
-            "type": "selector",
-            "named": true
-          },
-          {
             "type": "string_literal",
             "named": true
           },
@@ -4383,7 +4363,7 @@
       },
       "selector": {
         "multiple": true,
-        "required": true,
+        "required": false,
         "types": [
           {
             "type": "selector",
