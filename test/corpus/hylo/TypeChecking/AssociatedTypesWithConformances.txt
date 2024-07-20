@@ -35,7 +35,9 @@ type A<T: S> {
       (identifier)
       (conformance_list
         (name_type_expr
-          (identifier)))))
+          (selector
+            (identifier_expr
+              (identifier)))))))
   (trait_decl
     (trait_head
       (identifier))
@@ -43,16 +45,23 @@ type A<T: S> {
       (identifier)
       (conformance_list
         (name_type_expr
-          (identifier)))
+          (selector
+            (identifier_expr
+              (identifier)))))
       (where_clause
         (conformance_constraint
           (name_type_expr
-            (name_type_expr
-              (identifier))
-            (identifier))
+            (selector
+              (identifier_expr
+                (identifier)))
+            (selector
+              (identifier_expr
+                (identifier))))
           (trait_composition
             (name_type_expr
-              (identifier)))))))
+              (selector
+                (identifier_expr
+                  (identifier)))))))))
   (product_type_decl
     (product_type_head
       (identifier)
@@ -61,26 +70,38 @@ type A<T: S> {
           (identifier)
           (trait_composition
             (name_type_expr
-              (identifier))))))
+              (selector
+                (identifier_expr
+                  (identifier))))))))
     (type_alias_decl
       (type_alias_head
         (identifier))
       (name_type_expr
-        (name_type_expr
-          (name_type_expr
-            (name_type_expr
-              (identifier))
-            (identifier))
-          (identifier))
-        (identifier)))
+        (selector
+          (identifier_expr
+            (identifier)))
+        (selector
+          (identifier_expr
+            (identifier)))
+        (selector
+          (identifier_expr
+            (identifier)))
+        (selector
+          (identifier_expr
+            (identifier)))))
     (type_alias_decl
       (type_alias_head
         (identifier))
       (name_type_expr
-        (name_type_expr
-          (name_type_expr
-            (name_type_expr
-              (identifier))
-            (identifier))
-          (identifier))
-        (identifier)))))
+        (selector
+          (identifier_expr
+            (identifier)))
+        (selector
+          (identifier_expr
+            (identifier)))
+        (selector
+          (identifier_expr
+            (identifier)))
+        (selector
+          (identifier_expr
+            (identifier)))))))

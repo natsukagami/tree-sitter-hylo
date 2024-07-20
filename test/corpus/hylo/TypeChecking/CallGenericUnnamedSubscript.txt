@@ -40,15 +40,19 @@ public fun main() {
         (parameter_decl
           (identifier)
           (name_type_expr
-            (identifier)))
+            (selector
+              (identifier_expr
+                (identifier)))))
         (name_type_expr
-          (identifier)))
+          (selector
+            (identifier_expr
+              (identifier)))))
       (subscript_body
         (brace_stmt
           (stmt
             (jump_stmt
               (expr
-                (primary_decl_ref
+                (selector
                   (identifier_expr
                     (identifier))))))))))
   (function_decl
@@ -65,7 +69,7 @@ public fun main() {
             (identifier))
           (expr
             (function_call_expr
-              (primary_decl_ref
+              (selector
                 (identifier_expr
                   (identifier)))))))
       (stmt
@@ -74,10 +78,12 @@ public fun main() {
             (binding_introducer)
             (identifier)
             (name_type_expr
-              (identifier)))
+              (selector
+                (identifier_expr
+                  (identifier)))))
           (expr
             (subscript_call_expr
-              (primary_decl_ref
+              (selector
                 (identifier_expr
                   (identifier)))
               (call_argument
@@ -90,10 +96,12 @@ public fun main() {
             (binding_introducer)
             (identifier)
             (name_type_expr
-              (identifier)))
+              (selector
+                (identifier_expr
+                  (identifier)))))
           (expr
             (subscript_call_expr
-              (primary_decl_ref
+              (selector
                 (identifier_expr
                   (identifier)))
               (call_argument
@@ -106,10 +114,12 @@ public fun main() {
             (binding_introducer)
             (identifier)
             (name_type_expr
-              (identifier)))
+              (selector
+                (identifier_expr
+                  (identifier)))))
           (expr
             (subscript_call_expr
-              (primary_decl_ref
+              (selector
                 (identifier_expr
                   (identifier)))
               (call_argument

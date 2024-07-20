@@ -31,7 +31,7 @@ public fun main() {
     (brace_stmt
       (stmt
         (expr
-          (primary_decl_ref
+          (selector
             (identifier_expr
               (identifier)))))))
   (function_decl
@@ -44,7 +44,7 @@ public fun main() {
       (stmt
         (expr
           (function_call_expr
-            (primary_decl_ref
+            (selector
               (identifier_expr
                 (identifier)))
             (call_argument
@@ -53,14 +53,14 @@ public fun main() {
       (stmt
         (expr
           (function_call_expr
-            (primary_decl_ref
+            (selector
               (identifier_expr
                 (identifier))))))
       (single_line_comment)
       (stmt
         (expr
           (function_call_expr
-            (primary_decl_ref
+            (selector
               (identifier_expr
                 (identifier)))
             (call_argument
@@ -73,7 +73,7 @@ public fun main() {
       (stmt
         (expr
           (function_call_expr
-            (primary_decl_ref
+            (selector
               (identifier_expr
                 (identifier)))
             (call_argument

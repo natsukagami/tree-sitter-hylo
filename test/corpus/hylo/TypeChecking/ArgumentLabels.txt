@@ -34,7 +34,9 @@ public fun main() {
         (parameter_decl
           (identifier)
           (name_type_expr
-            (identifier))))
+            (selector
+              (identifier_expr
+                (identifier))))))
       (brace_stmt))
     (function_decl
       (function_head
@@ -44,7 +46,9 @@ public fun main() {
         (parameter_decl
           (identifier)
           (name_type_expr
-            (identifier))))
+            (selector
+              (identifier_expr
+                (identifier))))))
       (brace_stmt)))
   (function_decl
     (function_head
@@ -61,7 +65,7 @@ public fun main() {
             (identifier))
           (expr
             (function_call_expr
-              (primary_decl_ref
+              (selector
                 (identifier_expr
                   (identifier)))
               (call_argument

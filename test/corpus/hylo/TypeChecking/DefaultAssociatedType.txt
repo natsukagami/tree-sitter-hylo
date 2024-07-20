@@ -28,20 +28,26 @@ type B: T {
     (associated_type_decl
       (identifier)
       (name_type_expr
-        (identifier)))
+        (selector
+          (identifier_expr
+            (identifier)))))
     (function_decl
       (function_head
         (function_name
           (identifier)))
       (function_signature
         (name_type_expr
-          (identifier)))))
+          (selector
+            (identifier_expr
+              (identifier)))))))
   (product_type_decl
     (product_type_head
       (identifier)
       (conformance_list
         (name_type_expr
-          (identifier))))
+          (selector
+            (identifier_expr
+              (identifier))))))
     (function_decl
       (function_head
         (access_modifier)
@@ -49,7 +55,9 @@ type B: T {
           (identifier)))
       (function_signature
         (name_type_expr
-          (identifier)))
+          (selector
+            (identifier_expr
+              (identifier)))))
       (brace_stmt
         (stmt
           (expr
@@ -60,13 +68,17 @@ type B: T {
       (identifier)
       (conformance_list
         (name_type_expr
-          (identifier))))
+          (selector
+            (identifier_expr
+              (identifier))))))
     (type_alias_decl
       (type_alias_head
         (access_modifier)
         (identifier))
       (name_type_expr
-        (identifier)))
+        (selector
+          (identifier_expr
+            (identifier)))))
     (function_decl
       (function_head
         (access_modifier)
@@ -74,7 +86,9 @@ type B: T {
           (identifier)))
       (function_signature
         (name_type_expr
-          (identifier)))
+          (selector
+            (identifier_expr
+              (identifier)))))
       (brace_stmt
         (stmt
           (expr

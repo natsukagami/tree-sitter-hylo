@@ -32,11 +32,11 @@ public fun main() {
       (stmt
         (expr
           (function_call_expr
-            (primary_decl_ref
+            (selector
               (identifier_expr
                 (identifier)))
             (call_argument
               (expr
-                (primary_decl_ref
+                (selector
                   (identifier_expr
                     (identifier)))))))))))

@@ -27,16 +27,20 @@ public fun main() {
       (parameter_decl
         (identifier)
         (name_type_expr
-          (identifier)))
+          (selector
+            (identifier_expr
+              (identifier)))))
       (name_type_expr
-        (identifier)))
+        (selector
+          (identifier_expr
+            (identifier)))))
     (brace_stmt
       (stmt
         (expr
           (conditional_expr
             (conditional_clause_item
               (expr
-                (primary_decl_ref
+                (selector
                   (identifier_expr
                     (identifier)))
                 (infix_operator_tail
@@ -51,18 +55,18 @@ public fun main() {
             (brace_stmt
               (stmt
                 (expr
-                  (primary_decl_ref
+                  (selector
                     (identifier_expr
                       (identifier)))
                   (infix_operator_tail
                     (infix_operator)
                     (function_call_expr
-                      (primary_decl_ref
+                      (selector
                         (identifier_expr
                           (identifier)))
                       (call_argument
                         (expr
-                          (primary_decl_ref
+                          (selector
                             (identifier_expr
                               (identifier)))
                           (infix_operator_tail
@@ -83,7 +87,7 @@ public fun main() {
             (wildcard_pattern))
           (expr
             (function_call_expr
-              (primary_decl_ref
+              (selector
                 (identifier_expr
                   (identifier)))
               (call_argument

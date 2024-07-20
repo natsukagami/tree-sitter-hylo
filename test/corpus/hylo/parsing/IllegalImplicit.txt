@@ -22,17 +22,21 @@ fun bar(x?: inout Int) -> Int { x.copy() }
         (implicit_parameter_modifier)
         (parameter_passing_convention)
         (name_type_expr
-          (identifier)))
+          (selector
+            (identifier_expr
+              (identifier)))))
       (name_type_expr
-        (identifier)))
+        (selector
+          (identifier_expr
+            (identifier)))))
     (brace_stmt
       (stmt
         (expr
           (function_call_expr
             (value_member_expr
-              (primary_decl_ref
+              (selector
                 (identifier_expr
                   (identifier)))
-              (primary_decl_ref
+              (selector
                 (identifier_expr
                   (identifier))))))))))

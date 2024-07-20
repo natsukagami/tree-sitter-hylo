@@ -45,7 +45,9 @@ fun f1<B>(_ a: A<B>) {
           (identifier)))
       (conformance_list
         (name_type_expr
-          (identifier))))
+          (selector
+            (identifier_expr
+              (identifier))))))
     (function_decl
       (function_head
         (access_modifier)
@@ -66,7 +68,9 @@ fun f1<B>(_ a: A<B>) {
       (parameter_decl
         (identifier)
         (name_type_expr
-          (identifier))))
+          (selector
+            (identifier_expr
+              (identifier))))))
     (brace_stmt))
   (function_decl
     (function_head
@@ -76,11 +80,15 @@ fun f1<B>(_ a: A<B>) {
       (parameter_decl
         (identifier)
         (name_type_expr
-          (identifier)
-          (generic_argument_list
-            (generic_type_argument
-              (name_type_expr
-                (identifier)))))))
+          (selector
+            (identifier_expr
+              (identifier))
+            (static_argument_list
+              (static_argument
+                (name_type_expr
+                  (selector
+                    (identifier_expr
+                      (identifier))))))))))
     (brace_stmt
       (stmt
         (binding_decl
@@ -90,15 +98,17 @@ fun f1<B>(_ a: A<B>) {
             (existential_type_expr
               (trait_composition
                 (name_type_expr
-                  (identifier)))))
+                  (selector
+                    (identifier_expr
+                      (identifier)))))))
           (expr
-            (primary_decl_ref
+            (selector
               (identifier_expr
                 (identifier))))))
       (stmt
         (expr
           (function_call_expr
-            (primary_decl_ref
+            (selector
               (identifier_expr
                 (identifier))
               (static_argument_list
@@ -106,10 +116,12 @@ fun f1<B>(_ a: A<B>) {
                   (existential_type_expr
                     (trait_composition
                       (name_type_expr
-                        (identifier)))))))
+                        (selector
+                          (identifier_expr
+                            (identifier)))))))))
             (call_argument
               (expr
-                (primary_decl_ref
+                (selector
                   (identifier_expr
                     (identifier))))))))))
   (function_decl
@@ -123,11 +135,15 @@ fun f1<B>(_ a: A<B>) {
       (parameter_decl
         (identifier)
         (name_type_expr
-          (identifier)
-          (generic_argument_list
-            (generic_type_argument
-              (name_type_expr
-                (identifier)))))))
+          (selector
+            (identifier_expr
+              (identifier))
+            (static_argument_list
+              (static_argument
+                (name_type_expr
+                  (selector
+                    (identifier_expr
+                      (identifier))))))))))
     (brace_stmt
       (stmt
         (binding_decl
@@ -137,39 +153,48 @@ fun f1<B>(_ a: A<B>) {
             (opaque_type_expr
               (trait_composition
                 (name_type_expr
-                  (name_type_expr
-                    (identifier))
-                  (identifier)))
+                  (selector
+                    (identifier_expr
+                      (identifier)))
+                  (selector
+                    (identifier_expr
+                      (identifier)))))
               (where_clause
                 (conformance_constraint
                   (name_type_expr
-                    (name_type_expr
-                      (identifier))
-                    (identifier))
+                    (selector
+                      (identifier_expr
+                        (identifier)))
+                    (selector
+                      (identifier_expr
+                        (identifier))))
                   (trait_composition
                     (name_type_expr
-                      (identifier))))
+                      (selector
+                        (identifier_expr
+                          (identifier))))))
                 (value_constraint_expr
                   (expr
                     (value_member_expr
-                      (primary_decl_ref
+                      (selector
                         (identifier_expr
                           (identifier)))
-                      (primary_decl_ref
+                      (selector
                         (identifier_expr
                           (identifier))))
                     (infix_operator_tail
                       (infix_operator)
                       (integer_literal
-                        (decimal_literal))))))))
-          (expr
-            (primary_decl_ref
-              (identifier_expr
-                (identifier))))))
+                        (decimal_literal)))
+                    (infix_operator_tail
+                      (infix_operator)
+                      (selector
+                        (identifier_expr
+                          (identifier)))))))))))
       (stmt
         (expr
           (function_call_expr
-            (primary_decl_ref
+            (selector
               (identifier_expr
                 (identifier))
               (static_argument_list
@@ -177,9 +202,11 @@ fun f1<B>(_ a: A<B>) {
                   (existential_type_expr
                     (trait_composition
                       (name_type_expr
-                        (identifier)))))))
+                        (selector
+                          (identifier_expr
+                            (identifier)))))))))
             (call_argument
               (expr
-                (primary_decl_ref
+                (selector
                   (identifier_expr
                     (identifier)))))))))))

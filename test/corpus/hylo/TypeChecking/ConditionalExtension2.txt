@@ -46,28 +46,41 @@ public fun main() {
           (identifier)))
       (conformance_list
         (name_type_expr
-          (identifier))))
+          (selector
+            (identifier_expr
+              (identifier))))))
     (function_memberwise_init
       (access_modifier)))
   (extension_decl
     (extension_head
       (name_type_expr
-        (identifier))
+        (selector
+          (identifier_expr
+            (identifier))))
       (where_clause
         (conformance_constraint
           (name_type_expr
-            (identifier))
+            (selector
+              (identifier_expr
+                (identifier))))
           (trait_composition
             (name_type_expr
-              (identifier))))
+              (selector
+                (identifier_expr
+                  (identifier))))))
         (conformance_constraint
           (name_type_expr
-            (name_type_expr
-              (identifier))
-            (identifier))
+            (selector
+              (identifier_expr
+                (identifier)))
+            (selector
+              (identifier_expr
+                (identifier))))
           (trait_composition
             (name_type_expr
-              (identifier))))))
+              (selector
+                (identifier_expr
+                  (identifier))))))))
     (function_decl
       (function_head
         (access_modifier)
@@ -83,22 +96,30 @@ public fun main() {
           (identifier)
           (trait_composition
             (name_type_expr
-              (identifier)))))
+              (selector
+                (identifier_expr
+                  (identifier)))))))
       (conformance_list
         (name_type_expr
-          (identifier)))))
+          (selector
+            (identifier_expr
+              (identifier)))))))
   (product_type_decl
     (product_type_head
       (identifier)
       (conformance_list
         (name_type_expr
-          (identifier))))
+          (selector
+            (identifier_expr
+              (identifier))))))
     (type_alias_decl
       (type_alias_head
         (access_modifier)
         (identifier))
       (name_type_expr
-        (identifier))))
+        (selector
+          (identifier_expr
+            (identifier))))))
   (function_decl
     (function_head
       (access_modifier)
@@ -110,17 +131,21 @@ public fun main() {
         (expr
           (function_call_expr
             (value_member_expr
-              (primary_decl_ref
+              (selector
                 (identifier_expr
                   (identifier))
                 (static_argument_list
                   (static_argument
                     (name_type_expr
-                      (identifier)
-                      (generic_argument_list
-                        (generic_type_argument
-                          (name_type_expr
-                            (identifier))))))))
-              (primary_decl_ref
+                      (selector
+                        (identifier_expr
+                          (identifier))
+                        (static_argument_list
+                          (static_argument
+                            (name_type_expr
+                              (selector
+                                (identifier_expr
+                                  (identifier)))))))))))
+              (selector
                 (identifier_expr
                   (identifier))))))))))

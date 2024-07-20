@@ -105,16 +105,22 @@ fun concore2full_await(_ frame: SpawnFrameBase);
           (identifier)
           (trait_composition
             (name_type_expr
-              (identifier))
+              (selector
+                (identifier_expr
+                  (identifier))))
             (name_type_expr
-              (identifier))))))
+              (selector
+                (identifier_expr
+                  (identifier))))))))
     (single_line_comment)
     (type_alias_decl
       (type_alias_head
         (access_modifier)
         (identifier))
       (name_type_expr
-        (identifier)))
+        (selector
+          (identifier_expr
+            (identifier)))))
     (single_line_comment)
     (binding_decl
       (access_modifier)
@@ -122,7 +128,9 @@ fun concore2full_await(_ frame: SpawnFrameBase);
         (binding_introducer)
         (identifier)
         (name_type_expr
-          (identifier))))
+          (selector
+            (identifier_expr
+              (identifier))))))
     (single_line_comment)
     (binding_decl
       (access_modifier)
@@ -132,9 +140,13 @@ fun concore2full_await(_ frame: SpawnFrameBase);
         (lambda_type_expr
           (lambda_environment
             (name_type_expr
-              (identifier)))
+              (selector
+                (identifier_expr
+                  (identifier)))))
           (name_type_expr
-            (identifier)))))
+            (selector
+              (identifier_expr
+                (identifier)))))))
     (single_line_comment)
     (binding_decl
       (access_modifier)
@@ -142,11 +154,15 @@ fun concore2full_await(_ frame: SpawnFrameBase);
         (binding_introducer)
         (identifier)
         (name_type_expr
-          (identifier)
-          (generic_argument_list
-            (generic_type_argument
-              (name_type_expr
-                (identifier)))))))
+          (selector
+            (identifier_expr
+              (identifier))
+            (static_argument_list
+              (static_argument
+                (name_type_expr
+                  (selector
+                    (identifier_expr
+                      (identifier))))))))))
     (single_line_comment)
     (function_decl
       (function_head
@@ -159,26 +175,30 @@ fun concore2full_await(_ frame: SpawnFrameBase);
           (lambda_type_expr
             (lambda_environment
               (name_type_expr
-                (identifier)))
+                (selector
+                  (identifier_expr
+                    (identifier)))))
             (name_type_expr
-              (identifier)))))
+              (selector
+                (identifier_expr
+                  (identifier)))))))
       (brace_stmt
         (stmt
           (expr
             (inout_expr
               (expr
                 (value_member_expr
-                  (primary_decl_ref
+                  (selector
                     (identifier_expr
                       (identifier)))
-                  (primary_decl_ref
+                  (selector
                     (identifier_expr
                       (identifier))))))
             (infix_operator_tail
               (infix_operator)
               (function_call_expr
                 (implicit_member_ref
-                  (primary_decl_ref
+                  (selector
                     (identifier_expr
                       (identifier))))))))
         (stmt
@@ -186,15 +206,15 @@ fun concore2full_await(_ frame: SpawnFrameBase);
             (inout_expr
               (expr
                 (value_member_expr
-                  (primary_decl_ref
+                  (selector
                     (identifier_expr
                       (identifier)))
-                  (primary_decl_ref
+                  (selector
                     (identifier_expr
                       (identifier))))))
             (infix_operator_tail
               (infix_operator)
-              (primary_decl_ref
+              (selector
                 (identifier_expr
                   (identifier))))))
         (stmt
@@ -202,17 +222,17 @@ fun concore2full_await(_ frame: SpawnFrameBase);
             (inout_expr
               (expr
                 (value_member_expr
-                  (primary_decl_ref
+                  (selector
                     (identifier_expr
                       (identifier)))
-                  (primary_decl_ref
+                  (selector
                     (identifier_expr
                       (identifier))))))
             (infix_operator_tail
               (infix_operator)
               (function_call_expr
                 (implicit_member_ref
-                  (primary_decl_ref
+                  (selector
                     (identifier_expr
                       (identifier))))))))
         (stmt
@@ -227,9 +247,13 @@ fun concore2full_await(_ frame: SpawnFrameBase);
                     (identifier)
                     (parameter_passing_convention)
                     (name_type_expr
-                      (identifier)))
+                      (selector
+                        (identifier_expr
+                          (identifier)))))
                   (name_type_expr
-                    (identifier)))
+                    (selector
+                      (identifier_expr
+                        (identifier)))))
                 (brace_stmt
                   (stmt
                     (binding_decl
@@ -238,18 +262,20 @@ fun concore2full_await(_ frame: SpawnFrameBase);
                         (identifier))
                       (expr
                         (function_call_expr
-                          (primary_decl_ref
+                          (selector
                             (identifier_expr
                               (identifier))
                             (static_argument_list
                               (static_argument
                                 (name_type_expr
-                                  (identifier)))))
+                                  (selector
+                                    (identifier_expr
+                                      (identifier)))))))
                           (call_argument
                             (identifier)
                             (expr
                               (subscript_call_expr
-                                (primary_decl_ref
+                                (selector
                                   (identifier_expr
                                     (identifier)))
                                 (call_argument
@@ -257,7 +283,7 @@ fun concore2full_await(_ frame: SpawnFrameBase);
                                   (expr
                                     (inout_expr
                                       (expr
-                                        (primary_decl_ref
+                                        (selector
                                           (identifier_expr
                                             (identifier))))))))))))))
                   (stmt
@@ -268,19 +294,19 @@ fun concore2full_await(_ frame: SpawnFrameBase);
                             (value_member_expr
                               (subscript_call_expr
                                 (value_member_expr
-                                  (primary_decl_ref
+                                  (selector
                                     (identifier_expr
                                       (identifier)))
-                                  (primary_decl_ref
+                                  (selector
                                     (identifier_expr
                                       (identifier)))))
-                              (primary_decl_ref
+                              (selector
                                 (identifier_expr
                                   (identifier))))))))))))))
         (stmt
           (expr
             (function_call_expr
-              (primary_decl_ref
+              (selector
                 (identifier_expr
                   (identifier)))
               (call_argument
@@ -288,15 +314,15 @@ fun concore2full_await(_ frame: SpawnFrameBase);
                   (inout_expr
                     (expr
                       (value_member_expr
-                        (primary_decl_ref
+                        (selector
                           (identifier_expr
                             (identifier)))
-                        (primary_decl_ref
+                        (selector
                           (identifier_expr
                             (identifier))))))))
               (call_argument
                 (expr
-                  (primary_decl_ref
+                  (selector
                     (identifier_expr
                       (identifier))))))))))
     (single_line_comment)
@@ -310,21 +336,23 @@ fun concore2full_await(_ frame: SpawnFrameBase);
       (function_signature
         (receiver_effect)
         (name_type_expr
-          (identifier)))
+          (selector
+            (identifier_expr
+              (identifier)))))
       (brace_stmt
         (stmt
           (expr
             (function_call_expr
-              (primary_decl_ref
+              (selector
                 (identifier_expr
                   (identifier)))
               (call_argument
                 (expr
                   (value_member_expr
-                    (primary_decl_ref
+                    (selector
                       (identifier_expr
                         (identifier)))
-                    (primary_decl_ref
+                    (selector
                       (identifier_expr
                         (identifier)))))))))
         (stmt
@@ -335,13 +363,15 @@ fun concore2full_await(_ frame: SpawnFrameBase);
                   (binding_introducer)
                   (identifier)
                   (name_type_expr
-                    (identifier)))
+                    (selector
+                      (identifier_expr
+                        (identifier)))))
                 (expr
                   (value_member_expr
-                    (primary_decl_ref
+                    (selector
                       (identifier_expr
                         (identifier)))
-                    (primary_decl_ref
+                    (selector
                       (identifier_expr
                         (identifier))))))
               (brace_stmt
@@ -350,17 +380,17 @@ fun concore2full_await(_ frame: SpawnFrameBase);
                     (expr
                       (function_call_expr
                         (value_member_expr
-                          (primary_decl_ref
+                          (selector
                             (identifier_expr
                               (identifier)))
-                          (primary_decl_ref
+                          (selector
                             (identifier_expr
                               (identifier)))))))))
               (brace_stmt
                 (stmt
                   (expr
                     (function_call_expr
-                      (primary_decl_ref
+                      (selector
                         (identifier_expr
                           (identifier))))))))))))
     (function_decl
@@ -375,79 +405,101 @@ fun concore2full_await(_ frame: SpawnFrameBase);
           (expr
             (inout_expr
               (expr
-                (primary_decl_ref
+                (selector
                   (identifier_expr
                     (identifier)))))
             (infix_operator_tail
               (infix_operator)
               (function_call_expr
                 (value_member_expr
-                  (primary_decl_ref
+                  (selector
                     (identifier_expr
                       (identifier)))
-                  (primary_decl_ref
+                  (selector
                     (identifier_expr
                       (identifier))))))
             (type_casting_tail
               (name_type_expr
-                (identifier))))))))
+                (selector
+                  (identifier_expr
+                    (identifier))))))))))
   (single_line_comment)
   (product_type_decl
     (product_type_head
       (identifier)
       (conformance_list
         (name_type_expr
-          (identifier))
+          (selector
+            (identifier_expr
+              (identifier))))
         (name_type_expr
-          (identifier))))
+          (selector
+            (identifier_expr
+              (identifier))))))
     (binding_decl
       (binding_pattern
         (binding_introducer)
         (identifier)
         (name_type_expr
-          (identifier))))
+          (selector
+            (identifier_expr
+              (identifier))))))
     (binding_decl
       (binding_pattern
         (binding_introducer)
         (identifier)
         (name_type_expr
-          (identifier))))
+          (selector
+            (identifier_expr
+              (identifier))))))
     (binding_decl
       (binding_pattern
         (binding_introducer)
         (identifier)
         (name_type_expr
-          (identifier))))
+          (selector
+            (identifier_expr
+              (identifier))))))
     (binding_decl
       (binding_pattern
         (binding_introducer)
         (identifier)
         (name_type_expr
-          (identifier))))
+          (selector
+            (identifier_expr
+              (identifier))))))
     (binding_decl
       (binding_pattern
         (binding_introducer)
         (identifier)
         (name_type_expr
-          (identifier))))
+          (selector
+            (identifier_expr
+              (identifier))))))
     (binding_decl
       (binding_pattern
         (binding_introducer)
         (identifier)
         (name_type_expr
-          (identifier))))
+          (selector
+            (identifier_expr
+              (identifier))))))
     (binding_decl
       (binding_pattern
         (binding_introducer)
         (identifier)
         (name_type_expr
-          (identifier))))
+          (selector
+            (identifier_expr
+              (identifier))))))
     (binding_decl
       (binding_pattern
         (binding_introducer)
         (identifier)
         (name_type_expr
-          (identifier))))
+          (selector
+            (identifier_expr
+              (identifier))))))
     (function_decl
       (function_head
         (access_modifier)
@@ -459,17 +511,17 @@ fun concore2full_await(_ frame: SpawnFrameBase);
             (inout_expr
               (expr
                 (value_member_expr
-                  (primary_decl_ref
+                  (selector
                     (identifier_expr
                       (identifier)))
-                  (primary_decl_ref
+                  (selector
                     (identifier_expr
                       (identifier))))))
             (infix_operator_tail
               (infix_operator)
               (function_call_expr
                 (implicit_member_ref
-                  (primary_decl_ref
+                  (selector
                     (identifier_expr
                       (identifier))))))))
         (stmt
@@ -477,17 +529,17 @@ fun concore2full_await(_ frame: SpawnFrameBase);
             (inout_expr
               (expr
                 (value_member_expr
-                  (primary_decl_ref
+                  (selector
                     (identifier_expr
                       (identifier)))
-                  (primary_decl_ref
+                  (selector
                     (identifier_expr
                       (identifier))))))
             (infix_operator_tail
               (infix_operator)
               (function_call_expr
                 (implicit_member_ref
-                  (primary_decl_ref
+                  (selector
                     (identifier_expr
                       (identifier))))))))
         (stmt
@@ -495,10 +547,10 @@ fun concore2full_await(_ frame: SpawnFrameBase);
             (inout_expr
               (expr
                 (value_member_expr
-                  (primary_decl_ref
+                  (selector
                     (identifier_expr
                       (identifier)))
-                  (primary_decl_ref
+                  (selector
                     (identifier_expr
                       (identifier))))))
             (infix_operator_tail
@@ -510,17 +562,17 @@ fun concore2full_await(_ frame: SpawnFrameBase);
             (inout_expr
               (expr
                 (value_member_expr
-                  (primary_decl_ref
+                  (selector
                     (identifier_expr
                       (identifier)))
-                  (primary_decl_ref
+                  (selector
                     (identifier_expr
                       (identifier))))))
             (infix_operator_tail
               (infix_operator)
               (function_call_expr
                 (implicit_member_ref
-                  (primary_decl_ref
+                  (selector
                     (identifier_expr
                       (identifier))))))))
         (stmt
@@ -528,17 +580,17 @@ fun concore2full_await(_ frame: SpawnFrameBase);
             (inout_expr
               (expr
                 (value_member_expr
-                  (primary_decl_ref
+                  (selector
                     (identifier_expr
                       (identifier)))
-                  (primary_decl_ref
+                  (selector
                     (identifier_expr
                       (identifier))))))
             (infix_operator_tail
               (infix_operator)
               (function_call_expr
                 (implicit_member_ref
-                  (primary_decl_ref
+                  (selector
                     (identifier_expr
                       (identifier))))))))
         (stmt
@@ -546,17 +598,17 @@ fun concore2full_await(_ frame: SpawnFrameBase);
             (inout_expr
               (expr
                 (value_member_expr
-                  (primary_decl_ref
+                  (selector
                     (identifier_expr
                       (identifier)))
-                  (primary_decl_ref
+                  (selector
                     (identifier_expr
                       (identifier))))))
             (infix_operator_tail
               (infix_operator)
               (function_call_expr
                 (implicit_member_ref
-                  (primary_decl_ref
+                  (selector
                     (identifier_expr
                       (identifier))))))))
         (stmt
@@ -564,17 +616,17 @@ fun concore2full_await(_ frame: SpawnFrameBase);
             (inout_expr
               (expr
                 (value_member_expr
-                  (primary_decl_ref
+                  (selector
                     (identifier_expr
                       (identifier)))
-                  (primary_decl_ref
+                  (selector
                     (identifier_expr
                       (identifier))))))
             (infix_operator_tail
               (infix_operator)
               (function_call_expr
                 (implicit_member_ref
-                  (primary_decl_ref
+                  (selector
                     (identifier_expr
                       (identifier))))))))
         (stmt
@@ -582,17 +634,17 @@ fun concore2full_await(_ frame: SpawnFrameBase);
             (inout_expr
               (expr
                 (value_member_expr
-                  (primary_decl_ref
+                  (selector
                     (identifier_expr
                       (identifier)))
-                  (primary_decl_ref
+                  (selector
                     (identifier_expr
                       (identifier))))))
             (infix_operator_tail
               (infix_operator)
               (function_call_expr
                 (implicit_member_ref
-                  (primary_decl_ref
+                  (selector
                     (identifier_expr
                       (identifier)))))))))))
   (single_line_comment)
@@ -612,7 +664,9 @@ fun concore2full_await(_ frame: SpawnFrameBase);
         (identifier)
         (parameter_passing_convention)
         (name_type_expr
-          (identifier)))
+          (selector
+            (identifier_expr
+              (identifier)))))
       (parameter_decl
         (identifier)
         (lambda_type_expr
@@ -620,10 +674,14 @@ fun concore2full_await(_ frame: SpawnFrameBase);
           (lambda_parameter
             (parameter_passing_convention)
             (name_type_expr
-              (identifier)))
+              (selector
+                (identifier_expr
+                  (identifier)))))
           (receiver_effect)
           (name_type_expr
-            (identifier))))))
+            (selector
+              (identifier_expr
+                (identifier))))))))
   (single_line_comment)
   (function_decl
     (decl_attr
@@ -638,4 +696,6 @@ fun concore2full_await(_ frame: SpawnFrameBase);
       (parameter_decl
         (identifier)
         (name_type_expr
-          (identifier))))))
+          (selector
+            (identifier_expr
+              (identifier))))))))

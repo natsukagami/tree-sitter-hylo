@@ -57,7 +57,9 @@ public fun main() {
       (parameter_decl
         (identifier)
         (name_type_expr
-          (identifier))))
+          (selector
+            (identifier_expr
+              (identifier))))))
     (brace_stmt))
   (function_decl
     (function_head
@@ -72,32 +74,40 @@ public fun main() {
             (binding_introducer)
             (identifier)
             (name_type_expr
-              (identifier)
-              (generic_argument_list
-                (generic_type_argument
-                  (name_type_expr
-                    (identifier))))))
+              (selector
+                (identifier_expr
+                  (identifier))
+                (static_argument_list
+                  (static_argument
+                    (name_type_expr
+                      (selector
+                        (identifier_expr
+                          (identifier)))))))))
           (expr
-            (primary_decl_ref
+            (selector
               (identifier_expr
                 (identifier))))))
       (stmt
         (expr
           (function_call_expr
-            (primary_decl_ref
+            (selector
               (identifier_expr
                 (identifier))
               (static_argument_list
                 (static_argument
                   (name_type_expr
-                    (identifier)
-                    (generic_argument_list
-                      (generic_type_argument
-                        (name_type_expr
-                          (identifier))))))))
+                    (selector
+                      (identifier_expr
+                        (identifier))
+                      (static_argument_list
+                        (static_argument
+                          (name_type_expr
+                            (selector
+                              (identifier_expr
+                                (identifier)))))))))))
             (call_argument
               (expr
-                (primary_decl_ref
+                (selector
                   (identifier_expr
                     (identifier))))))))
       (stmt
@@ -106,28 +116,34 @@ public fun main() {
             (binding_introducer)
             (identifier)
             (name_type_expr
-              (identifier)))
+              (selector
+                (identifier_expr
+                  (identifier)))))
           (expr
-            (primary_decl_ref
+            (selector
               (identifier_expr
                 (identifier))))))
       (stmt
         (expr
           (function_call_expr
-            (primary_decl_ref
+            (selector
               (identifier_expr
                 (identifier))
               (static_argument_list
                 (static_argument
                   (name_type_expr
-                    (identifier)
-                    (generic_argument_list
-                      (generic_type_argument
-                        (name_type_expr
-                          (identifier))))))))
+                    (selector
+                      (identifier_expr
+                        (identifier))
+                      (static_argument_list
+                        (static_argument
+                          (name_type_expr
+                            (selector
+                              (identifier_expr
+                                (identifier)))))))))))
             (call_argument
               (expr
-                (primary_decl_ref
+                (selector
                   (identifier_expr
                     (identifier))))))))
       (stmt
@@ -136,32 +152,40 @@ public fun main() {
             (binding_introducer)
             (identifier)
             (name_type_expr
-              (identifier)
-              (generic_argument_list
-                (generic_type_argument
-                  (name_type_expr
-                    (identifier))))))
+              (selector
+                (identifier_expr
+                  (identifier))
+                (static_argument_list
+                  (static_argument
+                    (name_type_expr
+                      (selector
+                        (identifier_expr
+                          (identifier)))))))))
           (expr
-            (primary_decl_ref
+            (selector
               (identifier_expr
                 (identifier))))))
       (stmt
         (expr
           (function_call_expr
-            (primary_decl_ref
+            (selector
               (identifier_expr
                 (identifier))
               (static_argument_list
                 (static_argument
                   (name_type_expr
-                    (identifier)
-                    (generic_argument_list
-                      (generic_type_argument
-                        (name_type_expr
-                          (identifier))))))))
+                    (selector
+                      (identifier_expr
+                        (identifier))
+                      (static_argument_list
+                        (static_argument
+                          (name_type_expr
+                            (selector
+                              (identifier_expr
+                                (identifier)))))))))))
             (call_argument
               (expr
-                (primary_decl_ref
+                (selector
                   (identifier_expr
                     (identifier))))))))
       (stmt
@@ -170,26 +194,30 @@ public fun main() {
             (binding_introducer)
             (identifier))
           (expr
-            (primary_decl_ref
+            (selector
               (identifier_expr
                 (identifier))))))
       (stmt
         (expr
           (function_call_expr
-            (primary_decl_ref
+            (selector
               (identifier_expr
                 (identifier))
               (static_argument_list
                 (static_argument
                   (name_type_expr
-                    (identifier)
-                    (generic_argument_list
-                      (generic_type_argument
-                        (name_type_expr
-                          (identifier))))))))
+                    (selector
+                      (identifier_expr
+                        (identifier))
+                      (static_argument_list
+                        (static_argument
+                          (name_type_expr
+                            (selector
+                              (identifier_expr
+                                (identifier)))))))))))
             (call_argument
               (expr
-                (primary_decl_ref
+                (selector
                   (identifier_expr
                     (identifier))))))))
       (single_line_comment)
@@ -199,13 +227,17 @@ public fun main() {
             (binding_introducer)
             (wildcard_pattern)
             (name_type_expr
-              (identifier)
-              (generic_argument_list
-                (generic_type_argument
-                  (name_type_expr
-                    (identifier))))))
+              (selector
+                (identifier_expr
+                  (identifier))
+                (static_argument_list
+                  (static_argument
+                    (name_type_expr
+                      (selector
+                        (identifier_expr
+                          (identifier)))))))))
           (expr
-            (primary_decl_ref
+            (selector
               (identifier_expr
                 (identifier))))))
       (stmt
@@ -214,33 +246,41 @@ public fun main() {
             (binding_introducer)
             (identifier))
           (expr
-            (primary_decl_ref
+            (selector
               (identifier_expr
                 (identifier))
               (static_argument_list
                 (static_argument
                   (name_type_expr
-                    (identifier))))))))
+                    (selector
+                      (identifier_expr
+                        (identifier))))))))))
       (stmt
         (expr
           (function_call_expr
-            (primary_decl_ref
+            (selector
               (identifier_expr
                 (identifier))
               (static_argument_list
                 (static_argument
                   (name_type_expr
-                    (identifier)
-                    (generic_argument_list
-                      (generic_type_argument
-                        (name_type_expr
-                          (identifier)
-                          (generic_argument_list
-                            (generic_type_argument
-                              (name_type_expr
-                                (identifier)))))))))))
+                    (selector
+                      (identifier_expr
+                        (identifier))
+                      (static_argument_list
+                        (static_argument
+                          (name_type_expr
+                            (selector
+                              (identifier_expr
+                                (identifier))
+                              (static_argument_list
+                                (static_argument
+                                  (name_type_expr
+                                    (selector
+                                      (identifier_expr
+                                        (identifier)))))))))))))))
             (call_argument
               (expr
-                (primary_decl_ref
+                (selector
                   (identifier_expr
                     (identifier)))))))))))

@@ -81,16 +81,22 @@ type A7 {
       (identifier)
       (conformance_list
         (name_type_expr
-          (identifier)))))
+          (selector
+            (identifier_expr
+              (identifier)))))))
   (single_line_comment)
   (product_type_decl
     (product_type_head
       (identifier)
       (conformance_list
         (name_type_expr
-          (identifier))
+          (selector
+            (identifier_expr
+              (identifier))))
         (name_type_expr
-          (identifier)))))
+          (selector
+            (identifier_expr
+              (identifier)))))))
   (single_line_comment)
   (product_type_decl
     (product_type_head
@@ -102,7 +108,9 @@ type A7 {
           (identifier)
           (trait_composition
             (name_type_expr
-              (identifier)))))))
+              (selector
+                (identifier_expr
+                  (identifier)))))))))
   (single_line_comment)
   (product_type_decl
     (product_type_head
@@ -113,12 +121,18 @@ type A7 {
         (generic_value_parameter
           (identifier)
           (name_type_expr
-            (identifier))))
+            (selector
+              (identifier_expr
+                (identifier))))))
       (conformance_list
         (name_type_expr
-          (identifier))
+          (selector
+            (identifier_expr
+              (identifier))))
         (name_type_expr
-          (identifier)))))
+          (selector
+            (identifier_expr
+              (identifier)))))))
   (single_line_comment)
   (product_type_decl
     (product_type_head
@@ -135,7 +149,9 @@ type A7 {
         (binding_introducer)
         (identifier)
         (name_type_expr
-          (identifier))))
+          (selector
+            (identifier_expr
+              (identifier))))))
     (binding_decl
       (binding_pattern
         (binding_introducer)
@@ -148,7 +164,9 @@ type A7 {
         (binding_introducer)
         (identifier)
         (name_type_expr
-          (identifier)))
+          (selector
+            (identifier_expr
+              (identifier)))))
       (expr
         (integer_literal
           (decimal_literal)))))

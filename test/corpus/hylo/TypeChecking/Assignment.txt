@@ -32,12 +32,12 @@ public fun main() {
         (expr
           (inout_expr
             (expr
-              (primary_decl_ref
+              (selector
                 (identifier_expr
                   (identifier)))))
           (infix_operator_tail
             (infix_operator)
-            (primary_decl_ref
+            (selector
               (identifier_expr
                 (identifier))))
           (infix_operator_tail

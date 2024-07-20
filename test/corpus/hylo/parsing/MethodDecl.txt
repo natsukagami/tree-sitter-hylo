@@ -44,7 +44,9 @@ type A0 {
           (identifier)))
       (function_signature
         (name_type_expr
-          (identifier)))
+          (selector
+            (identifier_expr
+              (identifier)))))
       (method_bundle_body
         (method_impl
           (method_introducer)
@@ -60,13 +62,13 @@ type A0 {
           (brace_stmt
             (stmt
               (expr
-                (primary_decl_ref
+                (selector
                   (identifier_expr
                     (identifier)))
                 (infix_operator_tail
                   (infix_operator)
                   (function_call_expr
-                    (primary_decl_ref
+                    (selector
                       (identifier_expr
                         (identifier)))))))))))
     (function_decl
@@ -76,7 +78,9 @@ type A0 {
           (identifier)))
       (function_signature
         (name_type_expr
-          (identifier)))
+          (selector
+            (identifier_expr
+              (identifier)))))
       (method_bundle_body
         (method_impl
           (method_introducer)
@@ -89,7 +93,9 @@ type A0 {
           (identifier)))
       (function_signature
         (name_type_expr
-          (identifier)))
+          (selector
+            (identifier_expr
+              (identifier)))))
       (method_bundle_body
         (method_impl
           (method_introducer)
@@ -102,7 +108,9 @@ type A0 {
       (function_signature
         (receiver_effect)
         (name_type_expr
-          (identifier)))
+          (selector
+            (identifier_expr
+              (identifier)))))
       (method_bundle_body
         (method_impl
           (method_introducer)
@@ -123,7 +131,9 @@ type A0 {
                 (decimal_literal))))))
       (function_signature
         (name_type_expr
-          (identifier)))
+          (selector
+            (identifier_expr
+              (identifier)))))
       (method_bundle_body
         (method_impl
           (method_introducer)

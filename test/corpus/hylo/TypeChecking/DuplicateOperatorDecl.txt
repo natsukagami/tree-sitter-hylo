@@ -38,21 +38,27 @@ fun prefix-*(a: Int, b: Int) -> Int { a + b }
       (parameter_decl
         (identifier)
         (name_type_expr
-          (identifier)))
+          (selector
+            (identifier_expr
+              (identifier)))))
       (parameter_decl
         (identifier)
         (name_type_expr
-          (identifier)))
+          (selector
+            (identifier_expr
+              (identifier)))))
       (name_type_expr
-        (identifier)))
+        (selector
+          (identifier_expr
+            (identifier)))))
     (brace_stmt
       (stmt
         (expr
-          (primary_decl_ref
+          (selector
             (identifier_expr
               (identifier)))
           (infix_operator_tail
             (infix_operator)
-            (primary_decl_ref
+            (selector
               (identifier_expr
                 (identifier)))))))))

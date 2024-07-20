@@ -18,3 +18,9 @@
 - Selection on types doesn't work on "floating" types (e.g. `some blalala`).
 - Where clauses are right-associative.
 - Expressions are left-associative (this might bite me in the butt).
+
+## Paths and expressions
+
+`value_member_expr` and `static_value_member_expr` and `name_type_expr` are highly confusing for the parser,
+without distinction between type and value paths it's better to just merge them into an ambiguous `_path`
+and then split later if possible.

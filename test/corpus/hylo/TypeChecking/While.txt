@@ -40,7 +40,7 @@ public fun main() {
           (while_condition_list
             (while_condition
               (expr
-                (primary_decl_ref
+                (selector
                   (identifier_expr
                     (identifier))))))
           (brace_stmt
@@ -48,7 +48,7 @@ public fun main() {
               (expr
                 (inout_expr
                   (expr
-                    (primary_decl_ref
+                    (selector
                       (identifier_expr
                         (identifier)))))
                 (infix_operator_tail
@@ -68,7 +68,7 @@ public fun main() {
           (while_condition_list
             (while_condition
               (expr
-                (primary_decl_ref
+                (selector
                   (identifier_expr
                     (identifier))))))
           (brace_stmt
@@ -76,7 +76,7 @@ public fun main() {
               (expr
                 (inout_expr
                   (expr
-                    (primary_decl_ref
+                    (selector
                       (identifier_expr
                         (identifier)))))
                 (infix_operator_tail

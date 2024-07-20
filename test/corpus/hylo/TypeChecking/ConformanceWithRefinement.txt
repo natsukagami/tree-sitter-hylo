@@ -27,37 +27,49 @@ public let x = Int.zero().n
       (binding_introducer)
       (identifier)
       (name_type_expr
-        (identifier)))
+        (selector
+          (identifier_expr
+            (identifier)))))
     (expr
-      (primary_decl_ref
+      (selector
         (identifier_expr
           (identifier)))))
   (trait_decl
     (trait_head
       (identifier)
       (name_type_expr
-        (identifier)))
+        (selector
+          (identifier_expr
+            (identifier)))))
     (property_decl
       (property_head
         (identifier))
       (name_type_expr
-        (identifier))
+        (selector
+          (identifier_expr
+            (identifier))))
       (subscript_body
         (subscript_impl
           (subscript_introducer)))))
   (conformance_decl
     (conformance_head
       (name_type_expr
-        (identifier))
+        (selector
+          (identifier_expr
+            (identifier))))
       (conformance_list
         (name_type_expr
-          (identifier))))
+          (selector
+            (identifier_expr
+              (identifier))))))
     (property_decl
       (property_head
         (access_modifier)
         (identifier))
       (name_type_expr
-        (identifier))
+        (selector
+          (identifier_expr
+            (identifier))))
       (subscript_body
         (subscript_impl
           (subscript_introducer)
@@ -65,7 +77,7 @@ public let x = Int.zero().n
             (stmt
               (jump_stmt
                 (expr
-                  (primary_decl_ref
+                  (selector
                     (identifier_expr
                       (identifier)))))))))))
   (binding_decl
@@ -77,12 +89,12 @@ public let x = Int.zero().n
       (value_member_expr
         (function_call_expr
           (value_member_expr
-            (primary_decl_ref
+            (selector
               (identifier_expr
                 (identifier)))
-            (primary_decl_ref
+            (selector
               (identifier_expr
                 (identifier)))))
-        (primary_decl_ref
+        (selector
           (identifier_expr
             (identifier)))))))

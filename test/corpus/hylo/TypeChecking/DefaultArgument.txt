@@ -56,7 +56,9 @@ public fun main() {
       (identifier)
       (conformance_list
         (name_type_expr
-          (identifier))))
+          (selector
+            (identifier_expr
+              (identifier))))))
     (function_decl
       (function_head
         (access_modifier)
@@ -65,10 +67,12 @@ public fun main() {
         (parameter_decl
           (identifier)
           (name_type_expr
-            (identifier))
+            (selector
+              (identifier_expr
+                (identifier))))
           (expr
             (function_call_expr
-              (primary_decl_ref
+              (selector
                 (identifier_expr
                   (identifier)))))))
       (brace_stmt))
@@ -81,10 +85,12 @@ public fun main() {
         (parameter_decl
           (identifier)
           (name_type_expr
-            (identifier))
+            (selector
+              (identifier_expr
+                (identifier))))
           (expr
             (function_call_expr
-              (primary_decl_ref
+              (selector
                 (identifier_expr
                   (identifier)))))))
       (method_bundle_body
@@ -99,14 +105,18 @@ public fun main() {
       (parameter_decl
         (identifier)
         (name_type_expr
-          (identifier)))
+          (selector
+            (identifier_expr
+              (identifier)))))
       (parameter_decl
         (identifier)
         (name_type_expr
-          (identifier))
+          (selector
+            (identifier_expr
+              (identifier))))
         (expr
           (function_call_expr
-            (primary_decl_ref
+            (selector
               (identifier_expr
                 (identifier)))))))
     (brace_stmt))
@@ -118,16 +128,20 @@ public fun main() {
       (parameter_decl
         (identifier)
         (name_type_expr
-          (identifier))
+          (selector
+            (identifier_expr
+              (identifier))))
         (expr
           (function_call_expr
-            (primary_decl_ref
+            (selector
               (identifier_expr
                 (identifier))))))
       (parameter_decl
         (identifier)
         (name_type_expr
-          (identifier))))
+          (selector
+            (identifier_expr
+              (identifier))))))
     (brace_stmt))
   (single_line_comment)
   (function_decl
@@ -138,11 +152,15 @@ public fun main() {
       (parameter_decl
         (identifier)
         (name_type_expr
-          (identifier)))
+          (selector
+            (identifier_expr
+              (identifier)))))
       (parameter_decl
         (identifier)
         (name_type_expr
-          (identifier))
+          (selector
+            (identifier_expr
+              (identifier))))
         (expr
           (boolean_literal))))
     (brace_stmt))
@@ -156,75 +174,75 @@ public fun main() {
       (stmt
         (expr
           (function_call_expr
-            (primary_decl_ref
+            (selector
               (identifier_expr
                 (identifier)))
             (call_argument
               (identifier)
               (expr
                 (function_call_expr
-                  (primary_decl_ref
+                  (selector
                     (identifier_expr
                       (identifier)))))))))
       (single_line_comment)
       (stmt
         (expr
           (function_call_expr
-            (primary_decl_ref
+            (selector
               (identifier_expr
                 (identifier)))
             (call_argument
               (identifier)
               (expr
                 (function_call_expr
-                  (primary_decl_ref
+                  (selector
                     (identifier_expr
                       (identifier)))))))))
       (single_line_comment)
       (stmt
         (expr
           (function_call_expr
-            (primary_decl_ref
+            (selector
               (identifier_expr
                 (identifier)))
             (call_argument
               (identifier)
               (expr
                 (function_call_expr
-                  (primary_decl_ref
+                  (selector
                     (identifier_expr
                       (identifier))))))
             (call_argument
               (expr
                 (function_call_expr
-                  (primary_decl_ref
+                  (selector
                     (identifier_expr
                       (identifier)))))))))
       (stmt
         (expr
           (function_call_expr
-            (primary_decl_ref
+            (selector
               (identifier_expr
                 (identifier)))
             (call_argument
               (identifier)
               (expr
                 (function_call_expr
-                  (primary_decl_ref
+                  (selector
                     (identifier_expr
                       (identifier)))))))))
       (single_line_comment)
       (stmt
         (expr
           (function_call_expr
-            (primary_decl_ref
+            (selector
               (identifier_expr
                 (identifier)))
             (call_argument
               (identifier)
               (expr
                 (function_call_expr
-                  (primary_decl_ref
+                  (selector
                     (identifier_expr
                       (identifier)))))))))
       (stmt
@@ -234,7 +252,7 @@ public fun main() {
             (identifier))
           (expr
             (function_call_expr
-              (primary_decl_ref
+              (selector
                 (identifier_expr
                   (identifier)))))))
       (stmt
@@ -242,9 +260,9 @@ public fun main() {
           (expr
             (function_call_expr
               (value_member_expr
-                (primary_decl_ref
+                (selector
                   (identifier_expr
                     (identifier)))
-                (primary_decl_ref
+                (selector
                   (identifier_expr
                     (identifier)))))))))))

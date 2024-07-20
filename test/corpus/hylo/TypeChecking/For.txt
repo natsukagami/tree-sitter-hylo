@@ -60,16 +60,22 @@ public fun main() {
       (identifier)
       (conformance_list
         (name_type_expr
-          (identifier))
+          (selector
+            (identifier_expr
+              (identifier))))
         (name_type_expr
-          (identifier))))
+          (selector
+            (identifier_expr
+              (identifier))))))
     (binding_decl
       (access_modifier)
       (binding_pattern
         (binding_introducer)
         (identifier)
         (name_type_expr
-          (identifier))))
+          (selector
+            (identifier_expr
+              (identifier))))))
     (function_memberwise_init
       (access_modifier))
     (type_alias_decl
@@ -77,7 +83,9 @@ public fun main() {
         (access_modifier)
         (identifier))
       (name_type_expr
-        (identifier)))
+        (selector
+          (identifier_expr
+            (identifier)))))
     (function_decl
       (function_head
         (access_modifier)
@@ -86,31 +94,35 @@ public fun main() {
       (function_signature
         (receiver_effect)
         (name_type_expr
-          (identifier)
-          (generic_argument_list
-            (generic_type_argument
-              (name_type_expr
-                (identifier))))))
+          (selector
+            (identifier_expr
+              (identifier))
+            (static_argument_list
+              (static_argument
+                (name_type_expr
+                  (selector
+                    (identifier_expr
+                      (identifier)))))))))
       (brace_stmt
         (stmt
           (expr
-            (value_member_expr
+            (value_index_expr
               (tuple_expr
                 (tuple_expr_element
                   (expr
                     (function_call_expr
                       (value_member_expr
-                        (primary_decl_ref
+                        (selector
                           (identifier_expr
                             (identifier)))
-                        (primary_decl_ref
+                        (selector
                           (identifier_expr
                             (identifier)))))))
                 (tuple_expr_element
                   (expr
                     (inout_expr
                       (expr
-                        (primary_decl_ref
+                        (selector
                           (identifier_expr
                             (identifier)))))
                     (infix_operator_tail
@@ -120,7 +132,9 @@ public fun main() {
               (value_member_index))
             (type_casting_tail
               (name_type_expr
-                (identifier))))))))
+                (selector
+                  (identifier_expr
+                    (identifier))))))))))
   (function_decl
     (function_head
       (function_name
@@ -132,7 +146,9 @@ public fun main() {
       (parameter_decl
         (identifier)
         (name_type_expr
-          (identifier))))
+          (selector
+            (identifier_expr
+              (identifier))))))
     (brace_stmt))
   (function_decl
     (function_head
@@ -148,17 +164,21 @@ public fun main() {
             (identifier))
           (expr
             (function_call_expr
-              (primary_decl_ref
+              (selector
                 (identifier_expr
                   (identifier))
                 (static_argument_list
                   (static_argument
                     (name_type_expr
-                      (identifier)
-                      (generic_argument_list
-                        (generic_type_argument
-                          (name_type_expr
-                            (identifier))))))))
+                      (selector
+                        (identifier_expr
+                          (identifier))
+                        (static_argument_list
+                          (static_argument
+                            (name_type_expr
+                              (selector
+                                (identifier_expr
+                                  (identifier)))))))))))
               (call_argument
                 (expr
                   (integer_literal
@@ -171,27 +191,31 @@ public fun main() {
               (binding_introducer)
               (identifier)))
           (expr
-            (primary_decl_ref
+            (selector
               (identifier_expr
                 (identifier))))
           (brace_stmt
             (stmt
               (expr
                 (function_call_expr
-                  (primary_decl_ref
+                  (selector
                     (identifier_expr
                       (identifier))
                     (static_argument_list
                       (static_argument
                         (name_type_expr
-                          (identifier)
-                          (generic_argument_list
-                            (generic_type_argument
-                              (name_type_expr
-                                (identifier))))))))
+                          (selector
+                            (identifier_expr
+                              (identifier))
+                            (static_argument_list
+                              (static_argument
+                                (name_type_expr
+                                  (selector
+                                    (identifier_expr
+                                      (identifier)))))))))))
                   (call_argument
                     (expr
-                      (primary_decl_ref
+                      (selector
                         (identifier_expr
                           (identifier)))))))))))
       (single_line_comment)
@@ -202,25 +226,29 @@ public fun main() {
               (binding_introducer)
               (identifier)
               (name_type_expr
-                (identifier))))
+                (selector
+                  (identifier_expr
+                    (identifier))))))
           (expr
-            (primary_decl_ref
+            (selector
               (identifier_expr
                 (identifier))))
           (brace_stmt
             (stmt
               (expr
                 (function_call_expr
-                  (primary_decl_ref
+                  (selector
                     (identifier_expr
                       (identifier))
                     (static_argument_list
                       (static_argument
                         (name_type_expr
-                          (identifier)))))
+                          (selector
+                            (identifier_expr
+                              (identifier)))))))
                   (call_argument
                     (expr
-                      (primary_decl_ref
+                      (selector
                         (identifier_expr
                           (identifier)))))))))))
       (single_line_comment)
@@ -231,13 +259,15 @@ public fun main() {
               (binding_introducer)
               (identifier)
               (name_type_expr
-                (identifier))))
+                (selector
+                  (identifier_expr
+                    (identifier))))))
           (expr
-            (primary_decl_ref
+            (selector
               (identifier_expr
                 (identifier))))
           (expr
-            (primary_decl_ref
+            (selector
               (identifier_expr
                 (identifier)))
             (infix_operator_tail
@@ -248,16 +278,18 @@ public fun main() {
             (stmt
               (expr
                 (function_call_expr
-                  (primary_decl_ref
+                  (selector
                     (identifier_expr
                       (identifier))
                     (static_argument_list
                       (static_argument
                         (name_type_expr
-                          (identifier)))))
+                          (selector
+                            (identifier_expr
+                              (identifier)))))))
                   (call_argument
                     (expr
-                      (primary_decl_ref
+                      (selector
                         (identifier_expr
                           (identifier)))))))))))
       (single_line_comment)
@@ -269,7 +301,7 @@ public fun main() {
               (identifier)))
           (expr
             (function_call_expr
-              (primary_decl_ref
+              (selector
                 (identifier_expr
                   (identifier)))
               (call_argument
@@ -281,16 +313,18 @@ public fun main() {
             (stmt
               (expr
                 (function_call_expr
-                  (primary_decl_ref
+                  (selector
                     (identifier_expr
                       (identifier))
                     (static_argument_list
                       (static_argument
                         (name_type_expr
-                          (identifier)))))
+                          (selector
+                            (identifier_expr
+                              (identifier)))))))
                   (call_argument
                     (expr
-                      (primary_decl_ref
+                      (selector
                         (identifier_expr
                           (identifier)))))))))))
       (single_line_comment)
@@ -303,7 +337,7 @@ public fun main() {
               (wildcard_pattern)))
           (expr
             (function_call_expr
-              (primary_decl_ref
+              (selector
                 (identifier_expr
                   (identifier)))
               (call_argument
@@ -331,7 +365,7 @@ public fun main() {
               (binding_introducer)
               (wildcard_pattern)))
           (expr
-            (primary_decl_ref
+            (selector
               (identifier_expr
                 (identifier))))
           (brace_stmt)))
@@ -343,7 +377,7 @@ public fun main() {
               (binding_introducer)
               (wildcard_pattern)))
           (expr
-            (primary_decl_ref
+            (selector
               (identifier_expr
                 (identifier))))
           (expr

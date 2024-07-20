@@ -38,12 +38,12 @@ public fun main() {
             (binding_introducer)
             (wildcard_pattern))
           (expr
-            (primary_decl_ref
+            (selector
               (identifier_expr
                 (identifier)))
             (infix_operator_tail
               (infix_operator)
-              (primary_decl_ref
+              (selector
                 (identifier_expr
                   (identifier)))))))
       (stmt
@@ -53,7 +53,7 @@ public fun main() {
             (wildcard_pattern))
           (expr
             (prefix_operator)
-            (primary_decl_ref
+            (selector
               (identifier_expr
                 (identifier))))))
       (stmt
@@ -63,7 +63,7 @@ public fun main() {
             (wildcard_pattern))
           (expr
             (prefix_operator)
-            (primary_decl_ref
+            (selector
               (identifier_expr
                 (identifier))))))
       (single_line_comment)
@@ -73,7 +73,7 @@ public fun main() {
             (binding_introducer)
             (wildcard_pattern))
           (expr
-            (primary_decl_ref
+            (selector
               (identifier_expr
                 (identifier)))
             (postfix_operator))))

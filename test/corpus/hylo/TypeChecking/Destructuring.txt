@@ -36,7 +36,9 @@ public fun main() {
       (parameter_decl
         (identifier)
         (name_type_expr
-          (identifier))))
+          (selector
+            (identifier_expr
+              (identifier))))))
     (brace_stmt))
   (function_decl
     (function_head
@@ -53,13 +55,13 @@ public fun main() {
               (tuple_pattern_element
                 (expr_pattern
                   (expr
-                    (primary_decl_ref
+                    (selector
                       (identifier_expr
                         (identifier))))))
               (tuple_pattern_element
                 (expr_pattern
                   (expr
-                    (primary_decl_ref
+                    (selector
                       (identifier_expr
                         (identifier))))))))
           (expr
@@ -75,31 +77,35 @@ public fun main() {
       (stmt
         (expr
           (function_call_expr
-            (primary_decl_ref
+            (selector
               (identifier_expr
                 (identifier))
               (static_argument_list
                 (static_argument
                   (name_type_expr
-                    (identifier)))))
+                    (selector
+                      (identifier_expr
+                        (identifier)))))))
             (call_argument
               (expr
-                (primary_decl_ref
+                (selector
                   (identifier_expr
                     (identifier))))))))
       (stmt
         (expr
           (function_call_expr
-            (primary_decl_ref
+            (selector
               (identifier_expr
                 (identifier))
               (static_argument_list
                 (static_argument
                   (name_type_expr
-                    (identifier)))))
+                    (selector
+                      (identifier_expr
+                        (identifier)))))))
             (call_argument
               (expr
-                (primary_decl_ref
+                (selector
                   (identifier_expr
                     (identifier))))))))
       (single_line_comment)
@@ -111,38 +117,18 @@ public fun main() {
               (tuple_pattern_element
                 (expr_pattern
                   (expr
-                    (primary_decl_ref
+                    (selector
                       (identifier_expr
                         (identifier))))))
               (tuple_pattern_element
                 (expr_pattern
                   (expr
-                    (primary_decl_ref
+                    (selector
                       (identifier_expr
                         (identifier)))))))
             (name_type_expr
-              (identifier)))))
-      (single_line_comment)
-      (stmt
-        (binding_decl
-          (binding_pattern
-            (binding_introducer)
-            (tuple_pattern
-              (tuple_pattern_element
-                (expr_pattern
-                  (expr
-                    (primary_decl_ref
-                      (identifier_expr
-                        (identifier))))))
-              (tuple_pattern_element
-                (expr_pattern
-                  (expr
-                    (primary_decl_ref
-                      (identifier_expr
-                        (identifier)))))))
-            (tuple_type_expr
-              (tuple_type_element
-                (name_type_expr
+              (selector
+                (identifier_expr
                   (identifier)))))))
       (single_line_comment)
       (stmt
@@ -153,13 +139,37 @@ public fun main() {
               (tuple_pattern_element
                 (expr_pattern
                   (expr
-                    (primary_decl_ref
+                    (selector
                       (identifier_expr
                         (identifier))))))
               (tuple_pattern_element
                 (expr_pattern
                   (expr
-                    (primary_decl_ref
+                    (selector
+                      (identifier_expr
+                        (identifier)))))))
+            (tuple_type_expr
+              (tuple_type_element
+                (name_type_expr
+                  (selector
+                    (identifier_expr
+                      (identifier)))))))))
+      (single_line_comment)
+      (stmt
+        (binding_decl
+          (binding_pattern
+            (binding_introducer)
+            (tuple_pattern
+              (tuple_pattern_element
+                (expr_pattern
+                  (expr
+                    (selector
+                      (identifier_expr
+                        (identifier))))))
+              (tuple_pattern_element
+                (expr_pattern
+                  (expr
+                    (selector
                       (identifier_expr
                         (identifier))))))))
           (expr

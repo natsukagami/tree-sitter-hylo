@@ -50,12 +50,16 @@ type A1<B: T> {
     (trait_head
       (identifier)
       (name_type_expr
-        (identifier)))
+        (selector
+          (identifier_expr
+            (identifier)))))
     (property_decl
       (property_head
         (identifier))
       (name_type_expr
-        (identifier))
+        (selector
+          (identifier_expr
+            (identifier))))
       (subscript_body
         (subscript_impl
           (subscript_introducer))))
@@ -63,9 +67,12 @@ type A1<B: T> {
       (property_head
         (identifier))
       (name_type_expr
-        (name_type_expr
-          (identifier))
-        (identifier))
+        (selector
+          (identifier_expr
+            (identifier)))
+        (selector
+          (identifier_expr
+            (identifier))))
       (subscript_body
         (subscript_impl
           (subscript_introducer))))
@@ -74,9 +81,12 @@ type A1<B: T> {
       (property_head
         (identifier))
       (name_type_expr
-        (name_type_expr
-          (identifier))
-        (identifier))
+        (selector
+          (identifier_expr
+            (identifier)))
+        (selector
+          (identifier_expr
+            (identifier))))
       (subscript_body
         (subscript_impl
           (subscript_introducer))))
@@ -86,9 +96,13 @@ type A1<B: T> {
       (name_type_expr
         (conformance_lens_type_expr
           (name_type_expr
-            (identifier))
+            (selector
+              (identifier_expr
+                (identifier))))
           (identifier))
-        (identifier))
+        (selector
+          (identifier_expr
+            (identifier))))
       (subscript_body
         (subscript_impl
           (subscript_introducer)))))
@@ -100,19 +114,26 @@ type A1<B: T> {
           (identifier)
           (trait_composition
             (name_type_expr
-              (identifier))))))
+              (selector
+                (identifier_expr
+                  (identifier))))))))
     (type_alias_decl
       (type_alias_head
         (identifier))
       (name_type_expr
-        (identifier)))
+        (selector
+          (identifier_expr
+            (identifier)))))
     (type_alias_decl
       (type_alias_head
         (identifier))
       (name_type_expr
-        (name_type_expr
-          (identifier))
-        (identifier))))
+        (selector
+          (identifier_expr
+            (identifier)))
+        (selector
+          (identifier_expr
+            (identifier))))))
   (product_type_decl
     (product_type_head
       (identifier)
@@ -121,7 +142,9 @@ type A1<B: T> {
           (identifier)))
       (conformance_list
         (name_type_expr
-          (identifier)))))
+          (selector
+            (identifier_expr
+              (identifier)))))))
   (product_type_decl
     (product_type_head
       (identifier)
@@ -130,22 +153,32 @@ type A1<B: T> {
           (identifier)
           (trait_composition
             (name_type_expr
-              (identifier))))))
+              (selector
+                (identifier_expr
+                  (identifier))))))))
     (type_alias_decl
       (type_alias_head
         (identifier))
       (name_type_expr
-        (name_type_expr
-          (identifier)
-          (generic_argument_list
-            (generic_type_argument
+        (selector
+          (identifier_expr
+            (identifier))
+          (static_argument_list
+            (static_argument
               (name_type_expr
-                (identifier)))))
-        (identifier)))
+                (selector
+                  (identifier_expr
+                    (identifier)))))))
+        (selector
+          (identifier_expr
+            (identifier)))))
     (type_alias_decl
       (type_alias_head
         (identifier))
       (name_type_expr
-        (name_type_expr
-          (identifier))
-        (identifier)))))
+        (selector
+          (identifier_expr
+            (identifier)))
+        (selector
+          (identifier_expr
+            (identifier)))))))

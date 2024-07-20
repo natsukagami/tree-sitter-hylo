@@ -1,5 +1,11 @@
 /// <reference path="node_modules/tree-sitter-cli/dsl.d.ts" />
 
+// Lexing Precedences
+const GENERICS_P = 99
+const COMMENTS_P = 95
+const INOUT_P = 91
+const OPERATOR_P = 90
+
 // Token: String
 const unicode_escape = /\\u[0-9a-fA-F_]+/;
 const simple_escape = choice(`\\0`, `\\t`, `\\n`, `\\r`, `\\'`, `\\"`);
@@ -14,11 +20,11 @@ const whitespace = token(choice(horizontal_space_token, newline));
 
 // Token: Operators
 const common_operator = /[-+*\/^%&!?=~|]/u; // todo: support \p{Sm}
-const raw_operator = token(choice(common_operator, "<", ">"));
-const imm_raw_operator = token.immediate(raw_operator);
-const prefix_operator_head = token(choice(common_operator, ">"));
-const postfix_operator_head = token.immediate(choice(common_operator, "<"));
-const operator = token(seq(raw_operator, repeat(imm_raw_operator)));
+const raw_operator = token(prec(OPERATOR_P, (choice(common_operator, "<", ">"))));
+const imm_raw_operator = token.immediate(prec(OPERATOR_P, (raw_operator)));
+const prefix_operator_head = token(prec(OPERATOR_P, (choice(common_operator, ">"))));
+const postfix_operator_head = token.immediate(prec(OPERATOR_P, (choice(common_operator, "<"))));
+const operator = token(prec(OPERATOR_P, (seq(raw_operator, repeat(imm_raw_operator)))));
 
 // Token: floats
 const decimal_literal = /[0-9][0-9_]*/;
@@ -39,8 +45,8 @@ const unicode_scalar_literal = token(choice(
 ));
 
 // Token: generics
-const genericsOpen = prec("generics", token.immediate("<"));
-const genericsClose = prec("generics", token.immediate(">"));
+const genericsOpen = token.immediate(prec(GENERICS_P, "<"));
+const genericsClose = token.immediate(prec(GENERICS_P, ">"));
 const genericScope = (...items) => seq(genericsOpen, ...items, genericsClose);
 
 module.exports = grammar({
@@ -569,23 +575,24 @@ module.exports = grammar({
     // COMPOUND EXPRESSIONS
 
     _compound_expr: $ => choice(
+      $.value_index_expr,
       $.value_member_expr,
-      // static-value-member-expr
       $.function_call_expr,
       $.subscript_call_expr,
       $._primary_expr,
     ),
 
-    value_member_expr: $ => prec("expr_select", seq(
+    value_index_expr: $ => prec("expr_select_on_type", seq(
       field('qualifier', $._compound_expr),
       ".",
-      choice(
-        field('label', $.primary_decl_ref),
-        field('index', $.value_member_index),
-      ),
+      field('index', $.value_member_index),
     )),
-
     value_member_index: $ => /[0-9]+/,
+
+    value_member_expr: $ => prec.right(seq(
+      choice(field('type_qualifier', $._type_expr), field('qualifier', $._compound_expr)),
+      repeat1(prec("expr_select", seq(".", field('selector', $.selector)))),
+    )),
 
     function_call_expr: $ => prec("expr_select", seq(
       field('head', $._compound_expr),
@@ -619,20 +626,22 @@ module.exports = grammar({
     _primary_expr: $ => choice(
       $._scalar_literal,
       // compound-literal
-      $.primary_decl_ref,
       $.implicit_member_ref,
       $.lambda_expr,
       $._selection_expr,
       $.inout_expr,
       $.tuple_expr,
       $.pragma_expr,
+      $._selector_expr,
       "nil",
     ),
 
-    //! TODO: fix possible whitespace in between
-    inout_expr: $ => prec("expr_inout", seq("&", $.expr)),
+    _selector_expr: $ => prec("expr_select", $.selector),
 
-    tuple_expr: $ => seq(
+    //! TODO: fix possible whitespace in between
+    inout_expr: $ => prec("expr_inout", seq(token(prec(INOUT_P, "&")), $.expr)),
+
+    tuple_expr: $ => prec.left(seq(
       "(",
       optional(
         seq(
@@ -642,35 +651,14 @@ module.exports = grammar({
         ),
       ),
       ")",
-    ),
+    )),
 
     tuple_expr_element: $ => prec("expr", seq(
       optional(seq(field('label', $.identifier), ":")),
       $.expr,
     )),
 
-    primary_decl_ref: $ => seq(
-      field('identifier', $.identifier_expr),
-      optional(field('static_args', $.static_argument_list)),
-    ),
-
-    implicit_member_ref: $ => seq(".", $.primary_decl_ref),
-
-    static_argument_list: $ => genericScope(
-      $.static_argument,
-      repeat(seq(",", $.static_argument)),
-    ),
-
-    static_argument: $ => seq(
-      optional(seq(
-        field('label', $.identifier),
-        ":",
-      )),
-      choice(
-        field('expr', $.expr),
-        field('type', $._type_expr),
-      ),
-    ),
+    implicit_member_ref: $ => seq(".", $.selector),
 
     identifier_expr: $ => seq(
       field('entity', $._entity_identifier),
@@ -770,10 +758,10 @@ module.exports = grammar({
 
     // OPERATORS
 
-    prefix_operator: $ => prec("operators", seq(prefix_operator_head, repeat(imm_raw_operator))),
-    postfix_operator: $ => prec("operators", seq(postfix_operator_head, repeat(imm_raw_operator))),
-    operator: $ => prec("operators", operator),
-    infix_operator: $ => prec("operators", token(choice(
+    prefix_operator: $ => token(prec(OPERATOR_P, seq(prefix_operator_head, repeat(imm_raw_operator)))),
+    postfix_operator: $ => token.immediate(prec(OPERATOR_P, seq(postfix_operator_head, repeat(imm_raw_operator)))),
+    operator: $ => prec(OPERATOR_P, operator),
+    infix_operator: $ => token(prec(OPERATOR_P, choice(
       operator,
       "=", "==", "..<", "...",
     ))),
@@ -864,33 +852,13 @@ module.exports = grammar({
       $._type_expr,
     ),
 
-    name_type_expr: $ => prec("type_select", seq(
-      optional(seq(field('prefix', $._type_expr), ".")),
-      // inlined: primary-type-def-ref
-      field('identifier', $._type_identifier),
-      optional(field('arguments', $.generic_argument_list)),
+    name_type_expr: $ => prec.right("type_select", choice(
+      field('qualifier', $.selector),
+      seq(
+        field('qualifier', choice($.selector, $._type_expr)),
+        repeat1(prec.right("type_select", seq(".", field('selector', $.selector)))),
+      ),
     )),
-
-    generic_argument_list: $ => genericScope(
-      $._generic_argument,
-      repeat(seq(",", $._generic_argument)),
-    ),
-
-    _generic_argument: $ => choice(
-      $.generic_type_argument,
-      $.generic_value_argument,
-    ),
-
-    generic_type_argument: $ => seq(
-      optional("@type"),
-      field('value', $._type_expr),
-      optional(alias("...", 'variadic')),
-    ),
-
-    generic_value_argument: $ => seq(
-      "@value",
-      field('value', $.expr),
-    ),
 
     _type_identifier: $ => prec("type", $.identifier),
 
@@ -985,6 +953,31 @@ module.exports = grammar({
       /`[^`\x0a\x0d]+`/
     )),
 
+    selector: $ => seq(
+      field('identifier', $.identifier_expr),
+      optional(field('static_args', $.static_argument_list)),
+    ),
+
+    static_argument_list: $ => genericScope(
+      $.static_argument,
+      repeat(seq(",", $.static_argument)),
+    ),
+
+    static_argument: $ => {
+      const make = (prefix, main) => seq(
+        prefix,
+        optional(seq(
+          field('label', $.identifier),
+          ":",
+        )),
+        main,
+      );
+      return choice(
+        make("@value", field('expr', $.expr)),
+        make(optional("@type"), field('type', $._type_expr)),
+      )
+    },
+
     // LITERALS
 
     _scalar_literal: $ => choice(
@@ -1029,9 +1022,9 @@ module.exports = grammar({
     attribute_argument: $ => choice($.simple_string, $.decimal_literal),
 
     // WHITESPACES
-    single_line_comment: $ => prec(99, token(/\/\/[^\r\n\v]*/)),
+    single_line_comment: $ => token(prec(COMMENTS_P, /\/\/[^\r\n\v]*/)),
     block_comment: $ => seq($._block_comment_open, "*/"),
-    _block_comment_open: $ => token(/\/[*](?:[^*\/]+|(?:[\/]+|[*]+)[^*\/])*/),
+    _block_comment_open: $ => token(prec(COMMENTS_P, /\/[*](?:[^*\/]+|(?:[\/]+|[*]+)[^*\/])*/)),
   },
 
   extras: $ => [whitespace, $.single_line_comment, $.block_comment],
@@ -1042,15 +1035,17 @@ module.exports = grammar({
     // method bundle needs to see the whole set to know, but should be short (3 items)
     [$.method_introducer, $.receiver_modifier],
     [$.subscript_introducer, $.receiver_modifier],
+    [$.binding_introducer, $.parameter_passing_convention],
+    [$.brace_stmt, $.tuple_type_expr],
   ],
 
   precedences: $ => [
     // Expressions: select > suffix > prefix > infix > float > inout
-    ["expr_select", "expr_inout", "expr_postfix", "expr_prefix", "expr_float", "expr_infix"],
+    ["path", "expr_select", "expr_select_on_type", "expr_inout", "expr_postfix", "expr_prefix", "expr_float", "expr_infix"],
     // Type Expressions: float > conformance > where > lambda
-    ["type_simple", "type_select", "type_float", "type_where", "type_lambda", "type_infix"],
+    ["path", "type_simple", "expr_select", "type_select", "type_float", "type_where", "type_lambda", "type_infix"],
     // Type vs Expression clash, prefer types
-    ["type", "pattern", "expr"],
+    ["path", "type", "pattern", "expr"],
     // Generic brackets have higher precedence than operators
     ["generics", "operators"]
   ],

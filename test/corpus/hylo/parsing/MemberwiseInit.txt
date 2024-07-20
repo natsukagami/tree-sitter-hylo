@@ -35,7 +35,9 @@ conformance A: T {
         (binding_introducer)
         (identifier)
         (name_type_expr
-          (identifier)))))
+          (selector
+            (identifier_expr
+              (identifier)))))))
   (trait_decl
     (trait_head
       (identifier))
@@ -44,17 +46,23 @@ conformance A: T {
   (extension_decl
     (extension_head
       (name_type_expr
-        (identifier)))
+        (selector
+          (identifier_expr
+            (identifier)))))
     (single_line_comment)
     (function_memberwise_init
       (access_modifier)))
   (conformance_decl
     (conformance_head
       (name_type_expr
-        (identifier))
+        (selector
+          (identifier_expr
+            (identifier))))
       (conformance_list
         (name_type_expr
-          (identifier))))
+          (selector
+            (identifier_expr
+              (identifier))))))
     (single_line_comment)
     (function_memberwise_init
       (access_modifier))))

@@ -25,7 +25,9 @@ fun fatal_error() -> Never
         (identifier)))
     (function_signature
       (name_type_expr
-        (identifier)))
+        (selector
+          (identifier_expr
+            (identifier)))))
     (brace_stmt
       (stmt
         (expr
@@ -39,14 +41,14 @@ fun fatal_error() -> Never
       (stmt
         (expr
           (function_call_expr
-            (primary_decl_ref
+            (selector
               (identifier_expr
                 (identifier))))))
       (single_line_comment)
       (stmt
         (expr
           (function_call_expr
-            (primary_decl_ref
+            (selector
               (identifier_expr
                 (identifier))))))
       (single_line_comment)))
@@ -56,7 +58,9 @@ fun fatal_error() -> Never
         (identifier)))
     (function_signature
       (name_type_expr
-        (identifier)))
+        (selector
+          (identifier_expr
+            (identifier)))))
     (brace_stmt))
   (function_decl
     (decl_attr
@@ -69,4 +73,6 @@ fun fatal_error() -> Never
         (identifier)))
     (function_signature
       (name_type_expr
-        (identifier)))))
+        (selector
+          (identifier_expr
+            (identifier)))))))

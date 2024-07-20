@@ -44,7 +44,9 @@ type A {
         (parameter_decl
           (identifier)
           (name_type_expr
-            (identifier)))))
+            (selector
+              (identifier_expr
+                (identifier)))))))
     (function_decl
       (function_head
         (access_modifier)
@@ -61,7 +63,9 @@ type A {
         (identifier))
       (subscript_signature
         (name_type_expr
-          (identifier)))
+          (selector
+            (identifier_expr
+              (identifier)))))
       (subscript_body
         (subscript_impl
           (subscript_introducer))

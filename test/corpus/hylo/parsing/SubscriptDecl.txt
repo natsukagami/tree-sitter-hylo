@@ -25,7 +25,9 @@ type A0 {
       (property_head
         (identifier))
       (name_type_expr
-        (identifier))
+        (selector
+          (identifier_expr
+            (identifier))))
       (subscript_body
         (subscript_impl
           (subscript_introducer)

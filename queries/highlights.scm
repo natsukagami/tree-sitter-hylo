@@ -87,7 +87,7 @@
 (tuple_pattern "," ")" @punctuation.bracket.tuple)
 (tuple_pattern_element label: (identifier) @label)
 (tuple_pattern_element ":" @operator.assignment)
-(tuple_pattern_element pattern: (expr_pattern (expr (primary_decl_ref identifier: (identifier_expr (identifier) @variable)))))
+(tuple_pattern_element pattern: (expr_pattern (expr (selector identifier: (identifier_expr (identifier) @variable)) !selector)))
 (binding_decl "=" @operator.assignment)
 
 ; Expr
@@ -100,12 +100,12 @@
 ;; Inout
 (inout_expr "&" @operator.prefix @keyword.storage)
 ;; Compound Expr
-(expr (value_member_expr label: (primary_decl_ref identifier: (identifier_expr (identifier) @property))))
-(expr (value_member_expr index: (value_member_index) @property))
+(value_member_expr selector: (selector identifier: (identifier_expr (identifier) @property)))
+(value_index_expr index: (value_member_index) @property)
 ;;; Function / Method calls
-(function_call_expr head: (primary_decl_ref identifier: (identifier_expr (identifier) @function)))
-(function_call_expr head: (value_member_expr label: (primary_decl_ref identifier: (identifier_expr (identifier) @function.method))))
-(function_call_expr head: (implicit_member_ref (primary_decl_ref identifier: (identifier_expr (identifier) @function.method))))
+(function_call_expr head: (selector identifier: (identifier_expr (identifier) @function)))
+(function_call_expr head: (_ (selector identifier: (identifier_expr (identifier) @function.method)) .))
+; (function_call_expr head: (implicit_member_ref (primary_decl_ref identifier: (identifier_expr (identifier) @function.method))))
 (call_argument label: (identifier) @label)
 (call_argument ":" @operator.assignment)
 (subscript_call_expr "[" @punctuation.bracket.subscript)
@@ -129,17 +129,21 @@
 ;; Floats
 (existential_type_expr "any" @keyword.operator.type)
 "some" @keyword.operator.type
-(name_type_expr (identifier) @type)
+;;; Type paths
+(name_type_expr qualifier: (selector identifier: (identifier_expr (identifier) @type)) !selector)
+(name_type_expr selector: (selector identifier: (identifier_expr (identifier) @type)))
+;; Conformance Lenses
+(conformance_lens_type_expr trait: (identifier) @type.trait)
 ;; Tuple Types
 (tuple_type_expr "{" @punctuation.bracket)
 (tuple_type_expr "}" @punctuation.bracket)
 (tuple_type_element label: (identifier) @label)
 (tuple_type_element ":" @operator.assignment)
 ;; Builtin Types
-(name_type_expr (identifier) @type.builtin (#eq? @type.builtin "Self"))
-(name_type_expr (identifier) @type.builtin (#any-of? @type.builtin "Void" "String" "Float32" "Float64" "Bool" "Any" "Never" "Union"))
-(name_type_expr (identifier) @type.builtin (#any-of? @type.builtin "Int" "Int8" "Int16" "Int32" "Int64"))
-(name_type_expr (identifier) @type.builtin (#any-of? @type.builtin "Deinitializable"))
+(name_type_expr qualifier: (selector identifier: (identifier_expr (identifier) @type.builtin (#eq? @type.builtin "Self"))))
+(name_type_expr qualifier: (selector identifier: (identifier_expr (identifier) @type.builtin (#any-of? @type.builtin "Void" "String" "Float32" "Float64" "Bool" "Any" "Never" "Union"))))
+(name_type_expr qualifier: (selector identifier: (identifier_expr (identifier) @type.builtin (#any-of? @type.builtin "Int" "Int8" "Int16" "Int32" "Int64"))))
+(name_type_expr qualifier: (selector identifier: (identifier_expr (identifier) @type.builtin (#any-of? @type.builtin "Deinitializable"))))
 
 ; Operator Decls
 "operator" @keyword
@@ -157,7 +161,7 @@
 (value_constraint_expr "@value" @attribute.annotation)
 (equality_constraint "==" @operator.infix)
 (trait_composition "&"* @operator.infix)
-(trait_composition (name_type_expr (identifier) @type.trait)*)
+(trait_composition (name_type_expr (selector identifier: (identifier_expr (identifier) @type.trait)) .))
 
 ; Modifier
 (access_modifier) @attribute.access

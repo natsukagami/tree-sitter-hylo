@@ -37,7 +37,7 @@ public fun main() {
                 (expr
                   (boolean_literal)))))
           (expr
-            (primary_decl_ref
+            (selector
               (identifier_expr
                 (identifier))))))
       (stmt
@@ -55,7 +55,7 @@ public fun main() {
               (expr
                 (inout_expr
                   (expr
-                    (primary_decl_ref
+                    (selector
                       (identifier_expr
                         (identifier)))))
                 (infix_operator_tail
@@ -63,7 +63,7 @@ public fun main() {
                   (integer_literal
                     (decimal_literal))))))
           (expr
-            (primary_decl_ref
+            (selector
               (identifier_expr
                 (identifier))))))
       (single_line_comment))))

@@ -34,7 +34,7 @@ public fun main() {
             (conditional_expr
               (conditional_clause_item
                 (expr
-                  (primary_decl_ref
+                  (selector
                     (identifier_expr
                       (identifier)))))
               (brace_stmt
@@ -51,7 +51,7 @@ public fun main() {
             (conditional_expr
               (conditional_clause_item
                 (expr
-                  (primary_decl_ref
+                  (selector
                     (identifier_expr
                       (identifier)))))
               (brace_stmt
@@ -61,12 +61,12 @@ public fun main() {
               (conditional_expr
                 (conditional_clause_item
                   (expr
-                    (primary_decl_ref
+                    (selector
                       (identifier_expr
                         (identifier)))
                     (infix_operator_tail
                       (infix_operator)
-                      (primary_decl_ref
+                      (selector
                         (identifier_expr
                           (identifier))))))
                 (brace_stmt
@@ -87,23 +87,23 @@ public fun main() {
                   (identifier))
                 (expr
                   (function_call_expr
-                    (primary_decl_ref
+                    (selector
                       (identifier_expr
                         (identifier))))))
               (conditional_clause_item
                 (expr
                   (function_call_expr
-                    (primary_decl_ref
+                    (selector
                       (identifier_expr
                         (identifier)))
                     (call_argument
                       (expr
-                        (primary_decl_ref
+                        (selector
                           (identifier_expr
                             (identifier))))))
                   (infix_operator_tail
                     (infix_operator)
-                    (primary_decl_ref
+                    (selector
                       (identifier_expr
                         (identifier))))))
               (brace_stmt

@@ -24,7 +24,9 @@ public fun main() {
       (identifier)
       (conformance_list
         (name_type_expr
-          (identifier))))
+          (selector
+            (identifier_expr
+              (identifier))))))
     (function_memberwise_init
       (access_modifier))
     (function_decl
@@ -33,7 +35,9 @@ public fun main() {
           (identifier)))
       (function_signature
         (name_type_expr
-          (identifier)))
+          (selector
+            (identifier_expr
+              (identifier)))))
       (brace_stmt
         (stmt
           (expr
@@ -54,9 +58,9 @@ public fun main() {
             (function_call_expr
               (value_member_expr
                 (function_call_expr
-                  (primary_decl_ref
+                  (selector
                     (identifier_expr
                       (identifier))))
-                (primary_decl_ref
+                (selector
                   (identifier_expr
                     (identifier)))))))))))

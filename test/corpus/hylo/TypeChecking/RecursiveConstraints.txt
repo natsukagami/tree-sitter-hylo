@@ -55,7 +55,9 @@ trait I {
       (parameter_decl
         (identifier)
         (name_type_expr
-          (identifier))))
+          (selector
+            (identifier_expr
+              (identifier))))))
     (brace_stmt))
   (trait_decl
     (trait_head
@@ -65,19 +67,29 @@ trait I {
       (where_clause
         (conformance_constraint
           (name_type_expr
-            (identifier))
+            (selector
+              (identifier_expr
+                (identifier))))
           (trait_composition
             (name_type_expr
-              (identifier))))
+              (selector
+                (identifier_expr
+                  (identifier))))))
         (equality_constraint
           (name_type_expr
-            (name_type_expr
-              (name_type_expr
-                (identifier))
-              (identifier))
-            (identifier))
+            (selector
+              (identifier_expr
+                (identifier)))
+            (selector
+              (identifier_expr
+                (identifier)))
+            (selector
+              (identifier_expr
+                (identifier))))
           (name_type_expr
-            (identifier))))))
+            (selector
+              (identifier_expr
+                (identifier))))))))
   (function_decl
     (function_head
       (function_name
@@ -87,32 +99,41 @@ trait I {
           (identifier)
           (trait_composition
             (name_type_expr
-              (identifier))))))
+              (selector
+                (identifier_expr
+                  (identifier))))))))
     (function_signature
       (parameter_decl
         (identifier)
         (name_type_expr
-          (identifier))))
+          (selector
+            (identifier_expr
+              (identifier))))))
     (brace_stmt
       (stmt
         (expr
           (function_call_expr
-            (primary_decl_ref
+            (selector
               (identifier_expr
                 (identifier))
               (static_argument_list
                 (static_argument
                   (name_type_expr
-                    (name_type_expr
-                      (name_type_expr
-                        (name_type_expr
-                          (identifier))
-                        (identifier))
-                      (identifier))
-                    (identifier)))))
+                    (selector
+                      (identifier_expr
+                        (identifier)))
+                    (selector
+                      (identifier_expr
+                        (identifier)))
+                    (selector
+                      (identifier_expr
+                        (identifier)))
+                    (selector
+                      (identifier_expr
+                        (identifier)))))))
             (call_argument
               (expr
-                (primary_decl_ref
+                (selector
                   (identifier_expr
                     (identifier))))))))))
   (trait_decl
@@ -126,22 +147,34 @@ trait I {
       (identifier)
       (conformance_list
         (name_type_expr
-          (identifier)))
+          (selector
+            (identifier_expr
+              (identifier)))))
       (where_clause
         (equality_constraint
           (name_type_expr
-            (name_type_expr
-              (identifier))
-            (identifier))
+            (selector
+              (identifier_expr
+                (identifier)))
+            (selector
+              (identifier_expr
+                (identifier))))
           (name_type_expr
-            (identifier)))
+            (selector
+              (identifier_expr
+                (identifier)))))
         (equality_constraint
           (name_type_expr
-            (name_type_expr
-              (identifier))
-            (identifier))
+            (selector
+              (identifier_expr
+                (identifier)))
+            (selector
+              (identifier_expr
+                (identifier))))
           (name_type_expr
-            (identifier))))))
+            (selector
+              (identifier_expr
+                (identifier))))))))
   (function_decl
     (function_head
       (function_name
@@ -151,32 +184,41 @@ trait I {
           (identifier)
           (trait_composition
             (name_type_expr
-              (identifier))))))
+              (selector
+                (identifier_expr
+                  (identifier))))))))
     (function_signature
       (parameter_decl
         (identifier)
         (name_type_expr
-          (name_type_expr
-            (name_type_expr
-              (identifier))
-            (identifier))
-          (identifier))))
+          (selector
+            (identifier_expr
+              (identifier)))
+          (selector
+            (identifier_expr
+              (identifier)))
+          (selector
+            (identifier_expr
+              (identifier))))))
     (brace_stmt
       (stmt
         (expr
           (function_call_expr
-            (primary_decl_ref
+            (selector
               (identifier_expr
                 (identifier))
               (static_argument_list
                 (static_argument
                   (name_type_expr
-                    (name_type_expr
-                      (identifier))
-                    (identifier)))))
+                    (selector
+                      (identifier_expr
+                        (identifier)))
+                    (selector
+                      (identifier_expr
+                        (identifier)))))))
             (call_argument
               (expr
-                (primary_decl_ref
+                (selector
                   (identifier_expr
                     (identifier))))))))))
   (single_line_comment)
@@ -187,98 +229,155 @@ trait I {
       (identifier)
       (conformance_list
         (name_type_expr
-          (identifier))))
+          (selector
+            (identifier_expr
+              (identifier))))))
     (associated_type_decl
       (identifier)
       (conformance_list
         (name_type_expr
-          (identifier))))
+          (selector
+            (identifier_expr
+              (identifier))))))
     (associated_type_decl
       (identifier)
       (conformance_list
         (name_type_expr
-          (identifier))))
+          (selector
+            (identifier_expr
+              (identifier))))))
     (associated_type_decl
       (identifier)
       (conformance_list
         (name_type_expr
-          (identifier))))
+          (selector
+            (identifier_expr
+              (identifier))))))
     (associated_type_decl
       (identifier)
       (conformance_list
         (name_type_expr
-          (identifier)))
+          (selector
+            (identifier_expr
+              (identifier)))))
       (where_clause
         (equality_constraint
           (name_type_expr
-            (name_type_expr
-              (identifier))
-            (identifier))
+            (selector
+              (identifier_expr
+                (identifier)))
+            (selector
+              (identifier_expr
+                (identifier))))
           (name_type_expr
-            (name_type_expr
-              (identifier))
-            (identifier)))
+            (selector
+              (identifier_expr
+                (identifier)))
+            (selector
+              (identifier_expr
+                (identifier)))))
         (equality_constraint
           (name_type_expr
-            (name_type_expr
-              (identifier))
-            (identifier))
+            (selector
+              (identifier_expr
+                (identifier)))
+            (selector
+              (identifier_expr
+                (identifier))))
           (name_type_expr
-            (name_type_expr
-              (identifier))
-            (identifier)))
+            (selector
+              (identifier_expr
+                (identifier)))
+            (selector
+              (identifier_expr
+                (identifier)))))
         (equality_constraint
           (name_type_expr
-            (name_type_expr
-              (identifier))
-            (identifier))
+            (selector
+              (identifier_expr
+                (identifier)))
+            (selector
+              (identifier_expr
+                (identifier))))
           (name_type_expr
-            (name_type_expr
-              (identifier))
-            (identifier)))
+            (selector
+              (identifier_expr
+                (identifier)))
+            (selector
+              (identifier_expr
+                (identifier)))))
         (equality_constraint
           (name_type_expr
-            (name_type_expr
-              (identifier))
-            (identifier))
+            (selector
+              (identifier_expr
+                (identifier)))
+            (selector
+              (identifier_expr
+                (identifier))))
           (name_type_expr
-            (name_type_expr
-              (identifier))
-            (identifier)))
+            (selector
+              (identifier_expr
+                (identifier)))
+            (selector
+              (identifier_expr
+                (identifier)))))
         (equality_constraint
           (name_type_expr
-            (name_type_expr
-              (identifier))
-            (identifier))
+            (selector
+              (identifier_expr
+                (identifier)))
+            (selector
+              (identifier_expr
+                (identifier))))
           (name_type_expr
-            (name_type_expr
-              (name_type_expr
-                (identifier))
-              (identifier))
-            (identifier)))
+            (selector
+              (identifier_expr
+                (identifier)))
+            (selector
+              (identifier_expr
+                (identifier)))
+            (selector
+              (identifier_expr
+                (identifier)))))
         (equality_constraint
           (name_type_expr
-            (name_type_expr
-              (identifier))
-            (identifier))
+            (selector
+              (identifier_expr
+                (identifier)))
+            (selector
+              (identifier_expr
+                (identifier))))
           (name_type_expr
-            (name_type_expr
-              (name_type_expr
-                (identifier))
-              (identifier))
-            (identifier)))
+            (selector
+              (identifier_expr
+                (identifier)))
+            (selector
+              (identifier_expr
+                (identifier)))
+            (selector
+              (identifier_expr
+                (identifier)))))
         (equality_constraint
           (name_type_expr
-            (name_type_expr
-              (name_type_expr
-                (identifier))
-              (identifier))
-            (identifier))
+            (selector
+              (identifier_expr
+                (identifier)))
+            (selector
+              (identifier_expr
+                (identifier)))
+            (selector
+              (identifier_expr
+                (identifier))))
           (name_type_expr
-            (name_type_expr
-              (name_type_expr
-                (name_type_expr
-                  (identifier))
-                (identifier))
-              (identifier))
-            (identifier)))))))
+            (selector
+              (identifier_expr
+                (identifier)))
+            (selector
+              (identifier_expr
+                (identifier)))
+            (selector
+              (identifier_expr
+                (identifier)))
+            (selector
+              (identifier_expr
+                (identifier)))))))))
