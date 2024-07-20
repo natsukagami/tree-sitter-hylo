@@ -1,0 +1,295 @@
+============
+Operators
+============
+
+public operator infix<<   : shift
+public operator infix&<<  : shift
+public operator infix>>   : shift
+public operator infix&>>  : shift
+
+public operator infix*    : multiplication
+public operator infix&*   : multiplication
+public operator infix/    : multiplication
+public operator infix%    : multiplication
+
+public operator infix+    : addition
+public operator infix&+   : addition
+public operator infix-    : addition
+public operator infix&-   : addition
+
+public operator infix..<  : range
+public operator infix...  : range
+
+public operator infix??   : fallback
+
+public operator infix==   : comparison
+public operator infix!=   : comparison
+public operator infix<    : comparison
+public operator infix<=   : comparison
+public operator infix>=   : comparison
+public operator infix>    : comparison
+
+public operator infix^    : conjunction
+public operator infix&    : conjunction
+public operator infix&&   : conjunction
+
+public operator infix|    : disjunction
+public operator infix||   : disjunction
+
+public operator infix<<=  : assignment
+public operator infix&<<= : assignment
+public operator infix>>=  : assignment
+public operator infix&>>= : assignment
+public operator infix*=   : assignment
+public operator infix/=   : assignment
+public operator infix%=   : assignment
+public operator infix+=   : assignment
+public operator infix-=   : assignment
+public operator infix^=   : assignment
+public operator infix&=   : assignment
+public operator infix&&=  : assignment
+public operator infix|=   : assignment
+public operator infix||=  : assignment
+
+public operator infix**   : exponentiation
+
+public operator prefix+
+public operator prefix-
+public operator prefix~
+public operator prefix!
+
+public operator postfix!
+public operator postfix...
+
+---
+
+(source_file
+  (operator_decl
+    (access_modifier)
+    (operator_notation)
+    (operator)
+    (precedence_group))
+  (operator_decl
+    (access_modifier)
+    (operator_notation)
+    (operator)
+    (precedence_group))
+  (operator_decl
+    (access_modifier)
+    (operator_notation)
+    (operator)
+    (precedence_group))
+  (operator_decl
+    (access_modifier)
+    (operator_notation)
+    (operator)
+    (precedence_group))
+  (operator_decl
+    (access_modifier)
+    (operator_notation)
+    (operator)
+    (precedence_group))
+  (operator_decl
+    (access_modifier)
+    (operator_notation)
+    (operator)
+    (precedence_group))
+  (operator_decl
+    (access_modifier)
+    (operator_notation)
+    (operator)
+    (precedence_group))
+  (operator_decl
+    (access_modifier)
+    (operator_notation)
+    (operator)
+    (precedence_group))
+  (operator_decl
+    (access_modifier)
+    (operator_notation)
+    (operator)
+    (precedence_group))
+  (operator_decl
+    (access_modifier)
+    (operator_notation)
+    (operator)
+    (precedence_group))
+  (operator_decl
+    (access_modifier)
+    (operator_notation)
+    (operator)
+    (precedence_group))
+  (operator_decl
+    (access_modifier)
+    (operator_notation)
+    (operator)
+    (precedence_group))
+  (operator_decl
+    (access_modifier)
+    (operator_notation)
+    (operator)
+    (precedence_group))
+  (operator_decl
+    (access_modifier)
+    (operator_notation)
+    (operator)
+    (precedence_group))
+  (operator_decl
+    (access_modifier)
+    (operator_notation)
+    (operator)
+    (precedence_group))
+  (operator_decl
+    (access_modifier)
+    (operator_notation)
+    (operator)
+    (precedence_group))
+  (operator_decl
+    (access_modifier)
+    (operator_notation)
+    (operator)
+    (precedence_group))
+  (operator_decl
+    (access_modifier)
+    (operator_notation)
+    (operator)
+    (precedence_group))
+  (operator_decl
+    (access_modifier)
+    (operator_notation)
+    (operator)
+    (precedence_group))
+  (operator_decl
+    (access_modifier)
+    (operator_notation)
+    (operator)
+    (precedence_group))
+  (operator_decl
+    (access_modifier)
+    (operator_notation)
+    (operator)
+    (precedence_group))
+  (operator_decl
+    (access_modifier)
+    (operator_notation)
+    (operator)
+    (precedence_group))
+  (operator_decl
+    (access_modifier)
+    (operator_notation)
+    (operator)
+    (precedence_group))
+  (operator_decl
+    (access_modifier)
+    (operator_notation)
+    (operator)
+    (precedence_group))
+  (operator_decl
+    (access_modifier)
+    (operator_notation)
+    (operator)
+    (precedence_group))
+  (operator_decl
+    (access_modifier)
+    (operator_notation)
+    (operator)
+    (precedence_group))
+  (operator_decl
+    (access_modifier)
+    (operator_notation)
+    (operator)
+    (precedence_group))
+  (operator_decl
+    (access_modifier)
+    (operator_notation)
+    (operator)
+    (precedence_group))
+  (operator_decl
+    (access_modifier)
+    (operator_notation)
+    (operator)
+    (precedence_group))
+  (operator_decl
+    (access_modifier)
+    (operator_notation)
+    (operator)
+    (precedence_group))
+  (operator_decl
+    (access_modifier)
+    (operator_notation)
+    (operator)
+    (precedence_group))
+  (operator_decl
+    (access_modifier)
+    (operator_notation)
+    (operator)
+    (precedence_group))
+  (operator_decl
+    (access_modifier)
+    (operator_notation)
+    (operator)
+    (precedence_group))
+  (operator_decl
+    (access_modifier)
+    (operator_notation)
+    (operator)
+    (precedence_group))
+  (operator_decl
+    (access_modifier)
+    (operator_notation)
+    (operator)
+    (precedence_group))
+  (operator_decl
+    (access_modifier)
+    (operator_notation)
+    (operator)
+    (precedence_group))
+  (operator_decl
+    (access_modifier)
+    (operator_notation)
+    (operator)
+    (precedence_group))
+  (operator_decl
+    (access_modifier)
+    (operator_notation)
+    (operator)
+    (precedence_group))
+  (operator_decl
+    (access_modifier)
+    (operator_notation)
+    (operator)
+    (precedence_group))
+  (operator_decl
+    (access_modifier)
+    (operator_notation)
+    (operator)
+    (precedence_group))
+  (operator_decl
+    (access_modifier)
+    (operator_notation)
+    (operator)
+    (precedence_group))
+  (operator_decl
+    (access_modifier)
+    (operator_notation)
+    (operator))
+  (operator_decl
+    (access_modifier)
+    (operator_notation)
+    (operator))
+  (operator_decl
+    (access_modifier)
+    (operator_notation)
+    (operator))
+  (operator_decl
+    (access_modifier)
+    (operator_notation)
+    (operator))
+  (operator_decl
+    (access_modifier)
+    (operator_notation)
+    (operator))
+  (operator_decl
+    (access_modifier)
+    (operator_notation)
+    (operator)))

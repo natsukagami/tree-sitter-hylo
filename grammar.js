@@ -25,11 +25,12 @@ const whitespace = token(choice(horizontal_space_token, newline));
 
 // Token: Operators
 const common_operator = /[-+*\/^%&!?=~|]/u; // todo: support \p{Sm}
-const raw_operator = token(prec(OPERATOR_P, (choice(common_operator, "<", ">"))));
-const imm_raw_operator = token.immediate(prec(OPERATOR_P, (raw_operator)));
-const prefix_operator_head = token(prec(OPERATOR_P, (choice(common_operator, ">"))));
-const postfix_operator_head = token.immediate(prec(OPERATOR_P, (choice(common_operator, "<"))));
-const operator = token(prec(OPERATOR_P, (seq(raw_operator, repeat(imm_raw_operator)))));
+const raw_operator = token(prec(OPERATOR_P, choice(common_operator, "<", ">")));
+const imm_raw_operator = token.immediate(prec(OPERATOR_P, raw_operator));
+const prefix_operator_head = token(prec(OPERATOR_P, choice(common_operator, ">", /\.\.+/)));
+const postfix_operator_head = token.immediate(prec(OPERATOR_P, choice(common_operator, "<", /\.\.+/)));
+const operator_head = choice(raw_operator, /\.\.+/);
+const operator = token(prec(OPERATOR_P, seq(operator_head, repeat(imm_raw_operator))));
 
 // Token: floats
 const decimal_literal = /[0-9][0-9_]*/;
@@ -387,6 +388,7 @@ module.exports = grammar({
     // OPERATOR DECLARATIONS
 
     operator_decl: $ => seq(
+      optional($.access_modifier),
       "operator",
       $.operator_notation,
       field('name', $._imm_operator),
@@ -398,7 +400,7 @@ module.exports = grammar({
 
     operator_notation: $ => token(choice("prefix", "infix", "postfix")),
 
-    precedence_group: $ => token(choice("assignment", "disjunction", "conjunction", "comparison", "fallback", "range", "addition", "multiplication", "shift")),
+    precedence_group: $ => token(choice("assignment", "disjunction", "conjunction", "comparison", "fallback", "range", "addition", "multiplication", "shift", "exponentiation")),
 
     // PROPERTIES
 

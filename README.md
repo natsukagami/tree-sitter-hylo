@@ -4,8 +4,10 @@
 - [ ] `#pragma` in primary expr
 - [ ] Lambda environment can be empty
 - [ ] Array types (`Int[]` and `Int[2]`)
+- `exponentiation` as a precedence group
+- `.` in operators (parser currently allows infix operators with `\.\.+` prefixes)
 
-- [ ] What are `remote` types?
+- [ ] What are `remote` types? (currently same as `indirect` types)
 
 - `type_argument_list` is not defined (used in `type_expr`). We give it something similar to `generics_clause`.
 - `deinit` not really used anywhere, perhaps replaced by `Deinitializable` trait. We highlight both.

@@ -1839,6 +1839,18 @@
       "type": "SEQ",
       "members": [
         {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "access_modifier"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
           "type": "STRING",
           "value": "operator"
         },
@@ -1937,6 +1949,10 @@
           {
             "type": "STRING",
             "value": "shift"
+          },
+          {
+            "type": "STRING",
+            "value": "exponentiation"
           }
         ]
       }
@@ -3725,6 +3741,10 @@
                     {
                       "type": "STRING",
                       "value": ">"
+                    },
+                    {
+                      "type": "PATTERN",
+                      "value": "\\.\\.+"
                     }
                   ]
                 }
@@ -3793,6 +3813,10 @@
                     {
                       "type": "STRING",
                       "value": "<"
+                    },
+                    {
+                      "type": "PATTERN",
+                      "value": "\\.\\.+"
                     }
                   ]
                 }
@@ -3846,29 +3870,38 @@
           "type": "SEQ",
           "members": [
             {
-              "type": "TOKEN",
-              "content": {
-                "type": "PREC",
-                "value": 90,
-                "content": {
-                  "type": "CHOICE",
-                  "members": [
-                    {
-                      "type": "PATTERN",
-                      "value": "[-+*\\/^%&!?=~|]",
-                      "flags": "u"
-                    },
-                    {
-                      "type": "STRING",
-                      "value": "<"
-                    },
-                    {
-                      "type": "STRING",
-                      "value": ">"
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "TOKEN",
+                  "content": {
+                    "type": "PREC",
+                    "value": 90,
+                    "content": {
+                      "type": "CHOICE",
+                      "members": [
+                        {
+                          "type": "PATTERN",
+                          "value": "[-+*\\/^%&!?=~|]",
+                          "flags": "u"
+                        },
+                        {
+                          "type": "STRING",
+                          "value": "<"
+                        },
+                        {
+                          "type": "STRING",
+                          "value": ">"
+                        }
+                      ]
                     }
-                  ]
+                  }
+                },
+                {
+                  "type": "PATTERN",
+                  "value": "\\.\\.+"
                 }
-              }
+              ]
             },
             {
               "type": "REPEAT",
@@ -3922,29 +3955,38 @@
               "type": "SEQ",
               "members": [
                 {
-                  "type": "TOKEN",
-                  "content": {
-                    "type": "PREC",
-                    "value": 90,
-                    "content": {
-                      "type": "CHOICE",
-                      "members": [
-                        {
-                          "type": "PATTERN",
-                          "value": "[-+*\\/^%&!?=~|]",
-                          "flags": "u"
-                        },
-                        {
-                          "type": "STRING",
-                          "value": "<"
-                        },
-                        {
-                          "type": "STRING",
-                          "value": ">"
+                  "type": "CHOICE",
+                  "members": [
+                    {
+                      "type": "TOKEN",
+                      "content": {
+                        "type": "PREC",
+                        "value": 90,
+                        "content": {
+                          "type": "CHOICE",
+                          "members": [
+                            {
+                              "type": "PATTERN",
+                              "value": "[-+*\\/^%&!?=~|]",
+                              "flags": "u"
+                            },
+                            {
+                              "type": "STRING",
+                              "value": "<"
+                            },
+                            {
+                              "type": "STRING",
+                              "value": ">"
+                            }
+                          ]
                         }
-                      ]
+                      }
+                    },
+                    {
+                      "type": "PATTERN",
+                      "value": "\\.\\.+"
                     }
-                  }
+                  ]
                 },
                 {
                   "type": "REPEAT",
@@ -4006,29 +4048,38 @@
                   "type": "SEQ",
                   "members": [
                     {
-                      "type": "TOKEN",
-                      "content": {
-                        "type": "PREC",
-                        "value": 90,
-                        "content": {
-                          "type": "CHOICE",
-                          "members": [
-                            {
-                              "type": "PATTERN",
-                              "value": "[-+*\\/^%&!?=~|]",
-                              "flags": "u"
-                            },
-                            {
-                              "type": "STRING",
-                              "value": "<"
-                            },
-                            {
-                              "type": "STRING",
-                              "value": ">"
+                      "type": "CHOICE",
+                      "members": [
+                        {
+                          "type": "TOKEN",
+                          "content": {
+                            "type": "PREC",
+                            "value": 90,
+                            "content": {
+                              "type": "CHOICE",
+                              "members": [
+                                {
+                                  "type": "PATTERN",
+                                  "value": "[-+*\\/^%&!?=~|]",
+                                  "flags": "u"
+                                },
+                                {
+                                  "type": "STRING",
+                                  "value": "<"
+                                },
+                                {
+                                  "type": "STRING",
+                                  "value": ">"
+                                }
+                              ]
                             }
-                          ]
+                          }
+                        },
+                        {
+                          "type": "PATTERN",
+                          "value": "\\.\\.+"
                         }
-                      }
+                      ]
                     },
                     {
                       "type": "REPEAT",
