@@ -1,0 +1,73 @@
+======================
+Identifier Expressions
+======================
+
+let a = x.y.z // ok
+let b = x.y.let // let is storage modifier
+let c = x.y.let(5).z<T>.field.inout
+
+---
+
+(source_file
+  (binding_decl
+    (binding_pattern
+      (binding_introducer)
+      (identifier))
+    (expr
+      (value_member_expr
+        (selector
+          (identifier_expr
+            (identifier)))
+        (selector
+          (identifier_expr
+            (identifier)))
+        (selector
+          (identifier_expr
+            (identifier))))))
+  (single_line_comment)
+  (binding_decl
+    (binding_pattern
+      (binding_introducer)
+      (identifier))
+    (expr
+      (value_member_expr
+        (selector
+          (identifier_expr
+            (identifier)))
+        (selector
+          (identifier_expr
+            (identifier)
+            (method_introducer))))))
+  (single_line_comment)
+  (binding_decl
+    (binding_pattern
+      (binding_introducer)
+      (identifier))
+    (expr
+      (value_member_expr
+        (function_call_expr
+          (value_member_expr
+            (selector
+              (identifier_expr
+                (identifier)))
+            (selector
+              (identifier_expr
+                (identifier)
+                (method_introducer))))
+          (call_argument
+            (expr
+              (integer_literal
+                (decimal_literal)))))
+        (selector
+          (identifier_expr
+            (identifier))
+          (static_argument_list
+            (static_argument
+              (name_type_expr
+                (selector
+                  (identifier_expr
+                    (identifier)))))))
+        (selector
+          (identifier_expr
+            (identifier)
+            (method_introducer)))))))

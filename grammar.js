@@ -663,7 +663,7 @@ module.exports = grammar({
 
     identifier_expr: $ => seq(
       field('entity', $._entity_identifier),
-      // field('impls', repeat($._impl_identifier)),
+      optional(seq(".", field('introducer', $.method_introducer))),
     ),
 
     _entity_identifier: $ => prec("expr", choice(
@@ -773,12 +773,12 @@ module.exports = grammar({
       $.conformance_lens_type_expr,
       $.existential_type_expr,
       $.opaque_type_expr,
-      // indirect-type-expr
+      $.indirect_type_expr,
       $.lambda_type_expr,
       // stored-projection-type-expr
       $.tuple_type_expr,
       // union-type-expr
-      // wildcard-type-expr
+      $.wildcard_type_expr,
       $.name_type_expr,
       seq('(', $._type_expr, ')'),
     )),
@@ -804,6 +804,11 @@ module.exports = grammar({
           optional($.where_clause),
         ),
       ),
+    )),
+
+    indirect_type_expr: $ => prec.right("type_float", seq(
+      choice("indirect", "remote"),
+      $._type_expr
     )),
 
     lambda_type_expr: $ => prec("type_lambda", seq(
@@ -852,6 +857,8 @@ module.exports = grammar({
       )),
       $._type_expr,
     ),
+
+    wildcard_type_expr: $ => prec("type_wildcard", "_"),
 
     name_type_expr: $ => prec.right("type_select", choice(
       field('qualifier', $.selector),
@@ -1038,13 +1045,15 @@ module.exports = grammar({
     [$.subscript_introducer, $.receiver_modifier],
     [$.binding_introducer, $.parameter_passing_convention],
     [$.brace_stmt, $.tuple_type_expr],
+    [$.wildcard_pattern, $.wildcard_type_expr],
+    [$.identifier_expr], // Look at next token
   ],
 
   precedences: $ => [
     // Expressions: select > suffix > prefix > infix > float > inout
     ["path", "expr_select", "expr_select_on_type", "expr_inout", "expr_postfix", "expr_prefix", "expr_float", "expr_infix"],
-    // Type Expressions: float > conformance > where > lambda
-    ["path", "type_simple", "expr_select", "type_select", "type_float", "type_where", "type_lambda", "type_infix"],
+    // Type Expressions: 
+    ["path", "type_wildcard", "type_simple", "expr_select", "type_select", "type_float", "type_where", "type_lambda", "type_infix"],
     // Type vs Expression clash, prefer types
     ["path", "type", "pattern", "expr"],
     // Generic brackets have higher precedence than operators

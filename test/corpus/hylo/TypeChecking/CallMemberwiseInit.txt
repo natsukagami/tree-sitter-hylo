@@ -353,10 +353,7 @@ public fun main() {
                   (identifier))
                 (static_argument_list
                   (static_argument
-                    (name_type_expr
-                      (selector
-                        (identifier_expr
-                          (identifier)))))
+                    (wildcard_type_expr))
                   (static_argument
                     (name_type_expr
                       (selector

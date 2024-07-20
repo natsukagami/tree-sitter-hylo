@@ -97,10 +97,7 @@ public fun main() {
             (identifier)
             (tuple_type_expr
               (tuple_type_element
-                (name_type_expr
-                  (selector
-                    (identifier_expr
-                      (identifier)))))
+                (wildcard_type_expr))
               (tuple_type_element
                 (name_type_expr
                   (selector

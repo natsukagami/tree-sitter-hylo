@@ -39,6 +39,10 @@
             "named": true
           },
           {
+            "type": "indirect_type_expr",
+            "named": true
+          },
+          {
             "type": "lambda_type_expr",
             "named": true
           },
@@ -52,6 +56,10 @@
           },
           {
             "type": "tuple_type_expr",
+            "named": true
+          },
+          {
+            "type": "wildcard_type_expr",
             "named": true
           }
         ]
@@ -103,6 +111,10 @@
             "named": true
           },
           {
+            "type": "indirect_type_expr",
+            "named": true
+          },
+          {
             "type": "lambda_type_expr",
             "named": true
           },
@@ -116,6 +128,10 @@
           },
           {
             "type": "tuple_type_expr",
+            "named": true
+          },
+          {
+            "type": "wildcard_type_expr",
             "named": true
           }
         ]
@@ -250,6 +266,10 @@
             "named": true
           },
           {
+            "type": "indirect_type_expr",
+            "named": true
+          },
+          {
             "type": "lambda_type_expr",
             "named": true
           },
@@ -263,6 +283,10 @@
           },
           {
             "type": "tuple_type_expr",
+            "named": true
+          },
+          {
+            "type": "wildcard_type_expr",
             "named": true
           }
         ]
@@ -561,6 +585,10 @@
             "named": true
           },
           {
+            "type": "indirect_type_expr",
+            "named": true
+          },
+          {
             "type": "lambda_type_expr",
             "named": true
           },
@@ -574,6 +602,10 @@
           },
           {
             "type": "tuple_type_expr",
+            "named": true
+          },
+          {
+            "type": "wildcard_type_expr",
             "named": true
           }
         ]
@@ -623,6 +655,10 @@
             "named": true
           },
           {
+            "type": "indirect_type_expr",
+            "named": true
+          },
+          {
             "type": "lambda_type_expr",
             "named": true
           },
@@ -636,6 +672,10 @@
           },
           {
             "type": "tuple_type_expr",
+            "named": true
+          },
+          {
+            "type": "wildcard_type_expr",
             "named": true
           }
         ]
@@ -778,6 +818,10 @@
             "named": true
           },
           {
+            "type": "indirect_type_expr",
+            "named": true
+          },
+          {
             "type": "lambda_type_expr",
             "named": true
           },
@@ -791,6 +835,10 @@
           },
           {
             "type": "tuple_type_expr",
+            "named": true
+          },
+          {
+            "type": "wildcard_type_expr",
             "named": true
           }
         ]
@@ -1008,6 +1056,10 @@
             "named": true
           },
           {
+            "type": "indirect_type_expr",
+            "named": true
+          },
+          {
             "type": "lambda_type_expr",
             "named": true
           },
@@ -1021,6 +1073,10 @@
           },
           {
             "type": "tuple_type_expr",
+            "named": true
+          },
+          {
+            "type": "wildcard_type_expr",
             "named": true
           }
         ]
@@ -1360,6 +1416,10 @@
             "named": true
           },
           {
+            "type": "indirect_type_expr",
+            "named": true
+          },
+          {
             "type": "lambda_type_expr",
             "named": true
           },
@@ -1373,6 +1433,10 @@
           },
           {
             "type": "tuple_type_expr",
+            "named": true
+          },
+          {
+            "type": "wildcard_type_expr",
             "named": true
           }
         ]
@@ -1441,6 +1505,10 @@
             "named": true
           },
           {
+            "type": "indirect_type_expr",
+            "named": true
+          },
+          {
             "type": "lambda_type_expr",
             "named": true
           },
@@ -1454,6 +1522,10 @@
           },
           {
             "type": "tuple_type_expr",
+            "named": true
+          },
+          {
+            "type": "wildcard_type_expr",
             "named": true
           }
         ]
@@ -1525,6 +1597,10 @@
             "named": true
           },
           {
+            "type": "indirect_type_expr",
+            "named": true
+          },
+          {
             "type": "lambda_type_expr",
             "named": true
           },
@@ -1538,6 +1614,10 @@
           },
           {
             "type": "tuple_type_expr",
+            "named": true
+          },
+          {
+            "type": "wildcard_type_expr",
             "named": true
           }
         ]
@@ -1554,6 +1634,16 @@
         "types": [
           {
             "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "impls": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "method_introducer",
             "named": true
           }
         ]
@@ -1585,6 +1675,49 @@
       "types": [
         {
           "type": "identifier",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "indirect_type_expr",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "conformance_lens_type_expr",
+          "named": true
+        },
+        {
+          "type": "existential_type_expr",
+          "named": true
+        },
+        {
+          "type": "indirect_type_expr",
+          "named": true
+        },
+        {
+          "type": "lambda_type_expr",
+          "named": true
+        },
+        {
+          "type": "name_type_expr",
+          "named": true
+        },
+        {
+          "type": "opaque_type_expr",
+          "named": true
+        },
+        {
+          "type": "tuple_type_expr",
+          "named": true
+        },
+        {
+          "type": "wildcard_type_expr",
           "named": true
         }
       ]
@@ -1787,6 +1920,10 @@
           "named": true
         },
         {
+          "type": "indirect_type_expr",
+          "named": true
+        },
+        {
           "type": "lambda_type_expr",
           "named": true
         },
@@ -1800,6 +1937,10 @@
         },
         {
           "type": "tuple_type_expr",
+          "named": true
+        },
+        {
+          "type": "wildcard_type_expr",
           "named": true
         }
       ]
@@ -1886,6 +2027,10 @@
             "named": true
           },
           {
+            "type": "indirect_type_expr",
+            "named": true
+          },
+          {
             "type": "lambda_type_expr",
             "named": true
           },
@@ -1899,6 +2044,10 @@
           },
           {
             "type": "tuple_type_expr",
+            "named": true
+          },
+          {
+            "type": "wildcard_type_expr",
             "named": true
           }
         ]
@@ -1944,6 +2093,10 @@
             "named": true
           },
           {
+            "type": "indirect_type_expr",
+            "named": true
+          },
+          {
             "type": "lambda_type_expr",
             "named": true
           },
@@ -1957,6 +2110,10 @@
           },
           {
             "type": "tuple_type_expr",
+            "named": true
+          },
+          {
+            "type": "wildcard_type_expr",
             "named": true
           }
         ]
@@ -2110,6 +2267,10 @@
             "named": true
           },
           {
+            "type": "indirect_type_expr",
+            "named": true
+          },
+          {
             "type": "lambda_type_expr",
             "named": true
           },
@@ -2127,6 +2288,10 @@
           },
           {
             "type": "tuple_type_expr",
+            "named": true
+          },
+          {
+            "type": "wildcard_type_expr",
             "named": true
           }
         ]
@@ -2365,6 +2530,10 @@
             "named": true
           },
           {
+            "type": "indirect_type_expr",
+            "named": true
+          },
+          {
             "type": "lambda_type_expr",
             "named": true
           },
@@ -2382,6 +2551,10 @@
           },
           {
             "type": "tuple_type_expr",
+            "named": true
+          },
+          {
+            "type": "wildcard_type_expr",
             "named": true
           }
         ]
@@ -2535,6 +2708,10 @@
             "named": true
           },
           {
+            "type": "indirect_type_expr",
+            "named": true
+          },
+          {
             "type": "lambda_type_expr",
             "named": true
           },
@@ -2548,6 +2725,10 @@
           },
           {
             "type": "tuple_type_expr",
+            "named": true
+          },
+          {
+            "type": "wildcard_type_expr",
             "named": true
           }
         ]
@@ -2738,6 +2919,10 @@
             "named": true
           },
           {
+            "type": "indirect_type_expr",
+            "named": true
+          },
+          {
             "type": "lambda_type_expr",
             "named": true
           },
@@ -2751,6 +2936,10 @@
           },
           {
             "type": "tuple_type_expr",
+            "named": true
+          },
+          {
+            "type": "wildcard_type_expr",
             "named": true
           }
         ]
@@ -3113,6 +3302,10 @@
             "named": true
           },
           {
+            "type": "indirect_type_expr",
+            "named": true
+          },
+          {
             "type": "lambda_type_expr",
             "named": true
           },
@@ -3126,6 +3319,10 @@
           },
           {
             "type": "tuple_type_expr",
+            "named": true
+          },
+          {
+            "type": "wildcard_type_expr",
             "named": true
           }
         ]
@@ -3379,6 +3576,10 @@
           "named": true
         },
         {
+          "type": "indirect_type_expr",
+          "named": true
+        },
+        {
           "type": "lambda_type_expr",
           "named": true
         },
@@ -3392,6 +3593,10 @@
         },
         {
           "type": "tuple_type_expr",
+          "named": true
+        },
+        {
+          "type": "wildcard_type_expr",
           "named": true
         }
       ]
@@ -3437,6 +3642,10 @@
             "named": true
           },
           {
+            "type": "indirect_type_expr",
+            "named": true
+          },
+          {
             "type": "lambda_type_expr",
             "named": true
           },
@@ -3450,6 +3659,10 @@
           },
           {
             "type": "tuple_type_expr",
+            "named": true
+          },
+          {
+            "type": "wildcard_type_expr",
             "named": true
           }
         ]
@@ -3546,6 +3759,10 @@
             "named": true
           },
           {
+            "type": "indirect_type_expr",
+            "named": true
+          },
+          {
             "type": "lambda_type_expr",
             "named": true
           },
@@ -3559,6 +3776,10 @@
           },
           {
             "type": "tuple_type_expr",
+            "named": true
+          },
+          {
+            "type": "wildcard_type_expr",
             "named": true
           }
         ]
@@ -3604,6 +3825,10 @@
             "named": true
           },
           {
+            "type": "indirect_type_expr",
+            "named": true
+          },
+          {
             "type": "lambda_type_expr",
             "named": true
           },
@@ -3617,6 +3842,10 @@
           },
           {
             "type": "tuple_type_expr",
+            "named": true
+          },
+          {
+            "type": "wildcard_type_expr",
             "named": true
           }
         ]
@@ -3860,6 +4089,10 @@
             "named": true
           },
           {
+            "type": "indirect_type_expr",
+            "named": true
+          },
+          {
             "type": "lambda_type_expr",
             "named": true
           },
@@ -3873,6 +4106,10 @@
           },
           {
             "type": "tuple_type_expr",
+            "named": true
+          },
+          {
+            "type": "wildcard_type_expr",
             "named": true
           }
         ]
@@ -3971,6 +4208,11 @@
   },
   {
     "type": "wildcard_pattern",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "wildcard_type_expr",
     "named": true,
     "fields": {}
   },
@@ -4151,6 +4393,10 @@
     "named": false
   },
   {
+    "type": "indirect",
+    "named": false
+  },
+  {
     "type": "infix_operator",
     "named": true
   },
@@ -4216,6 +4462,10 @@
   },
   {
     "type": "public",
+    "named": false
+  },
+  {
+    "type": "remote",
     "named": false
   },
   {

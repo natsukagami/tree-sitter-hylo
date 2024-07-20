@@ -26,7 +26,7 @@
 (type_aliases_clause_item lhs: (identifier) @type)
 (type_aliases_clause_item "=" @operator.assignment)
 ;; Body
-(method_impl (method_introducer) @keyword.storage.modifier)
+(method_introducer) @keyword.storage.modifier
 
 ; Struct Decl
 "type" @keyword

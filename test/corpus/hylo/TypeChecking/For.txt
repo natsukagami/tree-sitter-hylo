@@ -131,10 +131,7 @@ public fun main() {
                         (decimal_literal))))))
               (value_member_index))
             (type_casting_tail
-              (name_type_expr
-                (selector
-                  (identifier_expr
-                    (identifier))))))))))
+              (wildcard_type_expr)))))))
   (function_decl
     (function_head
       (function_name

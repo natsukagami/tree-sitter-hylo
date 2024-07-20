@@ -419,10 +419,7 @@ fun concore2full_await(_ frame: SpawnFrameBase);
                     (identifier_expr
                       (identifier))))))
             (type_casting_tail
-              (name_type_expr
-                (selector
-                  (identifier_expr
-                    (identifier))))))))))
+              (wildcard_type_expr)))))))
   (single_line_comment)
   (product_type_decl
     (product_type_head
