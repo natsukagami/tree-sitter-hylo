@@ -336,7 +336,7 @@ module.exports = grammar({
     function_name: $ => choice(
       'init',
       seq('fun', field('name', $.identifier)),
-      seq('fun', $.operator_notation, field('operator', $.operator))
+      seq('fun', $.operator_notation, field('operator', $._imm_operator))
     ),
 
     function_memberwise_init: $ => seq(optional($.access_modifier), "memberwise", "init"),
@@ -385,7 +385,7 @@ module.exports = grammar({
     operator_decl: $ => seq(
       "operator",
       $.operator_notation,
-      field('name', $.operator),
+      field('name', $._imm_operator),
       optional(seq(
         ":",
         $.precedence_group
@@ -668,8 +668,8 @@ module.exports = grammar({
 
     _entity_identifier: $ => prec("expr", choice(
       $.identifier,
-      // function-entity-identifier
-      //   operator-entity-identifier
+      $.function_entity_identifier,
+      $.operator_entity_identifier,
     )),
 
     lambda_expr: $ => seq(
@@ -761,7 +761,8 @@ module.exports = grammar({
 
     prefix_operator: $ => token(prec(OPERATOR_P, seq(prefix_operator_head, repeat(imm_raw_operator)))),
     postfix_operator: $ => token.immediate(prec(OPERATOR_P, seq(postfix_operator_head, repeat(imm_raw_operator)))),
-    operator: $ => prec(OPERATOR_P, operator),
+    operator: $ => operator,
+    _imm_operator: $ => alias(token.immediate(operator), $.operator),
     infix_operator: $ => token(prec(OPERATOR_P, choice(
       operator,
       "=", "==", "..<", "...",
@@ -961,6 +962,18 @@ module.exports = grammar({
       /`[^`\x0a\x0d]+`/
     )),
 
+    function_entity_identifier: $ => seq(
+      field('name', $.identifier),
+      token.immediate("("),
+      repeat1(seq(field('label', $.identifier), ":")),
+      token.immediate(")"),
+    ),
+
+    operator_entity_identifier: $ => seq(
+      $.operator_notation,
+      field('operator', $._imm_operator),
+    ),
+
     selector: $ => seq(
       field('identifier', $.identifier_expr),
       optional(field('static_args', $.static_argument_list)),
@@ -1047,6 +1060,7 @@ module.exports = grammar({
     [$.brace_stmt, $.tuple_type_expr],
     [$.wildcard_pattern, $.wildcard_type_expr],
     [$.identifier_expr], // Look at next token
+    [$._entity_identifier, $.function_entity_identifier], // Look at next token to know whether it's a function entity
   ],
 
   precedences: $ => [

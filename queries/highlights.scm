@@ -124,6 +124,10 @@
 (floating_point_literal) @number  @constant.numeric.float
 (boolean_literal) @boolean @constant.builtin.boolean
 (simple_string)  @string
+;; Special Entities
+(function_entity_identifier name: (identifier) @function)
+(function_entity_identifier label: (identifier) @label)
+(function_entity_identifier ":" @operator.assignment)
 
 ; Types
 ;; Floats

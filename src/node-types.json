@@ -1292,6 +1292,32 @@
     }
   },
   {
+    "type": "function_entity_identifier",
+    "named": true,
+    "fields": {
+      "label": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      },
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "identifier",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "function_head",
     "named": true,
     "fields": {},
@@ -1633,12 +1659,20 @@
         "required": true,
         "types": [
           {
+            "type": "function_entity_identifier",
+            "named": true
+          },
+          {
             "type": "identifier",
+            "named": true
+          },
+          {
+            "type": "operator_entity_identifier",
             "named": true
           }
         ]
       },
-      "impls": {
+      "introducer": {
         "multiple": false,
         "required": false,
         "types": [
@@ -2427,11 +2461,6 @@
     }
   },
   {
-    "type": "operator",
-    "named": true,
-    "fields": {}
-  },
-  {
     "type": "operator_decl",
     "named": true,
     "fields": {
@@ -2456,6 +2485,32 @@
         },
         {
           "type": "precedence_group",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "operator_entity_identifier",
+    "named": true,
+    "fields": {
+      "operator": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "operator",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "operator_notation",
           "named": true
         }
       ]
@@ -4435,6 +4490,10 @@
   {
     "type": "operator",
     "named": false
+  },
+  {
+    "type": "operator",
+    "named": true
   },
   {
     "type": "operator_notation",
