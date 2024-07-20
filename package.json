@@ -48,7 +48,8 @@
     {
       "scope": "source.hylo",
       "file-types": ["hylo"],
-      "injection-regex": "^hylo$"
+      "injection-regex": "^hylo$",
+      "highlights": "queries/highlights.scm"
     }
   ]
 }

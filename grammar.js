@@ -14,6 +14,10 @@ const escape_char = choice(simple_escape, unicode_escape);
 const single_quoted_text_item = choice(escape_char, /[^"\x0a\x0d]/);
 const single_line_string = seq('"', repeat(token.immediate(single_quoted_text_item)), token.immediate('"'));
 
+const m_char = token.immediate(/[^"]|"[^"]|""[^"]/);
+const multiline_quoted_text_item = choice(escape_char, m_char);
+const multiline_string = seq('"""', repeat1(multiline_quoted_text_item), '"""');
+
 // Token: Whitespace
 const newline = "\n";
 const horizontal_space_token = /[ \t]/;
@@ -1013,7 +1017,7 @@ module.exports = grammar({
 
     string_literal: $ => choice(
       $.simple_string,
-      // multi line string
+      $.multiline_string,
     ),
 
     unicode_scalar_literal: $ => unicode_scalar_literal,
@@ -1021,6 +1025,7 @@ module.exports = grammar({
     floating_point_literal: $ => floating_point_literal,
 
     simple_string: $ => token(single_line_string),
+    multiline_string: $ => token(multiline_string),
 
     integer_literal: $ => choice($.binary_literal, $.octal_literal, $.decimal_literal, $.hexadecimal_literal),
     binary_literal: $ => /0b[01_]+/,

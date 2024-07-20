@@ -5413,6 +5413,10 @@
         {
           "type": "SYMBOL",
           "name": "simple_string"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "multiline_string"
         }
       ]
     },
@@ -5744,6 +5748,75 @@
               "type": "STRING",
               "value": "\""
             }
+          }
+        ]
+      }
+    },
+    "multiline_string": {
+      "type": "TOKEN",
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "\"\"\""
+          },
+          {
+            "type": "REPEAT1",
+            "content": {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "CHOICE",
+                  "members": [
+                    {
+                      "type": "CHOICE",
+                      "members": [
+                        {
+                          "type": "STRING",
+                          "value": "\\0"
+                        },
+                        {
+                          "type": "STRING",
+                          "value": "\\t"
+                        },
+                        {
+                          "type": "STRING",
+                          "value": "\\n"
+                        },
+                        {
+                          "type": "STRING",
+                          "value": "\\r"
+                        },
+                        {
+                          "type": "STRING",
+                          "value": "\\'"
+                        },
+                        {
+                          "type": "STRING",
+                          "value": "\\\""
+                        }
+                      ]
+                    },
+                    {
+                      "type": "PATTERN",
+                      "value": "\\\\u[0-9a-fA-F_]+"
+                    }
+                  ]
+                },
+                {
+                  "type": "IMMEDIATE_TOKEN",
+                  "content": {
+                    "type": "PATTERN",
+                    "value": "[^\"]|\"[^\"]|\"\"[^\"]"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "type": "STRING",
+            "value": "\"\"\""
           }
         ]
       }

@@ -1,0 +1,23 @@
+================
+Multiline String
+================
+
+let a = """abababa
+multiline string
+can be done now
+yay!
+"nest me"
+// comment included
+/* even /* these */ */
+"""
+
+---
+
+(source_file
+  (binding_decl
+    (binding_pattern
+      (binding_introducer)
+      (identifier))
+    (expr
+      (string_literal
+        (multiline_string)))))

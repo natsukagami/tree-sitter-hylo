@@ -3092,6 +3092,10 @@
       "required": true,
       "types": [
         {
+          "type": "multiline_string",
+          "named": true
+        },
+        {
           "type": "simple_string",
           "named": true
         }
@@ -4474,6 +4478,10 @@
   {
     "type": "memberwise",
     "named": false
+  },
+  {
+    "type": "multiline_string",
+    "named": true
   },
   {
     "type": "namespace",
