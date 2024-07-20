@@ -306,7 +306,7 @@ module.exports = grammar({
       optional(field('convention', $.parameter_passing_convention)),
       $._type_expr,
     ),
-    parameter_passing_convention: $ => choice("let", "set", "inout", "sink", "yield"),
+    parameter_passing_convention: $ => choice("let", "set", "inout", "sink", "yielded"),
 
     type_aliases_clause: $ => seq(
       "where",
@@ -341,7 +341,7 @@ module.exports = grammar({
     function_name: $ => choice(
       'init',
       seq('fun', field('name', $.identifier)),
-      seq('fun', $.operator_notation, field('operator', $._imm_operator))
+      seq('fun', $.operator_notation, field('operator', $.operator))
     ),
 
     function_memberwise_init: $ => seq(optional($.access_modifier), "memberwise", "init"),
@@ -391,7 +391,7 @@ module.exports = grammar({
       optional($.access_modifier),
       "operator",
       $.operator_notation,
-      field('name', $._imm_operator),
+      field('name', $.operator),
       optional(seq(
         ":",
         $.precedence_group
@@ -560,7 +560,7 @@ module.exports = grammar({
     ),
 
     type_casting_tail: $ => prec.right("type_float", seq(
-      field('operator', choice("as", "as!")),
+      field('operator', choice("as", "as!", "as*")),
       field('type', $._type_expr),
     )),
 
@@ -727,7 +727,13 @@ module.exports = grammar({
       field('body', $.brace_stmt),
     ),
 
-    pragma_expr: $ => choice("#file", "#line"),
+    pragma_expr: $ => choice(
+      "#file",
+      "#line",
+      seq("#if", /[^\r\n\v]*/),
+      "#else",
+      "#endif",
+    ),
 
     // PATTERNS
 
@@ -784,7 +790,8 @@ module.exports = grammar({
       $.conformance_lens_type_expr,
       $.existential_type_expr,
       $.opaque_type_expr,
-      $.indirect_type_expr,
+      // $.indirect_type_expr,
+      $.remote_type_expr,
       $.lambda_type_expr,
       // stored-projection-type-expr
       $.tuple_type_expr,
@@ -824,9 +831,15 @@ module.exports = grammar({
       ),
     )),
 
-    indirect_type_expr: $ => prec.right("type_float", seq(
-      choice("indirect", "remote"),
-      $._type_expr
+    // indirect_type_expr: $ => prec.right("type_float", seq(
+    //   choice("indirect"),
+    //   $._type_expr
+    // )),
+
+    remote_type_expr: $ => prec.right("type_float", seq(
+      choice("remote"),
+      field('access', $.parameter_passing_convention),
+      field('type', $._type_expr),
     )),
 
     lambda_type_expr: $ => prec("type_lambda", seq(
@@ -952,7 +965,7 @@ module.exports = grammar({
 
     // MODIFIERS
 
-    access_modifier: $ => choice('public', 'private'),
+    access_modifier: $ => choice('public', 'private', 'internal'),
 
     _member_modifiers: $ => prec.left(choice(
       $.receiver_modifier,
@@ -988,7 +1001,7 @@ module.exports = grammar({
 
     operator_entity_identifier: $ => seq(
       $.operator_notation,
-      field('operator', $._imm_operator),
+      field('operator', $.operator),
     ),
 
     selector: $ => seq(
@@ -1141,7 +1154,7 @@ function repeat1StmtSep(item) {
   return seq(
     repeat(";"),
     item,
-    repeat(seq(token(prec(SEPARATOR_P, choice("\n", ";"))), optional(item)))
+    repeat(seq(prec(-1, choice("\n", ";")), optional(item)))
   )
 }
 

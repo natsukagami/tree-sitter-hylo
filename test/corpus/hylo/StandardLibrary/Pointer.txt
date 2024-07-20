@@ -1,0 +1,760 @@
+===========
+Pointers
+===========
+
+/// A typed memory address whose contents can be read.
+public type Pointer<Pointee>: Regular {
+
+  /// The raw bits of the address.
+  internal var base: Builtin.ptr
+
+  internal memberwise init
+
+  /// The value at the given address.
+  ///
+  /// - Requires: `self` is the address of an object of type `Pointee` and its storage
+  ///   is accessed only through this projection during the projection's lifetime.
+  public subscript unsafe(): Pointee {
+    yield base as* (remote let Pointee)
+  }
+
+  /// Creates an instance with the same memory representation as `address`.
+  public init(bit_pattern address: UInt) {
+    &self.base = Builtin.inttoptr_word(address.value)
+  }
+
+  /// Creates an instance representing the same address as `p`.
+  public init(_ p: PointerToMutable<Pointee>) {
+    &base = p.base
+  }
+
+  /// Creates an instance referring to the same address as `p`.
+  ///
+  /// Note that dereferencing type punned pointers will cause problems unless the rules for the
+  /// `usafe[]` subscript (which see) are followed.
+  public init<Other>(type_punning p: Pointer<Other>) {
+    &base = p.base
+  }
+
+  /// Creates an instance referring to the same address as `p`.
+  ///
+  /// Note that dereferencing type punned pointers will cause problems unless the rules for the
+  /// `usafe[]` subscript (which see) are followed.
+  public init<Other>(type_punning p: PointerToMutable<Other>) {
+    &base = p.base
+  }
+
+  /// Projects a copy of `self` as a raw memory address.
+  public property raw: MemoryAddress {
+    MemoryAddress(base: base)
+  }
+
+  /// Returns `self` offset forward by `n` array elements of `Pointee` type.
+  public fun advance(by n: Int) -> Self {
+    let offset_in_bytes = MemoryLayout<Pointee>.stride() * n
+    return Pointer<Pointee>.new(
+      base: Builtin.advanced_by_bytes_word(base, offset_in_bytes.value))
+  }
+
+  /// Creates an instance that does not address any usable storage.
+  public static fun null() -> Self {
+    .new(base: Builtin.zeroinitializer_ptr())
+  }
+
+}
+
+public conformance Pointer: Copyable {
+
+  public fun copy() -> Self {
+    Pointer(base: base)
+  }
+
+}
+
+public conformance Pointer: Equatable {
+
+  /// Returns `true` iff `other` has an equivalent value.
+  public fun infix== (_ other: Self) -> Bool {
+    Bool(value: Builtin.icmp_eq_ptr(base, other.base))
+  }
+
+}
+
+/// The address of `x`.
+public subscript pointer<T>(to x: T): Pointer<T> {
+  let { yield Pointer(base: Builtin.address(of: x)) }
+}
+
+/// The address and size of a buffer covering the raw bytes of `x`.
+public subscript pointer_to_bytes<T>(of x: T): PointerToBuffer<Int8> {
+  let {
+    let start = Pointer<Int8>(type_punning: Pointer<T>(base: Builtin.address(of: x)))
+    let count = MemoryLayout<T>.size()
+    yield PointerToBuffer(start: start, count: count)
+  }
+}
+
+---
+
+(source_file
+  (single_line_comment)
+  (product_type_decl
+    (product_type_head
+      (access_modifier)
+      (identifier)
+      (generic_clause
+        (generic_type_parameter
+          (identifier)))
+      (conformance_list
+        (name_type_expr
+          (selector
+            (identifier_expr
+              (identifier))))))
+    (single_line_comment)
+    (binding_decl
+      (access_modifier)
+      (binding_pattern
+        (binding_introducer)
+        (identifier)
+        (name_type_expr
+          (selector
+            (identifier_expr
+              (identifier)))
+          (selector
+            (identifier_expr
+              (identifier))))))
+    (function_memberwise_init
+      (access_modifier))
+    (single_line_comment)
+    (single_line_comment)
+    (single_line_comment)
+    (single_line_comment)
+    (subscript_decl
+      (subscript_head
+        (access_modifier)
+        (identifier))
+      (subscript_signature
+        (name_type_expr
+          (selector
+            (identifier_expr
+              (identifier)))))
+      (subscript_body
+        (brace_stmt
+          (stmt
+            (jump_stmt
+              (expr
+                (value_member_expr
+                  (selector
+                    (identifier_expr
+                      (identifier))))
+                (type_casting_tail
+                  (remote_type_expr
+                    (parameter_passing_convention)
+                    (name_type_expr
+                      (selector
+                        (identifier_expr
+                          (identifier))))))))))))
+    (single_line_comment)
+    (function_decl
+      (function_head
+        (access_modifier)
+        (function_name))
+      (function_signature
+        (parameter_decl
+          (identifier)
+          (identifier)
+          (name_type_expr
+            (selector
+              (identifier_expr
+                (identifier))))))
+      (brace_stmt
+        (stmt
+          (expr
+            (inout_expr
+              (expr
+                (value_member_expr
+                  (value_member_expr
+                    (selector
+                      (identifier_expr
+                        (identifier))))
+                  (selector
+                    (identifier_expr
+                      (identifier))))))
+            (infix_operator_tail
+              (infix_operator)
+              (function_call_expr
+                (value_member_expr
+                  (value_member_expr
+                    (selector
+                      (identifier_expr
+                        (identifier))))
+                  (selector
+                    (identifier_expr
+                      (identifier))))
+                (call_argument
+                  (expr
+                    (value_member_expr
+                      (value_member_expr
+                        (selector
+                          (identifier_expr
+                            (identifier))))
+                      (selector
+                        (identifier_expr
+                          (identifier))))))))))))
+    (single_line_comment)
+    (function_decl
+      (function_head
+        (access_modifier)
+        (function_name))
+      (function_signature
+        (parameter_decl
+          (identifier)
+          (name_type_expr
+            (selector
+              (identifier_expr
+                (identifier))
+              (static_argument_list
+                (static_argument
+                  (name_type_expr
+                    (selector
+                      (identifier_expr
+                        (identifier))))))))))
+      (brace_stmt
+        (stmt
+          (expr
+            (inout_expr
+              (expr
+                (value_member_expr
+                  (selector
+                    (identifier_expr
+                      (identifier))))))
+            (infix_operator_tail
+              (infix_operator)
+              (value_member_expr
+                (value_member_expr
+                  (selector
+                    (identifier_expr
+                      (identifier))))
+                (selector
+                  (identifier_expr
+                    (identifier)))))))))
+    (single_line_comment)
+    (single_line_comment)
+    (single_line_comment)
+    (single_line_comment)
+    (function_decl
+      (function_head
+        (access_modifier)
+        (function_name)
+        (generic_clause
+          (generic_type_parameter
+            (identifier))))
+      (function_signature
+        (parameter_decl
+          (identifier)
+          (identifier)
+          (name_type_expr
+            (selector
+              (identifier_expr
+                (identifier))
+              (static_argument_list
+                (static_argument
+                  (name_type_expr
+                    (selector
+                      (identifier_expr
+                        (identifier))))))))))
+      (brace_stmt
+        (stmt
+          (expr
+            (inout_expr
+              (expr
+                (value_member_expr
+                  (selector
+                    (identifier_expr
+                      (identifier))))))
+            (infix_operator_tail
+              (infix_operator)
+              (value_member_expr
+                (value_member_expr
+                  (selector
+                    (identifier_expr
+                      (identifier))))
+                (selector
+                  (identifier_expr
+                    (identifier)))))))))
+    (single_line_comment)
+    (single_line_comment)
+    (single_line_comment)
+    (single_line_comment)
+    (function_decl
+      (function_head
+        (access_modifier)
+        (function_name)
+        (generic_clause
+          (generic_type_parameter
+            (identifier))))
+      (function_signature
+        (parameter_decl
+          (identifier)
+          (identifier)
+          (name_type_expr
+            (selector
+              (identifier_expr
+                (identifier))
+              (static_argument_list
+                (static_argument
+                  (name_type_expr
+                    (selector
+                      (identifier_expr
+                        (identifier))))))))))
+      (brace_stmt
+        (stmt
+          (expr
+            (inout_expr
+              (expr
+                (value_member_expr
+                  (selector
+                    (identifier_expr
+                      (identifier))))))
+            (infix_operator_tail
+              (infix_operator)
+              (value_member_expr
+                (value_member_expr
+                  (selector
+                    (identifier_expr
+                      (identifier))))
+                (selector
+                  (identifier_expr
+                    (identifier)))))))))
+    (single_line_comment)
+    (property_decl
+      (property_head
+        (access_modifier)
+        (identifier))
+      (name_type_expr
+        (selector
+          (identifier_expr
+            (identifier))))
+      (subscript_body
+        (brace_stmt
+          (stmt
+            (expr
+              (function_call_expr
+                (value_member_expr
+                  (selector
+                    (identifier_expr
+                      (identifier))))
+                (call_argument
+                  (identifier)
+                  (expr
+                    (value_member_expr
+                      (selector
+                        (identifier_expr
+                          (identifier))))))))))))
+    (single_line_comment)
+    (function_decl
+      (function_head
+        (access_modifier)
+        (function_name
+          (identifier)))
+      (function_signature
+        (parameter_decl
+          (identifier)
+          (identifier)
+          (name_type_expr
+            (selector
+              (identifier_expr
+                (identifier)))))
+        (name_type_expr
+          (selector
+            (identifier_expr
+              (identifier)))))
+      (brace_stmt
+        (stmt
+          (binding_decl
+            (binding_pattern
+              (binding_introducer)
+              (identifier))
+            (expr
+              (function_call_expr
+                (value_member_expr
+                  (value_member_expr
+                    (selector
+                      (identifier_expr
+                        (identifier))
+                      (static_argument_list
+                        (static_argument
+                          (name_type_expr
+                            (selector
+                              (identifier_expr
+                                (identifier))))))))
+                  (selector
+                    (identifier_expr
+                      (identifier)))))
+              (infix_operator_tail
+                (infix_operator)
+                (value_member_expr
+                  (selector
+                    (identifier_expr
+                      (identifier))))))))
+        (stmt
+          (jump_stmt
+            (expr
+              (function_call_expr
+                (value_member_expr
+                  (value_member_expr
+                    (selector
+                      (identifier_expr
+                        (identifier))
+                      (static_argument_list
+                        (static_argument
+                          (name_type_expr
+                            (selector
+                              (identifier_expr
+                                (identifier))))))))
+                  (selector
+                    (identifier_expr
+                      (identifier))))
+                (call_argument
+                  (identifier)
+                  (expr
+                    (function_call_expr
+                      (value_member_expr
+                        (value_member_expr
+                          (selector
+                            (identifier_expr
+                              (identifier))))
+                        (selector
+                          (identifier_expr
+                            (identifier))))
+                      (call_argument
+                        (expr
+                          (value_member_expr
+                            (selector
+                              (identifier_expr
+                                (identifier))))))
+                      (call_argument
+                        (expr
+                          (value_member_expr
+                            (value_member_expr
+                              (selector
+                                (identifier_expr
+                                  (identifier))))
+                            (selector
+                              (identifier_expr
+                                (identifier)))))))))))))))
+    (single_line_comment)
+    (function_decl
+      (function_head
+        (access_modifier)
+        (static_modifier)
+        (function_name
+          (identifier)))
+      (function_signature
+        (name_type_expr
+          (selector
+            (identifier_expr
+              (identifier)))))
+      (brace_stmt
+        (stmt
+          (expr
+            (function_call_expr
+              (implicit_member_ref
+                (selector
+                  (identifier_expr
+                    (identifier))))
+              (call_argument
+                (identifier)
+                (expr
+                  (function_call_expr
+                    (value_member_expr
+                      (value_member_expr
+                        (selector
+                          (identifier_expr
+                            (identifier))))
+                      (selector
+                        (identifier_expr
+                          (identifier)))))))))))))
+  (conformance_decl
+    (conformance_head
+      (access_modifier)
+      (name_type_expr
+        (selector
+          (identifier_expr
+            (identifier))))
+      (conformance_list
+        (name_type_expr
+          (selector
+            (identifier_expr
+              (identifier))))))
+    (function_decl
+      (function_head
+        (access_modifier)
+        (function_name
+          (identifier)))
+      (function_signature
+        (name_type_expr
+          (selector
+            (identifier_expr
+              (identifier)))))
+      (brace_stmt
+        (stmt
+          (expr
+            (function_call_expr
+              (value_member_expr
+                (selector
+                  (identifier_expr
+                    (identifier))))
+              (call_argument
+                (identifier)
+                (expr
+                  (value_member_expr
+                    (selector
+                      (identifier_expr
+                        (identifier))))))))))))
+  (conformance_decl
+    (conformance_head
+      (access_modifier)
+      (name_type_expr
+        (selector
+          (identifier_expr
+            (identifier))))
+      (conformance_list
+        (name_type_expr
+          (selector
+            (identifier_expr
+              (identifier))))))
+    (single_line_comment)
+    (function_decl
+      (function_head
+        (access_modifier)
+        (function_name
+          (operator_notation)
+          (operator)))
+      (function_signature
+        (parameter_decl
+          (identifier)
+          (name_type_expr
+            (selector
+              (identifier_expr
+                (identifier)))))
+        (name_type_expr
+          (selector
+            (identifier_expr
+              (identifier)))))
+      (brace_stmt
+        (stmt
+          (expr
+            (function_call_expr
+              (value_member_expr
+                (selector
+                  (identifier_expr
+                    (identifier))))
+              (call_argument
+                (identifier)
+                (expr
+                  (function_call_expr
+                    (value_member_expr
+                      (value_member_expr
+                        (selector
+                          (identifier_expr
+                            (identifier))))
+                      (selector
+                        (identifier_expr
+                          (identifier))))
+                    (call_argument
+                      (expr
+                        (value_member_expr
+                          (selector
+                            (identifier_expr
+                              (identifier))))))
+                    (call_argument
+                      (expr
+                        (value_member_expr
+                          (value_member_expr
+                            (selector
+                              (identifier_expr
+                                (identifier))))
+                          (selector
+                            (identifier_expr
+                              (identifier)))))))))))))))
+  (single_line_comment)
+  (subscript_decl
+    (subscript_head
+      (access_modifier)
+      (identifier)
+      (generic_clause
+        (generic_type_parameter
+          (identifier))))
+    (subscript_signature
+      (parameter_decl
+        (identifier)
+        (identifier)
+        (name_type_expr
+          (selector
+            (identifier_expr
+              (identifier)))))
+      (name_type_expr
+        (selector
+          (identifier_expr
+            (identifier))
+          (static_argument_list
+            (static_argument
+              (name_type_expr
+                (selector
+                  (identifier_expr
+                    (identifier)))))))))
+    (subscript_body
+      (subscript_impl
+        (subscript_introducer)
+        (brace_stmt
+          (stmt
+            (jump_stmt
+              (expr
+                (function_call_expr
+                  (value_member_expr
+                    (selector
+                      (identifier_expr
+                        (identifier))))
+                  (call_argument
+                    (identifier)
+                    (expr
+                      (function_call_expr
+                        (value_member_expr
+                          (value_member_expr
+                            (selector
+                              (identifier_expr
+                                (identifier))))
+                          (selector
+                            (identifier_expr
+                              (identifier))))
+                        (call_argument
+                          (identifier)
+                          (expr
+                            (value_member_expr
+                              (selector
+                                (identifier_expr
+                                  (identifier)))))))))))))))))
+  (single_line_comment)
+  (subscript_decl
+    (subscript_head
+      (access_modifier)
+      (identifier)
+      (generic_clause
+        (generic_type_parameter
+          (identifier))))
+    (subscript_signature
+      (parameter_decl
+        (identifier)
+        (identifier)
+        (name_type_expr
+          (selector
+            (identifier_expr
+              (identifier)))))
+      (name_type_expr
+        (selector
+          (identifier_expr
+            (identifier))
+          (static_argument_list
+            (static_argument
+              (name_type_expr
+                (selector
+                  (identifier_expr
+                    (identifier)))))))))
+    (subscript_body
+      (subscript_impl
+        (subscript_introducer)
+        (brace_stmt
+          (stmt
+            (binding_decl
+              (binding_pattern
+                (binding_introducer)
+                (identifier))
+              (expr
+                (function_call_expr
+                  (value_member_expr
+                    (selector
+                      (identifier_expr
+                        (identifier))
+                      (static_argument_list
+                        (static_argument
+                          (name_type_expr
+                            (selector
+                              (identifier_expr
+                                (identifier))))))))
+                  (call_argument
+                    (identifier)
+                    (expr
+                      (function_call_expr
+                        (value_member_expr
+                          (selector
+                            (identifier_expr
+                              (identifier))
+                            (static_argument_list
+                              (static_argument
+                                (name_type_expr
+                                  (selector
+                                    (identifier_expr
+                                      (identifier))))))))
+                        (call_argument
+                          (identifier)
+                          (expr
+                            (function_call_expr
+                              (value_member_expr
+                                (value_member_expr
+                                  (selector
+                                    (identifier_expr
+                                      (identifier))))
+                                (selector
+                                  (identifier_expr
+                                    (identifier))))
+                              (call_argument
+                                (identifier)
+                                (expr
+                                  (value_member_expr
+                                    (selector
+                                      (identifier_expr
+                                        (identifier))))))))))))))))
+          (stmt
+            (binding_decl
+              (binding_pattern
+                (binding_introducer)
+                (identifier))
+              (expr
+                (function_call_expr
+                  (value_member_expr
+                    (value_member_expr
+                      (selector
+                        (identifier_expr
+                          (identifier))
+                        (static_argument_list
+                          (static_argument
+                            (name_type_expr
+                              (selector
+                                (identifier_expr
+                                  (identifier))))))))
+                    (selector
+                      (identifier_expr
+                        (identifier))))))))
+          (stmt
+            (jump_stmt
+              (expr
+                (function_call_expr
+                  (value_member_expr
+                    (selector
+                      (identifier_expr
+                        (identifier))))
+                  (call_argument
+                    (identifier)
+                    (expr
+                      (value_member_expr
+                        (selector
+                          (identifier_expr
+                            (identifier))))))
+                  (call_argument
+                    (identifier)
+                    (expr
+                      (value_member_expr
+                        (selector
+                          (identifier_expr
+                            (identifier)))))))))))))))

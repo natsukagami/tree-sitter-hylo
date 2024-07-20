@@ -4,10 +4,14 @@
 - [ ] `#pragma` in primary expr
 - [ ] Lambda environment can be empty
 - [ ] Array types (`Int[]` and `Int[2]`)
+
+The following exists in stdlib:
 - `exponentiation` as a precedence group
 - `.` in operators (parser currently allows infix operators with `\.\.+` prefixes)
-
-- [ ] What are `remote` types? (currently same as `indirect` types)
+- `internal` access modifier
+- `as*` pointer conversion
+- `parameter_passing_convention` has `yielded` instead of `yield`
+- what are `remote` types? (`remote let T`)
 
 - `type_argument_list` is not defined (used in `type_expr`). We give it something similar to `generics_clause`.
 - `deinit` not really used anywhere, perhaps replaced by `Deinitializable` trait. We highlight both.

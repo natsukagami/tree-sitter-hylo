@@ -25,23 +25,20 @@
                 "type": "SEQ",
                 "members": [
                   {
-                    "type": "TOKEN",
+                    "type": "PREC",
+                    "value": -1,
                     "content": {
-                      "type": "PREC",
-                      "value": 96,
-                      "content": {
-                        "type": "CHOICE",
-                        "members": [
-                          {
-                            "type": "STRING",
-                            "value": "\n"
-                          },
-                          {
-                            "type": "STRING",
-                            "value": ";"
-                          }
-                        ]
-                      }
+                      "type": "CHOICE",
+                      "members": [
+                        {
+                          "type": "STRING",
+                          "value": "\n"
+                        },
+                        {
+                          "type": "STRING",
+                          "value": ";"
+                        }
+                      ]
                     }
                   },
                   {
@@ -171,23 +168,20 @@
                   "type": "SEQ",
                   "members": [
                     {
-                      "type": "TOKEN",
+                      "type": "PREC",
+                      "value": -1,
                       "content": {
-                        "type": "PREC",
-                        "value": 96,
-                        "content": {
-                          "type": "CHOICE",
-                          "members": [
-                            {
-                              "type": "STRING",
-                              "value": "\n"
-                            },
-                            {
-                              "type": "STRING",
-                              "value": ";"
-                            }
-                          ]
-                        }
+                        "type": "CHOICE",
+                        "members": [
+                          {
+                            "type": "STRING",
+                            "value": "\n"
+                          },
+                          {
+                            "type": "STRING",
+                            "value": ";"
+                          }
+                        ]
                       }
                     },
                     {
@@ -1384,7 +1378,7 @@
         },
         {
           "type": "STRING",
-          "value": "yield"
+          "value": "yielded"
         }
       ]
     },
@@ -1565,7 +1559,7 @@
               "name": "operator",
               "content": {
                 "type": "SYMBOL",
-                "name": "_imm_operator"
+                "name": "operator"
               }
             }
           ]
@@ -1863,7 +1857,7 @@
           "name": "name",
           "content": {
             "type": "SYMBOL",
-            "name": "_imm_operator"
+            "name": "operator"
           }
         },
         {
@@ -2105,23 +2099,20 @@
             "type": "SEQ",
             "members": [
               {
-                "type": "TOKEN",
+                "type": "PREC",
+                "value": -1,
                 "content": {
-                  "type": "PREC",
-                  "value": 96,
-                  "content": {
-                    "type": "CHOICE",
-                    "members": [
-                      {
-                        "type": "STRING",
-                        "value": "\n"
-                      },
-                      {
-                        "type": "STRING",
-                        "value": ";"
-                      }
-                    ]
-                  }
+                  "type": "CHOICE",
+                  "members": [
+                    {
+                      "type": "STRING",
+                      "value": "\n"
+                    },
+                    {
+                      "type": "STRING",
+                      "value": ";"
+                    }
+                  ]
                 }
               },
               {
@@ -2666,6 +2657,10 @@
                 {
                   "type": "STRING",
                   "value": "as!"
+                },
+                {
+                  "type": "STRING",
+                  "value": "as*"
                 }
               ]
             }
@@ -3514,6 +3509,27 @@
         {
           "type": "STRING",
           "value": "#line"
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "#if"
+            },
+            {
+              "type": "PATTERN",
+              "value": "[^\\r\\n\\v]*"
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": "#else"
+        },
+        {
+          "type": "STRING",
+          "value": "#endif"
         }
       ]
     },
@@ -4164,7 +4180,7 @@
           },
           {
             "type": "SYMBOL",
-            "name": "indirect_type_expr"
+            "name": "remote_type_expr"
           },
           {
             "type": "SYMBOL",
@@ -4359,7 +4375,7 @@
         ]
       }
     },
-    "indirect_type_expr": {
+    "remote_type_expr": {
       "type": "PREC_RIGHT",
       "value": "type_float",
       "content": {
@@ -4370,17 +4386,25 @@
             "members": [
               {
                 "type": "STRING",
-                "value": "indirect"
-              },
-              {
-                "type": "STRING",
                 "value": "remote"
               }
             ]
           },
           {
-            "type": "SYMBOL",
-            "name": "_type_expr"
+            "type": "FIELD",
+            "name": "access",
+            "content": {
+              "type": "SYMBOL",
+              "name": "parameter_passing_convention"
+            }
+          },
+          {
+            "type": "FIELD",
+            "name": "type",
+            "content": {
+              "type": "SYMBOL",
+              "name": "_type_expr"
+            }
           }
         ]
       }
@@ -5120,6 +5144,10 @@
         {
           "type": "STRING",
           "value": "private"
+        },
+        {
+          "type": "STRING",
+          "value": "internal"
         }
       ]
     },
@@ -5295,7 +5323,7 @@
           "name": "operator",
           "content": {
             "type": "SYMBOL",
-            "name": "_imm_operator"
+            "name": "operator"
           }
         }
       ]
