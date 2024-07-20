@@ -22,6 +22,7 @@ const multiline_string = seq('"""', repeat1(multiline_quoted_text_item), '"""');
 const newline = "\n";
 const horizontal_space_token = /[ \t]/;
 const whitespace = token(choice(horizontal_space_token, newline));
+const stmt_sep = token(prec(SEPARATOR_P, /\n|;/));
 
 // Token: Operators
 const common_operator = /[-+*\/^%&!?=~|]/u; // todo: support \p{Sm}
@@ -502,6 +503,7 @@ module.exports = grammar({
 
     conditional_binding_stmt: $ => seq(
       field('binding', $.binding_pattern),
+      repeat(stmt_sep),
       "else",
       field('else', choice(
         $.jump_stmt,
@@ -693,15 +695,16 @@ module.exports = grammar({
       $.match_expr,
     ),
 
-    conditional_expr: $ => prec.right(seq(
+    conditional_expr: $ => seq(
       "if",
       field('condition', $._conditional_clause),
       field('then', $.brace_stmt),
+      repeat(stmt_sep),
       optional(seq(
         "else",
         field('else', choice($.conditional_expr, $.brace_stmt)),
       )),
-    )),
+    ),
 
     _conditional_clause: $ => seq(
       $.conditional_clause_item,
@@ -1134,7 +1137,9 @@ module.exports = grammar({
     [$.brace_stmt, $.tuple_type_expr],
     [$.wildcard_pattern, $.wildcard_type_expr],
     [$.identifier_expr], // Look at next token
+    [$.conditional_expr], // Look at next token
     [$._entity_identifier, $.function_entity_identifier], // Look at next token to know whether it's a function entity
+    [$.conditional_binding_stmt, $.binding_decl],
   ],
 
   precedences: $ => [
@@ -1145,7 +1150,7 @@ module.exports = grammar({
     // Type vs Expression clash, prefer types
     ["path", "type", "pattern", "expr"],
     // Generic brackets have higher precedence than operators
-    ["generics", "operators"]
+    ["generics", "operators"],
   ],
 });
 
@@ -1154,7 +1159,7 @@ function repeat1StmtSep(item) {
   return seq(
     repeat(";"),
     item,
-    repeat(seq(prec(-1, choice("\n", ";")), optional(item)))
+    repeat(seq(stmt_sep, optional(item)))
   )
 }
 

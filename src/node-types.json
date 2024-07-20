@@ -2500,10 +2500,6 @@
         "required": true,
         "types": [
           {
-            "type": "\n",
-            "named": false
-          },
-          {
             "type": ";",
             "named": false
           },
@@ -4553,10 +4549,6 @@
     "type": "wildcard_type_expr",
     "named": true,
     "fields": {}
-  },
-  {
-    "type": "\n",
-    "named": false
   },
   {
     "type": "#else",

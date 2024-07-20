@@ -25,20 +25,14 @@
                 "type": "SEQ",
                 "members": [
                   {
-                    "type": "PREC",
-                    "value": -1,
+                    "type": "TOKEN",
                     "content": {
-                      "type": "CHOICE",
-                      "members": [
-                        {
-                          "type": "STRING",
-                          "value": "\n"
-                        },
-                        {
-                          "type": "STRING",
-                          "value": ";"
-                        }
-                      ]
+                      "type": "PREC",
+                      "value": 96,
+                      "content": {
+                        "type": "PATTERN",
+                        "value": "\\n|;"
+                      }
                     }
                   },
                   {
@@ -168,20 +162,14 @@
                   "type": "SEQ",
                   "members": [
                     {
-                      "type": "PREC",
-                      "value": -1,
+                      "type": "TOKEN",
                       "content": {
-                        "type": "CHOICE",
-                        "members": [
-                          {
-                            "type": "STRING",
-                            "value": "\n"
-                          },
-                          {
-                            "type": "STRING",
-                            "value": ";"
-                          }
-                        ]
+                        "type": "PREC",
+                        "value": 96,
+                        "content": {
+                          "type": "PATTERN",
+                          "value": "\\n|;"
+                        }
                       }
                     },
                     {
@@ -2099,20 +2087,14 @@
             "type": "SEQ",
             "members": [
               {
-                "type": "PREC",
-                "value": -1,
+                "type": "TOKEN",
                 "content": {
-                  "type": "CHOICE",
-                  "members": [
-                    {
-                      "type": "STRING",
-                      "value": "\n"
-                    },
-                    {
-                      "type": "STRING",
-                      "value": ";"
-                    }
-                  ]
+                  "type": "PREC",
+                  "value": 96,
+                  "content": {
+                    "type": "PATTERN",
+                    "value": "\\n|;"
+                  }
                 }
               },
               {
@@ -2446,6 +2428,20 @@
           "content": {
             "type": "SYMBOL",
             "name": "binding_pattern"
+          }
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "TOKEN",
+            "content": {
+              "type": "PREC",
+              "value": 96,
+              "content": {
+                "type": "PATTERN",
+                "value": "\\n|;"
+              }
+            }
           }
         },
         {
@@ -3308,67 +3304,77 @@
       ]
     },
     "conditional_expr": {
-      "type": "PREC_RIGHT",
-      "value": 0,
-      "content": {
-        "type": "SEQ",
-        "members": [
-          {
-            "type": "STRING",
-            "value": "if"
-          },
-          {
-            "type": "FIELD",
-            "name": "condition",
-            "content": {
-              "type": "SYMBOL",
-              "name": "_conditional_clause"
-            }
-          },
-          {
-            "type": "FIELD",
-            "name": "then",
-            "content": {
-              "type": "SYMBOL",
-              "name": "brace_stmt"
-            }
-          },
-          {
-            "type": "CHOICE",
-            "members": [
-              {
-                "type": "SEQ",
-                "members": [
-                  {
-                    "type": "STRING",
-                    "value": "else"
-                  },
-                  {
-                    "type": "FIELD",
-                    "name": "else",
-                    "content": {
-                      "type": "CHOICE",
-                      "members": [
-                        {
-                          "type": "SYMBOL",
-                          "name": "conditional_expr"
-                        },
-                        {
-                          "type": "SYMBOL",
-                          "name": "brace_stmt"
-                        }
-                      ]
-                    }
-                  }
-                ]
-              },
-              {
-                "type": "BLANK"
-              }
-            ]
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "if"
+        },
+        {
+          "type": "FIELD",
+          "name": "condition",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_conditional_clause"
           }
-        ]
-      }
+        },
+        {
+          "type": "FIELD",
+          "name": "then",
+          "content": {
+            "type": "SYMBOL",
+            "name": "brace_stmt"
+          }
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "TOKEN",
+            "content": {
+              "type": "PREC",
+              "value": 96,
+              "content": {
+                "type": "PATTERN",
+                "value": "\\n|;"
+              }
+            }
+          }
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SEQ",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": "else"
+                },
+                {
+                  "type": "FIELD",
+                  "name": "else",
+                  "content": {
+                    "type": "CHOICE",
+                    "members": [
+                      {
+                        "type": "SYMBOL",
+                        "name": "conditional_expr"
+                      },
+                      {
+                        "type": "SYMBOL",
+                        "name": "brace_stmt"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        }
+      ]
     },
     "_conditional_clause": {
       "type": "SEQ",
@@ -6335,8 +6341,15 @@
       "identifier_expr"
     ],
     [
+      "conditional_expr"
+    ],
+    [
       "_entity_identifier",
       "function_entity_identifier"
+    ],
+    [
+      "conditional_binding_stmt",
+      "binding_decl"
     ]
   ],
   "precedences": [
