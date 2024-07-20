@@ -557,7 +557,7 @@ module.exports = grammar({
       $.infix_operator_tail,
     ),
 
-    type_casting_tail: $ => prec("type_float", seq(
+    type_casting_tail: $ => prec.right("type_float", seq(
       field('operator', choice("as", "as!")),
       field('type', $._type_expr),
     )),
@@ -630,7 +630,7 @@ module.exports = grammar({
 
     _primary_expr: $ => choice(
       $._scalar_literal,
-      // compound-literal
+      $._compound_literal,
       $.implicit_member_ref,
       $.lambda_expr,
       $._selection_expr,
@@ -775,6 +775,7 @@ module.exports = grammar({
     // TYPES
     _type_expr: $ => prec("type_simple", choice(
       // async-type-expr
+      $.array_type_expr,
       $.conformance_lens_type_expr,
       $.existential_type_expr,
       $.opaque_type_expr,
@@ -786,6 +787,13 @@ module.exports = grammar({
       $.wildcard_type_expr,
       $.name_type_expr,
       seq('(', $._type_expr, ')'),
+    )),
+
+    array_type_expr: $ => prec("type_float", seq(
+      field('item', $._type_expr),
+      token.immediate("["),
+      optional(field('size', $.expr)),
+      "]",
     )),
 
     conformance_lens_type_expr: $ => prec("type_select", seq(
@@ -1002,6 +1010,49 @@ module.exports = grammar({
         make(optional("@type"), field('type', $._type_expr)),
       )
     },
+
+    // COMPOUND LITERALS
+
+    _compound_literal: $ => choice($.buffer_literal, $.map_literal),
+
+    buffer_literal: $ => seq(
+      "[",
+      optional(seq(
+        field('item', $.expr),
+        repeat(seq(",", field('item', $.expr))),
+        optional(","),
+      )),
+      "]",
+    ),
+
+    buffer_literal: $ => seq(
+      "[",
+      optional(seq(
+        field('item', $.expr),
+        repeat(seq(",", field('item', $.expr))),
+        optional(","),
+      )),
+      "]",
+    ),
+
+    map_literal: $ => seq(
+      "[",
+      choice(
+        // empty
+        ":",
+        seq(
+          field('item', $.map_component),
+          repeat(seq(",", field('item', $.map_component))),
+          optional(","),
+        )
+      ),
+      "]",
+    ),
+    map_component: $ => seq(
+      field('key', $.expr),
+      ":",
+      field('value', $.expr),
+    ),
 
     // LITERALS
 

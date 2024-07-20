@@ -5,6 +5,72 @@
     "fields": {}
   },
   {
+    "type": "array_type_expr",
+    "named": true,
+    "fields": {
+      "item": {
+        "multiple": true,
+        "required": true,
+        "types": [
+          {
+            "type": "(",
+            "named": false
+          },
+          {
+            "type": ")",
+            "named": false
+          },
+          {
+            "type": "array_type_expr",
+            "named": true
+          },
+          {
+            "type": "conformance_lens_type_expr",
+            "named": true
+          },
+          {
+            "type": "existential_type_expr",
+            "named": true
+          },
+          {
+            "type": "indirect_type_expr",
+            "named": true
+          },
+          {
+            "type": "lambda_type_expr",
+            "named": true
+          },
+          {
+            "type": "name_type_expr",
+            "named": true
+          },
+          {
+            "type": "opaque_type_expr",
+            "named": true
+          },
+          {
+            "type": "tuple_type_expr",
+            "named": true
+          },
+          {
+            "type": "wildcard_type_expr",
+            "named": true
+          }
+        ]
+      },
+      "size": {
+        "multiple": false,
+        "required": false,
+        "types": [
+          {
+            "type": "expr",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "associated_type_decl",
     "named": true,
     "fields": {
@@ -29,6 +95,10 @@
           {
             "type": ")",
             "named": false
+          },
+          {
+            "type": "array_type_expr",
+            "named": true
           },
           {
             "type": "conformance_lens_type_expr",
@@ -101,6 +171,10 @@
           {
             "type": ")",
             "named": false
+          },
+          {
+            "type": "array_type_expr",
+            "named": true
           },
           {
             "type": "conformance_lens_type_expr",
@@ -258,6 +332,10 @@
             "named": false
           },
           {
+            "type": "array_type_expr",
+            "named": true
+          },
+          {
             "type": "conformance_lens_type_expr",
             "named": true
           },
@@ -344,6 +422,22 @@
           "named": true
         }
       ]
+    }
+  },
+  {
+    "type": "buffer_literal",
+    "named": true,
+    "fields": {
+      "item": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "expr",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
@@ -577,6 +671,10 @@
             "named": false
           },
           {
+            "type": "array_type_expr",
+            "named": true
+          },
+          {
             "type": "conformance_lens_type_expr",
             "named": true
           },
@@ -645,6 +743,10 @@
           {
             "type": ")",
             "named": false
+          },
+          {
+            "type": "array_type_expr",
+            "named": true
           },
           {
             "type": "conformance_lens_type_expr",
@@ -810,6 +912,10 @@
             "named": false
           },
           {
+            "type": "array_type_expr",
+            "named": true
+          },
+          {
             "type": "conformance_lens_type_expr",
             "named": true
           },
@@ -884,6 +990,10 @@
           "named": true
         },
         {
+          "type": "buffer_literal",
+          "named": true
+        },
+        {
           "type": "conditional_expr",
           "named": true
         },
@@ -913,6 +1023,10 @@
         },
         {
           "type": "lambda_expr",
+          "named": true
+        },
+        {
+          "type": "map_literal",
           "named": true
         },
         {
@@ -1048,6 +1162,10 @@
             "named": false
           },
           {
+            "type": "array_type_expr",
+            "named": true
+          },
+          {
             "type": "conformance_lens_type_expr",
             "named": true
           },
@@ -1170,6 +1288,10 @@
             "named": true
           },
           {
+            "type": "buffer_literal",
+            "named": true
+          },
+          {
             "type": "conditional_expr",
             "named": true
           },
@@ -1195,6 +1317,10 @@
           },
           {
             "type": "lambda_expr",
+            "named": true
+          },
+          {
+            "type": "map_literal",
             "named": true
           },
           {
@@ -1434,6 +1560,10 @@
             "named": false
           },
           {
+            "type": "array_type_expr",
+            "named": true
+          },
+          {
             "type": "conformance_lens_type_expr",
             "named": true
           },
@@ -1521,6 +1651,10 @@
           {
             "type": ")",
             "named": false
+          },
+          {
+            "type": "array_type_expr",
+            "named": true
           },
           {
             "type": "conformance_lens_type_expr",
@@ -1613,6 +1747,10 @@
           {
             "type": ")",
             "named": false
+          },
+          {
+            "type": "array_type_expr",
+            "named": true
           },
           {
             "type": "conformance_lens_type_expr",
@@ -1723,6 +1861,10 @@
       "required": true,
       "types": [
         {
+          "type": "array_type_expr",
+          "named": true
+        },
+        {
           "type": "conformance_lens_type_expr",
           "named": true
         },
@@ -1780,6 +1922,10 @@
             "named": true
           },
           {
+            "type": "buffer_literal",
+            "named": true
+          },
+          {
             "type": "conditional_expr",
             "named": true
           },
@@ -1805,6 +1951,10 @@
           },
           {
             "type": "lambda_expr",
+            "named": true
+          },
+          {
+            "type": "map_literal",
             "named": true
           },
           {
@@ -1946,6 +2096,10 @@
       "required": false,
       "types": [
         {
+          "type": "array_type_expr",
+          "named": true
+        },
+        {
           "type": "conformance_lens_type_expr",
           "named": true
         },
@@ -2053,6 +2207,10 @@
             "named": false
           },
           {
+            "type": "array_type_expr",
+            "named": true
+          },
+          {
             "type": "conformance_lens_type_expr",
             "named": true
           },
@@ -2119,6 +2277,10 @@
             "named": false
           },
           {
+            "type": "array_type_expr",
+            "named": true
+          },
+          {
             "type": "conformance_lens_type_expr",
             "named": true
           },
@@ -2166,6 +2328,48 @@
           "named": true
         }
       ]
+    }
+  },
+  {
+    "type": "map_component",
+    "named": true,
+    "fields": {
+      "key": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "expr",
+            "named": true
+          }
+        ]
+      },
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "expr",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "map_literal",
+    "named": true,
+    "fields": {
+      "item": {
+        "multiple": true,
+        "required": false,
+        "types": [
+          {
+            "type": "map_component",
+            "named": true
+          }
+        ]
+      }
     }
   },
   {
@@ -2291,6 +2495,10 @@
           {
             "type": ")",
             "named": false
+          },
+          {
+            "type": "array_type_expr",
+            "named": true
           },
           {
             "type": "conformance_lens_type_expr",
@@ -2577,6 +2785,10 @@
             "named": false
           },
           {
+            "type": "array_type_expr",
+            "named": true
+          },
+          {
             "type": "conformance_lens_type_expr",
             "named": true
           },
@@ -2753,6 +2965,10 @@
           {
             "type": ")",
             "named": false
+          },
+          {
+            "type": "array_type_expr",
+            "named": true
           },
           {
             "type": "conformance_lens_type_expr",
@@ -2966,6 +3182,10 @@
             "named": false
           },
           {
+            "type": "array_type_expr",
+            "named": true
+          },
+          {
             "type": "conformance_lens_type_expr",
             "named": true
           },
@@ -3148,6 +3368,10 @@
             "named": true
           },
           {
+            "type": "buffer_literal",
+            "named": true
+          },
+          {
             "type": "conditional_expr",
             "named": true
           },
@@ -3173,6 +3397,10 @@
           },
           {
             "type": "lambda_expr",
+            "named": true
+          },
+          {
+            "type": "map_literal",
             "named": true
           },
           {
@@ -3351,6 +3579,10 @@
           {
             "type": ")",
             "named": false
+          },
+          {
+            "type": "array_type_expr",
+            "named": true
           },
           {
             "type": "conformance_lens_type_expr",
@@ -3627,6 +3859,10 @@
       "required": true,
       "types": [
         {
+          "type": "array_type_expr",
+          "named": true
+        },
+        {
           "type": "conformance_lens_type_expr",
           "named": true
         },
@@ -3691,6 +3927,10 @@
           {
             "type": ")",
             "named": false
+          },
+          {
+            "type": "array_type_expr",
+            "named": true
           },
           {
             "type": "conformance_lens_type_expr",
@@ -3810,6 +4050,10 @@
             "named": false
           },
           {
+            "type": "array_type_expr",
+            "named": true
+          },
+          {
             "type": "conformance_lens_type_expr",
             "named": true
           },
@@ -3874,6 +4118,10 @@
           {
             "type": ")",
             "named": false
+          },
+          {
+            "type": "array_type_expr",
+            "named": true
           },
           {
             "type": "conformance_lens_type_expr",
@@ -3964,6 +4212,10 @@
             "named": true
           },
           {
+            "type": "buffer_literal",
+            "named": true
+          },
+          {
             "type": "conditional_expr",
             "named": true
           },
@@ -3989,6 +4241,10 @@
           },
           {
             "type": "lambda_expr",
+            "named": true
+          },
+          {
+            "type": "map_literal",
             "named": true
           },
           {
@@ -4048,6 +4304,10 @@
             "named": true
           },
           {
+            "type": "buffer_literal",
+            "named": true
+          },
+          {
             "type": "conditional_expr",
             "named": true
           },
@@ -4073,6 +4333,10 @@
           },
           {
             "type": "lambda_expr",
+            "named": true
+          },
+          {
+            "type": "map_literal",
             "named": true
           },
           {
@@ -4138,6 +4402,10 @@
           {
             "type": ")",
             "named": false
+          },
+          {
+            "type": "array_type_expr",
+            "named": true
           },
           {
             "type": "conformance_lens_type_expr",
@@ -4497,11 +4765,11 @@
   },
   {
     "type": "operator",
-    "named": false
+    "named": true
   },
   {
     "type": "operator",
-    "named": true
+    "named": false
   },
   {
     "type": "operator_notation",

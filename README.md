@@ -3,6 +3,7 @@
 - [ ] `?` implicit modifier
 - [ ] `#pragma` in primary expr
 - [ ] Lambda environment can be empty
+- [ ] Array types (`Int[]` and `Int[2]`)
 
 - [ ] What are `remote` types?
 

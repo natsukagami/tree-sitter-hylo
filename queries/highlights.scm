@@ -117,6 +117,10 @@
 (tuple_expr "," ")" @punctuation.bracket.tuple)
 (tuple_expr_element label: (identifier) @label)
 (tuple_expr_element ":" @operator.assignment)
+;; Compound Literals
+(buffer_literal "[" @punctuation.bracket "]" @punctuation.bracket)
+(map_literal "[" @punctuation.bracket ":" @punctuation.delimiter "]" @punctuation.bracket)
+(map_component ":" @operator.assignment)
 ;; Literals
 (identifier_expr ((identifier) @variable.builtin (#eq? @variable.builtin "self")))
 (identifier_expr ((identifier) @variable.builtin (#eq? @variable.builtin "yielded")))
@@ -131,6 +135,8 @@
 (function_entity_identifier ":" @operator.assignment)
 
 ; Types
+;; Arrays
+(array_type_expr "[" @punctuation.bracket "]" @punctuation.bracket)
 ;; Floats
 (existential_type_expr "any" @keyword.operator.type)
 "some" @keyword.operator.type
