@@ -50,7 +50,8 @@
       "file-types": ["hylo"],
       "injection-regex": "^hylo$",
       "highlights": "queries/highlights.scm",
-      "locals": "queries/locals.scm"
+      "locals": "queries/locals.scm",
+      "tags": "queries/tags.scm"
     }
   ]
 }
