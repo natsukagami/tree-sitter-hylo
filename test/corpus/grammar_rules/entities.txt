@@ -15,7 +15,7 @@ let c = m.prefix-*(5, 7)
       (identifier))
     (function_call_expr
       (value_member_expr
-        (value_member_expr
+        (selector_expr
           (selector
             (identifier_expr
               (identifier))))
@@ -32,7 +32,7 @@ let c = m.prefix-*(5, 7)
       (binding_introducer)
       (identifier))
     (value_member_expr
-      (value_member_expr
+      (selector_expr
         (selector
           (identifier_expr
             (identifier))))
@@ -48,7 +48,7 @@ let c = m.prefix-*(5, 7)
       (identifier))
     (function_call_expr
       (value_member_expr
-        (value_member_expr
+        (selector_expr
           (selector
             (identifier_expr
               (identifier))))

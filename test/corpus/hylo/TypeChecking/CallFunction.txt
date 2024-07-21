@@ -30,7 +30,7 @@ public fun main() {
       (tuple_type_expr))
     (brace_stmt
       (stmt
-        (value_member_expr
+        (selector_expr
           (selector
             (identifier_expr
               (identifier)))))))
@@ -43,7 +43,7 @@ public fun main() {
     (brace_stmt
       (stmt
         (function_call_expr
-          (value_member_expr
+          (selector_expr
             (selector
               (identifier_expr
                 (identifier))))
@@ -51,14 +51,14 @@ public fun main() {
             (tuple_expr))))
       (stmt
         (function_call_expr
-          (value_member_expr
+          (selector_expr
             (selector
               (identifier_expr
                 (identifier))))))
       (single_line_comment)
       (stmt
         (function_call_expr
-          (value_member_expr
+          (selector_expr
             (selector
               (identifier_expr
                 (identifier))))
@@ -69,7 +69,7 @@ public fun main() {
       (single_line_comment)
       (stmt
         (function_call_expr
-          (value_member_expr
+          (selector_expr
             (selector
               (identifier_expr
                 (identifier))))

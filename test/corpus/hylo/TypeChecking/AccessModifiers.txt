@@ -56,7 +56,7 @@ public fun main() {
           (function_call_expr
             (value_member_expr
               (function_call_expr
-                (value_member_expr
+                (selector_expr
                   (selector
                     (identifier_expr
                       (identifier)))))

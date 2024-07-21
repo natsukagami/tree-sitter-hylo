@@ -1,0 +1,15 @@
+trait A {
+  property z: Int
+        // ^ property
+  fun test(a: Int, as b: Int) {
+        // ^ variable.parameter
+                   // ^ variable.parameter
+    let x = a + b
+     // ^ variable
+     //     ^ variable.parameter
+     //         ^ variable.parameter
+    return x * z
+      //   ^ variable
+      //       ^ property
+  }
+}

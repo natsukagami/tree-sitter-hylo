@@ -37,13 +37,13 @@ public fun main() {
             (binding_introducer)
             (wildcard_pattern))
           (infix_expr
-            (value_member_expr
+            (selector_expr
               (selector
                 (identifier_expr
                   (identifier))))
             (infix_operator_tail
               (infix_operator)
-              (value_member_expr
+              (selector_expr
                 (selector
                   (identifier_expr
                     (identifier))))))))
@@ -54,7 +54,7 @@ public fun main() {
             (wildcard_pattern))
           (prefix_expr
             (prefix_operator)
-            (value_member_expr
+            (selector_expr
               (selector
                 (identifier_expr
                   (identifier)))))))
@@ -65,7 +65,7 @@ public fun main() {
             (wildcard_pattern))
           (prefix_expr
             (prefix_operator)
-            (value_member_expr
+            (selector_expr
               (selector
                 (identifier_expr
                   (identifier)))))))
@@ -76,7 +76,7 @@ public fun main() {
             (binding_introducer)
             (wildcard_pattern))
           (postfix_expr
-            (value_member_expr
+            (selector_expr
               (selector
                 (identifier_expr
                   (identifier))))

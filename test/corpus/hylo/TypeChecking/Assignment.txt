@@ -30,13 +30,13 @@ public fun main() {
       (stmt
         (assignment_expr
           (inout_expr
-            (value_member_expr
+            (selector_expr
               (selector
                 (identifier_expr
                   (identifier)))))
           (assignment_operator)
           (infix_expr
-            (value_member_expr
+            (selector_expr
               (selector
                 (identifier_expr
                   (identifier))))

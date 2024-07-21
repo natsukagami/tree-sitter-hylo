@@ -38,7 +38,7 @@ public fun main() {
         (while_stmt
           (while_condition_list
             (while_condition
-              (value_member_expr
+              (selector_expr
                 (selector
                   (identifier_expr
                     (identifier))))))
@@ -46,7 +46,7 @@ public fun main() {
             (stmt
               (assignment_expr
                 (inout_expr
-                  (value_member_expr
+                  (selector_expr
                     (selector
                       (identifier_expr
                         (identifier)))))
@@ -64,7 +64,7 @@ public fun main() {
         (while_stmt
           (while_condition_list
             (while_condition
-              (value_member_expr
+              (selector_expr
                 (selector
                   (identifier_expr
                     (identifier))))))
@@ -72,7 +72,7 @@ public fun main() {
             (stmt
               (assignment_expr
                 (inout_expr
-                  (value_member_expr
+                  (selector_expr
                     (selector
                       (identifier_expr
                         (identifier)))))

@@ -135,7 +135,7 @@ public fun main() {
             (binding_introducer)
             (identifier))
           (function_call_expr
-            (value_member_expr
+            (selector_expr
               (selector
                 (identifier_expr
                   (identifier))))
@@ -149,7 +149,7 @@ public fun main() {
                 (decimal_literal))))))
       (stmt
         (function_call_expr
-          (value_member_expr
+          (selector_expr
             (selector
               (identifier_expr
                 (identifier))
@@ -160,7 +160,7 @@ public fun main() {
                       (identifier_expr
                         (identifier))))))))
           (call_argument
-            (value_member_expr
+            (selector_expr
               (selector
                 (identifier_expr
                   (identifier)))))))
@@ -171,7 +171,7 @@ public fun main() {
             (binding_introducer)
             (wildcard_pattern))
           (function_call_expr
-            (value_member_expr
+            (selector_expr
               (selector
                 (identifier_expr
                   (identifier))))
@@ -188,7 +188,7 @@ public fun main() {
             (binding_introducer)
             (identifier))
           (function_call_expr
-            (value_member_expr
+            (selector_expr
               (selector
                 (identifier_expr
                   (identifier))))
@@ -201,7 +201,7 @@ public fun main() {
               (boolean_literal)))))
       (stmt
         (function_call_expr
-          (value_member_expr
+          (selector_expr
             (selector
               (identifier_expr
                 (identifier))
@@ -223,7 +223,7 @@ public fun main() {
                               (identifier_expr
                                 (identifier))))))))))))
           (call_argument
-            (value_member_expr
+            (selector_expr
               (selector
                 (identifier_expr
                   (identifier)))))))
@@ -233,7 +233,7 @@ public fun main() {
             (binding_introducer)
             (identifier))
           (function_call_expr
-            (value_member_expr
+            (selector_expr
               (selector
                 (identifier_expr
                   (identifier))))
@@ -246,7 +246,7 @@ public fun main() {
                 (decimal_literal))))))
       (stmt
         (function_call_expr
-          (value_member_expr
+          (selector_expr
             (selector
               (identifier_expr
                 (identifier))
@@ -268,7 +268,7 @@ public fun main() {
                               (identifier_expr
                                 (identifier))))))))))))
           (call_argument
-            (value_member_expr
+            (selector_expr
               (selector
                 (identifier_expr
                   (identifier)))))))
@@ -293,7 +293,7 @@ public fun main() {
                         (identifier_expr
                           (identifier)))))))))
           (function_call_expr
-            (value_member_expr
+            (selector_expr
               (selector
                 (identifier_expr
                   (identifier))))
@@ -306,7 +306,7 @@ public fun main() {
                 (decimal_literal))))))
       (stmt
         (function_call_expr
-          (value_member_expr
+          (selector_expr
             (selector
               (identifier_expr
                 (identifier))
@@ -328,7 +328,7 @@ public fun main() {
                               (identifier_expr
                                 (identifier))))))))))))
           (call_argument
-            (value_member_expr
+            (selector_expr
               (selector
                 (identifier_expr
                   (identifier)))))))
@@ -350,7 +350,7 @@ public fun main() {
                         (identifier_expr
                           (identifier)))))))))
           (function_call_expr
-            (value_member_expr
+            (selector_expr
               (selector
                 (identifier_expr
                   (identifier))))
@@ -363,7 +363,7 @@ public fun main() {
                 (decimal_literal))))))
       (stmt
         (function_call_expr
-          (value_member_expr
+          (selector_expr
             (selector
               (identifier_expr
                 (identifier))
@@ -385,7 +385,7 @@ public fun main() {
                               (identifier_expr
                                 (identifier))))))))))))
           (call_argument
-            (value_member_expr
+            (selector_expr
               (selector
                 (identifier_expr
                   (identifier)))))))
@@ -411,7 +411,7 @@ public fun main() {
                         (identifier_expr
                           (identifier)))))))))
           (function_call_expr
-            (value_member_expr
+            (selector_expr
               (selector
                 (identifier_expr
                   (identifier))))
@@ -425,7 +425,7 @@ public fun main() {
       (single_line_comment)
       (stmt
         (function_call_expr
-          (value_member_expr
+          (selector_expr
             (selector
               (identifier_expr
                 (identifier)))))))))

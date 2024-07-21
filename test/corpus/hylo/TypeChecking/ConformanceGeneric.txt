@@ -101,13 +101,13 @@ fun f1<B>(_ a: A<B>) {
                   (selector
                     (identifier_expr
                       (identifier)))))))
-          (value_member_expr
+          (selector_expr
             (selector
               (identifier_expr
                 (identifier))))))
       (stmt
         (function_call_expr
-          (value_member_expr
+          (selector_expr
             (selector
               (identifier_expr
                 (identifier))
@@ -120,7 +120,7 @@ fun f1<B>(_ a: A<B>) {
                           (identifier_expr
                             (identifier))))))))))
           (call_argument
-            (value_member_expr
+            (selector_expr
               (selector
                 (identifier_expr
                   (identifier)))))))))
@@ -177,7 +177,7 @@ fun f1<B>(_ a: A<B>) {
                   (assignment_expr
                     (infix_expr
                       (value_member_expr
-                        (value_member_expr
+                        (selector_expr
                           (selector
                             (identifier_expr
                               (identifier))))
@@ -189,13 +189,13 @@ fun f1<B>(_ a: A<B>) {
                         (integer_literal
                           (decimal_literal))))
                     (assignment_operator)
-                    (value_member_expr
+                    (selector_expr
                       (selector
                         (identifier_expr
                           (identifier)))))))))))
       (stmt
         (function_call_expr
-          (value_member_expr
+          (selector_expr
             (selector
               (identifier_expr
                 (identifier))
@@ -208,7 +208,7 @@ fun f1<B>(_ a: A<B>) {
                           (identifier_expr
                             (identifier))))))))))
           (call_argument
-            (value_member_expr
+            (selector_expr
               (selector
                 (identifier_expr
                   (identifier))))))))))

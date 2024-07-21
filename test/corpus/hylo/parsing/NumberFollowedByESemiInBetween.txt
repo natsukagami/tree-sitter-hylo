@@ -28,12 +28,12 @@ public fun main() {
             (decimal_literal))))
       (stmt
         (function_call_expr
-          (value_member_expr
+          (selector_expr
             (selector
               (identifier_expr
                 (identifier))))
           (call_argument
-            (value_member_expr
+            (selector_expr
               (selector
                 (identifier_expr
                   (identifier))))))))))

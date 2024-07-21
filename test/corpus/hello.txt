@@ -18,7 +18,7 @@ public fun main() {
     (brace_stmt
       (stmt
         (function_call_expr
-          (value_member_expr
+          (selector_expr
             (selector
               (identifier_expr
                 (identifier))))

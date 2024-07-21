@@ -30,7 +30,7 @@ public let x = Int.zero().n
         (selector
           (identifier_expr
             (identifier)))))
-    (value_member_expr
+    (selector_expr
       (selector
         (identifier_expr
           (identifier)))))
@@ -76,7 +76,7 @@ public let x = Int.zero().n
           (brace_stmt
             (stmt
               (jump_stmt
-                (value_member_expr
+                (selector_expr
                   (selector
                     (identifier_expr
                       (identifier)))))))))))
@@ -88,7 +88,7 @@ public let x = Int.zero().n
     (value_member_expr
       (function_call_expr
         (value_member_expr
-          (value_member_expr
+          (selector_expr
             (selector
               (identifier_expr
                 (identifier))))

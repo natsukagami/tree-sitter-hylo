@@ -92,7 +92,7 @@ public fun hylo_aligned_free(_ pointer: MemoryAddress) {
             (identifier))
           (function_call_expr
             (value_member_expr
-              (value_member_expr
+              (selector_expr
                 (selector
                   (identifier_expr
                     (identifier))
@@ -111,7 +111,7 @@ public fun hylo_aligned_free(_ pointer: MemoryAddress) {
             (binding_introducer)
             (identifier))
           (infix_expr
-            (value_member_expr
+            (selector_expr
               (selector
                 (identifier_expr
                   (identifier))))
@@ -125,7 +125,7 @@ public fun hylo_aligned_free(_ pointer: MemoryAddress) {
             (binding_introducer)
             (identifier))
           (function_call_expr
-            (value_member_expr
+            (selector_expr
               (selector
                 (identifier_expr
                   (identifier))))
@@ -133,25 +133,25 @@ public fun hylo_aligned_free(_ pointer: MemoryAddress) {
               (identifier)
               (value_member_expr
                 (function_call_expr
-                  (value_member_expr
+                  (selector_expr
                     (selector
                       (identifier_expr
                         (identifier))))
                   (call_argument
                     (infix_expr
-                      (value_member_expr
+                      (selector_expr
                         (selector
                           (identifier_expr
                             (identifier))))
                       (infix_operator_tail
                         (infix_operator)
-                        (value_member_expr
+                        (selector_expr
                           (selector
                             (identifier_expr
                               (identifier)))))
                       (infix_operator_tail
                         (infix_operator)
-                        (value_member_expr
+                        (selector_expr
                           (selector
                             (identifier_expr
                               (identifier))))))))
@@ -160,13 +160,13 @@ public fun hylo_aligned_free(_ pointer: MemoryAddress) {
                     (identifier))))))))
       (stmt
         (function_call_expr
-          (value_member_expr
+          (selector_expr
             (selector
               (identifier_expr
                 (identifier))))
           (call_argument
             (assignment_expr
-              (value_member_expr
+              (selector_expr
                 (selector
                   (identifier_expr
                     (identifier))))
@@ -186,7 +186,7 @@ public fun hylo_aligned_free(_ pointer: MemoryAddress) {
             (binding_introducer)
             (identifier))
           (function_call_expr
-            (value_member_expr
+            (selector_expr
               (selector
                 (identifier_expr
                   (identifier))))
@@ -197,25 +197,25 @@ public fun hylo_aligned_free(_ pointer: MemoryAddress) {
                   (tuple_expr_element
                     (infix_expr
                       (function_call_expr
-                        (value_member_expr
+                        (selector_expr
                           (selector
                             (identifier_expr
                               (identifier))))
                         (call_argument
                           (identifier)
-                          (value_member_expr
+                          (selector_expr
                             (selector
                               (identifier_expr
                                 (identifier))))))
                       (infix_operator_tail
                         (infix_operator)
-                        (value_member_expr
+                        (selector_expr
                           (selector
                             (identifier_expr
                               (identifier)))))
                       (infix_operator_tail
                         (infix_operator)
-                        (value_member_expr
+                        (selector_expr
                           (selector
                             (identifier_expr
                               (identifier))))))))
@@ -223,7 +223,7 @@ public fun hylo_aligned_free(_ pointer: MemoryAddress) {
                   (infix_operator)
                   (prefix_expr
                     (prefix_operator)
-                    (value_member_expr
+                    (selector_expr
                       (selector
                         (identifier_expr
                           (identifier)))))))))))
@@ -234,7 +234,7 @@ public fun hylo_aligned_free(_ pointer: MemoryAddress) {
             (identifier))
           (function_call_expr
             (value_member_expr
-              (value_member_expr
+              (selector_expr
                 (selector
                   (identifier_expr
                     (identifier))))
@@ -245,7 +245,7 @@ public fun hylo_aligned_free(_ pointer: MemoryAddress) {
               (identifier)
               (prefix_expr
                 (prefix_operator)
-                (value_member_expr
+                (selector_expr
                   (selector
                     (identifier_expr
                       (identifier)))))))))
@@ -253,7 +253,7 @@ public fun hylo_aligned_free(_ pointer: MemoryAddress) {
         (function_call_expr
           (value_member_expr
             (function_call_expr
-              (value_member_expr
+              (selector_expr
                 (selector
                   (identifier_expr
                     (identifier))
@@ -265,7 +265,7 @@ public fun hylo_aligned_free(_ pointer: MemoryAddress) {
                             (identifier))))))))
               (call_argument
                 (identifier)
-                (value_member_expr
+                (selector_expr
                   (selector
                     (identifier_expr
                       (identifier))))))
@@ -275,7 +275,7 @@ public fun hylo_aligned_free(_ pointer: MemoryAddress) {
           (call_argument
             (function_call_expr
               (value_member_expr
-                (value_member_expr
+                (selector_expr
                   (selector
                     (identifier_expr
                       (identifier))))
@@ -284,7 +284,7 @@ public fun hylo_aligned_free(_ pointer: MemoryAddress) {
                     (identifier))))))))
       (stmt
         (jump_stmt
-          (value_member_expr
+          (selector_expr
             (selector
               (identifier_expr
                 (identifier))))))))
@@ -308,7 +308,7 @@ public fun hylo_aligned_free(_ pointer: MemoryAddress) {
         (conditional_expr
           (conditional_clause_item
             (infix_expr
-              (value_member_expr
+              (selector_expr
                 (selector
                   (identifier_expr
                     (identifier))))
@@ -329,7 +329,7 @@ public fun hylo_aligned_free(_ pointer: MemoryAddress) {
             (identifier))
           (function_call_expr
             (value_member_expr
-              (value_member_expr
+              (selector_expr
                 (selector
                   (identifier_expr
                     (identifier))
@@ -349,7 +349,7 @@ public fun hylo_aligned_free(_ pointer: MemoryAddress) {
             (identifier))
           (function_call_expr
             (value_member_expr
-              (value_member_expr
+              (selector_expr
                 (selector
                   (identifier_expr
                     (identifier))))
@@ -360,7 +360,7 @@ public fun hylo_aligned_free(_ pointer: MemoryAddress) {
               (identifier)
               (prefix_expr
                 (prefix_operator)
-                (value_member_expr
+                (selector_expr
                   (selector
                     (identifier_expr
                       (identifier)))))))))
@@ -374,7 +374,7 @@ public fun hylo_aligned_free(_ pointer: MemoryAddress) {
               (subscript_call_expr
                 (value_member_expr
                   (function_call_expr
-                    (value_member_expr
+                    (selector_expr
                       (selector
                         (identifier_expr
                           (identifier))
@@ -386,7 +386,7 @@ public fun hylo_aligned_free(_ pointer: MemoryAddress) {
                                   (identifier))))))))
                     (call_argument
                       (identifier)
-                      (value_member_expr
+                      (selector_expr
                         (selector
                           (identifier_expr
                             (identifier))))))
@@ -398,12 +398,12 @@ public fun hylo_aligned_free(_ pointer: MemoryAddress) {
                   (identifier)))))))
       (stmt
         (function_call_expr
-          (value_member_expr
+          (selector_expr
             (selector
               (identifier_expr
                 (identifier))))
           (call_argument
-            (value_member_expr
+            (selector_expr
               (selector
                 (identifier_expr
                   (identifier))))))))))

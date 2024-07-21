@@ -66,7 +66,7 @@ let e: Map<Float64, String> = [:] // OK
           (selector
             (identifier_expr
               (identifier))))
-        (value_member_expr
+        (selector_expr
           (selector
             (identifier_expr
               (identifier))))))

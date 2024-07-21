@@ -51,7 +51,7 @@ public fun main() {
         (brace_stmt
           (stmt
             (jump_stmt
-              (value_member_expr
+              (selector_expr
                 (selector
                   (identifier_expr
                     (identifier))))))))))
@@ -68,7 +68,7 @@ public fun main() {
             (binding_introducer)
             (identifier))
           (function_call_expr
-            (value_member_expr
+            (selector_expr
               (selector
                 (identifier_expr
                   (identifier)))))))
@@ -82,7 +82,7 @@ public fun main() {
                 (identifier_expr
                   (identifier)))))
           (subscript_call_expr
-            (value_member_expr
+            (selector_expr
               (selector
                 (identifier_expr
                   (identifier))))
@@ -99,7 +99,7 @@ public fun main() {
                 (identifier_expr
                   (identifier)))))
           (subscript_call_expr
-            (value_member_expr
+            (selector_expr
               (selector
                 (identifier_expr
                   (identifier))))
@@ -116,7 +116,7 @@ public fun main() {
                 (identifier_expr
                   (identifier)))))
           (subscript_call_expr
-            (value_member_expr
+            (selector_expr
               (selector
                 (identifier_expr
                   (identifier))))

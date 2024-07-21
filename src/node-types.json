@@ -131,6 +131,10 @@
             "named": true
           },
           {
+            "type": "selector_expr",
+            "named": true
+          },
+          {
             "type": "string_literal",
             "named": true
           },
@@ -240,6 +244,10 @@
           },
           {
             "type": "prefix_expr",
+            "named": true
+          },
+          {
+            "type": "selector_expr",
             "named": true
           },
           {
@@ -356,6 +364,10 @@
           },
           {
             "type": "prefix_expr",
+            "named": true
+          },
+          {
+            "type": "selector_expr",
             "named": true
           },
           {
@@ -667,6 +679,10 @@
             "named": true
           },
           {
+            "type": "selector_expr",
+            "named": true
+          },
+          {
             "type": "string_literal",
             "named": true
           },
@@ -921,6 +937,10 @@
             "named": true
           },
           {
+            "type": "selector_expr",
+            "named": true
+          },
+          {
             "type": "string_literal",
             "named": true
           },
@@ -1037,6 +1057,10 @@
         },
         {
           "type": "prefix_expr",
+          "named": true
+        },
+        {
+          "type": "selector_expr",
           "named": true
         },
         {
@@ -1184,6 +1208,10 @@
             "named": true
           },
           {
+            "type": "selector_expr",
+            "named": true
+          },
+          {
             "type": "string_literal",
             "named": true
           },
@@ -1293,6 +1321,10 @@
         },
         {
           "type": "prefix_expr",
+          "named": true
+        },
+        {
+          "type": "selector_expr",
           "named": true
         },
         {
@@ -1713,6 +1745,10 @@
           "named": true
         },
         {
+          "type": "selector_expr",
+          "named": true
+        },
+        {
           "type": "string_literal",
           "named": true
         },
@@ -1831,6 +1867,10 @@
           },
           {
             "type": "prefix_expr",
+            "named": true
+          },
+          {
+            "type": "selector_expr",
             "named": true
           },
           {
@@ -2174,6 +2214,10 @@
             "named": true
           },
           {
+            "type": "selector_expr",
+            "named": true
+          },
+          {
             "type": "string_literal",
             "named": true
           },
@@ -2277,6 +2321,10 @@
           },
           {
             "type": "prefix_expr",
+            "named": true
+          },
+          {
+            "type": "selector_expr",
             "named": true
           },
           {
@@ -2387,6 +2435,10 @@
           },
           {
             "type": "pragma_expr",
+            "named": true
+          },
+          {
+            "type": "selector_expr",
             "named": true
           },
           {
@@ -2839,6 +2891,10 @@
             "named": true
           },
           {
+            "type": "selector_expr",
+            "named": true
+          },
+          {
             "type": "string_literal",
             "named": true
           },
@@ -3075,6 +3131,10 @@
             "named": true
           },
           {
+            "type": "selector_expr",
+            "named": true
+          },
+          {
             "type": "string_literal",
             "named": true
           },
@@ -3207,6 +3267,10 @@
             "named": true
           },
           {
+            "type": "selector_expr",
+            "named": true
+          },
+          {
             "type": "string_literal",
             "named": true
           },
@@ -3312,6 +3376,10 @@
         },
         {
           "type": "prefix_expr",
+          "named": true
+        },
+        {
+          "type": "selector_expr",
           "named": true
         },
         {
@@ -3453,6 +3521,10 @@
             "named": true
           },
           {
+            "type": "selector_expr",
+            "named": true
+          },
+          {
             "type": "string_literal",
             "named": true
           },
@@ -3556,6 +3628,10 @@
           },
           {
             "type": "prefix_expr",
+            "named": true
+          },
+          {
+            "type": "selector_expr",
             "named": true
           },
           {
@@ -3924,6 +4000,10 @@
             "named": true
           },
           {
+            "type": "selector_expr",
+            "named": true
+          },
+          {
             "type": "string_literal",
             "named": true
           },
@@ -4027,6 +4107,10 @@
           },
           {
             "type": "prefix_expr",
+            "named": true
+          },
+          {
+            "type": "selector_expr",
             "named": true
           },
           {
@@ -4168,6 +4252,10 @@
             "named": true
           },
           {
+            "type": "selector_expr",
+            "named": true
+          },
+          {
             "type": "string_literal",
             "named": true
           },
@@ -4287,6 +4375,10 @@
           },
           {
             "type": "prefix_expr",
+            "named": true
+          },
+          {
+            "type": "selector_expr",
             "named": true
           },
           {
@@ -4716,6 +4808,10 @@
             "named": true
           },
           {
+            "type": "selector_expr",
+            "named": true
+          },
+          {
             "type": "string_literal",
             "named": true
           },
@@ -4921,6 +5017,10 @@
             "named": true
           },
           {
+            "type": "selector_expr",
+            "named": true
+          },
+          {
             "type": "string_literal",
             "named": true
           },
@@ -5045,6 +5145,10 @@
           },
           {
             "type": "prefix_expr",
+            "named": true
+          },
+          {
+            "type": "selector_expr",
             "named": true
           },
           {
@@ -5398,6 +5502,21 @@
     }
   },
   {
+    "type": "selector_expr",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "selector",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "source_file",
     "named": true,
     "fields": {},
@@ -5530,6 +5649,10 @@
           },
           {
             "type": "prefix_expr",
+            "named": true
+          },
+          {
+            "type": "selector_expr",
             "named": true
           },
           {
@@ -5756,6 +5879,10 @@
           "named": true
         },
         {
+          "type": "selector_expr",
+          "named": true
+        },
+        {
           "type": "string_literal",
           "named": true
         },
@@ -5912,6 +6039,10 @@
           },
           {
             "type": "pragma_expr",
+            "named": true
+          },
+          {
+            "type": "selector_expr",
             "named": true
           },
           {
@@ -6339,6 +6470,10 @@
           "named": true
         },
         {
+          "type": "selector_expr",
+          "named": true
+        },
+        {
           "type": "string_literal",
           "named": true
         },
@@ -6753,6 +6888,10 @@
             "named": true
           },
           {
+            "type": "selector_expr",
+            "named": true
+          },
+          {
             "type": "string_literal",
             "named": true
           },
@@ -6929,6 +7068,10 @@
           "named": true
         },
         {
+          "type": "selector_expr",
+          "named": true
+        },
+        {
           "type": "string_literal",
           "named": true
         },
@@ -7033,6 +7176,10 @@
         },
         {
           "type": "prefix_expr",
+          "named": true
+        },
+        {
+          "type": "selector_expr",
           "named": true
         },
         {
@@ -7141,6 +7288,10 @@
             "named": true
           },
           {
+            "type": "selector_expr",
+            "named": true
+          },
+          {
             "type": "string_literal",
             "named": true
           },
@@ -7229,7 +7380,7 @@
             "named": true
           },
           {
-            "type": "selector",
+            "type": "selector_expr",
             "named": true
           },
           {
@@ -7260,7 +7411,7 @@
       },
       "selector": {
         "multiple": true,
-        "required": false,
+        "required": true,
         "types": [
           {
             "type": "selector",
@@ -7427,6 +7578,10 @@
           },
           {
             "type": "prefix_expr",
+            "named": true
+          },
+          {
+            "type": "selector_expr",
             "named": true
           },
           {

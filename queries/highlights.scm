@@ -12,7 +12,6 @@
 (function_memberwise_init) @constructor
 (function_name (identifier) @function)
 (function_decl head: (function_head (function_name (identifier) @function.abstract)) !body)
-(function_decl head: (function_head (function_name (identifier) @function.method)))
 (function_name "init" @constructor)
 (function_name (identifier) @constructor.destructor (#eq? @constructor.destructor "deinit"))
 (deinit_decl "deinit" @constructor.destructor)
@@ -85,12 +84,14 @@
 (binding_pattern pattern: (identifier) @variable)
 (tuple_pattern "(" @punctuation.bracket.tuple ",")
 (tuple_pattern "," ")" @punctuation.bracket.tuple)
-(tuple_pattern_element label: (identifier) @label)
 (tuple_pattern_element ":" @operator.assignment)
-(tuple_pattern_element pattern: (identifier) @variable)
+(tuple_pattern_element label: (identifier) @variable pattern: (identifier))
+(tuple_pattern_element pattern: (identifier) @variable !label)
 (binding_decl "=" @operator.assignment)
 
 ; Expr
+; Unknown, assume variable
+(selector_expr (selector (identifier_expr entity: (identifier) @variable)))
 ;; Operators
 (infix_operator) @operator.infix
 (prefix_operator) @operator.prefix
@@ -102,7 +103,7 @@
 (value_member_expr selector: (selector identifier: (identifier_expr (identifier) @property)))
 (value_index_expr index: (value_member_index) @property)
 ;;; Function / Method calls
-(function_call_expr head: (value_member_expr qualifier: (selector identifier: (identifier_expr (identifier) @function)) !selector))
+(function_call_expr head: (selector_expr (selector identifier: (identifier_expr (identifier) @function))))
 (function_call_expr head: (_ (selector identifier: (identifier_expr (identifier) @function.method)) .))
 ; (function_call_expr head: (implicit_member_ref (primary_decl_ref identifier: (identifier_expr (identifier) @function.method))))
 (call_argument label: (identifier) @label)
@@ -121,8 +122,8 @@
 (map_literal "[" @punctuation.bracket ":" @punctuation.delimiter "]" @punctuation.bracket)
 (map_component ":" @operator.assignment)
 ;; Literals
-(value_member_expr qualifier: (selector (identifier_expr (identifier) @variable.builtin (#eq? @variable.builtin "self"))))
-(value_member_expr qualifier: (selector (identifier_expr (identifier) @variable.builtin (#eq? @variable.builtin "yielded"))))
+(selector_expr (selector (identifier_expr (identifier) @variable.builtin (#eq? @variable.builtin "self"))))
+(selector_expr (selector (identifier_expr (identifier) @variable.builtin (#eq? @variable.builtin "yielded"))))
 (integer_literal) @number
 (floating_point_literal) @number
 (boolean_literal) @constant.builtin.boolean
@@ -138,8 +139,8 @@
 ;; Arrays
 (array_type_expr "[" @punctuation.bracket "]" @punctuation.bracket)
 ;; Floats
-(existential_type_expr "any" @keyword.operator.type)
-"some" @keyword.operator.type
+(existential_type_expr "any" @keyword.operator)
+"some" @keyword.operator
 ;;; Type paths
 (name_type_expr qualifier: (selector identifier: (identifier_expr (identifier) @type)) !selector)
 (name_type_expr selector: (selector identifier: (identifier_expr (identifier) @type)))
@@ -186,3 +187,4 @@
 ((single_line_comment) @comment.documentation (#match? @comment.documentation "^///(\\s*$|\\s+.*)"))
 (block_comment)       @comment.block
 (pragma_expr)         @keyword.directive
+

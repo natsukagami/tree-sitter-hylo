@@ -74,7 +74,7 @@ public fun main() {
                   (decimal_literal)))))))
       (stmt
         (function_call_expr
-          (value_member_expr
+          (selector_expr
             (selector
               (identifier_expr
                 (identifier))
@@ -87,7 +87,7 @@ public fun main() {
                         (identifier_expr
                           (identifier)))))))))
           (call_argument
-            (value_member_expr
+            (selector_expr
               (selector
                 (identifier_expr
                   (identifier)))))))
@@ -107,13 +107,13 @@ public fun main() {
                       (identifier))))))
             (brace_stmt
               (stmt
-                (value_member_expr
+                (selector_expr
                   (selector
                     (identifier_expr
                       (identifier)))))))))
       (stmt
         (function_call_expr
-          (value_member_expr
+          (selector_expr
             (selector
               (identifier_expr
                 (identifier))
@@ -133,7 +133,7 @@ public fun main() {
                         (identifier_expr
                           (identifier)))))))))
           (call_argument
-            (value_member_expr
+            (selector_expr
               (selector
                 (identifier_expr
                   (identifier)))))))
@@ -161,13 +161,13 @@ public fun main() {
                 (identifier)))
             (brace_stmt
               (stmt
-                (value_member_expr
+                (selector_expr
                   (selector
                     (identifier_expr
                       (identifier)))))))))
       (stmt
         (function_call_expr
-          (value_member_expr
+          (selector_expr
             (selector
               (identifier_expr
                 (identifier))
@@ -187,7 +187,7 @@ public fun main() {
                         (identifier_expr
                           (identifier)))))))))
           (call_argument
-            (value_member_expr
+            (selector_expr
               (selector
                 (identifier_expr
                   (identifier)))))))
@@ -215,19 +215,19 @@ public fun main() {
                   (binding_pattern
                     (binding_introducer)
                     (identifier))
-                  (value_member_expr
+                  (selector_expr
                     (selector
                       (identifier_expr
                         (identifier))))))
               (stmt
                 (jump_stmt
-                  (value_member_expr
+                  (selector_expr
                     (selector
                       (identifier_expr
                         (identifier))))))))))
       (stmt
         (function_call_expr
-          (value_member_expr
+          (selector_expr
             (selector
               (identifier_expr
                 (identifier))
@@ -247,7 +247,7 @@ public fun main() {
                         (identifier_expr
                           (identifier)))))))))
           (call_argument
-            (value_member_expr
+            (selector_expr
               (selector
                 (identifier_expr
                   (identifier)))))))
@@ -267,7 +267,7 @@ public fun main() {
                     (stmt
                       (function_call_expr
                         (value_member_expr
-                          (value_member_expr
+                          (selector_expr
                             (selector
                               (identifier_expr
                                 (identifier))))
@@ -279,7 +279,7 @@ public fun main() {
                 (decimal_literal))))))
       (stmt
         (function_call_expr
-          (value_member_expr
+          (selector_expr
             (selector
               (identifier_expr
                 (identifier))
@@ -290,7 +290,7 @@ public fun main() {
                       (identifier_expr
                         (identifier))))))))
           (call_argument
-            (value_member_expr
+            (selector_expr
               (selector
                 (identifier_expr
                   (identifier)))))))

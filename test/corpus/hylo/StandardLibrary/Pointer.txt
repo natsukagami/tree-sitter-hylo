@@ -143,7 +143,7 @@ public subscript pointer_to_bytes<T>(of x: T): PointerToBuffer<Int8> {
           (stmt
             (jump_stmt
               (type_casting_expr
-                (value_member_expr
+                (selector_expr
                   (selector
                     (identifier_expr
                       (identifier))))
@@ -171,7 +171,7 @@ public subscript pointer_to_bytes<T>(of x: T): PointerToBuffer<Int8> {
           (assignment_expr
             (inout_expr
               (value_member_expr
-                (value_member_expr
+                (selector_expr
                   (selector
                     (identifier_expr
                       (identifier))))
@@ -181,7 +181,7 @@ public subscript pointer_to_bytes<T>(of x: T): PointerToBuffer<Int8> {
             (assignment_operator)
             (function_call_expr
               (value_member_expr
-                (value_member_expr
+                (selector_expr
                   (selector
                     (identifier_expr
                       (identifier))))
@@ -190,7 +190,7 @@ public subscript pointer_to_bytes<T>(of x: T): PointerToBuffer<Int8> {
                     (identifier))))
               (call_argument
                 (value_member_expr
-                  (value_member_expr
+                  (selector_expr
                     (selector
                       (identifier_expr
                         (identifier))))
@@ -219,13 +219,13 @@ public subscript pointer_to_bytes<T>(of x: T): PointerToBuffer<Int8> {
         (stmt
           (assignment_expr
             (inout_expr
-              (value_member_expr
+              (selector_expr
                 (selector
                   (identifier_expr
                     (identifier)))))
             (assignment_operator)
             (value_member_expr
-              (value_member_expr
+              (selector_expr
                 (selector
                   (identifier_expr
                     (identifier))))
@@ -261,13 +261,13 @@ public subscript pointer_to_bytes<T>(of x: T): PointerToBuffer<Int8> {
         (stmt
           (assignment_expr
             (inout_expr
-              (value_member_expr
+              (selector_expr
                 (selector
                   (identifier_expr
                     (identifier)))))
             (assignment_operator)
             (value_member_expr
-              (value_member_expr
+              (selector_expr
                 (selector
                   (identifier_expr
                     (identifier))))
@@ -303,13 +303,13 @@ public subscript pointer_to_bytes<T>(of x: T): PointerToBuffer<Int8> {
         (stmt
           (assignment_expr
             (inout_expr
-              (value_member_expr
+              (selector_expr
                 (selector
                   (identifier_expr
                     (identifier)))))
             (assignment_operator)
             (value_member_expr
-              (value_member_expr
+              (selector_expr
                 (selector
                   (identifier_expr
                     (identifier))))
@@ -329,13 +329,13 @@ public subscript pointer_to_bytes<T>(of x: T): PointerToBuffer<Int8> {
         (brace_stmt
           (stmt
             (function_call_expr
-              (value_member_expr
+              (selector_expr
                 (selector
                   (identifier_expr
                     (identifier))))
               (call_argument
                 (identifier)
-                (value_member_expr
+                (selector_expr
                   (selector
                     (identifier_expr
                       (identifier))))))))))
@@ -366,7 +366,7 @@ public subscript pointer_to_bytes<T>(of x: T): PointerToBuffer<Int8> {
             (infix_expr
               (function_call_expr
                 (value_member_expr
-                  (value_member_expr
+                  (selector_expr
                     (selector
                       (identifier_expr
                         (identifier))
@@ -381,7 +381,7 @@ public subscript pointer_to_bytes<T>(of x: T): PointerToBuffer<Int8> {
                       (identifier)))))
               (infix_operator_tail
                 (infix_operator)
-                (value_member_expr
+                (selector_expr
                   (selector
                     (identifier_expr
                       (identifier))))))))
@@ -389,7 +389,7 @@ public subscript pointer_to_bytes<T>(of x: T): PointerToBuffer<Int8> {
           (jump_stmt
             (function_call_expr
               (value_member_expr
-                (value_member_expr
+                (selector_expr
                   (selector
                     (identifier_expr
                       (identifier))
@@ -406,7 +406,7 @@ public subscript pointer_to_bytes<T>(of x: T): PointerToBuffer<Int8> {
                 (identifier)
                 (function_call_expr
                   (value_member_expr
-                    (value_member_expr
+                    (selector_expr
                       (selector
                         (identifier_expr
                           (identifier))))
@@ -414,13 +414,13 @@ public subscript pointer_to_bytes<T>(of x: T): PointerToBuffer<Int8> {
                       (identifier_expr
                         (identifier))))
                   (call_argument
-                    (value_member_expr
+                    (selector_expr
                       (selector
                         (identifier_expr
                           (identifier)))))
                   (call_argument
                     (value_member_expr
-                      (value_member_expr
+                      (selector_expr
                         (selector
                           (identifier_expr
                             (identifier))))
@@ -450,7 +450,7 @@ public subscript pointer_to_bytes<T>(of x: T): PointerToBuffer<Int8> {
               (identifier)
               (function_call_expr
                 (value_member_expr
-                  (value_member_expr
+                  (selector_expr
                     (selector
                       (identifier_expr
                         (identifier))))
@@ -482,13 +482,13 @@ public subscript pointer_to_bytes<T>(of x: T): PointerToBuffer<Int8> {
       (brace_stmt
         (stmt
           (function_call_expr
-            (value_member_expr
+            (selector_expr
               (selector
                 (identifier_expr
                   (identifier))))
             (call_argument
               (identifier)
-              (value_member_expr
+              (selector_expr
                 (selector
                   (identifier_expr
                     (identifier))))))))))
@@ -525,7 +525,7 @@ public subscript pointer_to_bytes<T>(of x: T): PointerToBuffer<Int8> {
       (brace_stmt
         (stmt
           (function_call_expr
-            (value_member_expr
+            (selector_expr
               (selector
                 (identifier_expr
                   (identifier))))
@@ -533,7 +533,7 @@ public subscript pointer_to_bytes<T>(of x: T): PointerToBuffer<Int8> {
               (identifier)
               (function_call_expr
                 (value_member_expr
-                  (value_member_expr
+                  (selector_expr
                     (selector
                       (identifier_expr
                         (identifier))))
@@ -541,13 +541,13 @@ public subscript pointer_to_bytes<T>(of x: T): PointerToBuffer<Int8> {
                     (identifier_expr
                       (identifier))))
                 (call_argument
-                  (value_member_expr
+                  (selector_expr
                     (selector
                       (identifier_expr
                         (identifier)))))
                 (call_argument
                   (value_member_expr
-                    (value_member_expr
+                    (selector_expr
                       (selector
                         (identifier_expr
                           (identifier))))
@@ -587,7 +587,7 @@ public subscript pointer_to_bytes<T>(of x: T): PointerToBuffer<Int8> {
           (stmt
             (jump_stmt
               (function_call_expr
-                (value_member_expr
+                (selector_expr
                   (selector
                     (identifier_expr
                       (identifier))))
@@ -595,7 +595,7 @@ public subscript pointer_to_bytes<T>(of x: T): PointerToBuffer<Int8> {
                   (identifier)
                   (function_call_expr
                     (value_member_expr
-                      (value_member_expr
+                      (selector_expr
                         (selector
                           (identifier_expr
                             (identifier))))
@@ -604,7 +604,7 @@ public subscript pointer_to_bytes<T>(of x: T): PointerToBuffer<Int8> {
                           (identifier))))
                     (call_argument
                       (identifier)
-                      (value_member_expr
+                      (selector_expr
                         (selector
                           (identifier_expr
                             (identifier))))))))))))))
@@ -644,7 +644,7 @@ public subscript pointer_to_bytes<T>(of x: T): PointerToBuffer<Int8> {
                 (binding_introducer)
                 (identifier))
               (function_call_expr
-                (value_member_expr
+                (selector_expr
                   (selector
                     (identifier_expr
                       (identifier))
@@ -657,7 +657,7 @@ public subscript pointer_to_bytes<T>(of x: T): PointerToBuffer<Int8> {
                 (call_argument
                   (identifier)
                   (function_call_expr
-                    (value_member_expr
+                    (selector_expr
                       (selector
                         (identifier_expr
                           (identifier))
@@ -671,7 +671,7 @@ public subscript pointer_to_bytes<T>(of x: T): PointerToBuffer<Int8> {
                       (identifier)
                       (function_call_expr
                         (value_member_expr
-                          (value_member_expr
+                          (selector_expr
                             (selector
                               (identifier_expr
                                 (identifier))))
@@ -680,7 +680,7 @@ public subscript pointer_to_bytes<T>(of x: T): PointerToBuffer<Int8> {
                               (identifier))))
                         (call_argument
                           (identifier)
-                          (value_member_expr
+                          (selector_expr
                             (selector
                               (identifier_expr
                                 (identifier))))))))))))
@@ -691,7 +691,7 @@ public subscript pointer_to_bytes<T>(of x: T): PointerToBuffer<Int8> {
                 (identifier))
               (function_call_expr
                 (value_member_expr
-                  (value_member_expr
+                  (selector_expr
                     (selector
                       (identifier_expr
                         (identifier))
@@ -707,19 +707,19 @@ public subscript pointer_to_bytes<T>(of x: T): PointerToBuffer<Int8> {
           (stmt
             (jump_stmt
               (function_call_expr
-                (value_member_expr
+                (selector_expr
                   (selector
                     (identifier_expr
                       (identifier))))
                 (call_argument
                   (identifier)
-                  (value_member_expr
+                  (selector_expr
                     (selector
                       (identifier_expr
                         (identifier)))))
                 (call_argument
                   (identifier)
-                  (value_member_expr
+                  (selector_expr
                     (selector
                       (identifier_expr
                         (identifier)))))))))))))

@@ -35,7 +35,7 @@ public fun main() {
                   (binding_introducer)
                   (identifier))
                 (boolean_literal))))
-          (value_member_expr
+          (selector_expr
             (selector
               (identifier_expr
                 (identifier))))))
@@ -52,14 +52,14 @@ public fun main() {
             (stmt
               (assignment_expr
                 (inout_expr
-                  (value_member_expr
+                  (selector_expr
                     (selector
                       (identifier_expr
                         (identifier)))))
                 (assignment_operator)
                 (integer_literal
                   (decimal_literal)))))
-          (value_member_expr
+          (selector_expr
             (selector
               (identifier_expr
                 (identifier))))))

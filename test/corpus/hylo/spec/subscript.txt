@@ -69,29 +69,29 @@ subscript min<T, E>(_ a: T, _ b: T, by comparator: [E](T, T) -> Bool): Int {
               (conditional_expr
                 (conditional_clause_item
                   (function_call_expr
-                    (value_member_expr
+                    (selector_expr
                       (selector
                         (identifier_expr
                           (identifier))))
                     (call_argument
-                      (value_member_expr
+                      (selector_expr
                         (selector
                           (identifier_expr
                             (identifier)))))
                     (call_argument
-                      (value_member_expr
+                      (selector_expr
                         (selector
                           (identifier_expr
                             (identifier)))))))
                 (brace_stmt
                   (stmt
-                    (value_member_expr
+                    (selector_expr
                       (selector
                         (identifier_expr
                           (identifier))))))
                 (brace_stmt
                   (stmt
-                    (value_member_expr
+                    (selector_expr
                       (selector
                         (identifier_expr
                           (identifier)))))))))))
@@ -106,29 +106,29 @@ subscript min<T, E>(_ a: T, _ b: T, by comparator: [E](T, T) -> Bool): Int {
                     (conditional_expr
                       (conditional_clause_item
                         (function_call_expr
-                          (value_member_expr
+                          (selector_expr
                             (selector
                               (identifier_expr
                                 (identifier))))
                           (call_argument
-                            (value_member_expr
+                            (selector_expr
                               (selector
                                 (identifier_expr
                                   (identifier)))))
                           (call_argument
-                            (value_member_expr
+                            (selector_expr
                               (selector
                                 (identifier_expr
                                   (identifier)))))))
                       (brace_stmt
                         (stmt
-                          (value_member_expr
+                          (selector_expr
                             (selector
                               (identifier_expr
                                 (identifier))))))
                       (brace_stmt
                         (stmt
-                          (value_member_expr
+                          (selector_expr
                             (selector
                               (identifier_expr
                                 (identifier))))))))))))))
@@ -140,29 +140,29 @@ subscript min<T, E>(_ a: T, _ b: T, by comparator: [E](T, T) -> Bool): Int {
               (conditional_expr
                 (conditional_clause_item
                   (function_call_expr
-                    (value_member_expr
+                    (selector_expr
                       (selector
                         (identifier_expr
                           (identifier))))
                     (call_argument
-                      (value_member_expr
+                      (selector_expr
                         (selector
                           (identifier_expr
                             (identifier)))))
                     (call_argument
-                      (value_member_expr
+                      (selector_expr
                         (selector
                           (identifier_expr
                             (identifier)))))))
                 (brace_stmt
                   (stmt
-                    (value_member_expr
+                    (selector_expr
                       (selector
                         (identifier_expr
                           (identifier))))))
                 (brace_stmt
                   (stmt
-                    (value_member_expr
+                    (selector_expr
                       (selector
                         (identifier_expr
                           (identifier)))))))))))
@@ -173,41 +173,41 @@ subscript min<T, E>(_ a: T, _ b: T, by comparator: [E](T, T) -> Bool): Int {
             (conditional_expr
               (conditional_clause_item
                 (function_call_expr
-                  (value_member_expr
+                  (selector_expr
                     (selector
                       (identifier_expr
                         (identifier))))
                   (call_argument
-                    (value_member_expr
+                    (selector_expr
                       (selector
                         (identifier_expr
                           (identifier)))))
                   (call_argument
-                    (value_member_expr
+                    (selector_expr
                       (selector
                         (identifier_expr
                           (identifier)))))))
               (brace_stmt
                 (stmt
                   (assignment_expr
-                    (value_member_expr
+                    (selector_expr
                       (selector
                         (identifier_expr
                           (identifier))))
                     (assignment_operator)
-                    (value_member_expr
+                    (selector_expr
                       (selector
                         (identifier_expr
                           (identifier)))))))
               (brace_stmt
                 (stmt
                   (assignment_expr
-                    (value_member_expr
+                    (selector_expr
                       (selector
                         (identifier_expr
                           (identifier))))
                     (assignment_operator)
-                    (value_member_expr
+                    (selector_expr
                       (selector
                         (identifier_expr
                           (identifier))))))))))))))
