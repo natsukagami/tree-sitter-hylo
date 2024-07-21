@@ -25,28 +25,27 @@ public fun main() {
           (binding_pattern
             (binding_introducer)
             (identifier))
-          (expr
-            (integer_literal
-              (decimal_literal)))))
+          (integer_literal
+            (decimal_literal))))
       (stmt
-        (expr
+        (assignment_expr
           (inout_expr
-            (expr
-              (value_member_expr
-                (selector
-                  (identifier_expr
-                    (identifier))))))
-          (infix_operator_tail
-            (infix_operator)
             (value_member_expr
               (selector
                 (identifier_expr
                   (identifier)))))
-          (infix_operator_tail
-            (infix_operator)
-            (integer_literal
-              (decimal_literal)))
-          (infix_operator_tail
-            (infix_operator)
-            (integer_literal
-              (decimal_literal))))))))
+          (assignment_operator)
+          (infix_expr
+            (value_member_expr
+              (selector
+                (identifier_expr
+                  (identifier))))
+            (infix_operator_tail
+              (infix_operator)
+              (infix_expr
+                (integer_literal
+                  (decimal_literal))
+                (infix_operator_tail
+                  (infix_operator)
+                  (integer_literal
+                    (decimal_literal)))))))))))

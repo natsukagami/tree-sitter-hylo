@@ -18,6 +18,5 @@ yay!
     (binding_pattern
       (binding_introducer)
       (identifier))
-    (expr
-      (string_literal
-        (multiline_string)))))
+    (string_literal
+      (multiline_string))))

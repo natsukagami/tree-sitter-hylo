@@ -13,27 +13,7 @@ let c = m.prefix-*(5, 7)
     (binding_pattern
       (binding_introducer)
       (identifier))
-    (expr
-      (function_call_expr
-        (value_member_expr
-          (value_member_expr
-            (selector
-              (identifier_expr
-                (identifier))))
-          (selector
-            (identifier_expr
-              (identifier))))
-        (call_argument
-          (identifier)
-          (expr
-            (integer_literal
-              (decimal_literal)))))))
-  (single_line_comment)
-  (binding_decl
-    (binding_pattern
-      (binding_introducer)
-      (identifier))
-    (expr
+    (function_call_expr
       (value_member_expr
         (value_member_expr
           (selector
@@ -41,31 +21,45 @@ let c = m.prefix-*(5, 7)
               (identifier))))
         (selector
           (identifier_expr
-            (function_entity_identifier
-              (identifier)
-              (identifier)))))))
+            (identifier))))
+      (call_argument
+        (identifier)
+        (integer_literal
+          (decimal_literal)))))
   (single_line_comment)
   (binding_decl
     (binding_pattern
       (binding_introducer)
       (identifier))
-    (expr
-      (function_call_expr
+    (value_member_expr
+      (value_member_expr
+        (selector
+          (identifier_expr
+            (identifier))))
+      (selector
+        (identifier_expr
+          (function_entity_identifier
+            (identifier)
+            (identifier))))))
+  (single_line_comment)
+  (binding_decl
+    (binding_pattern
+      (binding_introducer)
+      (identifier))
+    (function_call_expr
+      (value_member_expr
         (value_member_expr
-          (value_member_expr
-            (selector
-              (identifier_expr
-                (identifier))))
           (selector
             (identifier_expr
-              (operator_entity_identifier
-                (operator_notation)
-                (operator)))))
-        (call_argument
-          (expr
-            (integer_literal
-              (decimal_literal))))
-        (call_argument
-          (expr
-            (integer_literal
-              (decimal_literal))))))))
+              (identifier))))
+        (selector
+          (identifier_expr
+            (operator_entity_identifier
+              (operator_notation)
+              (operator)))))
+      (call_argument
+        (integer_literal
+          (decimal_literal)))
+      (call_argument
+        (integer_literal
+          (decimal_literal))))))

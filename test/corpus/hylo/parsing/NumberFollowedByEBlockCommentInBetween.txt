@@ -25,20 +25,17 @@ public fun main() {
           (binding_pattern
             (binding_introducer)
             (identifier))
-          (expr
-            (integer_literal
-              (decimal_literal)))))
+          (integer_literal
+            (decimal_literal))))
       (block_comment)
       (stmt
-        (expr
-          (function_call_expr
+        (function_call_expr
+          (value_member_expr
+            (selector
+              (identifier_expr
+                (identifier))))
+          (call_argument
             (value_member_expr
               (selector
                 (identifier_expr
-                  (identifier))))
-            (call_argument
-              (expr
-                (value_member_expr
-                  (selector
-                    (identifier_expr
-                      (identifier))))))))))))
+                  (identifier))))))))))

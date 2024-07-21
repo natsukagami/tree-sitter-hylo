@@ -87,7 +87,7 @@
 (tuple_pattern "," ")" @punctuation.bracket.tuple)
 (tuple_pattern_element label: (identifier) @label)
 (tuple_pattern_element ":" @operator.assignment)
-(tuple_pattern_element pattern: (expr_pattern (expr (selector identifier: (identifier_expr (identifier) @variable)) !selector)))
+(tuple_pattern_element pattern: (expr_pattern (value_member_expr qualifier: (selector identifier: (identifier_expr (identifier) @variable)) !selector)))
 (binding_decl "=" @operator.assignment)
 
 ; Expr

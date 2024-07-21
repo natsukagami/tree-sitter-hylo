@@ -30,7 +30,7 @@ fun fatal_error() -> Never
             (identifier)))))
     (brace_stmt
       (stmt
-        (expr
+        (infix_expr
           (integer_literal
             (decimal_literal))
           (infix_operator_tail
@@ -39,20 +39,18 @@ fun fatal_error() -> Never
               (decimal_literal)))))
       (single_line_comment)
       (stmt
-        (expr
-          (function_call_expr
-            (value_member_expr
-              (selector
-                (identifier_expr
-                  (identifier)))))))
+        (function_call_expr
+          (value_member_expr
+            (selector
+              (identifier_expr
+                (identifier))))))
       (single_line_comment)
       (stmt
-        (expr
-          (function_call_expr
-            (value_member_expr
-              (selector
-                (identifier_expr
-                  (identifier)))))))
+        (function_call_expr
+          (value_member_expr
+            (selector
+              (identifier_expr
+                (identifier))))))
       (single_line_comment)))
   (function_decl
     (function_head

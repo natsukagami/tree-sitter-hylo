@@ -82,11 +82,10 @@ public fun main() {
             (identifier)))))
     (brace_stmt
       (stmt
-        (expr
-          (value_member_expr
-            (selector
-              (identifier_expr
-                (identifier))))))))
+        (value_member_expr
+          (selector
+            (identifier_expr
+              (identifier)))))))
   (function_decl
     (function_head
       (function_name
@@ -159,16 +158,15 @@ public fun main() {
               (identifier))))))
     (brace_stmt
       (stmt
-        (expr
-          (function_call_expr
+        (function_call_expr
+          (value_member_expr
             (value_member_expr
-              (value_member_expr
-                (selector
-                  (identifier_expr
-                    (identifier))))
               (selector
                 (identifier_expr
-                  (identifier)))))))))
+                  (identifier))))
+            (selector
+              (identifier_expr
+                (identifier))))))))
   (function_decl
     (function_head
       (function_name
@@ -196,198 +194,169 @@ public fun main() {
           (binding_pattern
             (binding_introducer)
             (identifier))
-          (expr
-            (function_call_expr
-              (value_member_expr
-                (selector
-                  (identifier_expr
-                    (identifier))))
-              (call_argument
-                (expr
-                  (boolean_literal)))
-              (call_argument
-                (expr
-                  (integer_literal
-                    (decimal_literal))))))))
-      (stmt
-        (expr
-          (function_call_expr
-            (value_member_expr
-              (selector
-                (identifier_expr
-                  (identifier))
-                (static_argument_list
-                  (static_argument
-                    (name_type_expr
-                      (selector
-                        (identifier_expr
-                          (identifier))))))))
-            (call_argument
-              (expr
-                (value_member_expr
-                  (selector
-                    (identifier_expr
-                      (identifier)))))))))
-      (stmt
-        (binding_decl
-          (binding_pattern
-            (binding_introducer)
-            (identifier))
-          (expr
-            (function_call_expr
-              (value_member_expr
-                (selector
-                  (identifier_expr
-                    (identifier))))
-              (call_argument
-                (expr
-                  (integer_literal
-                    (decimal_literal))))
-              (call_argument
-                (expr
-                  (boolean_literal)))))))
-      (stmt
-        (expr
-          (function_call_expr
-            (value_member_expr
-              (selector
-                (identifier_expr
-                  (identifier))
-                (static_argument_list
-                  (static_argument
-                    (name_type_expr
-                      (selector
-                        (identifier_expr
-                          (identifier))))))))
-            (call_argument
-              (expr
-                (value_member_expr
-                  (selector
-                    (identifier_expr
-                      (identifier)))))))))
-      (stmt
-        (binding_decl
-          (binding_pattern
-            (binding_introducer)
-            (identifier))
-          (expr
-            (function_call_expr
-              (value_member_expr
-                (selector
-                  (identifier_expr
-                    (identifier))))
-              (call_argument
-                (expr
-                  (integer_literal
-                    (decimal_literal))))
-              (call_argument
-                (expr
-                  (integer_literal
-                    (decimal_literal))
-                  (type_casting_tail
-                    (name_type_expr
-                      (selector
-                        (identifier_expr
-                          (identifier)))))))))))
-      (stmt
-        (expr
-          (function_call_expr
-            (value_member_expr
-              (selector
-                (identifier_expr
-                  (identifier))
-                (static_argument_list
-                  (static_argument
-                    (name_type_expr
-                      (selector
-                        (identifier_expr
-                          (identifier))))))))
-            (call_argument
-              (expr
-                (value_member_expr
-                  (selector
-                    (identifier_expr
-                      (identifier)))))))))
-      (stmt
-        (expr
           (function_call_expr
             (value_member_expr
               (selector
                 (identifier_expr
                   (identifier))))
             (call_argument
-              (expr
-                (tuple_expr)))
+              (boolean_literal))
             (call_argument
-              (expr
-                (tuple_expr
-                  (tuple_expr_element
-                    (identifier)
-                    (expr
-                      (tuple_expr)))))))))
-      (single_line_comment)
+              (integer_literal
+                (decimal_literal))))))
       (stmt
-        (expr
+        (function_call_expr
+          (value_member_expr
+            (selector
+              (identifier_expr
+                (identifier))
+              (static_argument_list
+                (static_argument
+                  (name_type_expr
+                    (selector
+                      (identifier_expr
+                        (identifier))))))))
+          (call_argument
+            (value_member_expr
+              (selector
+                (identifier_expr
+                  (identifier)))))))
+      (stmt
+        (binding_decl
+          (binding_pattern
+            (binding_introducer)
+            (identifier))
           (function_call_expr
             (value_member_expr
               (selector
                 (identifier_expr
                   (identifier))))
             (call_argument
-              (expr
-                (tuple_expr
-                  (tuple_expr_element
-                    (identifier)
-                    (expr
-                      (tuple_expr))))))
+              (integer_literal
+                (decimal_literal)))
             (call_argument
-              (expr
-                (tuple_expr
-                  (tuple_expr_element
-                    (identifier)
-                    (expr
-                      (tuple_expr)))))))))
-      (single_line_comment)
+              (boolean_literal)))))
       (stmt
-        (expr
+        (function_call_expr
+          (value_member_expr
+            (selector
+              (identifier_expr
+                (identifier))
+              (static_argument_list
+                (static_argument
+                  (name_type_expr
+                    (selector
+                      (identifier_expr
+                        (identifier))))))))
+          (call_argument
+            (value_member_expr
+              (selector
+                (identifier_expr
+                  (identifier)))))))
+      (stmt
+        (binding_decl
+          (binding_pattern
+            (binding_introducer)
+            (identifier))
           (function_call_expr
             (value_member_expr
               (selector
                 (identifier_expr
-                  (identifier))
-                (static_argument_list
-                  (static_argument
-                    (name_type_expr
-                      (selector
-                        (identifier_expr
-                          (identifier))))))))
+                  (identifier))))
             (call_argument
-              (expr
+              (integer_literal
+                (decimal_literal)))
+            (call_argument
+              (infix_expr
                 (integer_literal
-                  (decimal_literal))))
-            (call_argument
-              (expr
-                (tuple_expr
-                  (tuple_expr_element
-                    (identifier)
-                    (expr
-                      (value_member_expr
-                        (selector
-                          (identifier_expr
-                            (identifier))))))))))))
-      (single_line_comment)
+                  (decimal_literal))
+                (type_casting_tail
+                  (name_type_expr
+                    (selector
+                      (identifier_expr
+                        (identifier))))))))))
       (stmt
-        (expr
-          (function_call_expr
+        (function_call_expr
+          (value_member_expr
+            (selector
+              (identifier_expr
+                (identifier))
+              (static_argument_list
+                (static_argument
+                  (name_type_expr
+                    (selector
+                      (identifier_expr
+                        (identifier))))))))
+          (call_argument
             (value_member_expr
               (selector
                 (identifier_expr
-                  (identifier))))
-            (call_argument
-              (expr
-                (boolean_literal))))))
+                  (identifier)))))))
       (stmt
-        (expr
+        (function_call_expr
+          (value_member_expr
+            (selector
+              (identifier_expr
+                (identifier))))
+          (call_argument
+            (tuple_expr))
+          (call_argument
+            (tuple_expr
+              (tuple_expr_element
+                (identifier)
+                (tuple_expr))))))
+      (single_line_comment)
+      (stmt
+        (function_call_expr
+          (value_member_expr
+            (selector
+              (identifier_expr
+                (identifier))))
+          (call_argument
+            (tuple_expr
+              (tuple_expr_element
+                (identifier)
+                (tuple_expr))))
+          (call_argument
+            (tuple_expr
+              (tuple_expr_element
+                (identifier)
+                (tuple_expr))))))
+      (single_line_comment)
+      (stmt
+        (function_call_expr
+          (value_member_expr
+            (selector
+              (identifier_expr
+                (identifier))
+              (static_argument_list
+                (static_argument
+                  (name_type_expr
+                    (selector
+                      (identifier_expr
+                        (identifier))))))))
+          (call_argument
+            (integer_literal
+              (decimal_literal)))
+          (call_argument
+            (tuple_expr
+              (tuple_expr_element
+                (identifier)
+                (value_member_expr
+                  (selector
+                    (identifier_expr
+                      (identifier)))))))))
+      (single_line_comment)
+      (stmt
+        (function_call_expr
+          (value_member_expr
+            (selector
+              (identifier_expr
+                (identifier))))
+          (call_argument
+            (boolean_literal))))
+      (stmt
+        (infix_expr
           (integer_literal
             (decimal_literal))
           (type_casting_tail

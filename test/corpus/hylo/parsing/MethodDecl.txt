@@ -61,18 +61,17 @@ type A0 {
           (method_introducer)
           (brace_stmt
             (stmt
-              (expr
+              (assignment_expr
                 (value_member_expr
                   (selector
                     (identifier_expr
                       (identifier))))
-                (infix_operator_tail
-                  (infix_operator)
-                  (function_call_expr
-                    (value_member_expr
-                      (selector
-                        (identifier_expr
-                          (identifier))))))))))))
+                (assignment_operator)
+                (function_call_expr
+                  (value_member_expr
+                    (selector
+                      (identifier_expr
+                        (identifier)))))))))))
     (function_decl
       (function_head
         (access_modifier)
@@ -128,9 +127,8 @@ type A0 {
             (binding_pattern
               (binding_introducer)
               (identifier))
-            (expr
-              (integer_literal
-                (decimal_literal))))))
+            (integer_literal
+              (decimal_literal)))))
       (function_signature
         (name_type_expr
           (selector

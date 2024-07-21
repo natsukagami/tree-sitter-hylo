@@ -34,39 +34,33 @@ public fun main() {
                 (binding_pattern
                   (binding_introducer)
                   (identifier))
-                (expr
-                  (boolean_literal)))))
-          (expr
-            (value_member_expr
-              (selector
-                (identifier_expr
-                  (identifier)))))))
+                (boolean_literal))))
+          (value_member_expr
+            (selector
+              (identifier_expr
+                (identifier))))))
       (stmt
         (binding_decl
           (binding_pattern
             (binding_introducer)
             (identifier))
-          (expr
-            (integer_literal
-              (decimal_literal)))))
+          (integer_literal
+            (decimal_literal))))
       (stmt
         (do_while_stmt
           (brace_stmt
             (stmt
-              (expr
+              (assignment_expr
                 (inout_expr
-                  (expr
-                    (value_member_expr
-                      (selector
-                        (identifier_expr
-                          (identifier))))))
-                (infix_operator_tail
-                  (infix_operator)
-                  (integer_literal
-                    (decimal_literal))))))
-          (expr
-            (value_member_expr
-              (selector
-                (identifier_expr
-                  (identifier)))))))
+                  (value_member_expr
+                    (selector
+                      (identifier_expr
+                        (identifier)))))
+                (assignment_operator)
+                (integer_literal
+                  (decimal_literal)))))
+          (value_member_expr
+            (selector
+              (identifier_expr
+                (identifier))))))
       (single_line_comment))))

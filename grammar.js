@@ -25,13 +25,22 @@ const whitespace = token(choice(horizontal_space_token, newline));
 const stmt_sep = token(prec(SEPARATOR_P, /\n|;/));
 
 // Token: Operators
+const non_assignment = /[-+*\/^%&!?~|<>]/u; // todo: support \p{Sm}
 const common_operator = /[-+*\/^%&!?=~|]/u; // todo: support \p{Sm}
 const raw_operator = token(prec(OPERATOR_P, choice(common_operator, "<", ">")));
 const imm_raw_operator = token.immediate(prec(OPERATOR_P, raw_operator));
 const prefix_operator_head = token(prec(OPERATOR_P, choice(common_operator, ">", /\.\.+/)));
 const postfix_operator_head = token.immediate(prec(OPERATOR_P, choice(common_operator, "<", /\.\.+/)));
 const operator_head = choice(raw_operator, /\.\.+/);
-const operator = token(prec(OPERATOR_P, seq(operator_head, repeat(imm_raw_operator))));
+const operator = token(prec(OPERATOR_P, choice(
+  non_assignment,
+  /\.\.+/,
+  seq(operator_head, repeat(imm_raw_operator), token.immediate(non_assignment)),
+)));
+const assignment_operator = token(prec(OPERATOR_P, seq(
+  optional(seq(operator_head, repeat(imm_raw_operator))),
+  "=",
+)));
 
 // Token: floats
 const decimal_literal = /[0-9][0-9_]*/;
@@ -300,7 +309,7 @@ module.exports = grammar({
       )),
       optional(seq(
         "=",
-        field('default_value', $.expr),
+        field('default_value', $._expr),
       )),
     ),
     _parameter_type_expr: $ => seq(
@@ -440,10 +449,10 @@ module.exports = grammar({
       $._loop_stmt,
       $.jump_stmt,
       $._decl_stmt,
-      $.expr
+      $._expr
     ),
 
-    discard_stmt: $ => seq("_", "=", $.expr),
+    discard_stmt: $ => seq("_", "=", $._expr),
 
     // LOOP STATEMENTS
 
@@ -457,7 +466,7 @@ module.exports = grammar({
       "do",
       field('body', $.brace_stmt),
       "while",
-      field('condition', $.expr),
+      field('condition', $._expr),
     ),
 
     while_stmt: $ => seq(
@@ -471,17 +480,17 @@ module.exports = grammar({
         field('binding', $.binding_pattern),
         ":",
       )),
-      field('condition', $.expr),
+      field('condition', $._expr),
     ),
 
     for_stmt: $ => seq(
       "for",
       field('binding', $.binding_decl),
       "in",
-      field('range', $.expr),
+      field('range', $._expr),
       optional(seq(
         "where",
-        field('where', $.expr),
+        field('where', $._expr),
       )),
       field('body', $.brace_stmt),
     ),
@@ -491,11 +500,11 @@ module.exports = grammar({
       $.conditional_binding_stmt,
       seq(
         "return",
-        optional(field('return', $.expr)),
+        optional(field('return', $._expr)),
       ),
       seq(
         "yield",
-        optional(field('yield', $.expr)),
+        optional(field('yield', $._expr)),
       ),
       "break",
       "continue",
@@ -508,7 +517,7 @@ module.exports = grammar({
       field('else', choice(
         $.jump_stmt,
         $.brace_stmt,
-        $.expr,
+        $._expr,
       )),
     ),
 
@@ -529,19 +538,44 @@ module.exports = grammar({
       optional($.access_modifier),
       optional($._member_modifiers),
       field('pattern', $.binding_pattern),
-      optional(seq("=", field('initializer', $.expr))),
+      optional(seq("=", field('initializer', $._expr))),
     ),
 
     // EXPRESSIONS
 
-    expr: $ => prec.left(seq($._infix_expr_head, repeat(seq($._infix_expr_tail)))),
-
-    _infix_expr_head: $ => choice(
-      // $.async_expr,
-      // $.await_expr,
+    _expr: $ => prec.right(choice(
+      $.assignment_expr,
+      $.infix_expr,
       $.unsafe_expr,
-      $._prefix_expr
+      $.prefix_expr,
+      $.postfix_expr,
+      $._compound_expr,
+      // prec.left(seq($._infix_expr_head, repeat(seq($._infix_expr_tail)))),
+      // prec.right(seq($._infix_expr_head, $.assignment_operator_tail)),
+    )),
+
+    assignment_expr: $ => prec.right("expr_assignment", seq(
+      field('lhs', $._expr),
+      field('op', $.assignment_operator),
+      field('rhs', $._expr),
+    )),
+
+    infix_expr: $ => prec.right("expr_infix", seq(
+      field('lhs', $._expr),
+      repeat1($._infix_expr_tail),
+    )),
+    _infix_expr_tail: $ => choice(
+      $.type_casting_tail,
+      $.infix_operator_tail,
     ),
+    type_casting_tail: $ => prec.right("type_float", seq(
+      field('operator', choice("as", "as!", "as*")),
+      field('type', $._type_expr),
+    )),
+    infix_operator_tail: $ => prec.right(seq(
+      field('operator', $.infix_operator),
+      field('rhs', $._expr),
+    )),
 
     // async_expr: $ => seq(
     //   "async",
@@ -552,33 +586,18 @@ module.exports = grammar({
     //   )),
     //   field('body', $.brace_stmt),
     // ),
-    // await_expr: $ => seq("await", $.expr),
+    // await_expr: $ => seq("await", $._expr),
 
-    unsafe_expr: $ => prec.right("expr_float", seq("unsafe", $.expr)),
+    unsafe_expr: $ => prec("expr_float", seq("unsafe", $._expr)),
 
-    _infix_expr_tail: $ => choice(
-      $.type_casting_tail,
-      $.infix_operator_tail,
-    ),
-
-    type_casting_tail: $ => prec.right("type_float", seq(
-      field('operator', choice("as", "as!", "as*")),
-      field('type', $._type_expr),
+    prefix_expr: $ => prec("expr_prefix", seq(
+      field('op', $.prefix_operator), // TODO: disallow any space in-between
+      field('expr', $._expr),
     )),
 
-    infix_operator_tail: $ => seq(
-      field('operator', $.infix_operator),
-      field('rhs', $._prefix_expr),
-    ),
-
-    _prefix_expr: $ => prec.left("expr_prefix", seq(optional($.prefix_operator), $._postfix_expr)),
-
-    _postfix_expr: $ => prec("expr_postfix", choice(
-      $._compound_expr,
-      seq(
-        $._postfix_expr,
-        $.postfix_operator,
-      ),
+    postfix_expr: $ => prec("expr_postfix", seq(
+      field('expr', $._expr),
+      field('op', $.postfix_operator),
     )),
 
     // COMPOUND EXPRESSIONS
@@ -633,7 +652,7 @@ module.exports = grammar({
         field('label', $.identifier),
         ":",
       )),
-      $.expr,
+      $._expr,
     ),
 
     // PRIMARY EXPRESSIONS
@@ -651,7 +670,7 @@ module.exports = grammar({
     ),
 
     //! TODO: fix possible whitespace in between
-    inout_expr: $ => prec("expr_inout", seq(token(prec(INOUT_P, "&")), $.expr)),
+    inout_expr: $ => prec("expr_inout", seq(token(prec(INOUT_P, "&")), $._expr)),
 
     tuple_expr: $ => prec.left(seq(
       "(",
@@ -667,7 +686,7 @@ module.exports = grammar({
 
     tuple_expr_element: $ => prec("expr", seq(
       optional(seq(field('label', $.identifier), ":")),
-      $.expr,
+      $._expr,
     )),
 
     implicit_member_ref: $ => seq(".", $.selector),
@@ -712,13 +731,13 @@ module.exports = grammar({
     ),
 
     conditional_clause_item: $ => choice(
-      seq($.binding_pattern, "=", $.expr),
-      $.expr,
+      seq($.binding_pattern, "=", $._expr),
+      $._expr,
     ),
 
     match_expr: $ => seq(
       "match",
-      field('subject', $.expr),
+      field('subject', $._expr),
       "{",
       repeat($.match_case),
       "}",
@@ -726,7 +745,7 @@ module.exports = grammar({
 
     match_case: $ => seq(
       field('pattern', $.binding_decl),
-      optional(seq("where", field('condition', $.expr))),
+      optional(seq("where", field('condition', $._expr))),
       field('body', $.brace_stmt),
     ),
 
@@ -747,7 +766,7 @@ module.exports = grammar({
       $.wildcard_pattern,
     ),
 
-    expr_pattern: $ => prec("pattern", $.expr),
+    expr_pattern: $ => prec("pattern", $._expr),
 
     binding_pattern: $ => prec.right(seq(
       field('introducer', $.binding_introducer),
@@ -779,12 +798,12 @@ module.exports = grammar({
 
     prefix_operator: $ => token(prec(OPERATOR_P, seq(prefix_operator_head, repeat(imm_raw_operator)))),
     postfix_operator: $ => token.immediate(prec(OPERATOR_P, seq(postfix_operator_head, repeat(imm_raw_operator)))),
-    operator: $ => operator,
-    _imm_operator: $ => alias(token.immediate(operator), $.operator),
+    operator: $ => token(prec(OPERATOR_P, choice(operator, assignment_operator))),
     infix_operator: $ => token(prec(OPERATOR_P, choice(
       operator,
-      "=", "==", "..<", "...",
+      "<=", ">=", "==", "..<", "...",
     ))),
+    assignment_operator: $ => assignment_operator,
 
     // TYPES
     _type_expr: $ => prec("type_simple", choice(
@@ -807,7 +826,7 @@ module.exports = grammar({
     array_type_expr: $ => prec("type_float", seq(
       field('item', $._type_expr),
       token.immediate("["),
-      optional(field('size', $.expr)),
+      optional(field('size', $._expr)),
       "]",
     )),
 
@@ -930,7 +949,7 @@ module.exports = grammar({
       field('name', $.identifier),
       ":",
       field('type', $._type_expr),
-      optional(seq("=", field('default', $.expr))),
+      optional(seq("=", field('default', $._expr))),
     ),
 
     where_clause: $ => prec.left("type_where", seq("where",
@@ -956,10 +975,10 @@ module.exports = grammar({
       field('requires', $.trait_composition),
     )),
 
-    value_constraint_expr: $ => seq(
+    value_constraint_expr: $ => prec.right(seq(
       "@value",
-      $.expr,
-    ),
+      $._expr,
+    )),
 
     trait_composition: $ => prec("type_where", seq(
       $.name_type_expr,
@@ -1005,6 +1024,7 @@ module.exports = grammar({
     operator_entity_identifier: $ => seq(
       $.operator_notation,
       field('operator', $.operator),
+
     ),
 
     selector: $ => seq(
@@ -1027,7 +1047,7 @@ module.exports = grammar({
         main,
       );
       return choice(
-        make("@value", field('expr', $.expr)),
+        make("@value", field('expr', $._expr)),
         make(optional("@type"), field('type', $._type_expr)),
       )
     },
@@ -1039,8 +1059,8 @@ module.exports = grammar({
     buffer_literal: $ => seq(
       "[",
       optional(seq(
-        field('item', $.expr),
-        repeat(seq(",", field('item', $.expr))),
+        field('item', $._expr),
+        repeat(seq(",", field('item', $._expr))),
         optional(","),
       )),
       "]",
@@ -1049,8 +1069,8 @@ module.exports = grammar({
     buffer_literal: $ => seq(
       "[",
       optional(seq(
-        field('item', $.expr),
-        repeat(seq(",", field('item', $.expr))),
+        field('item', $._expr),
+        repeat(seq(",", field('item', $._expr))),
         optional(","),
       )),
       "]",
@@ -1070,9 +1090,9 @@ module.exports = grammar({
       "]",
     ),
     map_component: $ => seq(
-      field('key', $.expr),
+      field('key', $._expr),
       ":",
-      field('value', $.expr),
+      field('value', $._expr),
     ),
 
     // LITERALS
@@ -1144,11 +1164,11 @@ module.exports = grammar({
 
   precedences: $ => [
     // Expressions: select > suffix > prefix > infix > float > inout
-    ["path", "expr_select", "expr_select_on_type", "expr_inout", "expr_postfix", "expr_prefix", "expr_float", "expr_infix"],
+    ["expr_select", "expr_select_on_type", "expr_inout", "expr_postfix", "expr_prefix", "expr_float", "expr_infix", "expr_assignment"],
     // Type Expressions: 
-    ["path", "type_wildcard", "type_simple", "expr_select", "type_select", "type_float", "type_where", "type_lambda", "type_infix"],
+    ["type_wildcard", "type_simple", "expr_select", "type_select", "type_float", "type_where", "type_lambda", "type_infix"],
     // Type vs Expression clash, prefer types
-    ["path", "type", "pattern", "expr"],
+    ["type", "pattern", "expr"],
     // Generic brackets have higher precedence than operators
     ["generics", "operators"],
   ],

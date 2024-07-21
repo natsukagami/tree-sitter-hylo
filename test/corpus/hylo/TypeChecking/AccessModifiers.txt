@@ -40,9 +40,8 @@ public fun main() {
               (identifier)))))
       (brace_stmt
         (stmt
-          (expr
-            (integer_literal
-              (decimal_literal)))))))
+          (integer_literal
+            (decimal_literal))))))
   (function_decl
     (function_head
       (access_modifier)
@@ -54,14 +53,13 @@ public fun main() {
       (single_line_comment)
       (stmt
         (discard_stmt
-          (expr
-            (function_call_expr
-              (value_member_expr
-                (function_call_expr
-                  (value_member_expr
-                    (selector
-                      (identifier_expr
-                        (identifier)))))
-                (selector
-                  (identifier_expr
-                    (identifier)))))))))))
+          (function_call_expr
+            (value_member_expr
+              (function_call_expr
+                (value_member_expr
+                  (selector
+                    (identifier_expr
+                      (identifier)))))
+              (selector
+                (identifier_expr
+                  (identifier))))))))))

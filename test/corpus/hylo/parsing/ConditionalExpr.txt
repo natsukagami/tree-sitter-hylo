@@ -30,84 +30,36 @@ public fun main() {
     (brace_stmt
       (stmt
         (discard_stmt
-          (expr
+          (conditional_expr
+            (conditional_clause_item
+              (value_member_expr
+                (selector
+                  (identifier_expr
+                    (identifier)))))
+            (brace_stmt
+              (stmt
+                (tuple_expr)))
+            (brace_stmt
+              (stmt
+                (tuple_expr))))))
+      (stmt
+        (discard_stmt
+          (conditional_expr
+            (conditional_clause_item
+              (value_member_expr
+                (selector
+                  (identifier_expr
+                    (identifier)))))
+            (brace_stmt
+              (stmt
+                (tuple_expr)))
             (conditional_expr
               (conditional_clause_item
-                (expr
+                (infix_expr
                   (value_member_expr
                     (selector
                       (identifier_expr
-                        (identifier))))))
-              (brace_stmt
-                (stmt
-                  (expr
-                    (tuple_expr))))
-              (brace_stmt
-                (stmt
-                  (expr
-                    (tuple_expr))))))))
-      (stmt
-        (discard_stmt
-          (expr
-            (conditional_expr
-              (conditional_clause_item
-                (expr
-                  (value_member_expr
-                    (selector
-                      (identifier_expr
-                        (identifier))))))
-              (brace_stmt
-                (stmt
-                  (expr
-                    (tuple_expr))))
-              (conditional_expr
-                (conditional_clause_item
-                  (expr
-                    (value_member_expr
-                      (selector
-                        (identifier_expr
-                          (identifier))))
-                    (infix_operator_tail
-                      (infix_operator)
-                      (value_member_expr
-                        (selector
-                          (identifier_expr
-                            (identifier)))))))
-                (brace_stmt
-                  (stmt
-                    (expr
-                      (tuple_expr))))
-                (brace_stmt
-                  (stmt
-                    (expr
-                      (tuple_expr)))))))))
-      (stmt
-        (discard_stmt
-          (expr
-            (conditional_expr
-              (conditional_clause_item
-                (binding_pattern
-                  (binding_introducer)
-                  (identifier))
-                (expr
-                  (function_call_expr
-                    (value_member_expr
-                      (selector
-                        (identifier_expr
-                          (identifier)))))))
-              (conditional_clause_item
-                (expr
-                  (function_call_expr
-                    (value_member_expr
-                      (selector
-                        (identifier_expr
-                          (identifier))))
-                    (call_argument
-                      (expr
-                        (value_member_expr
-                          (selector
-                            (identifier_expr
-                              (identifier)))))))
+                        (identifier))))
                   (infix_operator_tail
                     (infix_operator)
                     (value_member_expr
@@ -116,9 +68,43 @@ public fun main() {
                           (identifier)))))))
               (brace_stmt
                 (stmt
-                  (expr
-                    (tuple_expr))))
+                  (tuple_expr)))
               (brace_stmt
                 (stmt
-                  (expr
-                    (tuple_expr)))))))))))
+                  (tuple_expr)))))))
+      (stmt
+        (discard_stmt
+          (conditional_expr
+            (conditional_clause_item
+              (binding_pattern
+                (binding_introducer)
+                (identifier))
+              (function_call_expr
+                (value_member_expr
+                  (selector
+                    (identifier_expr
+                      (identifier))))))
+            (conditional_clause_item
+              (infix_expr
+                (function_call_expr
+                  (value_member_expr
+                    (selector
+                      (identifier_expr
+                        (identifier))))
+                  (call_argument
+                    (value_member_expr
+                      (selector
+                        (identifier_expr
+                          (identifier))))))
+                (infix_operator_tail
+                  (infix_operator)
+                  (value_member_expr
+                    (selector
+                      (identifier_expr
+                        (identifier)))))))
+            (brace_stmt
+              (stmt
+                (tuple_expr)))
+            (brace_stmt
+              (stmt
+                (tuple_expr)))))))))

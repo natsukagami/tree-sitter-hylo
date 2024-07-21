@@ -13,64 +13,60 @@ let c = x.y.let(5).z<T>.field.inout
     (binding_pattern
       (binding_introducer)
       (identifier))
-    (expr
+    (value_member_expr
       (value_member_expr
-        (value_member_expr
-          (selector
-            (identifier_expr
-              (identifier))))
         (selector
           (identifier_expr
-            (identifier)))
-        (selector
-          (identifier_expr
-            (identifier))))))
+            (identifier))))
+      (selector
+        (identifier_expr
+          (identifier)))
+      (selector
+        (identifier_expr
+          (identifier)))))
   (single_line_comment)
   (binding_decl
     (binding_pattern
       (binding_introducer)
       (identifier))
-    (expr
+    (value_member_expr
       (value_member_expr
-        (value_member_expr
-          (selector
-            (identifier_expr
-              (identifier))))
         (selector
           (identifier_expr
-            (identifier)
-            (method_introducer))))))
+            (identifier))))
+      (selector
+        (identifier_expr
+          (identifier)
+          (method_introducer)))))
   (single_line_comment)
   (binding_decl
     (binding_pattern
       (binding_introducer)
       (identifier))
-    (expr
-      (value_member_expr
-        (function_call_expr
+    (value_member_expr
+      (function_call_expr
+        (value_member_expr
           (value_member_expr
-            (value_member_expr
-              (selector
-                (identifier_expr
-                  (identifier))))
             (selector
               (identifier_expr
-                (identifier)
-                (method_introducer))))
-          (call_argument
-            (expr
-              (integer_literal
-                (decimal_literal)))))
-        (selector
-          (identifier_expr
-            (identifier))
-          (static_argument_list
-            (static_argument
-              (name_type_expr
-                (selector
-                  (identifier_expr
-                    (identifier)))))))
-        (selector
-          (identifier_expr
-            (identifier)
-            (method_introducer)))))))
+                (identifier))))
+          (selector
+            (identifier_expr
+              (identifier)
+              (method_introducer))))
+        (call_argument
+          (integer_literal
+            (decimal_literal))))
+      (selector
+        (identifier_expr
+          (identifier))
+        (static_argument_list
+          (static_argument
+            (name_type_expr
+              (selector
+                (identifier_expr
+                  (identifier)))))))
+      (selector
+        (identifier_expr
+          (identifier)
+          (method_introducer))))))

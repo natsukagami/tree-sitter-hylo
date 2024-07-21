@@ -90,28 +90,27 @@ public fun hylo_aligned_free(_ pointer: MemoryAddress) {
           (binding_pattern
             (binding_introducer)
             (identifier))
-          (expr
-            (function_call_expr
+          (function_call_expr
+            (value_member_expr
               (value_member_expr
-                (value_member_expr
-                  (selector
-                    (identifier_expr
-                      (identifier))
-                    (static_argument_list
-                      (static_argument
-                        (name_type_expr
-                          (selector
-                            (identifier_expr
-                              (identifier))))))))
                 (selector
                   (identifier_expr
-                    (identifier))))))))
+                    (identifier))
+                  (static_argument_list
+                    (static_argument
+                      (name_type_expr
+                        (selector
+                          (identifier_expr
+                            (identifier))))))))
+              (selector
+                (identifier_expr
+                  (identifier)))))))
       (stmt
         (binding_decl
           (binding_pattern
             (binding_introducer)
             (identifier))
-          (expr
+          (infix_expr
             (value_member_expr
               (selector
                 (identifier_expr
@@ -125,110 +124,106 @@ public fun hylo_aligned_free(_ pointer: MemoryAddress) {
           (binding_pattern
             (binding_introducer)
             (identifier))
-          (expr
-            (function_call_expr
-              (value_member_expr
-                (selector
-                  (identifier_expr
-                    (identifier))))
-              (call_argument
-                (identifier)
-                (expr
-                  (value_member_expr
-                    (function_call_expr
-                      (value_member_expr
-                        (selector
-                          (identifier_expr
-                            (identifier))))
-                      (call_argument
-                        (expr
-                          (value_member_expr
-                            (selector
-                              (identifier_expr
-                                (identifier))))
-                          (infix_operator_tail
-                            (infix_operator)
-                            (value_member_expr
-                              (selector
-                                (identifier_expr
-                                  (identifier)))))
-                          (infix_operator_tail
-                            (infix_operator)
-                            (value_member_expr
-                              (selector
-                                (identifier_expr
-                                  (identifier))))))))
-                    (selector
-                      (identifier_expr
-                        (identifier))))))))))
-      (stmt
-        (expr
           (function_call_expr
             (value_member_expr
               (selector
                 (identifier_expr
                   (identifier))))
             (call_argument
-              (expr
-                (value_member_expr
+              (identifier)
+              (value_member_expr
+                (function_call_expr
+                  (value_member_expr
+                    (selector
+                      (identifier_expr
+                        (identifier))))
+                  (call_argument
+                    (infix_expr
+                      (value_member_expr
+                        (selector
+                          (identifier_expr
+                            (identifier))))
+                      (infix_operator_tail
+                        (infix_operator)
+                        (infix_expr
+                          (value_member_expr
+                            (selector
+                              (identifier_expr
+                                (identifier))))
+                          (infix_operator_tail
+                            (infix_operator)
+                            (value_member_expr
+                              (selector
+                                (identifier_expr
+                                  (identifier))))))))))
+                (selector
+                  (identifier_expr
+                    (identifier))))))))
+      (stmt
+        (function_call_expr
+          (value_member_expr
+            (selector
+              (identifier_expr
+                (identifier))))
+          (call_argument
+            (assignment_expr
+              (value_member_expr
+                (selector
+                  (identifier_expr
+                    (identifier))))
+              (assignment_operator)
+              (function_call_expr
+                (implicit_member_ref
                   (selector
                     (identifier_expr
-                      (identifier))))
-                (infix_operator_tail
-                  (infix_operator)
-                  (function_call_expr
-                    (implicit_member_ref
-                      (selector
-                        (identifier_expr
-                          (identifier))))))))
-            (call_argument
-              (expr
-                (string_literal
-                  (simple_string)))))))
+                      (identifier)))))))
+          (call_argument
+            (string_literal
+              (simple_string)))))
       (single_line_comment)
       (stmt
         (binding_decl
           (binding_pattern
             (binding_introducer)
             (identifier))
-          (expr
-            (function_call_expr
-              (value_member_expr
-                (selector
-                  (identifier_expr
-                    (identifier))))
-              (call_argument
-                (identifier)
-                (expr
-                  (tuple_expr
-                    (tuple_expr_element
-                      (expr
-                        (function_call_expr
+          (function_call_expr
+            (value_member_expr
+              (selector
+                (identifier_expr
+                  (identifier))))
+            (call_argument
+              (identifier)
+              (infix_expr
+                (tuple_expr
+                  (tuple_expr_element
+                    (infix_expr
+                      (function_call_expr
+                        (value_member_expr
+                          (selector
+                            (identifier_expr
+                              (identifier))))
+                        (call_argument
+                          (identifier)
+                          (value_member_expr
+                            (selector
+                              (identifier_expr
+                                (identifier))))))
+                      (infix_operator_tail
+                        (infix_operator)
+                        (infix_expr
                           (value_member_expr
                             (selector
                               (identifier_expr
                                 (identifier))))
-                          (call_argument
-                            (identifier)
-                            (expr
-                              (value_member_expr
-                                (selector
-                                  (identifier_expr
-                                    (identifier)))))))
-                        (infix_operator_tail
-                          (infix_operator)
-                          (value_member_expr
-                            (selector
-                              (identifier_expr
-                                (identifier)))))
-                        (infix_operator_tail
-                          (infix_operator)
-                          (value_member_expr
-                            (selector
-                              (identifier_expr
-                                (identifier))))))))
-                  (infix_operator_tail
-                    (infix_operator)
+                          (infix_operator_tail
+                            (infix_operator)
+                            (value_member_expr
+                              (selector
+                                (identifier_expr
+                                  (identifier))))))))))
+                (infix_operator_tail
+                  (infix_operator)
+                  (prefix_expr
                     (prefix_operator)
                     (value_member_expr
                       (selector
@@ -239,7 +234,47 @@ public fun hylo_aligned_free(_ pointer: MemoryAddress) {
           (binding_pattern
             (binding_introducer)
             (identifier))
-          (expr
+          (function_call_expr
+            (value_member_expr
+              (value_member_expr
+                (selector
+                  (identifier_expr
+                    (identifier))))
+              (selector
+                (identifier_expr
+                  (identifier))))
+            (call_argument
+              (identifier)
+              (prefix_expr
+                (prefix_operator)
+                (value_member_expr
+                  (selector
+                    (identifier_expr
+                      (identifier)))))))))
+      (stmt
+        (function_call_expr
+          (value_member_expr
+            (function_call_expr
+              (value_member_expr
+                (selector
+                  (identifier_expr
+                    (identifier))
+                  (static_argument_list
+                    (static_argument
+                      (name_type_expr
+                        (selector
+                          (identifier_expr
+                            (identifier))))))))
+              (call_argument
+                (identifier)
+                (value_member_expr
+                  (selector
+                    (identifier_expr
+                      (identifier))))))
+            (selector
+              (identifier_expr
+                (identifier))))
+          (call_argument
             (function_call_expr
               (value_member_expr
                 (value_member_expr
@@ -248,58 +283,13 @@ public fun hylo_aligned_free(_ pointer: MemoryAddress) {
                       (identifier))))
                 (selector
                   (identifier_expr
-                    (identifier))))
-              (call_argument
-                (identifier)
-                (expr
-                  (prefix_operator)
-                  (value_member_expr
-                    (selector
-                      (identifier_expr
-                        (identifier))))))))))
-      (stmt
-        (expr
-          (function_call_expr
-            (value_member_expr
-              (function_call_expr
-                (value_member_expr
-                  (selector
-                    (identifier_expr
-                      (identifier))
-                    (static_argument_list
-                      (static_argument
-                        (name_type_expr
-                          (selector
-                            (identifier_expr
-                              (identifier))))))))
-                (call_argument
-                  (identifier)
-                  (expr
-                    (value_member_expr
-                      (selector
-                        (identifier_expr
-                          (identifier)))))))
-              (selector
-                (identifier_expr
-                  (identifier))))
-            (call_argument
-              (expr
-                (function_call_expr
-                  (value_member_expr
-                    (value_member_expr
-                      (selector
-                        (identifier_expr
-                          (identifier))))
-                    (selector
-                      (identifier_expr
-                        (identifier))))))))))
+                    (identifier))))))))
       (stmt
         (jump_stmt
-          (expr
-            (value_member_expr
-              (selector
-                (identifier_expr
-                  (identifier)))))))))
+          (value_member_expr
+            (selector
+              (identifier_expr
+                (identifier))))))))
   (single_line_comment)
   (single_line_comment)
   (single_line_comment)
@@ -317,112 +307,105 @@ public fun hylo_aligned_free(_ pointer: MemoryAddress) {
               (identifier))))))
     (brace_stmt
       (stmt
-        (expr
-          (conditional_expr
-            (conditional_clause_item
-              (expr
-                (value_member_expr
-                  (selector
-                    (identifier_expr
-                      (identifier))))
-                (infix_operator_tail
-                  (infix_operator)
-                  (function_call_expr
-                    (implicit_member_ref
-                      (selector
-                        (identifier_expr
-                          (identifier))))))))
-            (brace_stmt
-              (stmt
-                (jump_stmt))))))
-      (stmt
-        (binding_decl
-          (binding_pattern
-            (binding_introducer)
-            (identifier))
-          (expr
-            (function_call_expr
+        (conditional_expr
+          (conditional_clause_item
+            (infix_expr
               (value_member_expr
-                (value_member_expr
-                  (selector
-                    (identifier_expr
-                      (identifier))
-                    (static_argument_list
-                      (static_argument
-                        (name_type_expr
-                          (selector
-                            (identifier_expr
-                              (identifier))))))))
-                (selector
-                  (identifier_expr
-                    (identifier))))))))
-      (stmt
-        (binding_decl
-          (binding_pattern
-            (binding_introducer)
-            (identifier))
-          (expr
-            (function_call_expr
-              (value_member_expr
-                (value_member_expr
-                  (selector
-                    (identifier_expr
-                      (identifier))))
                 (selector
                   (identifier_expr
                     (identifier))))
-              (call_argument
-                (identifier)
-                (expr
-                  (prefix_operator)
-                  (value_member_expr
+              (infix_operator_tail
+                (infix_operator)
+                (function_call_expr
+                  (implicit_member_ref
                     (selector
                       (identifier_expr
-                        (identifier))))))))))
+                        (identifier))))))))
+          (brace_stmt
+            (stmt
+              (jump_stmt)))))
       (stmt
         (binding_decl
           (binding_pattern
             (binding_introducer)
             (identifier))
-          (expr
-            (function_call_expr
-              (value_member_expr
-                (subscript_call_expr
-                  (value_member_expr
-                    (function_call_expr
-                      (value_member_expr
-                        (selector
-                          (identifier_expr
-                            (identifier))
-                          (static_argument_list
-                            (static_argument
-                              (name_type_expr
-                                (selector
-                                  (identifier_expr
-                                    (identifier))))))))
-                      (call_argument
-                        (identifier)
-                        (expr
-                          (value_member_expr
-                            (selector
-                              (identifier_expr
-                                (identifier)))))))
-                    (selector
-                      (identifier_expr
-                        (identifier)))))
-                (selector
-                  (identifier_expr
-                    (identifier))))))))
-      (stmt
-        (expr
           (function_call_expr
             (value_member_expr
+              (value_member_expr
+                (selector
+                  (identifier_expr
+                    (identifier))
+                  (static_argument_list
+                    (static_argument
+                      (name_type_expr
+                        (selector
+                          (identifier_expr
+                            (identifier))))))))
+              (selector
+                (identifier_expr
+                  (identifier)))))))
+      (stmt
+        (binding_decl
+          (binding_pattern
+            (binding_introducer)
+            (identifier))
+          (function_call_expr
+            (value_member_expr
+              (value_member_expr
+                (selector
+                  (identifier_expr
+                    (identifier))))
               (selector
                 (identifier_expr
                   (identifier))))
             (call_argument
-              (expr
+              (identifier)
+              (prefix_expr
+                (prefix_operator)
                 (value_member_expr
                   (selector
                     (identifier_expr
-                      (identifier))))))))))))
+                      (identifier)))))))))
+      (stmt
+        (binding_decl
+          (binding_pattern
+            (binding_introducer)
+            (identifier))
+          (function_call_expr
+            (value_member_expr
+              (subscript_call_expr
+                (value_member_expr
+                  (function_call_expr
+                    (value_member_expr
+                      (selector
+                        (identifier_expr
+                          (identifier))
+                        (static_argument_list
+                          (static_argument
+                            (name_type_expr
+                              (selector
+                                (identifier_expr
+                                  (identifier))))))))
+                    (call_argument
+                      (identifier)
+                      (value_member_expr
+                        (selector
+                          (identifier_expr
+                            (identifier))))))
+                  (selector
+                    (identifier_expr
+                      (identifier)))))
+              (selector
+                (identifier_expr
+                  (identifier)))))))
+      (stmt
+        (function_call_expr
+          (value_member_expr
+            (selector
+              (identifier_expr
+                (identifier))))
+          (call_argument
+            (value_member_expr
+              (selector
+                (identifier_expr
+                  (identifier))))))))))

@@ -36,47 +36,45 @@ public fun main() {
             (identifier)))))
     (brace_stmt
       (stmt
-        (expr
-          (conditional_expr
-            (conditional_clause_item
-              (expr
+        (conditional_expr
+          (conditional_clause_item
+            (infix_expr
+              (value_member_expr
+                (selector
+                  (identifier_expr
+                    (identifier))))
+              (infix_operator_tail
+                (infix_operator)
+                (integer_literal
+                  (decimal_literal)))))
+          (brace_stmt
+            (stmt
+              (integer_literal
+                (decimal_literal))))
+          (brace_stmt
+            (stmt
+              (infix_expr
                 (value_member_expr
                   (selector
                     (identifier_expr
                       (identifier))))
                 (infix_operator_tail
                   (infix_operator)
-                  (integer_literal
-                    (decimal_literal)))))
-            (brace_stmt
-              (stmt
-                (expr
-                  (integer_literal
-                    (decimal_literal)))))
-            (brace_stmt
-              (stmt
-                (expr
-                  (value_member_expr
-                    (selector
-                      (identifier_expr
-                        (identifier))))
-                  (infix_operator_tail
-                    (infix_operator)
-                    (function_call_expr
-                      (value_member_expr
-                        (selector
-                          (identifier_expr
-                            (identifier))))
-                      (call_argument
-                        (expr
-                          (value_member_expr
-                            (selector
-                              (identifier_expr
-                                (identifier))))
-                          (infix_operator_tail
-                            (infix_operator)
-                            (integer_literal
-                              (decimal_literal)))))))))))))))
+                  (function_call_expr
+                    (value_member_expr
+                      (selector
+                        (identifier_expr
+                          (identifier))))
+                    (call_argument
+                      (infix_expr
+                        (value_member_expr
+                          (selector
+                            (identifier_expr
+                              (identifier))))
+                        (infix_operator_tail
+                          (infix_operator)
+                          (integer_literal
+                            (decimal_literal))))))))))))))
   (function_decl
     (function_head
       (access_modifier)
@@ -89,13 +87,11 @@ public fun main() {
           (binding_pattern
             (binding_introducer)
             (wildcard_pattern))
-          (expr
-            (function_call_expr
-              (value_member_expr
-                (selector
-                  (identifier_expr
-                    (identifier))))
-              (call_argument
-                (expr
-                  (integer_literal
-                    (decimal_literal)))))))))))
+          (function_call_expr
+            (value_member_expr
+              (selector
+                (identifier_expr
+                  (identifier))))
+            (call_argument
+              (integer_literal
+                (decimal_literal)))))))))

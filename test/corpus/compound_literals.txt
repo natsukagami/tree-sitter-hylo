@@ -21,52 +21,42 @@ let e: Map<Float64, String> = [:] // OK
     (binding_pattern
       (binding_introducer)
       (identifier))
-    (expr
-      (subscript_call_expr
-        (tuple_expr
-          (tuple_expr_element
-            (expr
-              (buffer_literal
-                (expr
-                  (integer_literal
-                    (decimal_literal)))
-                (expr
-                  (integer_literal
-                    (decimal_literal))))
-              (type_casting_tail
-                (array_type_expr
-                  (name_type_expr
-                    (selector
-                      (identifier_expr
-                        (identifier)))))))))
-        (call_argument
-          (expr
-            (integer_literal
-              (decimal_literal)))))))
+    (subscript_call_expr
+      (tuple_expr
+        (tuple_expr_element
+          (infix_expr
+            (buffer_literal
+              (integer_literal
+                (decimal_literal))
+              (integer_literal
+                (decimal_literal)))
+            (type_casting_tail
+              (array_type_expr
+                (name_type_expr
+                  (selector
+                    (identifier_expr
+                      (identifier)))))))))
+      (call_argument
+        (integer_literal
+          (decimal_literal)))))
   (binding_decl
     (binding_pattern
       (binding_introducer)
       (identifier))
-    (expr
-      (buffer_literal
-        (expr
-          (integer_literal
-            (decimal_literal)))
-        (expr
-          (integer_literal
-            (decimal_literal))))))
+    (buffer_literal
+      (integer_literal
+        (decimal_literal))
+      (integer_literal
+        (decimal_literal))))
   (single_line_comment)
   (binding_decl
     (binding_pattern
       (binding_introducer)
       (identifier))
-    (expr
-      (buffer_literal
-        (expr
-          (integer_literal
-            (decimal_literal)))
-        (expr
-          (floating_point_literal)))))
+    (buffer_literal
+      (integer_literal
+        (decimal_literal))
+      (floating_point_literal)))
   (single_line_comment)
   (binding_decl
     (binding_pattern
@@ -77,19 +67,15 @@ let e: Map<Float64, String> = [:] // OK
           (selector
             (identifier_expr
               (identifier))))
-        (expr
-          (value_member_expr
-            (selector
-              (identifier_expr
-                (identifier)))))))
-    (expr
-      (buffer_literal
-        (expr
-          (integer_literal
-            (decimal_literal)))
-        (expr
-          (integer_literal
-            (decimal_literal))))))
+        (value_member_expr
+          (selector
+            (identifier_expr
+              (identifier))))))
+    (buffer_literal
+      (integer_literal
+        (decimal_literal))
+      (integer_literal
+        (decimal_literal))))
   (single_line_comment)
   (binding_decl
     (binding_pattern
@@ -100,56 +86,44 @@ let e: Map<Float64, String> = [:] // OK
           (selector
             (identifier_expr
               (identifier))))))
-    (expr
-      (buffer_literal)))
+    (buffer_literal))
   (single_line_comment)
   (binding_decl
     (binding_pattern
       (binding_introducer)
       (identifier))
-    (expr
-      (map_literal)))
+    (map_literal))
   (single_line_comment)
   (binding_decl
     (binding_pattern
       (binding_introducer)
       (identifier))
-    (expr
-      (map_literal
-        (map_component
-          (expr
-            (integer_literal
-              (decimal_literal)))
-          (expr
-            (string_literal
-              (simple_string))))
-        (map_component
-          (expr
-            (integer_literal
-              (decimal_literal)))
-          (expr
-            (string_literal
-              (simple_string)))))))
+    (map_literal
+      (map_component
+        (integer_literal
+          (decimal_literal))
+        (string_literal
+          (simple_string)))
+      (map_component
+        (integer_literal
+          (decimal_literal))
+        (string_literal
+          (simple_string)))))
   (single_line_comment)
   (binding_decl
     (binding_pattern
       (binding_introducer)
       (identifier))
-    (expr
-      (map_literal
-        (map_component
-          (expr
-            (integer_literal
-              (decimal_literal)))
-          (expr
-            (string_literal
-              (simple_string))))
-        (map_component
-          (expr
-            (floating_point_literal))
-          (expr
-            (string_literal
-              (simple_string)))))))
+    (map_literal
+      (map_component
+        (integer_literal
+          (decimal_literal))
+        (string_literal
+          (simple_string)))
+      (map_component
+        (floating_point_literal)
+        (string_literal
+          (simple_string)))))
   (single_line_comment)
   (binding_decl
     (binding_pattern
@@ -170,21 +144,16 @@ let e: Map<Float64, String> = [:] // OK
                 (selector
                   (identifier_expr
                     (identifier)))))))))
-    (expr
-      (map_literal
-        (map_component
-          (expr
-            (integer_literal
-              (decimal_literal)))
-          (expr
-            (string_literal
-              (simple_string))))
-        (map_component
-          (expr
-            (floating_point_literal))
-          (expr
-            (string_literal
-              (simple_string)))))))
+    (map_literal
+      (map_component
+        (integer_literal
+          (decimal_literal))
+        (string_literal
+          (simple_string)))
+      (map_component
+        (floating_point_literal)
+        (string_literal
+          (simple_string)))))
   (single_line_comment)
   (binding_decl
     (binding_pattern
@@ -205,6 +174,5 @@ let e: Map<Float64, String> = [:] // OK
                 (selector
                   (identifier_expr
                     (identifier)))))))))
-    (expr
-      (map_literal)))
+    (map_literal))
   (single_line_comment))

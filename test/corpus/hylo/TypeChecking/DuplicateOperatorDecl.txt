@@ -53,7 +53,7 @@ fun prefix-*(a: Int, b: Int) -> Int { a + b }
             (identifier)))))
     (brace_stmt
       (stmt
-        (expr
+        (infix_expr
           (value_member_expr
             (selector
               (identifier_expr

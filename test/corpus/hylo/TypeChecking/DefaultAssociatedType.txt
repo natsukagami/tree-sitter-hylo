@@ -60,9 +60,8 @@ type B: T {
               (identifier)))))
       (brace_stmt
         (stmt
-          (expr
-            (integer_literal
-              (decimal_literal)))))))
+          (integer_literal
+            (decimal_literal))))))
   (product_type_decl
     (product_type_head
       (identifier)
@@ -91,5 +90,4 @@ type B: T {
               (identifier)))))
       (brace_stmt
         (stmt
-          (expr
-            (boolean_literal)))))))
+          (boolean_literal))))))

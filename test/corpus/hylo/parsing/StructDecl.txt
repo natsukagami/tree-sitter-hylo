@@ -156,9 +156,8 @@ type A7 {
       (binding_pattern
         (binding_introducer)
         (identifier))
-      (expr
-        (integer_literal
-          (decimal_literal))))
+      (integer_literal
+        (decimal_literal)))
     (binding_decl
       (binding_pattern
         (binding_introducer)
@@ -167,9 +166,8 @@ type A7 {
           (selector
             (identifier_expr
               (identifier)))))
-      (expr
-        (integer_literal
-          (decimal_literal)))))
+      (integer_literal
+        (decimal_literal))))
   (single_line_comment)
   (single_line_comment)
   (single_line_comment)
