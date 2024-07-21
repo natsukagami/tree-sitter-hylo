@@ -1,3 +1,18 @@
+; Universal Rules
+;; Unknown name, assume variable
+(selector_expr (selector (identifier_expr entity: (identifier) @variable (#is-not? local))))
+;; Unknown type
+(name_type_expr qualifier: (selector identifier: (identifier_expr (identifier) @type (#is-not? local))))
+
+; Patterns
+;; binding patterns
+(binding_pattern pattern: (identifier) @variable)
+(tuple_pattern "(" @punctuation.bracket.tuple ",")
+(tuple_pattern "," ")" @punctuation.bracket.tuple)
+(tuple_pattern_element ":" @operator.assignment)
+(tuple_pattern_element label: (identifier) @variable pattern: (identifier))
+(tuple_pattern_element pattern: (identifier) @variable !label)
+
 ; Import
 "import" @keyword.directive
 (import_decl (identifier) @namespace)
@@ -30,7 +45,7 @@
 ; Struct Decl
 "type" @keyword
 (product_type_head name: (identifier) @type)
-(product_type_decl body: (binding_decl pattern: (binding_pattern pattern: (identifier) @property)))
+(product_type_decl (binding_decl pattern: (binding_pattern pattern: (identifier) @property)))
 
 ; Trait Decl
 "trait" @keyword
@@ -61,6 +76,16 @@
 (type_alias_head name: (identifier) @type)
 (type_alias_decl "=" @operator.assignment)
 
+; Generics
+;; Decls
+(generic_type_parameter "@type" @attribute.annotation)
+(generic_type_parameter name: (identifier) @type.parameter)
+(generic_type_parameter "variadic" @attribute.variadic)
+(generic_value_parameter "@value" @attribute.annotation)
+(generic_value_parameter name: (identifier) @variable.parameter)
+;; Uses
+(static_argument ["@type" "@value"] @attribute)
+
 ; Statements
 ;; Discard
 (discard_stmt "=" @operator.assignment)
@@ -80,18 +105,9 @@
 (binding_decl pattern: (binding_pattern introducer: (binding_introducer) @keyword.storage.modifier))
 (binding_introducer) @keyword.storage.modifier.mut (#eq? @keyword.storage.modifier.mut "var")
 (binding_introducer) @keyword.storage.modifier.ref (#eq? @keyword.storage.modifier.ref "inout")
-;; binding patterns
-(binding_pattern pattern: (identifier) @variable)
-(tuple_pattern "(" @punctuation.bracket.tuple ",")
-(tuple_pattern "," ")" @punctuation.bracket.tuple)
-(tuple_pattern_element ":" @operator.assignment)
-(tuple_pattern_element label: (identifier) @variable pattern: (identifier))
-(tuple_pattern_element pattern: (identifier) @variable !label)
 (binding_decl "=" @operator.assignment)
 
 ; Expr
-; Unknown, assume variable
-(selector_expr (selector (identifier_expr entity: (identifier) @variable)))
 ;; Operators
 (infix_operator) @operator.infix
 (prefix_operator) @operator.prefix
@@ -105,9 +121,10 @@
 ;;; Function / Method calls
 (function_call_expr head: (selector_expr (selector identifier: (identifier_expr (identifier) @function))))
 (function_call_expr head: (_ (selector identifier: (identifier_expr (identifier) @function.method)) .))
-; (function_call_expr head: (implicit_member_ref (primary_decl_ref identifier: (identifier_expr (identifier) @function.method))))
 (call_argument label: (identifier) @label)
 (call_argument ":" @operator.assignment)
+(subscript_call_expr head: (selector_expr (selector identifier: (identifier_expr (identifier) @function))))
+(subscript_call_expr head: (_ (selector identifier: (identifier_expr (identifier) @function.method)) .))
 (subscript_call_expr "[" @punctuation.bracket.subscript)
 (subscript_call_expr "]" @punctuation.bracket.subscript)
 ;; Primary Expr
@@ -142,7 +159,6 @@
 (existential_type_expr "any" @keyword.operator)
 "some" @keyword.operator
 ;;; Type paths
-(name_type_expr qualifier: (selector identifier: (identifier_expr (identifier) @type)) !selector)
 (name_type_expr selector: (selector identifier: (identifier_expr (identifier) @type)))
 ;; Conformance Lenses
 (conformance_lens_type_expr trait: (identifier) @type.trait)
@@ -162,11 +178,6 @@
 (operator_notation) @attribute.operator
 (operator) @operator
 (precedence_group)? @attribute.operator.precedence
-
-;; Generic
-(generic_type_parameter "@type" @attribute.annotation)
-(generic_type_parameter name: (identifier) @type)
-(generic_type_parameter "variadic" @attribute.variadic)
 
 ;; Where Clauses
 "where" @keyword
