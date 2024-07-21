@@ -1,4 +1,16 @@
-# Stuff not yet in Spec
+# tree-sitter-hylo
+
+[tree-sitter](https://tree-sitter.github.io) parser and highlighting definitions for the [Hylo programming language](https://www.hylo-lang.org/).
+Written as part of my attempt to learn how tree-sitter works, so it's kind of a mess, but it parses the entire Hylo standard library.
+No externals needed!
+
+What should not be trusted at the moment:
+- Operator precedence is totally borked, Hylo supports custom operators with custom precedence.
+- `yield` and `return` expressions *will* accept newlines between the keyword and the expr, but this is **not** allowed by the spec.
+
+Generally it's quite hacky in a few places so you can expect the parser to be wrong here and there, please open an issue with a small minimization!
+
+## Stuff not yet in Spec
 
 - [ ] `?` implicit modifier
 - [ ] `#pragma` in primary expr
@@ -32,3 +44,7 @@ The following exists in stdlib:
 
 `value_member_expr` and `static_value_member_expr` and `name_type_expr` are highly confusing for the parser,
 so `value_member_expr` combines the first two and parses ambiguous paths as value paths.
+
+## License
+
+Apache 2.0, following Hylo itself.
