@@ -142,18 +142,17 @@ public subscript pointer_to_bytes<T>(of x: T): PointerToBuffer<Int8> {
         (brace_stmt
           (stmt
             (jump_stmt
-              (infix_expr
+              (type_casting_expr
                 (value_member_expr
                   (selector
                     (identifier_expr
                       (identifier))))
-                (type_casting_tail
-                  (remote_type_expr
-                    (parameter_passing_convention)
-                    (name_type_expr
-                      (selector
-                        (identifier_expr
-                          (identifier))))))))))))
+                (remote_type_expr
+                  (parameter_passing_convention)
+                  (name_type_expr
+                    (selector
+                      (identifier_expr
+                        (identifier)))))))))))
     (single_line_comment)
     (function_decl
       (function_head

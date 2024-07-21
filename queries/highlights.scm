@@ -87,7 +87,7 @@
 (tuple_pattern "," ")" @punctuation.bracket.tuple)
 (tuple_pattern_element label: (identifier) @label)
 (tuple_pattern_element ":" @operator.assignment)
-(tuple_pattern_element pattern: (expr_pattern (value_member_expr qualifier: (selector identifier: (identifier_expr (identifier) @variable)) !selector)))
+(tuple_pattern_element pattern: (identifier) @variable)
 (binding_decl "=" @operator.assignment)
 
 ; Expr
@@ -95,8 +95,7 @@
 (infix_operator) @operator.infix
 (prefix_operator) @operator.prefix
 (postfix_operator) @operator.postfix
-(type_casting_tail operator: "as" @keyword)
-(type_casting_tail operator: "as!" @keyword.unsafe)
+(type_casting_expr operator: (_) @keyword)
 ;; Inout
 (inout_expr "&" @keyword.storage)
 ;; Compound Expr

@@ -20,6 +20,8 @@ The following exists in stdlib:
 
 - `async`/`await` seems deprecated, it is commented out in the grammar.
 
+- `expr_pattern` is very weird, allow only `identifier` for now.
+
 ## Precedences that ~seems ok
 
 - Selection on types doesn't work on "floating" types (e.g. `some blalala`).
@@ -29,5 +31,4 @@ The following exists in stdlib:
 ## Paths and expressions
 
 `value_member_expr` and `static_value_member_expr` and `name_type_expr` are highly confusing for the parser,
-without distinction between type and value paths it's better to just merge them into an ambiguous `_path`
-and then split later if possible.
+so `value_member_expr` combines the first two and parses ambiguous paths as value paths.

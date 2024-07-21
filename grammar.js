@@ -549,9 +549,8 @@ module.exports = grammar({
       $.unsafe_expr,
       $.prefix_expr,
       $.postfix_expr,
+      $.type_casting_expr,
       $._compound_expr,
-      // prec.left(seq($._infix_expr_head, repeat(seq($._infix_expr_tail)))),
-      // prec.right(seq($._infix_expr_head, $.assignment_operator_tail)),
     )),
 
     assignment_expr: $ => prec.right("expr_assignment", seq(
@@ -562,17 +561,9 @@ module.exports = grammar({
 
     infix_expr: $ => prec.right("expr_infix", seq(
       field('lhs', $._expr),
-      repeat1($._infix_expr_tail),
+      repeat1(field('tail', $.infix_operator_tail)),
     )),
-    _infix_expr_tail: $ => choice(
-      $.type_casting_tail,
-      $.infix_operator_tail,
-    ),
-    type_casting_tail: $ => prec.right("type_float", seq(
-      field('operator', choice("as", "as!", "as*")),
-      field('type', $._type_expr),
-    )),
-    infix_operator_tail: $ => prec.right(seq(
+    infix_operator_tail: $ => prec.left(seq(
       field('operator', $.infix_operator),
       field('rhs', $._expr),
     )),
@@ -598,6 +589,11 @@ module.exports = grammar({
     postfix_expr: $ => prec("expr_postfix", seq(
       field('expr', $._expr),
       field('op', $.postfix_operator),
+    )),
+    type_casting_expr: $ => prec("expr_postfix", seq(
+      field('lhs', $._expr),
+      field('operator', choice("as", "as!", "as*")),
+      prec.right(field('type', $._type_expr)),
     )),
 
     // COMPOUND EXPRESSIONS
@@ -761,12 +757,12 @@ module.exports = grammar({
 
     _pattern: $ => choice(
       $.binding_pattern,
-      $.expr_pattern,
+      $.identifier,
       $.tuple_pattern,
       $.wildcard_pattern,
     ),
 
-    expr_pattern: $ => prec("pattern", $._expr),
+    // expr_pattern: $ => $._expr,
 
     binding_pattern: $ => prec.right(seq(
       field('introducer', $.binding_introducer),
@@ -1153,9 +1149,7 @@ module.exports = grammar({
     // method bundle needs to see the whole set to know, but should be short (3 items)
     [$.method_introducer, $.receiver_modifier],
     [$.subscript_introducer, $.receiver_modifier],
-    [$.binding_introducer, $.parameter_passing_convention],
     [$.brace_stmt, $.tuple_type_expr],
-    [$.wildcard_pattern, $.wildcard_type_expr],
     [$.identifier_expr], // Look at next token
     [$.conditional_expr], // Look at next token
     [$._entity_identifier, $.function_entity_identifier], // Look at next token to know whether it's a function entity

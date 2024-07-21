@@ -24,18 +24,17 @@ let e: Map<Float64, String> = [:] // OK
     (subscript_call_expr
       (tuple_expr
         (tuple_expr_element
-          (infix_expr
+          (type_casting_expr
             (buffer_literal
               (integer_literal
                 (decimal_literal))
               (integer_literal
                 (decimal_literal)))
-            (type_casting_tail
-              (array_type_expr
-                (name_type_expr
-                  (selector
-                    (identifier_expr
-                      (identifier)))))))))
+            (array_type_expr
+              (name_type_expr
+                (selector
+                  (identifier_expr
+                    (identifier))))))))
       (call_argument
         (integer_literal
           (decimal_literal)))))

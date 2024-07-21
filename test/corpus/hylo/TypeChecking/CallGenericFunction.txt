@@ -267,14 +267,13 @@ public fun main() {
               (integer_literal
                 (decimal_literal)))
             (call_argument
-              (infix_expr
+              (type_casting_expr
                 (integer_literal
                   (decimal_literal))
-                (type_casting_tail
-                  (name_type_expr
-                    (selector
-                      (identifier_expr
-                        (identifier))))))))))
+                (name_type_expr
+                  (selector
+                    (identifier_expr
+                      (identifier)))))))))
       (stmt
         (function_call_expr
           (value_member_expr
@@ -356,14 +355,13 @@ public fun main() {
           (call_argument
             (boolean_literal))))
       (stmt
-        (infix_expr
+        (type_casting_expr
           (integer_literal
             (decimal_literal))
-          (type_casting_tail
-            (name_type_expr
-              (selector
-                (identifier_expr
-                  (identifier)))
-              (selector
-                (identifier_expr
-                  (identifier))))))))))
+          (name_type_expr
+            (selector
+              (identifier_expr
+                (identifier)))
+            (selector
+              (identifier_expr
+                (identifier)))))))))

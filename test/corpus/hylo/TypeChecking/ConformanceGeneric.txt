@@ -174,25 +174,25 @@ fun f1<B>(_ a: A<B>) {
                         (identifier_expr
                           (identifier))))))
                 (value_constraint_expr
-                  (infix_expr
-                    (value_member_expr
+                  (assignment_expr
+                    (infix_expr
                       (value_member_expr
-                        (selector
-                          (identifier_expr
-                            (identifier))))
-                      (selector
-                        (identifier_expr
-                          (identifier))))
-                    (infix_operator_tail
-                      (infix_operator)
-                      (assignment_expr
-                        (integer_literal
-                          (decimal_literal))
-                        (assignment_operator)
                         (value_member_expr
                           (selector
                             (identifier_expr
-                              (identifier)))))))))))))
+                              (identifier))))
+                        (selector
+                          (identifier_expr
+                            (identifier))))
+                      (infix_operator_tail
+                        (infix_operator)
+                        (integer_literal
+                          (decimal_literal))))
+                    (assignment_operator)
+                    (value_member_expr
+                      (selector
+                        (identifier_expr
+                          (identifier)))))))))))
       (stmt
         (function_call_expr
           (value_member_expr

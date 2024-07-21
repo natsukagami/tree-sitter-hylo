@@ -2594,6 +2594,10 @@
           },
           {
             "type": "SYMBOL",
+            "name": "type_casting_expr"
+          },
+          {
+            "type": "SYMBOL",
             "name": "_compound_expr"
           }
         ]
@@ -2649,66 +2653,19 @@
           {
             "type": "REPEAT1",
             "content": {
-              "type": "SYMBOL",
-              "name": "_infix_expr_tail"
-            }
-          }
-        ]
-      }
-    },
-    "_infix_expr_tail": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "SYMBOL",
-          "name": "type_casting_tail"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "infix_operator_tail"
-        }
-      ]
-    },
-    "type_casting_tail": {
-      "type": "PREC_RIGHT",
-      "value": "type_float",
-      "content": {
-        "type": "SEQ",
-        "members": [
-          {
-            "type": "FIELD",
-            "name": "operator",
-            "content": {
-              "type": "CHOICE",
-              "members": [
-                {
-                  "type": "STRING",
-                  "value": "as"
-                },
-                {
-                  "type": "STRING",
-                  "value": "as!"
-                },
-                {
-                  "type": "STRING",
-                  "value": "as*"
-                }
-              ]
-            }
-          },
-          {
-            "type": "FIELD",
-            "name": "type",
-            "content": {
-              "type": "SYMBOL",
-              "name": "_type_expr"
+              "type": "FIELD",
+              "name": "tail",
+              "content": {
+                "type": "SYMBOL",
+                "name": "infix_operator_tail"
+              }
             }
           }
         ]
       }
     },
     "infix_operator_tail": {
-      "type": "PREC_RIGHT",
+      "type": "PREC_LEFT",
       "value": 0,
       "content": {
         "type": "SEQ",
@@ -2794,6 +2751,56 @@
             "content": {
               "type": "SYMBOL",
               "name": "postfix_operator"
+            }
+          }
+        ]
+      }
+    },
+    "type_casting_expr": {
+      "type": "PREC",
+      "value": "expr_postfix",
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "FIELD",
+            "name": "lhs",
+            "content": {
+              "type": "SYMBOL",
+              "name": "_expr"
+            }
+          },
+          {
+            "type": "FIELD",
+            "name": "operator",
+            "content": {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "STRING",
+                  "value": "as"
+                },
+                {
+                  "type": "STRING",
+                  "value": "as!"
+                },
+                {
+                  "type": "STRING",
+                  "value": "as*"
+                }
+              ]
+            }
+          },
+          {
+            "type": "PREC_RIGHT",
+            "value": 0,
+            "content": {
+              "type": "FIELD",
+              "name": "type",
+              "content": {
+                "type": "SYMBOL",
+                "name": "_type_expr"
+              }
             }
           }
         ]
@@ -3603,7 +3610,7 @@
         },
         {
           "type": "SYMBOL",
-          "name": "expr_pattern"
+          "name": "identifier"
         },
         {
           "type": "SYMBOL",
@@ -3614,14 +3621,6 @@
           "name": "wildcard_pattern"
         }
       ]
-    },
-    "expr_pattern": {
-      "type": "PREC",
-      "value": "pattern",
-      "content": {
-        "type": "SYMBOL",
-        "name": "_expr"
-      }
     },
     "binding_pattern": {
       "type": "PREC_RIGHT",
@@ -6552,16 +6551,8 @@
       "receiver_modifier"
     ],
     [
-      "binding_introducer",
-      "parameter_passing_convention"
-    ],
-    [
       "brace_stmt",
       "tuple_type_expr"
-    ],
-    [
-      "wildcard_pattern",
-      "wildcard_type_expr"
     ],
     [
       "identifier_expr"

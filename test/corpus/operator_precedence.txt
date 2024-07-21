@@ -1,0 +1,136 @@
+==============
+Operator Precs
+Inout > Postfix > Prefix > Infix > Assignment
+==============
+
+fun check<T>(_ x: T) {}
+
+public fun main(x: Int, y: Int) {
+  &x = *y + x!! + *z!! as Pointer<Int>::Q.F
+  &x.y.z += x * *y! * z
+}
+
+---
+
+(source_file
+  (function_decl
+    (function_head
+      (function_name
+        (identifier))
+      (generic_clause
+        (generic_type_parameter
+          (identifier))))
+    (function_signature
+      (parameter_decl
+        (identifier)
+        (name_type_expr
+          (selector
+            (identifier_expr
+              (identifier))))))
+    (brace_stmt))
+  (function_decl
+    (function_head
+      (access_modifier)
+      (function_name
+        (identifier)))
+    (function_signature
+      (parameter_decl
+        (identifier)
+        (name_type_expr
+          (selector
+            (identifier_expr
+              (identifier)))))
+      (parameter_decl
+        (identifier)
+        (name_type_expr
+          (selector
+            (identifier_expr
+              (identifier))))))
+    (brace_stmt
+      (stmt
+        (assignment_expr
+          (inout_expr
+            (value_member_expr
+              (selector
+                (identifier_expr
+                  (identifier)))))
+          (assignment_operator)
+          (infix_expr
+            (postfix_expr
+              (infix_expr
+                (prefix_expr
+                  (prefix_operator)
+                  (value_member_expr
+                    (selector
+                      (identifier_expr
+                        (identifier)))))
+                (infix_operator_tail
+                  (infix_operator)
+                  (value_member_expr
+                    (selector
+                      (identifier_expr
+                        (identifier))))))
+              (postfix_operator))
+            (infix_operator_tail
+              (infix_operator)
+              (prefix_expr
+                (prefix_operator)
+                (type_casting_expr
+                  (postfix_expr
+                    (value_member_expr
+                      (selector
+                        (identifier_expr
+                          (identifier))))
+                    (postfix_operator))
+                  (name_type_expr
+                    (conformance_lens_type_expr
+                      (name_type_expr
+                        (selector
+                          (identifier_expr
+                            (identifier))
+                          (static_argument_list
+                            (static_argument
+                              (name_type_expr
+                                (selector
+                                  (identifier_expr
+                                    (identifier))))))))
+                      (identifier))
+                    (selector
+                      (identifier_expr
+                        (identifier))))))))))
+      (stmt
+        (assignment_expr
+          (inout_expr
+            (value_member_expr
+              (value_member_expr
+                (selector
+                  (identifier_expr
+                    (identifier))))
+              (selector
+                (identifier_expr
+                  (identifier)))
+              (selector
+                (identifier_expr
+                  (identifier)))))
+          (assignment_operator)
+          (infix_expr
+            (value_member_expr
+              (selector
+                (identifier_expr
+                  (identifier))))
+            (infix_operator_tail
+              (infix_operator)
+              (prefix_expr
+                (prefix_operator)
+                (postfix_expr
+                  (value_member_expr
+                    (selector
+                      (identifier_expr
+                        (identifier))))
+                  (postfix_operator))))
+            (infix_operator_tail
+              (infix_operator)
+              (value_member_expr
+                (selector
+                  (identifier_expr
+                    (identifier)))))))))))

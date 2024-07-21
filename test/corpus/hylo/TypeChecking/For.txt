@@ -105,7 +105,7 @@ public fun main() {
                       (identifier)))))))))
       (brace_stmt
         (stmt
-          (infix_expr
+          (type_casting_expr
             (value_index_expr
               (tuple_expr
                 (tuple_expr_element
@@ -129,8 +129,7 @@ public fun main() {
                     (integer_literal
                       (decimal_literal)))))
               (value_member_index))
-            (type_casting_tail
-              (wildcard_type_expr)))))))
+            (wildcard_type_expr))))))
   (function_decl
     (function_head
       (function_name

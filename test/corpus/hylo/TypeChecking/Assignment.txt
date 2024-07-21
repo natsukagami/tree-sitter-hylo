@@ -42,10 +42,9 @@ public fun main() {
                   (identifier))))
             (infix_operator_tail
               (infix_operator)
-              (infix_expr
-                (integer_literal
-                  (decimal_literal))
-                (infix_operator_tail
-                  (infix_operator)
-                  (integer_literal
-                    (decimal_literal)))))))))))
+              (integer_literal
+                (decimal_literal)))
+            (infix_operator_tail
+              (infix_operator)
+              (integer_literal
+                (decimal_literal)))))))))
